@@ -1,0 +1,4 @@
+Astro emits its hashed assets into _astro/, and GitHub Pages runs Jekyll by
+default, which skips every path beginning with an underscore. Without this file
+the site deploys with no CSS and no JS. Its contents are ignored; only its
+existence matters. It lives in public/ so the build copies it into dist/.
