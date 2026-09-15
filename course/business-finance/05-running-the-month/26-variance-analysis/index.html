@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Variance analysis: flexible budgets, price, volume and mix — Business Finance · Aerens</title><meta name="description" content="One adverse number that answers nothing, split into a volume effect, a rate effect, a usage effect and a mix effect — and the rule for which ones to chase."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/05-running-the-month/26-variance-analysis/"><meta property="og:type" content="website"><meta property="og:title" content="Variance analysis: flexible budgets, price, volume and mix — Business Finance · Aerens"><meta property="og:description" content="One adverse number that answers nothing, split into a volume effect, a rate effect, a usage effect and a mix effect — and the rule for which ones to chase."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/05-running-the-month/26-variance-analysis/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · Running the month</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Variance analysis: flexible budgets, price, volume and mix</h1><p class="mt-3 text-bone/70">One adverse number that answers nothing, split into a volume effect, a rate effect, a usage effect and a mix effect — and the rule for which ones to chase.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 05 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Flex a budget to actual volume and split the variance in two</li><li>Split a spending variance into rate and usage</li><li>Say which variances are worth investigating and which are already explained</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Budget €100,000, actual €118,000. An €18,000 adverse variance, and somebody is
+going to be asked about it.</p>
+<p>You made 1,250 units against a plan of 1,000. So you did 25% more work for 18%
+more money, which is a good month reported as a bad one.</p>
+<h2 id="a-fixed-budget-variance-mixes-two-questions">A fixed-budget variance mixes two questions</h2>
+<p>The comparison as printed asks a single question — did you spend what you said —
+against a plan built for a different amount of work.</p>
+<p>That conflates two entirely separate things: <em>did volume change</em> and <em>did you
+spend differently per unit</em>. Both are real questions and the combined number
+answers neither, which is why a variance against a fixed budget is close to
+useless in any business whose volumes move.</p>
+<figure class="fig"><svg viewBox="0 0 320 180" role="img" aria-labelledby="fig-mixed-variance"><title id="fig-mixed-variance">Comparing actual cost against a budget set for a different volume produces a variance that mixes the effect of doing more work with the effect of spending differently.</title><text x="8" y="14" class="dim">ONE NUMBER, TWO QUESTIONS</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">BUDGET 100,000 FOR 1,000 UNITS</text><rect class="box" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">ACTUAL 118,000 FOR 1,250 UNITS</text><rect class="mark" x="8" y="110" width="304" height="32"></rect><text x="20" y="130" class="tight">18,000 ADVERSE, AND MEANINGLESS</text><text x="8" y="168" class="dim">YOU MADE 25% MORE AND SPENT 18% MORE</text></svg><figcaption class="fig-cap">One number containing two questions and answering neither.</figcaption></figure>
+<h2 id="the-flexible-budget-separates-them">The flexible budget separates them</h2>
+<p>The fix is one step. Restate the budget at the volume actually achieved.</p>
+<p>If the budget was €100,000 for 1,000 units and the variable cost is €100 a unit,
+the <strong>flexed budget</strong> for 1,250 units is €125,000. Now:</p>
+<ul>
+<li><strong>Volume variance</strong> = flexed − original = €25,000 adverse. Cost rose because
+output rose, which is not a problem and may be excellent news.</li>
+<li><strong>Spending variance</strong> = actual − flexed = €118,000 − €125,000 = €7,000
+<strong>favourable</strong>. At the volume achieved, you spent less than the model said.</li>
+</ul>
+<p>An €18,000 adverse total containing a €7,000 favourable performance. The
+flexible budget is the single most useful piece of variance technique there is,
+and it takes one multiplication.</p>
+<p>One caution from track 3: flexing needs a correct fixed/variable split. If the
+€100 per unit is really €60 variable plus fixed cost divided by budgeted units,
+flexing on €100 overstates the flexed budget and manufactures a favourable
+spending variance out of nothing.</p>
+<figure class="fig"><svg viewBox="0 0 320 178" role="img" aria-labelledby="fig-flex-budget"><title id="fig-flex-budget">Restating the budget at the volume actually achieved splits the total variance into a volume effect and a spending effect, which can point in opposite directions.</title><text x="8" y="14" class="dim">FLEX THE BUDGET TO ACTUAL VOLUME</text><rect class="box" x="8" y="30" width="96" height="44"></rect><text x="20" y="52" class="tight">BUDGET</text><text x="20" y="68" class="tight">100,000</text><rect class="mark" x="112" y="30" width="96" height="44"></rect><text x="124" y="52" class="tight">FLEXED</text><text x="124" y="68" class="tight">125,000</text><rect class="box" x="216" y="30" width="96" height="44"></rect><text x="228" y="52" class="tight">ACTUAL</text><text x="228" y="68" class="tight">118,000</text><path class="thin" d="M56 78 V88 M160 78 V88 M264 78 V88 M56 88 H264"></path><text x="20" y="106" class="tight">VOLUME 25,000 A</text><text x="172" y="106" class="tight">SPENDING 7,000 F</text><text x="8" y="144" class="dim">THE 18,000 ADVERSE WAS 25,000 OF EXTRA</text><text x="8" y="162" class="dim">VOLUME AND 7,000 OF GENUINE SAVING</text></svg><figcaption class="fig-cap">One multiplication, and the good news separates from the volume.</figcaption></figure>
+<h2 id="price-and-quantity-on-the-same-cost">Price and quantity, on the same cost</h2>
+<p>The spending variance splits again, into the two things that make a cost what it
+is: the rate paid and the quantity used.</p>
+<p>Expected 500 hours at €90 = €45,000. Actual 520 hours at €86 = €44,720. A €280
+favourable variance that looks like nothing, containing:</p>
+<ul>
+<li><strong>Rate variance</strong> = (90 − 86) × 520 = <strong>€2,080 favourable</strong>. You paid less per
+hour.</li>
+<li><strong>Usage variance</strong> = (500 − 520) × 90 = <strong>€1,800 adverse</strong>. You used more
+hours.</li>
+</ul>
+<p>Two effects, each seven times the net figure, pointing in opposite directions.
+And they usually have different owners — procurement negotiated the rate,
+operations consumed the hours — which is why splitting them is the difference
+between a useful conversation and a shrug.</p>
+<p>They also often have a <em>causal</em> link worth naming: a cheaper rate frequently
+buys a less experienced person who takes longer. A favourable rate variance
+sitting next to an adverse usage variance is a pattern, not a coincidence.</p>
+<figure class="fig"><svg viewBox="0 0 320 188" role="img" aria-labelledby="fig-price-quantity"><title id="fig-price-quantity">A spending variance splits again into a rate effect, from paying a different price, and a usage effect, from consuming a different quantity.</title><text x="8" y="14" class="dim">SPLITTING THE SPENDING VARIANCE</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">EXPECTED 500 HOURS AT 90 = 45,000</text><rect class="box" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">ACTUAL 520 HOURS AT 86 = 44,720</text><rect class="mark" x="8" y="112" width="148" height="32"></rect><text x="20" y="132" class="tight">RATE 2,080 F</text><rect class="box" x="164" y="112" width="148" height="32"></rect><text x="176" y="132" class="tight">USAGE 1,800 A</text><text x="8" y="170" class="dim">A SMALL NET NUMBER HIDING TWO BIGGER</text><text x="8" y="184" class="dim">ONES POINTING OPPOSITE WAYS</text></svg><figcaption class="fig-cap">Two effects, opposite directions, different owners.</figcaption></figure>
+<h2 id="mix-when-there-is-more-than-one-thing">Mix, when there is more than one thing</h2>
+<p>With more than one product, a fourth effect appears and it is the one nobody
+looks for.</p>
+<p>Sell exactly the planned number of units, at the planned prices, at the planned
+costs — but a different <em>blend</em> of them, weighted towards the low-margin
+product. Volume is on plan. Prices are on plan. Profit is down.</p>
+<p>That is the <strong>mix variance</strong>, and it is invisible in any report that tracks
+total units or total revenue. It appears as a margin percentage falling for no
+reason anybody can name, and the reason is that the question was never asked
+about the composition.</p>
+<p>The same effect applies to costs: the same total hours at the planned rates, but
+more of them from the expensive grade.</p>
+<figure class="fig"><svg viewBox="0 0 320 178" role="img" aria-labelledby="fig-mix-effect"><title id="fig-mix-effect">Selling the planned number of units but a different blend of them changes profit without changing volume, which is the mix effect.</title><text x="8" y="14" class="dim">WHEN THERE IS MORE THAN ONE PRODUCT</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">SAME TOTAL UNITS SOLD AS PLANNED</text><rect class="box" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">BUT MORE OF THE LOW-MARGIN ONE</text><rect class="mark" x="8" y="110" width="304" height="32"></rect><text x="20" y="130" class="tight">PROFIT DOWN, VOLUME UNCHANGED</text><text x="8" y="166" class="dim">MIX IS THE VARIANCE NOBODY LOOKS FOR</text></svg><figcaption class="fig-cap">Everything on plan except the blend, and the blend was the profit.</figcaption></figure>
+<h2 id="which-variances-are-worth-investigating">Which variances are worth investigating</h2>
+<p>Investigating a variance costs somebody’s afternoon, so the test matters.</p>
+<p><strong>Chase it if it is large, controllable and unexplained.</strong> All three: large
+alone is usually phasing, controllable alone is usually small, and explained
+already needs no work.</p>
+<p><strong>Also chase it if it is small but repeats every month.</strong> A €900 adverse
+variance appearing eleven months running is not eleven events. It is a
+structural error — a budget set wrong, a rate that changed, an allocation
+misdirected — and it is €9,900 that a size threshold will never surface.</p>
+<p><strong>Do not chase it if it is understood.</strong> A line 20% over since January because
+the phasing is flat and the spend is annual does not need explaining again in
+July.</p>
+<p>The second of these is the one that gets missed, because reports sort by size
+and structural errors hide under the threshold by design.</p>
+<figure class="fig"><svg viewBox="0 0 320 188" role="img" aria-labelledby="fig-which-to-chase"><title id="fig-which-to-chase">A variance is worth investigating when it is large, controllable and unexplained, or when it is small but repeats every month, which makes it structural rather than an event.</title><text x="8" y="14" class="dim">WHICH ONES ARE WORTH THE TIME</text><rect class="mark" x="8" y="30" width="304" height="30"></rect><text x="20" y="50" class="tight">LARGE, CONTROLLABLE, AND UNEXPLAINED</text><rect class="box" x="8" y="68" width="304" height="30"></rect><text x="20" y="88" class="tight">OR SMALL BUT REPEATING EVERY MONTH</text><rect class="box" x="8" y="106" width="304" height="30"></rect><text x="20" y="126" class="tight">NOT LARGE AND ALREADY UNDERSTOOD</text><text x="8" y="162" class="dim">A REPEATING SMALL VARIANCE IS A</text><text x="8" y="180" class="dim">STRUCTURAL ERROR, NOT AN EVENT</text></svg><figcaption class="fig-cap">Big and unexplained, or small and repeating. Everything else is noise.</figcaption></figure>
+<h2 id="worked-example-the-whole-split">Worked example: the whole split</h2>
+<p>A support team. Budget €100,000 for 1,000 tickets. Actual €118,000 for 1,250
+tickets. Variable cost budgeted at €100 a ticket.</p>
+<p><strong>Step 1 — flex.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>€</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original budget, 1,000 tickets</td>
+<td>100,000</td>
+</tr>
+<tr>
+<td>Flexed budget, 1,250 tickets</td>
+<td>125,000</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>118,000</td>
+</tr>
+<tr>
+<td><strong>Volume variance</strong></td>
+<td><strong>(25,000)</strong></td>
+</tr>
+<tr>
+<td><strong>Spending variance</strong></td>
+<td><strong>7,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2 — split the spending variance.</strong> Budget was 2.0 hours a ticket at €50;
+actual was 2.1 hours at €45.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Calculation</th>
+<th>€</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rate</td>
+<td>(50 − 45) × 2,625 hours</td>
+<td>13,125 F</td>
+</tr>
+<tr>
+<td>Usage</td>
+<td>(2,500 − 2,625) × 50</td>
+<td>6,250 A</td>
+</tr>
+<tr>
+<td><strong>Net spending</strong></td>
+<td></td>
+<td><strong>6,875 F</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The €125 difference from the €7,000 above is rounding on the flexed rate; leave
+it, and do not spend an hour on it.</p>
+<p><strong>Step 3 — read it.</strong> The team handled 25% more tickets. They did it with
+cheaper staff — €45 an hour against €50 — who each took 5% longer per ticket.
+Net, that saved €6,875 against what the model predicted at that volume.</p>
+<p>Now the question worth asking, which no variance produces: is a 5% slower
+resolution at 10% lower cost a good trade? That depends on what the extra time
+does to the customer, and the numbers cannot say. What they can do is put the
+trade in front of somebody, which the original €18,000 adverse never would have.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Take one cost line with a volume driver. Flex the budget to the actual volume
+and compute the two variances.</li>
+<li>Check your variable rate first — if it includes allocated fixed cost, the
+flex is wrong. Track 3’s high-low tutorial is how to get it right.</li>
+<li>If you can, split the spending variance into rate and usage. Note whether
+they point the same way or opposite ways.</li>
+<li>Then look back six months for a small variance that appears every single
+month, and find out what it is.</li>
+</ol>
+<p>Step 4 usually finds a budget line that was set wrong at the start of the year
+and has been quietly wrong ever since.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Why is a variance against a fixed budget close to useless when volumes move?</legend><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-0-0" name="business-finance/05-running-the-month/26-variance-analysis-0"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-0-0"><span class="quiz-letter">A</span><span>It ignores the fixed costs that do not move with volume</span></label><p class="quiz-why"><b>Not quite.</b> Fixed costs are in both figures. The problem is that the variable part was budgeted at the wrong quantity.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-0-1" name="business-finance/05-running-the-month/26-variance-analysis-0"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-0-1"><span class="quiz-letter">B</span><span>It is calculated before the month has been fully closed</span></label><p class="quiz-why"><b>Not quite.</b> Timing affects precision rather than the structure. Even a perfectly closed month has the same conflation in it.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-0-2" name="business-finance/05-running-the-month/26-variance-analysis-0"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-0-2"><span class="quiz-letter">C</span><span>It compares an accrual figure against a cash-based plan</span></label><p class="quiz-why"><b>Not quite.</b> Both sides are on the same accrual basis. What differs between them is the level of output assumed.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-0-3" name="business-finance/05-running-the-month/26-variance-analysis-0"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-0-3" data-correct><span class="quiz-letter">D</span><span>It merges the volume effect with the spending effect</span></label><p class="quiz-why"><b>Right.</b> The plan was built for a different amount of work, so the difference contains two questions and answers neither.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Budget €100,000 for 1,000 units at €100 variable. Actual €118,000 for 1,250 units. What is the spending variance?</legend><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-1-0" name="business-finance/05-running-the-month/26-variance-analysis-1"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-1-0"><span class="quiz-letter">A</span><span>Nothing, since the extra volume accounts for the whole gap</span></label><p class="quiz-why"><b>Not quite.</b> The volume accounts for €25,000 of it, which is more than the gap. The remainder is a €7,000 saving.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-1-1" name="business-finance/05-running-the-month/26-variance-analysis-1"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-1-1" data-correct><span class="quiz-letter">B</span><span>€7,000 favourable, against a flexed budget of €125,000</span></label><p class="quiz-why"><b>Right.</b> Flexing to the volume achieved gives €125,000, and €118,000 against that is a genuine saving at the output delivered.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-1-2" name="business-finance/05-running-the-month/26-variance-analysis-1"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-1-2"><span class="quiz-letter">C</span><span>€25,000 adverse, being the flexed budget against the original</span></label><p class="quiz-why"><b>Not quite.</b> That is the volume variance, and it is not a performance problem. The spending effect is the other half.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-1-3" name="business-finance/05-running-the-month/26-variance-analysis-1"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-1-3"><span class="quiz-letter">D</span><span>€18,000 adverse, being actual against the original budget</span></label><p class="quiz-why"><b>Not quite.</b> That is the combined figure. It includes €25,000 of extra cost caused purely by producing 25% more.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>A favourable rate variance sits next to an adverse usage variance. What does that pattern often mean?</legend><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-2-0" name="business-finance/05-running-the-month/26-variance-analysis-2"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-2-0" data-correct><span class="quiz-letter">A</span><span>A cheaper resource was bought and it took longer to work</span></label><p class="quiz-why"><b>Right.</b> Rate and usage are frequently causally linked: a lower hourly cost often buys less experience, which consumes more hours.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-2-1" name="business-finance/05-running-the-month/26-variance-analysis-2"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-2-1"><span class="quiz-letter">B</span><span>The costs were coded to the wrong account during the month</span></label><p class="quiz-why"><b>Not quite.</b> Miscoding moves a cost between lines. It does not generate offsetting rate and usage effects within one line.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-2-2" name="business-finance/05-running-the-month/26-variance-analysis-2"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-2-2"><span class="quiz-letter">C</span><span>The two variances were calculated on different quantities</span></label><p class="quiz-why"><b>Not quite.</b> The standard split uses actual quantity for rate and standard rate for usage, so they reconcile. The pattern is real.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-2-3" name="business-finance/05-running-the-month/26-variance-analysis-2"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-2-3"><span class="quiz-letter">D</span><span>The budget rate was set before the last price negotiation</span></label><p class="quiz-why"><b>Not quite.</b> A stale standard would produce a rate variance on its own. It would not also drive hours upward.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Volume is on plan, prices are on plan, costs are on plan, and profit is down. What is left?</legend><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-3-0" name="business-finance/05-running-the-month/26-variance-analysis-3"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-3-0"><span class="quiz-letter">A</span><span>The volume figure is measured in units rather than revenue</span></label><p class="quiz-why"><b>Not quite.</b> Unit-based measurement is exactly how mix hides. The cause is still that the blend changed.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-3-1" name="business-finance/05-running-the-month/26-variance-analysis-3"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-3-1"><span class="quiz-letter">B</span><span>The fixed cost base rose without any volume change</span></label><p class="quiz-why"><b>Not quite.</b> That would be a spending variance on fixed costs, which the question rules out by saying costs are on plan.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-3-2" name="business-finance/05-running-the-month/26-variance-analysis-3"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-3-2" data-correct><span class="quiz-letter">C</span><span>The blend shifted towards the lower-margin product</span></label><p class="quiz-why"><b>Right.</b> With every other input on plan, only the composition can have moved, and composition is what the mix variance measures.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-3-3" name="business-finance/05-running-the-month/26-variance-analysis-3"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-3-3"><span class="quiz-letter">D</span><span>A timing difference between the sale and the cost of it</span></label><p class="quiz-why"><b>Not quite.</b> Matching puts them in the same period. A persistent margin fall with everything on plan points at composition.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>A €900 adverse variance has appeared every month for eleven months. Is it worth chasing?</legend><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-4-0" name="business-finance/05-running-the-month/26-variance-analysis-4"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-4-0" data-correct><span class="quiz-letter">A</span><span>Yes, since a repeating variance is structural, not an event</span></label><p class="quiz-why"><b>Right.</b> Eleven occurrences is one cause worth nearly €10,000, and a size threshold will never surface it.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-4-1" name="business-finance/05-running-the-month/26-variance-analysis-4"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-4-1"><span class="quiz-letter">B</span><span>Yes, but after every larger variance has been dealt with</span></label><p class="quiz-why"><b>Not quite.</b> Larger ones are usually phasing or allocation and often need no work. Sorting purely by size buries this case.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-4-2" name="business-finance/05-running-the-month/26-variance-analysis-4"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-4-2"><span class="quiz-letter">C</span><span>No, since it is small and it is clearly understood by now</span></label><p class="quiz-why"><b>Not quite.</b> Being repeated is not the same as being understood. Nobody has explained it; it has simply become familiar.</p><input class="quiz-radio" type="radio" id="business-finance/05-running-the-month/26-variance-analysis-4-3" name="business-finance/05-running-the-month/26-variance-analysis-4"><label class="quiz-opt" for="business-finance/05-running-the-month/26-variance-analysis-4-3"><span class="quiz-letter">D</span><span>No, since eleven months of it must be a phasing effect</span></label><p class="quiz-why"><b>Not quite.</b> Phasing effects reverse across the year. One that runs the same way every month is not phasing.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Horngren, Cost Accounting, ch. 7–8 · CIMA P1, standard costing and variance analysis</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/05-running-the-month/25-purchase-orders" class="text-ash transition-colors hover:text-bone">← Commitments, purchase orders and the three-way match</a><a href="/course/business-finance/05-running-the-month/27-forecasting" class="text-ash transition-colors hover:text-bone">Forecast, reforecast, and landing the year →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

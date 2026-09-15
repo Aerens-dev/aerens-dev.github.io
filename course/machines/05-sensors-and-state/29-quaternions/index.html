@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Quaternions, and why not Euler angles — Machines · Aerens</title><meta name="description" content="Where Euler angles break, what four numbers buy, the renormalisation that is not optional, and the sign check that stops the vehicle spinning the long way."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/05-sensors-and-state/29-quaternions/"><meta property="og:type" content="website"><meta property="og:title" content="Quaternions, and why not Euler angles — Machines · Aerens"><meta property="og:description" content="Where Euler angles break, what four numbers buy, the renormalisation that is not optional, and the sign check that stops the vehicle spinning the long way."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/05-sensors-and-state/29-quaternions/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Sensors and state</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Quaternions, and why not Euler angles</h1><p class="mt-3 text-bone/70">Where Euler angles break, what four numbers buy, the renormalisation that is not optional, and the sign check that stops the vehicle spinning the long way.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 06 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Say what gimbal lock is and which vehicles it actually affects</li><li>Read a unit quaternion as an axis and an angle</li><li>Name the two implementation steps that are always needed and often missed</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Roll, pitch and yaw are three numbers anybody can picture. They work fine for
+the test stand, fine for a balancing robot, and fine for a multirotor that never
+exceeds 45° of bank.</p>
+<p>Point the nose straight up and they stop working — not gradually, but with an
+arctangent going to infinity and an attitude estimate that produces a step
+change in yaw for an infinitesimal change in orientation.</p>
+<p>Quaternions are the standard fix and they have a reputation for being exotic.
+They are not: four numbers, one constraint, and two implementation details that
+matter far more than the algebra.</p>
+<h2 id="where-euler-angles-break">Where Euler angles break</h2>
+<p>Euler angles describe an orientation as three rotations applied <strong>in a specific
+order</strong> — typically yaw, then pitch, then roll.</p>
+<p>At <strong>pitch = 90°</strong>, the first and third axes become parallel. Rotating about
+yaw and rotating about roll now produce the same motion, so one degree of
+freedom is lost: <strong>gimbal lock</strong>. The orientation is still perfectly
+well-defined; the <em>parameterisation</em> has failed.</p>
+<p>And it fails badly rather than gracefully. Near 90° the arithmetic involves a
+tangent that grows without bound, so a tiny measurement change produces a huge
+change in the reported angles, and a filter working in those coordinates goes
+unstable before the singularity is reached rather than at it.</p>
+<p>The practical question is whether your vehicle goes there. A ground robot: no.
+The test stand: no. A camera gimbal: possibly. A multirotor doing anything
+aerobatic, or a fixed-wing in a vertical climb: certainly. <strong>If the vehicle
+cannot exceed 45°, Euler angles are fine and simpler</strong>, and there is no virtue
+in quaternions for their own sake.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-gimbal-lock"><title id="fig-gimbal-lock">When pitch reaches ninety degrees the roll and yaw axes become parallel, so one degree of freedom is lost and the two angles become indistinguishable from each other.</title><text x="8" y="14" class="dim">PITCH AT NINETY, AND AN AXIS DISAPPEARS</text><rect class="fill" x="8" y="28" width="146" height="66"></rect><text x="18" y="48" class="tight">LEVEL FLIGHT</text><text x="18" y="68" class="tight">THREE AXES, ALL</text><text x="18" y="84" class="tight">INDEPENDENT</text><rect class="mark" x="166" y="28" width="146" height="66"></rect><text x="176" y="48" class="tight">NOSE STRAIGHT UP</text><text x="176" y="68" class="tight">ROLL AND YAW ARE</text><text x="176" y="84" class="tight">THE SAME ROTATION</text><text x="8" y="124" class="tight">NEAR IT, THE ARITHMETIC BLOWS UP RATHER THAN</text><text x="8" y="140" class="tight">FAILING CLEANLY: A TAN GOES TO INFINITY</text><text x="8" y="170" class="dim">SO A VEHICLE THAT NEVER GOES PAST 45 DEGREES IS</text><text x="8" y="184" class="dim">FINE WITH EULER ANGLES, AND ONE THAT FLIPS IS NOT</text></svg><figcaption class="fig-cap">The orientation is fine. The parameterisation is not.</figcaption></figure>
+<h2 id="an-axis-and-an-angle-in-four-numbers">An axis and an angle, in four numbers</h2>
+<p>Any rotation in three dimensions can be described as a <strong>single rotation by some
+angle about some axis</strong> — Euler’s rotation theorem. A quaternion is that
+statement, packed:</p>
+<ul>
+<li><strong>w</strong> = cos(θ/2)</li>
+<li><strong>x, y, z</strong> = the unit axis, times sin(θ/2)</li>
+</ul>
+<p>with the constraint <strong>w² + x² + y² + z² = 1</strong>.</p>
+<p>So the identity rotation is (1, 0, 0, 0): no angle, any axis. A 90° rotation
+about z is (cos 45°, 0, 0, sin 45°) = (0.707, 0, 0, 0.707).</p>
+<p>What this buys, concretely: <strong>no ordering</strong> to get wrong, <strong>no singularity</strong>
+anywhere, <strong>cheap composition</strong> — combining two rotations is one quaternion
+multiply, sixteen multiplies and twelve adds — and a clean integration step for
+a gyro measurement.</p>
+<p>What it costs is legibility. Nobody looks at (0.924, 0.038, −0.114, 0.362) and
+knows what the aircraft is doing. That is a real cost and the answer is
+straightforward: convert to Euler angles at the boundary, for display and
+logging, and never inside the loop.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-quaternion"><title id="fig-quaternion">A unit quaternion encodes a rotation as an axis and an angle about it, packed into four numbers with a constraint, which removes the ordering and singularity problems Euler angles carry.</title><text x="8" y="14" class="dim">ONE AXIS, ONE ANGLE, FOUR NUMBERS</text><rect class="fill" x="8" y="28" width="90" height="50"></rect><text x="18" y="48" class="tight">w</text><text x="18" y="66" class="tight">COS HALF ANGLE</text><rect class="mark" x="110" y="28" width="202" height="50"></rect><text x="120" y="48" class="tight">x  y  z</text><text x="120" y="66" class="tight">AXIS, TIMES SIN HALF ANGLE</text><text x="8" y="106" class="tight">CONSTRAINT · w2 + x2 + y2 + z2 = 1</text><text x="8" y="136" class="dim">NO ORDER TO GET WRONG, NO SINGULARITY ANYWHERE,</text><text x="8" y="150" class="dim">AND COMPOSING TWO ROTATIONS IS ONE MULTIPLY.</text><text x="8" y="164" class="dim">THE PRICE IS THAT NOBODY CAN READ ONE, SO YOU</text><text x="8" y="178" class="dim">CONVERT TO EULER AT THE EDGE, FOR HUMANS ONLY</text></svg><figcaption class="fig-cap">Half the angle, because a quaternion applies its rotation twice.</figcaption></figure>
+<h2 id="renormalise-every-step">Renormalise, every step</h2>
+<p>Here is the first of the two implementation details that matter more than the
+theory.</p>
+<p>Integrating a quaternion with gyro measurements accumulates floating-point
+error, and that error changes its <strong>magnitude</strong>. A quaternion that is not unit
+length does not encode a pure rotation — it encodes a rotation <em>and a scaling</em>,
+so every vector you rotate with it comes out slightly the wrong length, and the
+error compounds through the filter.</p>
+<p>The fix is one line per step: divide all four components by the norm. It costs a
+square root and a divide, and on a Cortex-M4F both are single instructions.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> n </span><span style="color:#F97583">=</span><span style="color:#B392F0"> sqrtf</span><span style="color:#E1E4E8">(w</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">w </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> x</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> y</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">y </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> z</span><span style="color:#F97583">*</span><span style="color:#FFAB70">z</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">w </span><span style="color:#F97583">/=</span><span style="color:#E1E4E8"> n; x </span><span style="color:#F97583">/=</span><span style="color:#E1E4E8"> n; y </span><span style="color:#F97583">/=</span><span style="color:#E1E4E8"> n; z </span><span style="color:#F97583">/=</span><span style="color:#E1E4E8"> n;</span></span></code></pre>
+<p>Skipping it does not fail loudly. The estimate degrades slowly over minutes, in
+a way that looks like sensor drift and is not — which makes it one of the more
+frustrating bugs to find if you do not know to look for it.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-normalise"><title id="fig-normalise">Integrating a quaternion accumulates floating point error that slowly changes its magnitude, and a quaternion that is not unit length encodes a rotation plus a scaling, so it is renormalised every step.</title><text x="8" y="14" class="dim">MAGNITUDE, OVER TEN MINUTES OF INTEGRATION</text><path class="thin" d="M40 30 V108 H272"></path><path class="dash" d="M44 72 H264"></path><text x="46" y="66" class="tight">1.000</text><path class="rule" d="M44 72 Q140 66 260 48"></path><circle class="mark" cx="200" cy="56" r="7"></circle><text x="150" y="96" class="tight">WITHOUT RENORMALISING</text><text x="8" y="140" class="dim">ONE DIVIDE BY THE NORM PER STEP FIXES IT. IT IS</text><text x="8" y="154" class="dim">CHEAP AND IT IS NOT OPTIONAL, BECAUSE A SCALED</text><text x="8" y="168" class="dim">QUATERNION QUIETLY SCALES EVERY VECTOR IT</text><text x="8" y="182" class="dim">ROTATES, AND THE ERROR COMPOUNDS</text></svg><figcaption class="fig-cap">It drifts off the unit sphere, and the failure looks like sensor drift.</figcaption></figure>
+<h2 id="the-sign-check-nobody-mentions">The sign check nobody mentions</h2>
+<p>The second detail, and it produces the most spectacular symptom in this
+tutorial.</p>
+<p><strong>q and −q represent exactly the same orientation.</strong> Negating all four
+components leaves the rotation unchanged — geometrically, it is the difference
+between rotating θ about an axis and rotating (2π − θ) about the opposite axis.</p>
+<p>That is harmless until you compute an attitude <strong>error</strong> for a controller. The
+error quaternion between current and desired attitude can come out with a
+negative scalar part, which describes the same final orientation reached <strong>the
+long way round</strong>. Feed that to a rate controller and it obediently commands a
+330° rotation to correct a 30° error.</p>
+<p>The fix is one line, immediately after computing the error:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (q_err.w </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) q_err </span><span style="color:#F97583">=</span><span style="color:#B392F0"> negate</span><span style="color:#E1E4E8">(q_err);</span></span></code></pre>
+<p>Without it, the vehicle behaves perfectly almost all the time and occasionally
+does a full rotation to reach an orientation next door. It is intermittent, it
+depends on the path taken to get there, and it is nearly impossible to
+reproduce deliberately — which is why it deserves a line in a tutorial rather
+than a footnote.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-shortest-path"><title id="fig-shortest-path">A quaternion and its negation represent the same orientation, so an error computed without checking the sign can command a rotation the long way round, which is a full turn instead of a small correction.</title><text x="8" y="14" class="dim">THE SAME ORIENTATION, TWO WAYS ROUND</text><circle class="thin" cx="120" cy="82" r="48"></circle><path class="accent" d="M120 34 A48 48 0 0 1 154 48"></path><circle class="mark" cx="154" cy="48" r="7"></circle><text x="176" y="46" class="tight">30 DEGREES</text><path class="rule" d="M120 34 A48 48 0 1 0 152 50"></path><text x="176" y="104" class="tight">OR 330 THE OTHER WAY</text><text x="8" y="148" class="dim">IF THE SCALAR PART OF THE ERROR IS NEGATIVE,</text><text x="8" y="162" class="dim">NEGATE THE WHOLE QUATERNION. ONE LINE, AND</text><text x="8" y="176" class="dim">WITHOUT IT THE VEHICLE OCCASIONALLY SPINS ALL THE</text><text x="8" y="190" class="dim">WAY AROUND TO REACH AN ANGLE NEXT DOOR</text></svg><figcaption class="fig-cap">The same orientation, and one of the two goes the long way.</figcaption></figure>
+<h2 id="where-each-representation-belongs">Where each representation belongs</h2>
+<p>Three representations, three jobs, and using each where it fits removes most of
+the difficulty.</p>
+<p><strong>Quaternion</strong> — store and integrate. Four numbers, no singularity, cheap to
+compose, and stable under repeated integration. This is the state variable.</p>
+<p><strong>Rotation matrix</strong> — transform vectors. Nine numbers, and rotating a vector is
+one matrix-vector multiply. If you have many vectors to rotate by the same
+attitude, convert once and use the matrix, which is cheaper than rotating each
+one by quaternion sandwich product.</p>
+<p><strong>Euler angles</strong> — show a human. Three numbers somebody can picture, on a
+display, in a log, in a parameter file.</p>
+<p>The rule that follows: <strong>convert at the boundary, never in the loop</strong>. A filter
+that converts to Euler angles to apply a correction and back again has
+reintroduced every problem quaternions were adopted to remove, and this is a
+real pattern in real code.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-where-each"><title id="fig-where-each">Each attitude representation has a place: quaternions for storing and integrating, rotation matrices for transforming vectors in bulk, and Euler angles only where a person has to read the number.</title><text x="8" y="14" class="dim">THREE REPRESENTATIONS, THREE JOBS</text><rect class="mark" x="8" y="28" width="304" height="40"></rect><text x="18" y="46" class="tight">QUATERNION · STORE AND INTEGRATE</text><text x="18" y="60" class="tight">FOUR NUMBERS, NO SINGULARITY, CHEAP TO COMPOSE</text><rect class="fill" x="8" y="74" width="304" height="40"></rect><text x="18" y="92" class="tight">ROTATION MATRIX · TRANSFORM VECTORS</text><text x="18" y="106" class="tight">NINE NUMBERS, AND ONE MATRIX MULTIPLY EACH</text><rect class="fill" x="8" y="120" width="304" height="40"></rect><text x="18" y="138" class="tight">EULER ANGLES · SHOW A HUMAN</text><text x="18" y="152" class="tight">THREE NUMBERS SOMEBODY CAN ACTUALLY PICTURE</text><text x="8" y="184" class="dim">CONVERT AT THE BOUNDARY, NEVER IN THE LOOP</text></svg><figcaption class="fig-cap">Convert at the edges. Never in the middle.</figcaption></figure>
+<h2 id="worked-example-the-track-5-gate-in-quaternions">Worked example: the track 5 gate, in quaternions</h2>
+<p>The build gate wants roll and pitch within a couple of degrees after ten minutes
+on a shaking table, with yaw drift measured and stated. Madgwick’s filter,
+quaternion state, at 500 Hz.</p>
+<p><strong>The loop, per step.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integrate gyro into the quaternion</td>
+<td>32 flops</td>
+</tr>
+<tr>
+<td>Compute the accelerometer correction gradient</td>
+<td>94 flops</td>
+</tr>
+<tr>
+<td>Apply the correction, weighted by beta</td>
+<td>12 flops</td>
+</tr>
+<tr>
+<td><strong>Renormalise</strong></td>
+<td>1 sqrt, 4 divides</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>about 150 flops, 1.1 µs at 168 MHz</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Choosing beta</strong>, which is this filter’s single constant and plays the role τ
+played in tutorial 26. Madgwick derives it as the maximum expected gyro error
+rate: β = √(3/4) × ω_error. With a bias-calibrated gyro at 0.02 °/s residual and
+some noise, ω_error ≈ 0.1 °/s = 0.0017 rad/s, giving <strong>β ≈ 0.0015</strong>.</p>
+<p>That is far lower than the 0.1 in most example code. Sweeping it on logged data:</p>
+<table>
+<thead>
+<tr>
+<th>beta</th>
+<th>Roll error, static</th>
+<th>Roll error, translating by hand</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.1</td>
+<td>0.2°</td>
+<td><strong>9.8°</strong></td>
+</tr>
+<tr>
+<td>0.02</td>
+<td>0.3°</td>
+<td>2.4°</td>
+</tr>
+<tr>
+<td>0.005</td>
+<td>0.4°</td>
+<td>1.1°</td>
+</tr>
+<tr>
+<td><strong>0.0015</strong></td>
+<td>0.6°</td>
+<td><strong>0.9°</strong></td>
+</tr>
+<tr>
+<td>0.0005</td>
+<td>2.1°</td>
+<td>1.4°</td>
+</tr>
+</tbody>
+</table>
+<p>The derived value wins on the case that matters, and the popular default is
+<strong>ten times too high</strong> — it tracks gravity so eagerly that it follows linear
+acceleration straight into the estimate. This is the same trade as τ, arrived at
+from the sensor’s own specification rather than by taste.</p>
+<p><strong>The gate result.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Roll error after 10 min on the table</td>
+<td>0.6°</td>
+</tr>
+<tr>
+<td>Pitch error</td>
+<td>0.5°</td>
+</tr>
+<tr>
+<td>Yaw drift, no magnetometer</td>
+<td>6.8°</td>
+</tr>
+<tr>
+<td>Yaw drift, with the compass from tutorial 27</td>
+<td><strong>0.9°</strong></td>
+</tr>
+<tr>
+<td>CPU at 500 Hz</td>
+<td>0.055%</td>
+</tr>
+</tbody>
+</table>
+<p>Gate met. And the two lines that made the difference during development were
+not in the filter at all: renormalising each step, which cured a slow degradation
+that looked exactly like a gyro problem; and the error sign check, which cured
+an occasional full rotation during large attitude commands that appeared perhaps
+once in fifty tests.</p>
+<p>That ratio is the honest summary of quaternions in practice. The algebra is
+two afternoons. The two implementation details are where the time goes.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty-five minutes.</p>
+<ol>
+<li>Write the Euler-to-quaternion and quaternion-to-Euler conversions and check
+they round-trip. Then push pitch to 89.9° and watch the yaw value become
+unstable.</li>
+<li>Integrate a quaternion with a constant gyro rate for a simulated ten minutes
+<strong>without</strong> renormalising, and plot the magnitude. Then add the one line.</li>
+<li>Compute an error quaternion between two attitudes 30° apart, construct the
+case where the scalar part is negative, and confirm what the rate command
+would be without the sign check.</li>
+<li>Then look through any attitude code you have for a conversion to Euler angles
+and back inside the loop. If there is one, that is the singularity you
+thought you had removed.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What exactly fails at gimbal lock?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-0-0" name="machines/05-sensors-and-state/29-quaternions-0"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-0-0"><span class="quiz-letter">A</span><span>The sensor, whose axes saturate when pitch reaches ninety degrees</span></label><p class="quiz-why"><b>Not quite.</b> Gyros and accelerometers are indifferent to attitude and report normally throughout. The failure is entirely in the representation.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-0-1" name="machines/05-sensors-and-state/29-quaternions-0"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-0-1" data-correct><span class="quiz-letter">B</span><span>The parameterisation, since two axes align and one freedom is lost</span></label><p class="quiz-why"><b>Right.</b> The orientation itself remains perfectly well defined. It is the three-number description that becomes degenerate at that attitude.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-0-2" name="machines/05-sensors-and-state/29-quaternions-0"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-0-2"><span class="quiz-letter">C</span><span>The vehicle&#39;s controllability, since it can no longer rotate freely</span></label><p class="quiz-why"><b>Not quite.</b> Nothing physical is constrained; the aircraft rotates exactly as before. Only the coordinates used to describe it break down.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-0-3" name="machines/05-sensors-and-state/29-quaternions-0"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-0-3"><span class="quiz-letter">D</span><span>The integration, which accumulates error faster near the singularity</span></label><p class="quiz-why"><b>Not quite.</b> Error does grow badly near it, which is the visible symptom. The underlying cause is the lost degree of freedom rather than integration itself.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>What does the scalar part of a unit quaternion represent?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-1-0" name="machines/05-sensors-and-state/29-quaternions-1"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-1-0"><span class="quiz-letter">A</span><span>The component of the axis along the vertical body direction</span></label><p class="quiz-why"><b>Not quite.</b> The axis lives entirely in the three vector components. The scalar carries no directional information at all.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-1-1" name="machines/05-sensors-and-state/29-quaternions-1"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-1-1" data-correct><span class="quiz-letter">B</span><span>The cosine of half the rotation angle about the encoded axis</span></label><p class="quiz-why"><b>Right.</b> Half the angle appears because a quaternion applies its rotation twice in the sandwich product. The identity rotation therefore has a scalar part of one.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-1-2" name="machines/05-sensors-and-state/29-quaternions-1"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-1-2"><span class="quiz-letter">C</span><span>The magnitude of the rotation, scaled so the total reaches one</span></label><p class="quiz-why"><b>Not quite.</b> The unit constraint applies to all four components together rather than making this one a magnitude. It is a trigonometric function of the angle.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-1-3" name="machines/05-sensors-and-state/29-quaternions-1"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-1-3"><span class="quiz-letter">D</span><span>The cosine of the full rotation angle about the encoded axis</span></label><p class="quiz-why"><b>Not quite.</b> It is half the angle, which is the detail that surprises people. Using the full angle gives a rotation of twice what you intended.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What happens if a quaternion is integrated without renormalising?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-2-0" name="machines/05-sensors-and-state/29-quaternions-2"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-2-0"><span class="quiz-letter">A</span><span>It diverges quickly, producing an obviously invalid attitude</span></label><p class="quiz-why"><b>Not quite.</b> Loud failure would be easier to find. The error accumulates over minutes and looks like a sensor problem instead.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-2-1" name="machines/05-sensors-and-state/29-quaternions-2"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-2-1"><span class="quiz-letter">B</span><span>It drifts in yaw specifically, since that axis integrates unbounded</span></label><p class="quiz-why"><b>Not quite.</b> Magnitude error affects all three axes together rather than singling one out. Yaw drift comes from the absent heading reference.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-2-2" name="machines/05-sensors-and-state/29-quaternions-2"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-2-2" data-correct><span class="quiz-letter">C</span><span>It leaves the unit sphere and starts scaling the vectors it rotates</span></label><p class="quiz-why"><b>Right.</b> A non-unit quaternion encodes a rotation and a scaling together. The estimate degrades slowly in a way that resembles sensor drift.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-2-3" name="machines/05-sensors-and-state/29-quaternions-2"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-2-3"><span class="quiz-letter">D</span><span>It becomes singular at ninety degrees, exactly as Euler angles do</span></label><p class="quiz-why"><b>Not quite.</b> Quaternions have no singularity at any attitude, which is the reason to adopt them. Magnitude drift is a numerical issue rather than a geometric one.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why negate an error quaternion whose scalar part is negative?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-3-0" name="machines/05-sensors-and-state/29-quaternions-3"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-3-0" data-correct><span class="quiz-letter">A</span><span>It describes the same orientation, reached the long way round</span></label><p class="quiz-why"><b>Right.</b> A rate controller given that error commands a rotation of well over three hundred degrees to correct a small one. One line prevents it.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-3-1" name="machines/05-sensors-and-state/29-quaternions-3"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-3-1"><span class="quiz-letter">B</span><span>The controller&#39;s gains assume a positive scalar for the sign</span></label><p class="quiz-why"><b>Not quite.</b> The gains are indifferent to the convention as long as the error is the short path. The issue is which of two valid paths was encoded.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-3-2" name="machines/05-sensors-and-state/29-quaternions-3"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-3-2"><span class="quiz-letter">C</span><span>A negative scalar part means the quaternion is not unit length</span></label><p class="quiz-why"><b>Not quite.</b> Sign and magnitude are independent, and a perfectly normalised quaternion can have a negative scalar. Renormalising is a separate fix.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-3-3" name="machines/05-sensors-and-state/29-quaternions-3"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-3-3"><span class="quiz-letter">D</span><span>It converts the error from the body frame into the world frame</span></label><p class="quiz-why"><b>Not quite.</b> Frame conversion is a multiplication by another rotation rather than a negation. Negating changes neither frame.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>When is a rotation matrix preferable to a quaternion?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-4-0" name="machines/05-sensors-and-state/29-quaternions-4"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-4-0" data-correct><span class="quiz-letter">A</span><span>When rotating many vectors by the same attitude in one pass</span></label><p class="quiz-why"><b>Right.</b> One conversion then one matrix multiply per vector beats a sandwich product each time. For storing and integrating, the quaternion stays better.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-4-1" name="machines/05-sensors-and-state/29-quaternions-4"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-4-1"><span class="quiz-letter">B</span><span>When integrating gyro measurements over long periods of time</span></label><p class="quiz-why"><b>Not quite.</b> A matrix accumulates error in nine entries and needs re-orthogonalising, which is more work than renormalising four numbers.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-4-2" name="machines/05-sensors-and-state/29-quaternions-4"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-4-2"><span class="quiz-letter">C</span><span>When a value has to be displayed to somebody reading a log</span></label><p class="quiz-why"><b>Not quite.</b> Nine numbers are no more readable than four. Euler angles are the representation to convert to at that boundary.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/29-quaternions-4-3" name="machines/05-sensors-and-state/29-quaternions-4"><label class="quiz-opt" for="machines/05-sensors-and-state/29-quaternions-4-3"><span class="quiz-letter">D</span><span>When composing two rotations together into a single one</span></label><p class="quiz-why"><b>Not quite.</b> Matrix multiplication is twenty-seven multiplies against sixteen for quaternions, so it is the more expensive option here.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Madgwick (2010) and the 2014 thesis · Beard &amp; McLain, Small Unmanned Aircraft, ch. 2 and appendix B · Quan Quan, Introduction to Multicopter Design and Control, ch. 5</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/05-sensors-and-state/28-baro-gnss-rangefinders" class="text-ash transition-colors hover:text-bone">← Barometers, GNSS and rangefinders</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

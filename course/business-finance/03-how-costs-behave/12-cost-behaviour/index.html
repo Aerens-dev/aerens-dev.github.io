@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Fixed, variable, stepped - and why fixed is a claim about a horizon — Business Finance · Aerens</title><meta name="description" content="Three shapes against volume, the two conditions that make “fixed” true, and a crude split that is usually good enough."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/03-how-costs-behave/12-cost-behaviour/"><meta property="og:type" content="website"><meta property="og:title" content="Fixed, variable, stepped - and why fixed is a claim about a horizon — Business Finance · Aerens"><meta property="og:description" content="Three shapes against volume, the two conditions that make “fixed” true, and a crude split that is usually good enough."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/03-how-costs-behave/12-cost-behaviour/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · How costs behave</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Fixed, variable, stepped - and why fixed is a claim about a horizon</h1><p class="mt-3 text-bone/70">Three shapes against volume, the two conditions that make “fixed” true, and a crude split that is usually good enough.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 01 of 05 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Classify a cost by its shape against volume rather than by its name</li><li>State the horizon and volume range over which a cost is fixed</li><li>Split a mixed cost into fixed and variable parts from two observations</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Someone asks what it costs to serve one more customer. The answer on the report
+is €340. The answer that matters is either €40 or €12,000, depending on whether
+that customer is the one that makes you hire another support engineer.</p>
+<p>Cost behaviour is the difference between those three numbers.</p>
+<h2 id="three-shapes-against-volume">Three shapes against volume</h2>
+<p>Plot cost on the vertical and volume on the horizontal, and there are three
+shapes worth naming.</p>
+<ul>
+<li><strong>Fixed</strong> — flat. Total does not move with volume; cost <em>per unit</em> falls as
+volume rises, which is where economies of scale come from.</li>
+<li><strong>Variable</strong> — a sloping line through the origin. Total moves with volume;
+cost per unit is constant.</li>
+<li><strong>Stepped</strong> — flat, then a jump, then flat again.</li>
+</ul>
+<p>Notice that only the variable one is a straight line through the origin, and
+notice that per-unit and total behave oppositely for a fixed cost. Most
+confusion about cost behaviour is somebody using “cost” to mean per-unit in one
+sentence and total in the next.</p>
+<figure class="fig"><svg viewBox="0 0 320 226" role="img" aria-labelledby="fig-three-shapes"><title id="fig-three-shapes">Plotted against volume, a fixed cost is flat, a variable cost is a sloping line, and a stepped cost holds level then jumps — which is the shape most real costs take.</title><text x="8" y="14" class="dim">THREE SHAPES AGAINST VOLUME</text><text x="8" y="46" class="tight">FIXED</text><path class="thin" d="M72 26 V72 H304"></path><path class="rule" d="M78 40 H298"></path><text x="8" y="108" class="tight">VARIABLE</text><path class="thin" d="M72 88 V134 H304"></path><path class="rule" d="M78 132 L298 92"></path><text x="8" y="170" class="tight">STEPPED</text><path class="thin" d="M72 150 V196 H304"></path><path class="rule" d="M78 190 H140 V172 H210 V156 H298"></path><rect class="mark" x="136" y="170" width="10" height="22"></rect><text x="8" y="220" class="dim">ONLY THE MIDDLE ONE IS A STRAIGHT LINE</text></svg><figcaption class="fig-cap">Three shapes. The third one is the one most real costs take.</figcaption></figure>
+<h2 id="fixed-is-a-claim-about-a-horizon">“Fixed” is a claim about a horizon</h2>
+<p>Rent is fixed. Over a month, certainly. Over a year, yes — the lease runs. Over
+three years you can break it, sublet, or move somewhere smaller.</p>
+<p>So <em>fixed</em> is never a property of a cost. It is a property of a cost <strong>relative
+to a decision horizon</strong>, and the honest form of the sentence is “fixed over the
+next eleven months, which is the remaining lease term”.</p>
+<p>This matters because the horizon of the decision is often longer than the
+horizon someone quoted the cost over. A three-year contract renegotiation should
+not treat rent as fixed. A question about next month should.</p>
+<figure class="fig"><svg viewBox="0 0 320 182" role="img" aria-labelledby="fig-fixed-is-a-horizon"><title id="fig-fixed-is-a-horizon">Whether a cost is fixed depends on how far ahead you are looking, because over a long enough horizon almost every commitment can be renegotiated or exited.</title><text x="8" y="14" class="dim">FIXED FOR HOW LONG?</text><rect class="box" x="8" y="40" width="92" height="44"></rect><text x="20" y="66" class="tight">ONE MONTH</text><rect class="box" x="108" y="40" width="92" height="44"></rect><text x="120" y="66" class="tight">ONE YEAR</text><rect class="mark" x="208" y="40" width="104" height="44"></rect><text x="220" y="66" class="tight">THREE YEARS</text><text x="20" y="104" class="tight">RENT IS FIXED</text><text x="120" y="104" class="tight">RENT IS FIXED</text><text x="220" y="104" class="tight">YOU CAN MOVE</text><text x="8" y="142" class="dim">NOTHING IS FIXED. SOME THINGS ARE FIXED</text><text x="8" y="160" class="dim">FOR LONGER THAN THE DECISION YOU ARE</text><text x="8" y="178" class="dim">CURRENTLY MAKING</text></svg><figcaption class="fig-cap">Not a property of the cost. A property of the cost and the horizon together.</figcaption></figure>
+<h2 id="most-fixed-costs-are-actually-stepped">Most fixed costs are actually stepped</h2>
+<p>Push the volume far enough and every fixed cost breaks. One support engineer
+handles up to about 40 accounts; the 41st needs a second engineer, and the cost
+jumps by a whole salary rather than by a fortieth of one.</p>
+<p>This is the shape almost everything real takes: a team, a shift, a licence tier,
+a server, a floor of a building. The step size is the smallest unit you can buy,
+and the step is why “what does one more cost” has two answers.</p>
+<p>Two things follow. The marginal cost of one more unit is usually near zero,
+right up until it is enormous. And the interesting question about capacity is
+never <em>how much are we using</em> but <em>how close are we to the next step</em>.</p>
+<figure class="fig"><svg viewBox="0 0 320 178" role="img" aria-labelledby="fig-stepped-reality"><title id="fig-stepped-reality">Most costs described as fixed are really stepped: they hold level across a band of volume and then jump when another team, machine or shift is needed.</title><text x="8" y="14" class="dim">MOST FIXED COSTS ARE STAIRS</text><path class="thin" d="M32 28 V124 H304"></path><path class="rule" d="M40 108 H108 V84 H176 V60 H244 V36 H296"></path><rect class="mark" x="104" y="84" width="10" height="26"></rect><text x="46" y="102" class="tight">ONE TEAM</text><text x="118" y="78" class="tight">TWO TEAMS</text><text x="190" y="54" class="tight">THREE TEAMS</text><text x="8" y="152" class="dim">THE STEP IS A HIRE, A LEASE, A SHIFT</text><text x="8" y="170" class="dim">AND IT IS NEVER SMOOTH</text></svg><figcaption class="fig-cap">Nearly free, nearly free, nearly free, then a whole salary.</figcaption></figure>
+<h2 id="the-relevant-range-is-where-the-model-is-true">The relevant range is where the model is true</h2>
+<p>Because of the steps, a linear cost model — fixed plus variable per unit — is
+only true across a band of volume. That band is the <strong>relevant range</strong>, and it
+is set by the observations the model was fitted from.</p>
+<p>Inside it, the arithmetic works. Outside it you are extrapolating a line through
+a region that contains steps nobody measured. A model fitted at 400 to 700 units
+a month says nothing reliable about 2,000.</p>
+<p>Whenever someone hands you a cost per unit, the useful question is what volumes
+it was derived from.</p>
+<figure class="fig"><svg viewBox="0 0 320 176" role="img" aria-labelledby="fig-relevant-range"><title id="fig-relevant-range">A cost model is fitted from observed volumes, so it holds inside the band those volumes covered and is extrapolation on either side of it.</title><text x="8" y="14" class="dim">WHERE YOUR COST MODEL IS TRUE</text><path class="thin" d="M32 28 V124 H304"></path><rect class="mark" x="104" y="32" width="112" height="92"></rect><path class="accent" d="M40 110 L296 42"></path><path class="thin" d="M104 28 V124 M216 28 V124"></path><text x="40" y="146" class="tight">GUESSES</text><text x="112" y="146" class="tight">RELEVANT RANGE</text><text x="240" y="146" class="tight">GUESSES</text><text x="8" y="170" class="dim">OUTSIDE IT THE LINE IS EXTRAPOLATION</text></svg><figcaption class="fig-cap">The line is a fit. It is only a fit where the data was.</figcaption></figure>
+<h2 id="mixed-costs-and-the-high-low-split">Mixed costs and the high-low split</h2>
+<p>Most real cost lines are mixed — a standing charge plus a usage charge, a
+salaried team plus overtime, a cloud commitment plus on-demand.</p>
+<p>The crudest useful way to split one is <strong>high-low</strong>: take the highest and lowest
+observed volumes, divide the cost difference by the volume difference to get the
+variable rate, then back out the fixed part from either point.</p>
+<p>It is genuinely crude — two points, both of them extremes, and an outlier at
+either end wrecks it. Regression is better and takes a spreadsheet minute. But
+high-low can be done on the back of a meeting agenda, and a rough split you have
+is worth more than an exact one you will not do.</p>
+<figure class="fig"><svg viewBox="0 0 320 174" role="img" aria-labelledby="fig-high-low"><title id="fig-high-low">The high-low method fits a line through the highest and lowest observed volumes, splitting a mixed cost into a fixed intercept and a variable rate per unit.</title><text x="8" y="14" class="dim">SPLITTING A MIXED COST</text><path class="thin" d="M32 28 V120 H304"></path><circle class="solid" cx="70" cy="96" r="3"></circle><circle class="solid" cx="120" cy="84" r="3"></circle><circle class="solid" cx="170" cy="72" r="3"></circle><circle class="solid" cx="220" cy="58" r="3"></circle><circle class="solid" cx="268" cy="44" r="3"></circle><path class="accent" d="M70 96 L268 44"></path><rect class="mark" x="32" y="100" width="10" height="16"></rect><path class="dash" d="M42 108 H296"></path><text x="52" y="102" class="tight">FIXED PART</text><text x="120" y="40" class="tight">SLOPE IS THE VARIABLE RATE</text><text x="8" y="146" class="dim">TWO POINTS GIVE A SLOPE AND AN</text><text x="8" y="164" class="dim">INTERCEPT. CRUDE, AND USUALLY ENOUGH</text></svg><figcaption class="fig-cap">Two points, a slope and an intercept. Better methods exist; this one gets done.</figcaption></figure>
+<h2 id="worked-example-the-support-team">Worked example: the support team</h2>
+<p>Six months of support cost against accounts served.</p>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Accounts</th>
+<th>Cost €</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>January</td>
+<td>310</td>
+<td>41,200</td>
+</tr>
+<tr>
+<td>February</td>
+<td>340</td>
+<td>42,600</td>
+</tr>
+<tr>
+<td>March</td>
+<td>395</td>
+<td>45,100</td>
+</tr>
+<tr>
+<td>April</td>
+<td>420</td>
+<td>46,300</td>
+</tr>
+<tr>
+<td>May</td>
+<td>455</td>
+<td>61,800</td>
+</tr>
+<tr>
+<td>June</td>
+<td>470</td>
+<td>62,500</td>
+</tr>
+</tbody>
+</table>
+<p>High-low on the full range: (62,500 − 41,200) ÷ (470 − 310) = <strong>€133 per
+account</strong>. Fixed part = 41,200 − (310 × 133) = <strong>−€53</strong>, near enough zero.</p>
+<p>So the model says: no fixed cost, €133 per account. That is wrong, and the table
+shows why. Between April and May the cost jumps €15,500 on 35 extra accounts —
+€443 each — while every other month moves at about €45 each. Somebody was hired
+in May.</p>
+<p>Fit high-low inside each band instead:</p>
+<table>
+<thead>
+<tr>
+<th>Band</th>
+<th>Variable per account</th>
+<th>Fixed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jan–Apr</td>
+<td>46</td>
+<td>26,940</td>
+</tr>
+<tr>
+<td>May–Jun</td>
+<td>47</td>
+<td>40,415</td>
+</tr>
+</tbody>
+</table>
+<p>Now it makes sense: about €46 of genuinely variable cost per account, and a
+stepped fixed base that went from €26,940 to €40,415 when the fifth engineer
+started. The relevant range was 310–420, and May left it.</p>
+<p>The first answer — €133 an account — is the kind of number that gets used to
+price a contract. It is the average of two different cost structures and it
+describes neither.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Take twelve months of one cost line and the volume driver you think moves it.
+Plot them. Eyes first, arithmetic second.</li>
+<li>Look for a step. If there is one, note what happened that month — a hire, a
+lease, a tier change.</li>
+<li>Run high-low inside each band separately, and write down the relevant range
+each result applies to.</li>
+<li>Then answer the real question: how many more units until the next step?</li>
+</ol>
+<p>Step 4 is the number worth having in your head, and almost nobody has it.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What happens to a fixed cost per unit as volume rises?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-0-0" name="business-finance/03-how-costs-behave/12-cost-behaviour-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-0-0" data-correct><span class="quiz-letter">A</span><span>It falls, even though the total stays exactly where it was</span></label><p class="quiz-why"><b>Right.</b> The same total spread over more units is less each. That divergence is where economies of scale come from.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-0-1" name="business-finance/03-how-costs-behave/12-cost-behaviour-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-0-1"><span class="quiz-letter">B</span><span>It rises, since capacity is consumed faster at high volume</span></label><p class="quiz-why"><b>Not quite.</b> Consuming capacity eventually forces a step in the total. Within the range, per-unit cost falls as volume rises.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-0-2" name="business-finance/03-how-costs-behave/12-cost-behaviour-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-0-2"><span class="quiz-letter">C</span><span>It holds steady, which is what makes the cost a fixed one</span></label><p class="quiz-why"><b>Not quite.</b> The total holds steady. Per unit it falls, and confusing the two is the commonest error in cost talk.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-0-3" name="business-finance/03-how-costs-behave/12-cost-behaviour-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-0-3"><span class="quiz-letter">D</span><span>It falls, and the total falls with it in the same proportion</span></label><p class="quiz-why"><b>Not quite.</b> The total is what does not move — that is the definition. Only the per-unit figure changes.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Someone says rent is a fixed cost. What is missing from that statement?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-1-0" name="business-finance/03-how-costs-behave/12-cost-behaviour-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-1-0"><span class="quiz-letter">A</span><span>Whether it is charged to overhead or traced to a product</span></label><p class="quiz-why"><b>Not quite.</b> That is the direct-indirect question, and it is separate. Fixed and variable describe behaviour against volume.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-1-1" name="business-finance/03-how-costs-behave/12-cost-behaviour-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-1-1"><span class="quiz-letter">B</span><span>The volume at which the landlord would revise the rent upward</span></label><p class="quiz-why"><b>Not quite.</b> Rent rarely tracks your volume at all. What makes it conditionally fixed is time, not units produced.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-1-2" name="business-finance/03-how-costs-behave/12-cost-behaviour-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-1-2"><span class="quiz-letter">C</span><span>Whether the payments are made monthly, quarterly or annually</span></label><p class="quiz-why"><b>Not quite.</b> Payment frequency is a cash matter. The cost behaves the same way against volume whichever way it is billed.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-1-3" name="business-finance/03-how-costs-behave/12-cost-behaviour-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-1-3" data-correct><span class="quiz-letter">D</span><span>The horizon it is fixed over, which here is the lease term</span></label><p class="quiz-why"><b>Right.</b> Over three years a lease can be broken, sublet or moved. Fixed is a property of a cost and a horizon together.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>One engineer covers 40 accounts. What is the marginal cost of the 41st account?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-2-0" name="business-finance/03-how-costs-behave/12-cost-behaviour-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-2-0"><span class="quiz-letter">A</span><span>A fortieth of a salary, being the average cost per account</span></label><p class="quiz-why"><b>Not quite.</b> The average is what the report shows. Nobody can buy a fortieth of an engineer, so the marginal cost is not the average.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-2-1" name="business-finance/03-how-costs-behave/12-cost-behaviour-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-2-1"><span class="quiz-letter">B</span><span>A salary spread over the 41 accounts once they are served</span></label><p class="quiz-why"><b>Not quite.</b> Spreading it is how the report will present it afterwards. The decision at hand costs a whole hire.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-2-2" name="business-finance/03-how-costs-behave/12-cost-behaviour-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-2-2"><span class="quiz-letter">C</span><span>Nothing, since the engineer is already being paid a fixed salary</span></label><p class="quiz-why"><b>Not quite.</b> That holds up to 40. At the 41st the capacity is exhausted and the cost steps.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-2-3" name="business-finance/03-how-costs-behave/12-cost-behaviour-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-2-3" data-correct><span class="quiz-letter">D</span><span>A whole salary, since the step is the smallest unit you can buy</span></label><p class="quiz-why"><b>Right.</b> Accounts 2 through 40 cost almost nothing extra and the 41st costs a hire. That is what makes the question have two answers.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>You are handed a cost of €46 per unit. What should you ask first?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-3-0" name="business-finance/03-how-costs-behave/12-cost-behaviour-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-3-0"><span class="quiz-letter">A</span><span>Whether it includes overhead or just the traceable cost</span></label><p class="quiz-why"><b>Not quite.</b> Worth knowing, and a separate question. The first risk with any per-unit figure is applying it outside its range.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-3-1" name="business-finance/03-how-costs-behave/12-cost-behaviour-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-3-1" data-correct><span class="quiz-letter">B</span><span>Which volumes it was derived from, since that is its range</span></label><p class="quiz-why"><b>Right.</b> A linear model holds across the band it was fitted on. Outside that band it extrapolates through steps nobody measured.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-3-2" name="business-finance/03-how-costs-behave/12-cost-behaviour-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-3-2"><span class="quiz-letter">C</span><span>Which department calculated it and when it was last reviewed</span></label><p class="quiz-why"><b>Not quite.</b> Reasonable governance questions. Neither tells you the thing that makes a per-unit rate wrong, which is volume.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-3-3" name="business-finance/03-how-costs-behave/12-cost-behaviour-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-3-3"><span class="quiz-letter">D</span><span>Whether it is stated before or after the annual price increases</span></label><p class="quiz-why"><b>Not quite.</b> Indexation shifts the level a little. Applying the rate to a volume it was never fitted for shifts it a lot.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What is the main weakness of the high-low method?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-4-0" name="business-finance/03-how-costs-behave/12-cost-behaviour-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-4-0"><span class="quiz-letter">A</span><span>It gives a variable rate but leaves the fixed part unknown</span></label><p class="quiz-why"><b>Not quite.</b> The fixed part falls out of either point once the slope is known. Both components come from the method.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-4-1" name="business-finance/03-how-costs-behave/12-cost-behaviour-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-4-1"><span class="quiz-letter">B</span><span>It needs more data than most cost lines have available</span></label><p class="quiz-why"><b>Not quite.</b> It needs two observations, which is its whole appeal. The weakness is which two it uses, not how many.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-4-2" name="business-finance/03-how-costs-behave/12-cost-behaviour-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-4-2"><span class="quiz-letter">C</span><span>It assumes a stepped cost rather than a straight-line one</span></label><p class="quiz-why"><b>Not quite.</b> It assumes the opposite — a single straight line — which is why a step inside the data set breaks it.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/12-cost-behaviour-4-3" name="business-finance/03-how-costs-behave/12-cost-behaviour-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/12-cost-behaviour-4-3" data-correct><span class="quiz-letter">D</span><span>It uses two extreme points, so an outlier bends the line</span></label><p class="quiz-why"><b>Right.</b> It throws away every observation in between and leans on the two most likely to be unusual. Regression uses all of them.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Horngren, Cost Accounting, ch. 2 and 10 · CIMA P1, cost behaviour</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/02-accrual-accounting/11-depreciation" class="text-ash transition-colors hover:text-bone">← Depreciation, amortisation, and the useful-life choice</a><a href="/course/business-finance/03-how-costs-behave/13-overhead-allocation" class="text-ash transition-colors hover:text-bone">Direct vs indirect, and the overhead allocation problem →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

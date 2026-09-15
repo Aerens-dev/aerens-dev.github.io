@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Deadband, backlash and stiction — Machines · Aerens</title><meta name="description" content="The three nonlinearities that eat a loop, how to tell a friction limit cycle from a real instability, and which of them control cannot fix."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/04-control-on-hardware/20-nonlinearities/"><meta property="og:type" content="website"><meta property="og:title" content="Deadband, backlash and stiction — Machines · Aerens"><meta property="og:description" content="The three nonlinearities that eat a loop, how to tell a friction limit cycle from a real instability, and which of them control cannot fix."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/04-control-on-hardware/20-nonlinearities/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Control that survives contact with hardware</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Deadband, backlash and stiction</h1><p class="mt-3 text-bone/70">The three nonlinearities that eat a loop, how to tell a friction limit cycle from a real instability, and which of them control cannot fix.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 02 of 06 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Distinguish a stiction limit cycle from an instability by shape and by direction</li><li>Say what backlash does to an integral term during a reversal</li><li>Choose between a firmware compensation and a mechanical fix for each</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Your position loop oscillates around the target. Small, slow oscillation — about
+2 Hz, a degree either side, never settling. Textbook says too much gain, so you
+lower P. It gets <strong>worse</strong>: the oscillation is larger and slower.</p>
+<p>That is not an instability. It is a friction limit cycle, and the fix is the
+opposite of the one the theory suggests, because the theory assumed a linear
+plant and your machine has a bearing in it.</p>
+<p>Everything in this tutorial is a place where the linear model stops describing
+the machine. None of it appears in a transfer function, all of it appears in the
+plot, and recognising each one on sight saves days.</p>
+<h2 id="stiction">Stiction</h2>
+<p>Static friction is higher than sliding friction. Breaking a joint free takes
+more force than keeping it moving, and the gap can be a factor of two.</p>
+<p>Watch what a loop does with that. The error grows, the controller builds torque,
+nothing moves. Torque keeps building. At the breakaway point the joint releases
+— and now friction has <em>dropped</em>, so the torque that was just enough to break
+free is far more than enough to move, and the load lurches past the setpoint.
+Now the error is negative, the same thing happens in reverse, and it repeats.</p>
+<p>The result is a sustained oscillation, and the giveaway is the <strong>shape</strong>:
+flat-topped, squarish, with visible dwell at the extremes rather than the smooth
+sinusoid of a gain instability. And the <strong>direction</strong> of the cure is inverted —
+lowering P makes it slower and larger, because it takes longer to build enough
+torque to break free.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-stiction"><title id="fig-stiction">Breaking a joint free takes more force than keeping it moving, so a loop building up torque gets nothing and then gets a lurch, which reads on a plot as an oscillation around the setpoint.</title><text x="8" y="14" class="dim">FORCE NEEDED, AGAINST SPEED</text><path class="thin" d="M40 30 V112 H272"></path><text x="20" y="36" class="tight">F</text><text x="250" y="128" class="tight">SPEED</text><circle class="mark" cx="46" cy="44" r="7"></circle><path class="accent" d="M46 74 Q80 74 120 78 Q180 84 268 92"></path><text x="58" y="42" class="tight">BREAKAWAY</text><text x="130" y="70" class="tight">SLIDING, AND LOWER</text><text x="8" y="154" class="dim">SO THE LOOP WINDS UP, BREAKS FREE, OVERSHOOTS,</text><text x="8" y="168" class="dim">STICKS AGAIN ON THE OTHER SIDE, AND REPEATS. THE</text><text x="8" y="182" class="dim">PLOT LOOKS LIKE INSTABILITY AND IS NOT ONE</text></svg><figcaption class="fig-cap">Breakaway is higher than sliding, so release is always a lurch.</figcaption></figure>
+<h2 id="backlash">Backlash</h2>
+<p>Free play in a gearbox or a coupling means that on a reversal, the motor turns
+and the load does not, until the teeth make contact on the other face.</p>
+<p>During that interval <strong>the loop is open</strong>. The sensor, if it is on the load,
+reports no change; the controller, seeing no response, pushes harder; the
+integral accumulates against a plant that is not connected. Then the teeth meet
+and all of that accumulated command arrives at once, as an impact.</p>
+<p>Three consequences worth knowing. It limits your <strong>achievable bandwidth</strong> — you
+cannot control faster than the play, and pushing gain through it just makes the
+impacts harder. It <strong>wears the gears</strong>, since every reversal is now a hammer
+blow rather than a transfer. And it makes the machine <strong>noisy</strong> in a way that is
+often the first thing anybody notices.</p>
+<p>Where the encoder sits changes the character of this. On the motor, the loop
+looks beautiful and the load does whatever it likes. On the load, the loop sees
+the truth and fights it. Neither is a fix.</p>
+<figure class="fig"><svg viewBox="0 0 320 192" role="img" aria-labelledby="fig-backlash"><title id="fig-backlash">Backlash means the output does not respond to a reversal until the free play is taken up, so the loop is briefly open and any integral term is accumulating against a plant that is not listening.</title><text x="8" y="14" class="dim">OUTPUT AGAINST INPUT, THROUGH A GEARBOX</text><path class="thin" d="M40 30 V112 H272"></path><path class="accent" d="M56 104 L112 66 H176 L232 34"></path><circle class="mark" cx="144" cy="66" r="7"></circle><text x="120" y="56" class="tight">DEAD ZONE</text><text x="8" y="148" class="dim">INSIDE THE FLAT STRETCH THE LOOP IS OPEN: THE</text><text x="8" y="162" class="dim">MOTOR MOVES AND THE LOAD DOES NOT. INTEGRAL</text><text x="8" y="176" class="dim">ACCUMULATES AGAINST A PLANT THAT IS NOT THERE,</text><text x="8" y="190" class="dim">SO THE CROSSING ARRIVES AS A KICK</text></svg><figcaption class="fig-cap">Free play is an interval with no plant in the loop.</figcaption></figure>
+<h2 id="deadband">Deadband</h2>
+<p>Below some command threshold, nothing happens at all. The causes stack up: the
+bridge’s dead time distorts small duty cycles, PWM resolution quantises them,
+and stiction eats whatever torque survives.</p>
+<p>The visible symptom is a loop that <strong>creeps</strong> towards its target and then hunts
+around it. Proportional action alone cannot close the last bit of error, because
+the command it produces is inside the dead zone. Integral does eventually climb
+out, but slowly, and then overshoots because by the time anything moves the
+accumulated command is well past what was needed.</p>
+<p>This one is genuinely fixable in firmware, and cheaply: measure the threshold
+once, then <strong>add it to the command with the sign of the command</strong>. Suddenly the
+smallest useful command is the smallest command that does something. The fix is
+about ten lines and it transforms low-speed behaviour.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-deadband"><title id="fig-deadband">Every real actuator needs some minimum command before it does anything, so small corrections produce no motion and the loop cannot settle finer than that threshold without help.</title><text x="8" y="14" class="dim">COMMAND IN, MOTION OUT</text><path class="thin" d="M40 30 V112 H272"></path><path class="accent" d="M44 102 H132"></path><path class="accent" d="M132 102 L244 38"></path><circle class="mark" cx="132" cy="102" r="7"></circle><text x="52" y="94" class="tight">NOTHING HAPPENS HERE</text><text x="180" y="72" class="tight">LINEAR FROM HERE</text><text x="8" y="146" class="dim">CAUSES: DEAD TIME DISTORTION IN THE BRIDGE, PWM</text><text x="8" y="160" class="dim">RESOLUTION, AND STICTION. INTEGRAL EVENTUALLY</text><text x="8" y="174" class="dim">CLIMBS OUT, SLOWLY, WHICH IS WHY A DEADBAND LOOKS</text><text x="8" y="188" class="dim">LIKE A LOOP THAT CREEPS TO TARGET AND HUNTS</text></svg><figcaption class="fig-cap">Nothing until the threshold, and the last degree lives there.</figcaption></figure>
+<h2 id="telling-a-limit-cycle-from-an-instability">Telling a limit cycle from an instability</h2>
+<p>Because the treatments are opposite, this diagnosis comes before any tuning.</p>
+<p><strong>Shape.</strong> A gain instability is smooth and close to sinusoidal, at a frequency
+set by where the loop’s phase reaches 180°. A friction limit cycle has flat
+tops and visible dwell — the load is stuck for part of each cycle, and stuck
+looks flat.</p>
+<p><strong>Direction.</strong> Raise P a little. A gain instability gets worse. A stiction cycle
+gets <strong>faster and smaller</strong>, because the loop reaches breakaway torque sooner.</p>
+<p><strong>Amplitude against setpoint.</strong> A gain instability has an amplitude roughly
+proportional to whatever excites it. A friction cycle has an amplitude set by
+the friction itself, so it is much the same size at any setpoint — which is a
+strong tell.</p>
+<p><strong>Where it happens.</strong> Friction cycles appear at low speed and around standstill,
+which is exactly where a position loop lives. Gain instabilities appear wherever
+the loop gain is highest.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-not-instability"><title id="fig-not-instability">A limit cycle caused by friction and a genuine instability both appear as sustained oscillation, but lowering the gain cures one and makes the other worse, so telling them apart comes first.</title><text x="8" y="14" class="dim">SAME SHAPE, OPPOSITE TREATMENT</text><text x="8" y="44" class="tight">TOO MUCH GAIN</text><path class="rule" d="M110 56 Q124 30 138 56 Q152 82 166 56 Q180 30 194 56 Q208 82 222 56 Q236 34 250 56"></path><text x="110" y="76" class="tight">GROWS WHEN YOU RAISE P</text><text x="8" y="116" class="tight">STICTION CYCLE</text><path class="accent" d="M110 128 H134 L148 104 H172 L186 128 H210 L224 104 H248"></path><circle class="mark" cx="148" cy="104" r="7"></circle><text x="110" y="148" class="tight">FLAT TOPS, AND WORSE WHEN P IS LOWERED</text><text x="8" y="178" class="dim">THE TELL IS THE SHAPE AND THE DIRECTION: SMOOTH</text><text x="8" y="192" class="dim">AND SINUSOIDAL IS GAIN, FLAT AND SQUARE IS STICK</text></svg><figcaption class="fig-cap">Smooth and sinusoidal is gain. Flat and square is stick.</figcaption></figure>
+<h2 id="what-to-do-about-each">What to do about each</h2>
+<p>Four problems, four remedies, and the important observation is that <strong>the best
+remedy is often not a control remedy</strong>.</p>
+<p><strong>Stiction</strong> — dither, a small high-frequency signal added to the command that
+keeps the joint microscopically moving so it never fully sticks. Or a small bias
+torque. Both are workarounds; better bearings are the actual fix.</p>
+<p><strong>Backlash</strong> — preload the gears, use an anti-backlash pair, or go direct drive.
+<strong>No amount of tuning removes free play</strong>, and every hour spent trying is an
+hour not spent on the mechanics. This is the one to take out of the control
+domain entirely.</p>
+<p><strong>Deadband</strong> — compensate in firmware as above. This one genuinely belongs to
+control and the fix is good.</p>
+<p><strong>Saturation</strong> — anti-windup, which is tutorial 22 in its entirety.</p>
+<p>The general lesson for someone arriving from software: a control loop can
+compensate for a plant it can <em>observe and influence</em>. Free play is an interval
+where it can do neither, and the answer is a mechanical one.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-nonlinear-fixes"><title id="fig-nonlinear-fixes">Each of the common nonlinearities has a specific remedy, and the best remedy for several of them is mechanical rather than anything a controller can do.</title><text x="8" y="14" class="dim">WHAT TO DO ABOUT EACH ONE</text><rect class="fill" x="8" y="26" width="304" height="38"></rect><text x="18" y="44" class="tight">STICTION</text><text x="18" y="58" class="tight">DITHER, OR A SMALL BIAS. BETTER BEARINGS BEST</text><rect class="mark" x="8" y="68" width="304" height="38"></rect><text x="18" y="86" class="tight">BACKLASH</text><text x="18" y="100" class="tight">PRELOAD THE GEARS. NO TUNING FIXES FREE PLAY</text><rect class="fill" x="8" y="110" width="304" height="38"></rect><text x="18" y="128" class="tight">DEADBAND</text><text x="18" y="142" class="tight">COMPENSATE IN FIRMWARE, BY ADDING THE OFFSET</text><rect class="fill" x="8" y="152" width="304" height="38"></rect><text x="18" y="170" class="tight">SATURATION</text><text x="18" y="184" class="tight">ANTI-WINDUP. TUTORIAL 22 IS ENTIRELY THIS</text><text x="8" y="198" class="dim">THE MARKED ROW IS THE ONE CONTROL CANNOT REPAIR</text></svg><figcaption class="fig-cap">One of these four is not a control problem.</figcaption></figure>
+<h2 id="worked-example-diagnosing-the-2-hz-oscillation">Worked example: diagnosing the 2 Hz oscillation</h2>
+<p>The opening symptom. A geared position axis, encoder on the motor, oscillating
+±1° at about 2 Hz.</p>
+<p><strong>Test 1 — the shape.</strong> Log position at 1 kHz and look at one cycle.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time at each extreme</td>
+<td>90 ms of a 500 ms cycle</td>
+</tr>
+<tr>
+<td>Transit between extremes</td>
+<td>160 ms</td>
+</tr>
+<tr>
+<td>Waveform</td>
+<td>flat tops, fast transitions</td>
+</tr>
+</tbody>
+</table>
+<p>Dwell of 90 ms at each end is not a sinusoid. <strong>First evidence for friction.</strong></p>
+<p><strong>Test 2 — the direction.</strong> Change Kp and re-measure.</p>
+<table>
+<thead>
+<tr>
+<th>Kp</th>
+<th>Frequency</th>
+<th>Amplitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.8</td>
+<td>1.2 Hz</td>
+<td>±1.8°</td>
+</tr>
+<tr>
+<td>1.6 (original)</td>
+<td>2.0 Hz</td>
+<td>±1.0°</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>3.1 Hz</td>
+<td>±0.7°</td>
+</tr>
+</tbody>
+</table>
+<p>Raising gain made it <strong>faster and smaller</strong>. A gain instability does the
+opposite. That is conclusive.</p>
+<p><strong>Test 3 — the amplitude against setpoint.</strong> Command 10°, 90°, 180°. Amplitude
+stays at ±1.0° in all three. Set by friction, not by excitation. Confirmed.</p>
+<p><strong>Test 4 — where is the friction?</strong> Disconnect the load and run the motor alone.
+The cycle disappears. So it is in the gearbox or the load bearing rather than
+the motor.</p>
+<p><strong>Now the arithmetic that decides the fix.</strong> Breakaway torque measured with a
+gauge: 0.34 Nm at the output. Sliding: 0.19 Nm. The ratio is 1.8, and the
+difference, 0.15 Nm, is what gets dumped into the load at every release.</p>
+<p>With a gear ratio of 20:1 and Kt = 0.021 Nm/A at the motor, breakaway is
+0.34/20/0.021 = <strong>0.81 A</strong> of motor current, and the excess after release is
+0.36 A. The loop’s proportional gain converts 1° of error into 0.9 A — which is
+just over breakaway, and that is why the cycle sustains at exactly ±1°.</p>
+<p><strong>Three candidate fixes, costed.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Effect</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dither, 200 Hz at 0.1 A</td>
+<td>cycle gone, small audible whine</td>
+<td>6 lines</td>
+</tr>
+<tr>
+<td>Deadband compensation</td>
+<td>no effect — this is stiction, not deadband</td>
+<td>wasted day</td>
+</tr>
+<tr>
+<td>Replace the output bearing</td>
+<td>breakaway to 0.08 Nm, cycle gone</td>
+<td>€14, one hour</td>
+</tr>
+</tbody>
+</table>
+<p>The middle row is there because it is the plausible wrong answer: deadband
+compensation and stiction dither look similar and address different things.
+Compensation adds a fixed offset and the joint still sticks.</p>
+<p>Take the bearing. It is the cheapest of the three in the long run, it removes
+the problem instead of masking it, and it makes every subsequent tuning easier.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes with a machine that misbehaves.</p>
+<ol>
+<li>Find something that oscillates and classify it by the two tests: is the
+waveform flat-topped, and does raising P make it better or worse?</li>
+<li>Measure your actuator’s deadband. Ramp the command up from zero and note
+where motion starts. Then add that offset in firmware and see how much the
+low-speed behaviour improves.</li>
+<li>Measure backlash directly: hold the load, rock the input, read the encoder.
+The number in degrees is an upper bound on your positioning accuracy and no
+gain changes it.</li>
+<li>Then measure breakaway and sliding torque with a spring gauge. The ratio
+tells you how bad the stiction problem is, and the absolute number tells you
+whether a better bearing is worth buying.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Why does a stiction limit cycle sustain itself rather than settling?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-0-0" name="machines/04-control-on-hardware/20-nonlinearities-0"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-0-0"><span class="quiz-letter">A</span><span>The sensor loses resolution near standstill, so the error reads wrongly</span></label><p class="quiz-why"><b>Not quite.</b> Encoder resolution is the same at rest as in motion. The oscillation is mechanical rather than an artefact of measurement.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-0-1" name="machines/04-control-on-hardware/20-nonlinearities-0"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-0-1"><span class="quiz-letter">B</span><span>The integral term keeps accumulating, so the command rises without end</span></label><p class="quiz-why"><b>Not quite.</b> Integral does build during the stuck phase and contributes to the lurch. The cycle continues because the friction itself changes at release.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-0-2" name="machines/04-control-on-hardware/20-nonlinearities-0"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-0-2"><span class="quiz-letter">C</span><span>The loop&#39;s phase margin falls to zero at very low frequencies</span></label><p class="quiz-why"><b>Not quite.</b> Phase margin is a linear property and this behaviour appears with generous margin. The mechanism is the friction discontinuity.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-0-3" name="machines/04-control-on-hardware/20-nonlinearities-0"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-0-3" data-correct><span class="quiz-letter">D</span><span>Friction drops at breakaway, so the holding torque becomes an excess</span></label><p class="quiz-why"><b>Right.</b> The torque that was just enough to release the joint is more than enough to move it, so the load lurches past and the same sequence runs in reverse.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>What happens to the loop while the free play in a gearbox is being taken up?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-1-0" name="machines/04-control-on-hardware/20-nonlinearities-1"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-1-0"><span class="quiz-letter">A</span><span>The loop inverts, since the load now leads rather than follows</span></label><p class="quiz-why"><b>Not quite.</b> Nothing changes sign during the gap. The load simply stops responding until contact resumes on the other tooth face.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-1-1" name="machines/04-control-on-hardware/20-nonlinearities-1"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-1-1" data-correct><span class="quiz-letter">B</span><span>It is effectively open, so integral builds against a disconnected plant</span></label><p class="quiz-why"><b>Right.</b> The motor turns and the load does not, so the controller sees no response and pushes harder. That accumulated command arrives as an impact.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-1-2" name="machines/04-control-on-hardware/20-nonlinearities-1"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-1-2"><span class="quiz-letter">C</span><span>The derivative term saturates, since the apparent rate goes to zero</span></label><p class="quiz-why"><b>Not quite.</b> Zero rate is a perfectly ordinary input for a derivative term and produces zero output. No saturation occurs.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-1-3" name="machines/04-control-on-hardware/20-nonlinearities-1"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-1-3"><span class="quiz-letter">D</span><span>The gain falls smoothly to zero, so the response is merely sluggish</span></label><p class="quiz-why"><b>Not quite.</b> There is no partial coupling during the gap; the transmission is disconnected. A smooth gain reduction would be far easier to handle.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>How do you compensate for actuator deadband in firmware?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-2-0" name="machines/04-control-on-hardware/20-nonlinearities-2"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-2-0"><span class="quiz-letter">A</span><span>Raise the integral gain so the controller climbs out of it faster</span></label><p class="quiz-why"><b>Not quite.</b> It will eventually climb out either way, and more integral overshoots harder once motion starts. It treats the symptom and adds a new one.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-2-1" name="machines/04-control-on-hardware/20-nonlinearities-2"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-2-1" data-correct><span class="quiz-letter">B</span><span>Add the measured threshold to the command, with the command&#39;s sign</span></label><p class="quiz-why"><b>Right.</b> It makes the smallest useful command the smallest command that does anything. About ten lines, and it transforms low-speed behaviour.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-2-2" name="machines/04-control-on-hardware/20-nonlinearities-2"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-2-2"><span class="quiz-letter">C</span><span>Add a deadband of the same width to the setpoint, cancelling the effect</span></label><p class="quiz-why"><b>Not quite.</b> Widening the region where nothing is commanded makes the flat zone larger. The compensation has to push through the threshold, not mirror it.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-2-3" name="machines/04-control-on-hardware/20-nonlinearities-2"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-2-3"><span class="quiz-letter">D</span><span>Increase PWM resolution so the smallest step falls inside the zone</span></label><p class="quiz-why"><b>Not quite.</b> Finer resolution helps when quantisation is the main cause and is worth having. It does not overcome dead-time distortion or stiction.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>You raise the proportional gain and the oscillation becomes faster and smaller. What is it?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-3-0" name="machines/04-control-on-hardware/20-nonlinearities-3"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-3-0"><span class="quiz-letter">A</span><span>Sensor aliasing, since the apparent frequency tracks the loop gain</span></label><p class="quiz-why"><b>Not quite.</b> An alias would move with sample rate rather than with gain, and its amplitude would not fall. It is worth ruling out separately.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-3-1" name="machines/04-control-on-hardware/20-nonlinearities-3"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-3-1"><span class="quiz-letter">B</span><span>Backlash chatter, which scales inversely with the proportional gain</span></label><p class="quiz-why"><b>Not quite.</b> Backlash impacts do get sharper with gain rather than gentler. The shrinking amplitude points at friction instead.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-3-2" name="machines/04-control-on-hardware/20-nonlinearities-3"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-3-2"><span class="quiz-letter">C</span><span>A gain instability, since raising the gain moved its frequency up</span></label><p class="quiz-why"><b>Not quite.</b> An instability does shift in frequency with gain, and it grows rather than shrinks. Getting smaller rules it out.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-3-3" name="machines/04-control-on-hardware/20-nonlinearities-3"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-3-3" data-correct><span class="quiz-letter">D</span><span>A friction limit cycle, since more gain reaches breakaway sooner</span></label><p class="quiz-why"><b>Right.</b> A gain instability grows with gain, so the direction is the diagnosis. Reaching breakaway torque faster shortens the stuck phase and the amplitude.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Which of these nonlinearities is not a control problem at all?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-4-0" name="machines/04-control-on-hardware/20-nonlinearities-4"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-4-0"><span class="quiz-letter">A</span><span>Saturation, where the actuator has reached its physical limit</span></label><p class="quiz-why"><b>Not quite.</b> The limit is physical and the loop&#39;s handling of it is not. Anti-windup is squarely a control technique, and tutorial 22 is about it.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-4-1" name="machines/04-control-on-hardware/20-nonlinearities-4"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-4-1"><span class="quiz-letter">B</span><span>Stiction, where breakaway torque exceeds the sliding value</span></label><p class="quiz-why"><b>Not quite.</b> Better bearings are the real fix, but dither and a bias torque genuinely suppress the cycle. Control has useful moves available here.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-4-2" name="machines/04-control-on-hardware/20-nonlinearities-4"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-4-2" data-correct><span class="quiz-letter">C</span><span>Backlash, where no tuning recovers an interval with no plant in it</span></label><p class="quiz-why"><b>Right.</b> During the gap the controller can neither observe nor influence the load. Preload, an anti-backlash pair or direct drive are the actual answers.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/20-nonlinearities-4-3" name="machines/04-control-on-hardware/20-nonlinearities-4"><label class="quiz-opt" for="machines/04-control-on-hardware/20-nonlinearities-4-3"><span class="quiz-letter">D</span><span>Deadband, where the threshold varies with temperature and wear</span></label><p class="quiz-why"><b>Not quite.</b> It does drift somewhat, so periodic recalibration helps. Adding the measured offset in firmware is a genuine and effective control fix.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Åström &amp; Hägglund, PID Controllers, ch. 7 · Åström &amp; Murray, Feedback Systems, ch. 4 · Slocum, FUNdaMENTALs of Design, ch. 10</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/04-control-on-hardware/19-pid-as-tuned" class="text-ash transition-colors hover:text-bone">← PID as it is tuned, not as it is derived</a><a href="/course/machines/04-control-on-hardware/21-sample-rate-and-latency" class="text-ash transition-colors hover:text-bone">Sample rate, latency, and the phase you lose for free →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

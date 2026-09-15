@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Contribution margin and break-even — Business Finance · Aerens</title><meta name="description" content="One model worth memorising, the decision rule it gives you, and the three conditions that put the fixed costs back in."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/03-how-costs-behave/15-contribution-margin/"><meta property="og:type" content="website"><meta property="og:title" content="Contribution margin and break-even — Business Finance · Aerens"><meta property="og:description" content="One model worth memorising, the decision rule it gives you, and the three conditions that put the fixed costs back in."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/03-how-costs-behave/15-contribution-margin/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · How costs behave</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Contribution margin and break-even</h1><p class="mt-3 text-bone/70">One model worth memorising, the decision rule it gives you, and the three conditions that put the fixed costs back in.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 05 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Compute contribution per unit, break-even volume and margin of safety</li><li>Use the contribution rule to price a marginal order</li><li>Name the conditions under which that rule stops being valid</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>A customer offers €70 a unit for a one-off run of 2,000. Your cost sheet says
+each unit costs €88. Sales wants to take it, finance says it loses €36,000, and
+both of them are reading the same number.</p>
+<p>If there is one model in this course to keep in your head, it is the one that
+settles this.</p>
+<h2 id="contribution-is-what-a-sale-leaves-behind">Contribution is what a sale leaves behind</h2>
+<p><strong>Contribution = price − variable cost.</strong> Not price minus full cost. Only the
+costs that exist <em>because of that sale</em>.</p>
+<p>At €100 with €62 of variable cost, each sale leaves €38 behind. That €38 goes
+towards fixed costs; once fixed costs are covered, every further €38 is profit.</p>
+<p>The word is exact and worth using. The sale does not <em>make</em> €38 of profit. It
+<em>contributes</em> €38 towards a pile that has to be filled before there is any
+profit at all.</p>
+<figure class="fig"><svg viewBox="0 0 320 178" role="img" aria-labelledby="fig-contribution-slice"><title id="fig-contribution-slice">Contribution is the price less the variable cost of that sale, and it is what the sale leaves behind to cover fixed costs and then become profit.</title><text x="8" y="14" class="dim">WHAT ONE SALE LEAVES BEHIND</text><rect class="fill" x="8" y="28" width="304" height="30"></rect><text x="20" y="48" class="tight">PRICE 100</text><rect class="box" x="8" y="70" width="170" height="30"></rect><text x="20" y="90" class="tight">VARIABLE COST 62</text><rect class="mark" x="186" y="70" width="126" height="30"></rect><text x="198" y="90" class="tight">CONTRIBUTION 38</text><path class="accent" d="M249 100 V114"></path><path class="accent-fill" d="M244 114 L249 122 L254 114 Z"></path><rect class="box" x="8" y="124" width="304" height="28"></rect><text x="20" y="143" class="tight">TOWARDS FIXED COSTS, THEN PROFIT</text><text x="8" y="174" class="dim">IT DOES NOT PAY FOR ITSELF TWICE</text></svg><figcaption class="fig-cap">Not profit. What is left over to go towards the fixed pile.</figcaption></figure>
+<h2 id="break-even-is-fixed-cost-over-contribution">Break-even is fixed cost over contribution</h2>
+<p>Fill the pile and you break even. So:</p>
+<p><strong>Break-even volume = fixed costs ÷ contribution per unit.</strong></p>
+<p>€380,000 of fixed cost at €38 a unit is 10,000 units. In revenue terms, divide
+fixed cost by the <strong>contribution ratio</strong> — €38/€100 = 38% — giving €1,000,000.</p>
+<p>The <strong>margin of safety</strong> is how far current volume sits above that: at 13,000
+units you are 3,000 above break-even, a 23% margin of safety. It is the honest
+answer to “how far can sales fall before we are in trouble”, and it is a better
+question than most of the ones asked in a board pack.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-break-even"><title id="fig-break-even">Break-even is the volume where the revenue line crosses total cost; below it each sale reduces the loss and above it each sale adds contribution straight to profit.</title><text x="8" y="14" class="dim">WHERE THE LINES CROSS</text><path class="thin" d="M32 28 V120 H240"></path><path class="dash" d="M40 92 H236"></path><path class="rule" d="M40 92 L236 62"></path><path class="accent" d="M40 116 L236 32"></path><circle class="mark" cx="127" cy="79" r="7"></circle><text x="244" y="38" class="tight">REVENUE</text><text x="244" y="66" class="tight">TOTAL COST</text><text x="244" y="96" class="tight">FIXED</text><path class="thin" d="M127 88 V132"></path><text x="100" y="146" class="tight">BREAK-EVEN</text><text x="8" y="172" class="dim">BELOW THE CROSS EVERY SALE REDUCES</text><text x="8" y="190" class="dim">THE LOSS. ABOVE IT EVERY SALE IS PROFIT</text></svg><figcaption class="fig-cap">One crossing point, and everything either side of it behaves differently.</figcaption></figure>
+<h2 id="operating-leverage-cuts-both-ways">Operating leverage cuts both ways</h2>
+<p>The higher the share of fixed costs, the more a change in revenue is amplified
+into profit. That amplification is <strong>operating leverage</strong>, and it equals total
+contribution ÷ profit.</p>
+<p>A business with €380,000 fixed and €494,000 contribution has profit of €114,000
+and leverage of 4.3. A 10% revenue rise becomes a 43% profit rise. A 10% fall
+becomes a 43% fall.</p>
+<p>This is why software companies look extraordinary on the way up and alarming on
+the way down, and why a business that outsources everything is duller in both
+directions. Neither is better; they are different bets on volume, and the
+leverage number tells you which bet you are holding.</p>
+<figure class="fig"><svg viewBox="0 0 320 188" role="img" aria-labelledby="fig-operating-leverage"><title id="fig-operating-leverage">A business with a high share of fixed costs turns a small change in revenue into a large change in profit, in both directions.</title><text x="8" y="14" class="dim">THE SAME 10% MORE REVENUE</text><text x="8" y="38" class="tight">LOW FIXED COST</text><rect class="box" x="8" y="46" width="140" height="30"></rect><text x="20" y="66" class="tight">PROFIT +14%</text><rect class="box" x="8" y="96" width="140" height="30"></rect><text x="20" y="116" class="tight">AND -14% DOWN</text><text x="172" y="38" class="tight">HIGH FIXED COST</text><rect class="mark" x="172" y="46" width="140" height="30"></rect><text x="184" y="66" class="tight">PROFIT +48%</text><rect class="box" x="172" y="96" width="140" height="30"></rect><text x="184" y="116" class="tight">AND -48% DOWN</text><text x="8" y="160" class="dim">LEVERAGE CUTS BOTH WAYS, WHICH IS</text><text x="8" y="178" class="dim">WHY IT IS CALLED LEVERAGE</text></svg><figcaption class="fig-cap">The same ten per cent, amplified by whatever the fixed share is.</figcaption></figure>
+<h2 id="for-a-marginal-decision-ignore-fixed-costs">For a marginal decision, ignore fixed costs</h2>
+<p>Back to the €70 order. Full cost is €88, of which €62 is variable and €26 is
+allocated fixed overhead.</p>
+<p>The €26 is paid whether or not you accept the order. It is not caused by the
+decision, so it does not belong in the decision. What the order changes is €62
+of cost and €70 of revenue: <strong>+€8 a unit, €16,000 on the run.</strong></p>
+<p>Finance’s €36,000 loss is the difference between the price and an allocation.
+Sales is right, for the right reason, which is not the reason sales usually
+gives.</p>
+<p>The general rule: <strong>a decision should be evaluated on the cash flows it
+changes.</strong> Allocated fixed cost is, by construction, not one of them.</p>
+<figure class="fig"><svg viewBox="0 0 320 180" role="img" aria-labelledby="fig-ignore-fixed"><title id="fig-ignore-fixed">A one-off order priced below full cost can still be worth taking, because the fixed cost is incurred whether or not the order is accepted.</title><text x="8" y="14" class="dim">A ONE-OFF ORDER AT 70</text><rect class="box" x="8" y="30" width="140" height="96"></rect><text x="20" y="56" class="tight">FULL COST 88</text><text x="20" y="80" class="tight">PRICE 70</text><text x="20" y="104" class="tight">LOOKS LIKE A LOSS</text><rect class="mark" x="172" y="30" width="140" height="96"></rect><text x="184" y="56" class="tight">VARIABLE 62</text><text x="184" y="80" class="tight">PRICE 70</text><text x="184" y="104" class="tight">ADDS 8 OF PROFIT</text><text x="8" y="154" class="dim">THE FIXED COST IS PAID EITHER WAY</text><text x="8" y="172" class="dim">SO IT IS NOT PART OF THE DECISION</text></svg><figcaption class="fig-cap">Twenty-six euros of it is going to be spent either way.</figcaption></figure>
+<h2 id="where-the-rule-breaks">Where the rule breaks</h2>
+<p>The rule is right and it is narrow. Three conditions void it.</p>
+<p><strong>Capacity.</strong> If the run consumes the last of your capacity, accepting it means
+turning something else away. The cost of the order is then €62 plus the
+contribution you gave up — the opportunity cost — and that can easily exceed
+€70.</p>
+<p><strong>Price leakage.</strong> If existing customers learn about €70, the price is no longer
+a one-off. The relevant cost includes the margin lost on everything else you
+sell.</p>
+<p><strong>It is not really one-off.</strong> Marginal pricing applied repeatedly is just
+pricing, and a business that prices at variable cost never covers its fixed
+costs. Every one of these is agreed as an exception and then repeated.</p>
+<p>The rule holds for a genuinely marginal decision with spare capacity and no
+spillover. Check all three before using it, because the failure mode is not a
+small error.</p>
+<figure class="fig"><svg viewBox="0 0 320 188" role="img" aria-labelledby="fig-where-it-breaks"><title id="fig-where-it-breaks">Ignoring fixed costs holds only for a genuinely marginal decision: it fails if the order consumes the last capacity, if the price leaks to other customers, or if it recurs.</title><text x="8" y="14" class="dim">THREE WAYS THE RULE FAILS</text><rect class="box" x="8" y="28" width="304" height="32"></rect><text x="20" y="48" class="tight">IF IT USES THE LAST OF THE CAPACITY</text><rect class="box" x="8" y="68" width="304" height="32"></rect><text x="20" y="88" class="tight">IF THE PRICE LEAKS TO OTHER CUSTOMERS</text><rect class="box" x="8" y="108" width="304" height="32"></rect><text x="20" y="128" class="tight">IF IT IS NOT ACTUALLY A ONE-OFF</text><rect class="mark" x="8" y="148" width="304" height="30"></rect><text x="20" y="168" class="tight">THEN FIXED COSTS ARE BACK IN THE SUM</text></svg><figcaption class="fig-cap">Three conditions. Any one of them puts the fixed costs back in.</figcaption></figure>
+<h2 id="worked-example-taking-the-order">Worked example: taking the order</h2>
+<p>Current position, before the special order:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volume</td>
+<td>13,000 units</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Variable cost</td>
+<td>62</td>
+</tr>
+<tr>
+<td>Contribution per unit</td>
+<td>38</td>
+</tr>
+<tr>
+<td>Total contribution</td>
+<td>494,000</td>
+</tr>
+<tr>
+<td>Fixed costs</td>
+<td>380,000</td>
+</tr>
+<tr>
+<td><strong>Profit</strong></td>
+<td><strong>114,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Break-even is 380,000 ÷ 38 = <strong>10,000 units</strong>. Margin of safety is 3,000 units,
+or <strong>23%</strong>. Operating leverage is 494,000 ÷ 114,000 = <strong>4.3</strong>.</p>
+<p>Now the order: 2,000 units at €70, capacity available.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contribution per unit</td>
+<td>70 − 62 = 8</td>
+</tr>
+<tr>
+<td>Extra contribution</td>
+<td>16,000</td>
+</tr>
+<tr>
+<td>Extra fixed cost</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>New profit</strong></td>
+<td><strong>130,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Take it. Profit rises 14% on a price that is 30% below list.</p>
+<p>Now change one thing: capacity is 14,000 units, so 1,000 of the order displaces
+1,000 units of normal sales.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contribution gained, 2,000 × 8</td>
+<td>16,000</td>
+</tr>
+<tr>
+<td>Contribution lost, 1,000 × 38</td>
+<td>(38,000)</td>
+</tr>
+<tr>
+<td><strong>Net</strong></td>
+<td><strong>(22,000)</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Refuse it. The order did not change; the capacity did. Same arithmetic, opposite
+answer, and the only new input is whether the factory was full.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>For one product or service you know, write down price, variable cost per
+unit, and total fixed cost. Getting the variable/fixed split right is most of
+the work — go back to the high-low tutorial if it is mixed.</li>
+<li>Compute contribution per unit, break-even volume, and margin of safety.</li>
+<li>Compute operating leverage. Then ask what a 10% revenue drop does to profit,
+and whether anyone in the business would describe that as the answer.</li>
+<li>Then find a discount your company has agreed recently and test it against the
+three conditions. Spare capacity? No leakage? Genuinely one-off?</li>
+</ol>
+<p>Most agreed discounts fail at least one, which is worth knowing before the next
+one is proposed.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Why is contribution described as a contribution rather than as profit?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-0-0" name="business-finance/03-how-costs-behave/15-contribution-margin-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-0-0"><span class="quiz-letter">A</span><span>It is an estimate, so calling it profit would overstate it</span></label><p class="quiz-why"><b>Not quite.</b> Price and variable cost are both known figures. The word describes what the amount does, not how certain it is.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-0-1" name="business-finance/03-how-costs-behave/15-contribution-margin-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-0-1"><span class="quiz-letter">B</span><span>It excludes tax, which has to be deducted before profit</span></label><p class="quiz-why"><b>Not quite.</b> Tax comes far later and applies to the whole company. What contribution excludes is fixed cost.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-0-2" name="business-finance/03-how-costs-behave/15-contribution-margin-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-0-2"><span class="quiz-letter">C</span><span>It counts just the cash portion of what the sale generates</span></label><p class="quiz-why"><b>Not quite.</b> It is measured on the same accrual basis as everything else. The distinction it draws is fixed against variable.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-0-3" name="business-finance/03-how-costs-behave/15-contribution-margin-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-0-3" data-correct><span class="quiz-letter">D</span><span>It goes towards a fixed pile that must be filled first</span></label><p class="quiz-why"><b>Right.</b> Until fixed costs are covered, nothing a sale leaves behind is profit. After that point every further unit of it is.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Fixed costs are €380,000 and contribution is €38 a unit. Where is break-even?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-1-0" name="business-finance/03-how-costs-behave/15-contribution-margin-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-1-0"><span class="quiz-letter">A</span><span>3,800 units, being the fixed cost divided by the margin ratio</span></label><p class="quiz-why"><b>Not quite.</b> Dividing by the ratio gives break-even in revenue rather than units, and it would give €1,000,000 here.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-1-1" name="business-finance/03-how-costs-behave/15-contribution-margin-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-1-1"><span class="quiz-letter">B</span><span>10,000 units, being the fixed cost divided by the unit price</span></label><p class="quiz-why"><b>Not quite.</b> The arithmetic lands in the same place only by coincidence of the numbers. The divisor is contribution, not price.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-1-2" name="business-finance/03-how-costs-behave/15-contribution-margin-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-1-2"><span class="quiz-letter">C</span><span>It depends on the variable cost, which has not been given here</span></label><p class="quiz-why"><b>Not quite.</b> Variable cost is already inside the contribution figure. Contribution and fixed cost are all the model needs.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-1-3" name="business-finance/03-how-costs-behave/15-contribution-margin-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-1-3" data-correct><span class="quiz-letter">D</span><span>10,000 units, being the fixed cost divided by contribution</span></label><p class="quiz-why"><b>Right.</b> Each unit fills €38 of the pile, so 10,000 of them fill €380,000 and the next unit is the first profitable one.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>A business has operating leverage of 4.3. What does a 10% fall in revenue do?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-2-0" name="business-finance/03-how-costs-behave/15-contribution-margin-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-2-0"><span class="quiz-letter">A</span><span>Profit falls about 43%, unless fixed costs can be cut in time</span></label><p class="quiz-why"><b>Not quite.</b> Cutting fixed costs would change the structure, which is a different decision. At the stated leverage the fall is 43%.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-2-1" name="business-finance/03-how-costs-behave/15-contribution-margin-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-2-1" data-correct><span class="quiz-letter">B</span><span>Profit falls about 43%, since the amplification runs both ways</span></label><p class="quiz-why"><b>Right.</b> Leverage is contribution over profit and it is symmetric. The fixed base that magnifies gains magnifies losses equally.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-2-2" name="business-finance/03-how-costs-behave/15-contribution-margin-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-2-2"><span class="quiz-letter">C</span><span>Profit falls about 10%, since costs fall with revenue as well</span></label><p class="quiz-why"><b>Not quite.</b> Variable costs fall with revenue; the fixed ones do not. That is exactly what creates the amplification.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-2-3" name="business-finance/03-how-costs-behave/15-contribution-margin-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-2-3"><span class="quiz-letter">D</span><span>Profit falls about 4.3%, being the leverage applied as a rate</span></label><p class="quiz-why"><b>Not quite.</b> Leverage is a multiplier on the percentage change, not a percentage itself. Ten per cent times 4.3 is 43.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Full cost is €88, of which €62 is variable. A one-off order offers €70. What is the right test?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-3-0" name="business-finance/03-how-costs-behave/15-contribution-margin-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-3-0"><span class="quiz-letter">A</span><span>It depends on the margin the customer earns on reselling it</span></label><p class="quiz-why"><b>Not quite.</b> Their margin is their business. Yours is determined by the costs that move when you accept.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-3-1" name="business-finance/03-how-costs-behave/15-contribution-margin-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-3-1" data-correct><span class="quiz-letter">B</span><span>It adds €8 a unit, since the €26 is being spent either way</span></label><p class="quiz-why"><b>Right.</b> A decision is judged on the cash flows it changes, and allocated fixed cost is by construction not one of them.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-3-2" name="business-finance/03-how-costs-behave/15-contribution-margin-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-3-2"><span class="quiz-letter">C</span><span>It loses €18 a unit, since the price is below the full cost</span></label><p class="quiz-why"><b>Not quite.</b> That compares a price to an allocation. The €26 of overhead does not appear or disappear with this order.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-3-3" name="business-finance/03-how-costs-behave/15-contribution-margin-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-3-3"><span class="quiz-letter">D</span><span>It breaks even, once the overhead recovery is taken into account</span></label><p class="quiz-why"><b>Not quite.</b> There is no recovery to take into account — the overhead is incurred regardless. The change is €70 against €62.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>The special order would use the last of your capacity. What changes?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-4-0" name="business-finance/03-how-costs-behave/15-contribution-margin-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-4-0"><span class="quiz-letter">A</span><span>The order should be repriced at full cost plus a capacity fee</span></label><p class="quiz-why"><b>Not quite.</b> Repricing may well be the outcome, but the test comes first: compare €8 gained against the contribution displaced.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-4-1" name="business-finance/03-how-costs-behave/15-contribution-margin-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-4-1"><span class="quiz-letter">B</span><span>Nothing changes, since capacity is a fixed cost already paid</span></label><p class="quiz-why"><b>Not quite.</b> The cost of capacity is paid, but its use is now scarce. Scarcity is precisely what creates an opportunity cost.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-4-2" name="business-finance/03-how-costs-behave/15-contribution-margin-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-4-2" data-correct><span class="quiz-letter">C</span><span>The contribution you give up becomes part of the order&#39;s cost</span></label><p class="quiz-why"><b>Right.</b> With no spare capacity, accepting means refusing something else, so opportunity cost joins the variable cost.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/15-contribution-margin-4-3" name="business-finance/03-how-costs-behave/15-contribution-margin-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/15-contribution-margin-4-3"><span class="quiz-letter">D</span><span>The allocated fixed overhead has to be added to the €62</span></label><p class="quiz-why"><b>Not quite.</b> The overhead still does not change with the decision. What changes is that a displaced sale now does.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Horngren, Cost Accounting, ch. 3 · CIMA P1, cost-volume-profit analysis</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/03-how-costs-behave/14-activity-based-costing" class="text-ash transition-colors hover:text-bone">← Activity-based costing, and when it is not worth it</a><a href="/course/business-finance/03-how-costs-behave/16-responsibility-centres" class="text-ash transition-colors hover:text-bone">Cost, profit and investment centres →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

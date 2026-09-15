@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Sample rate, latency, and the phase you lose for free — Machines · Aerens</title><meta name="description" content="Why Nyquist is the wrong rule for a control loop, where the delay actually comes from, and why jitter is worse than latency."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/04-control-on-hardware/21-sample-rate-and-latency/"><meta property="og:type" content="website"><meta property="og:title" content="Sample rate, latency, and the phase you lose for free — Machines · Aerens"><meta property="og:description" content="Why Nyquist is the wrong rule for a control loop, where the delay actually comes from, and why jitter is worse than latency."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/04-control-on-hardware/21-sample-rate-and-latency/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Control that survives contact with hardware</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Sample rate, latency, and the phase you lose for free</h1><p class="mt-3 text-bone/70">Why Nyquist is the wrong rule for a control loop, where the delay actually comes from, and why jitter is worse than latency.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 03 of 06 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Convert a delay into degrees of phase at the frequency your loop works at</li><li>Add up the delay chain and find the term that dominates, which is rarely the maths</li><li>Say why a jittery loop is worse than a slower loop with fixed timing</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Your velocity loop was tuned and stable. You add a small low-pass filter on the
+current measurement, because the signal looked noisy and a cleaner signal must
+be better. The loop now oscillates.</p>
+<p>You did not change a single gain. What you changed was <strong>time</strong> — you added
+80 µs of delay in exchange for a tidier plot, and at the frequency the loop was
+working at, 80 µs is 36° of phase margin you no longer have.</p>
+<p>Delay is the one thing in a control loop that cannot be bought back. Gain you
+can lower, noise you can filter, nonlinearity you can compensate. Phase lost to
+delay is gone.</p>
+<h2 id="delay-costs-phase-in-proportion-to-frequency">Delay costs phase, in proportion to frequency</h2>
+<p>The arithmetic is one line and it is worth having by heart:</p>
+<p><strong>phase lost = 360° × delay × frequency</strong></p>
+<p>So 100 µs costs 0.36° at 10 Hz — invisible. At 100 Hz it is 3.6° — measurable.
+At 1 kHz it is <strong>36°</strong>, which is most of the 45 to 60° of phase margin a healthy
+loop has.</p>
+<p>Two consequences follow. First, <strong>a delay is harmless until it is fatal</strong>, and
+the transition is fast because the relationship is linear in frequency while
+your ambitions for bandwidth usually are not. Second, <strong>you cannot evaluate a
+delay without knowing the loop’s crossover frequency</strong> — the same 100 µs is
+nothing or everything depending on where the loop is working.</p>
+<p>This is also why raising the loop rate helps and raising the gain does not. Gain
+raises crossover, which makes the same delay cost <em>more</em> phase.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-delay-phase"><title id="fig-delay-phase">A fixed time delay costs phase in proportion to frequency, so a delay that is harmless at low frequency consumes the entire margin at the frequency where the loop is trying to work.</title><text x="8" y="14" class="dim">THE SAME 100 US, AT THREE FREQUENCIES</text><rect class="fill" x="8" y="28" width="304" height="34"></rect><text x="18" y="50" class="tight">10 HZ · 0.36 DEGREES · INVISIBLE</text><rect class="fill" x="8" y="66" width="304" height="34"></rect><text x="18" y="88" class="tight">100 HZ · 3.6 DEGREES · MEASURABLE</text><rect class="mark" x="8" y="104" width="304" height="34"></rect><text x="18" y="126" class="tight">1 KHZ · 36 DEGREES · MOST OF YOUR MARGIN</text><text x="8" y="160" class="dim">PHASE LOST IS 360 TIMES DELAY TIMES FREQUENCY.</text><text x="8" y="174" class="dim">DELAY IS THE ONE LOOP COST THAT NO AMOUNT OF</text><text x="8" y="188" class="dim">GAIN OR FILTERING BUYS BACK</text></svg><figcaption class="fig-cap">The same delay, three frequencies, three completely different verdicts.</figcaption></figure>
+<h2 id="where-the-microseconds-actually-go">Where the microseconds actually go</h2>
+<p>Add up the whole chain, because the term you control is rarely the one that
+dominates. A 20 kHz FOC loop:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sampling — on average half a period</td>
+<td>25 µs</td>
+</tr>
+<tr>
+<td>Computation — tutorial 17 measured it</td>
+<td>4 µs</td>
+</tr>
+<tr>
+<td>Hold until the next PWM update</td>
+<td>50 µs</td>
+</tr>
+<tr>
+<td>A 2 kHz filter on the current signal</td>
+<td>80 µs</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>159 µs</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>computation is 2.5%</strong> of it. The filter somebody added to tidy the plot is
+half. And the PWM hold — the fact that a new duty cycle does not take effect
+until the next period boundary — is the largest structural term and is invisible
+in any code listing.</p>
+<p>This reorders what is worth optimising. Hand-tuning the Park transform saves 1 µs
+of 159. Removing an unnecessary filter saves 80. Updating the PWM registers at
+both the underflow and overflow events of a centre-aligned timer halves the hold
+term and costs one configuration bit.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-delay-sources"><title id="fig-delay-sources">The delay around a digital control loop is the sum of the sample interval, the computation, the hold until the next PWM update and any filtering, and the controller's own maths is usually the smallest term.</title><text x="8" y="14" class="dim">WHERE THE MICROSECONDS GO, AT 20 KHZ</text><text x="8" y="44" class="tight">SAMPLING, HALF A PERIOD</text><text x="228" y="44" class="tight">25 US</text><text x="8" y="68" class="tight">COMPUTATION</text><text x="228" y="68" class="tight">4 US</text><rect class="mark" x="4" y="78" width="308" height="28"></rect><text x="8" y="98" class="tight">HOLD UNTIL NEXT PWM UPDATE</text><text x="228" y="98" class="tight">50 US</text><text x="8" y="124" class="tight">CURRENT FILTER, 2 KHZ</text><text x="228" y="124" class="tight">80 US</text><text x="8" y="152" class="tight">TOTAL</text><text x="228" y="152" class="tight">159 US</text><text x="8" y="184" class="dim">THE MATHS IS 2.5 PER CENT OF IT. THE FILTER YOU</text><text x="8" y="198" class="dim">ADDED TO TIDY THE SIGNAL IS HALF</text></svg><figcaption class="fig-cap">The maths is 2.5 per cent. The filter you added is half.</figcaption></figure>
+<h2 id="why-nyquist-is-the-wrong-rule">Why Nyquist is the wrong rule</h2>
+<p>Nyquist says sampling at twice the highest frequency is enough to reconstruct a
+signal. That is true and it is about <strong>reconstruction</strong>. A control loop has to
+<em>act</em> on the signal, and acting is a harder requirement.</p>
+<p>At 2× bandwidth, the half-period sampling delay alone is 90° of phase at the
+loop’s crossover. There is no margin left for the plant, the actuator or
+anything else. The loop is unusable, while satisfying Nyquist perfectly.</p>
+<p>The working rule is <strong>10 to 20 times the desired closed-loop bandwidth</strong>:</p>
+<ul>
+<li>5× costs about 36° — still poor.</li>
+<li>10× costs about 18° — affordable.</li>
+<li>20× costs about 9° — comfortable.</li>
+</ul>
+<p>So a 100 Hz position loop wants a 1 to 2 kHz sample rate, and a 1 kHz current
+loop wants 10 to 20 kHz — which is exactly why motor drives run their PWM at
+20 kHz and close the current loop at the same rate. That number was not chosen
+for audibility alone.</p>
+<figure class="fig"><svg viewBox="0 0 320 202" role="img" aria-labelledby="fig-rate-rule"><title id="fig-rate-rule">Sampling only twice the bandwidth satisfies Nyquist and leaves a control loop unusable, because the half-period delay alone consumes the phase margin, so control loops run ten to twenty times faster.</title><text x="8" y="14" class="dim">SAMPLE RATE AGAINST LOOP BANDWIDTH</text><rect class="fill" x="8" y="28" width="304" height="40"></rect><text x="18" y="46" class="tight">2x · NYQUIST SAYS FINE</text><text x="18" y="60" class="tight">90 DEGREES OF LAG. THE LOOP IS UNUSABLE</text><rect class="fill" x="8" y="72" width="304" height="40"></rect><text x="18" y="90" class="tight">5x · STILL POOR</text><text x="18" y="104" class="tight">36 DEGREES GONE BEFORE THE PLANT IS COUNTED</text><rect class="mark" x="8" y="116" width="304" height="40"></rect><text x="18" y="134" class="tight">10 TO 20x · THE USUAL ANSWER</text><text x="18" y="148" class="tight">9 TO 18 DEGREES. AFFORDABLE</text><text x="8" y="180" class="dim">NYQUIST IS ABOUT RECONSTRUCTING A SIGNAL. A LOOP</text><text x="8" y="194" class="dim">HAS TO ACT ON IT, WHICH IS A HARDER REQUIREMENT</text></svg><figcaption class="fig-cap">Nyquist reconstructs. A loop has to act, which costs more.</figcaption></figure>
+<h2 id="every-filter-is-a-delay-you-agreed-to">Every filter is a delay you agreed to</h2>
+<p>A low-pass filter reduces noise by averaging over time, and averaging over time
+<em>is</em> delay. There is no filter that removes noise without costing phase; the
+only question is how much and where.</p>
+<p>A first-order filter costs <strong>45° at its corner frequency</strong>, about 27° one octave
+above it, and roughly 11° at five times the corner.</p>
+<p>So the rule for placing one: put the corner at least <strong>five times the loop
+crossover</strong>, and preferably ten. If the noise you are trying to remove is below
+that, a filter is the wrong tool — the noise is inside your control bandwidth
+and filtering it means filtering the signal too.</p>
+<p>And the honest trade for derivative terms specifically: D amplifies noise, so it
+needs a filter, and the filter costs phase, which is part of what D was buying.
+Beyond a certain noise level a filtered D term gives back everything it
+contributes, which is a large part of why so many working loops run with D at
+zero.</p>
+<figure class="fig"><svg viewBox="0 0 320 192" role="img" aria-labelledby="fig-filter-phase"><title id="fig-filter-phase">A low-pass filter removes noise by delaying the signal, so each one spends phase margin, and a filter placed an octave above the crossover costs about as much margin as it is worth.</title><text x="8" y="14" class="dim">WHAT A FILTER COSTS AT THE CROSSOVER</text><path class="thin" d="M40 30 V112 H272"></path><path class="rule" d="M44 40 Q120 42 168 60 Q216 88 268 104"></path><circle class="mark" cx="168" cy="60" r="7"></circle><path class="dash" d="M168 36 V116"></path><text x="60" y="132" class="tight">FILTER CORNER</text><text x="182" y="132" class="tight">CROSSOVER</text><text x="8" y="160" class="dim">A FIRST ORDER FILTER AT THE CROSSOVER COSTS 45</text><text x="8" y="174" class="dim">DEGREES. ONE OCTAVE ABOVE IT COSTS 27. PUT IT</text><text x="8" y="188" class="dim">FIVE TIMES ABOVE AND IT COSTS 11, WHICH IS FAIR</text></svg><figcaption class="fig-cap">Five times above the crossover costs 11 degrees, which is fair.</figcaption></figure>
+<h2 id="jitter-is-worse-than-latency">Jitter is worse than latency</h2>
+<p>A constant 120 µs delay is a known quantity. You can measure it, include it in a
+model, design margin for it, and in some cases compensate for it directly.</p>
+<p>A delay that varies between 80 and 160 µs has the same average and is worse,
+because <strong>the margin has to cover the worst case</strong> while the tuning is only
+optimal at the average. You get a loop that is over-damped most of the time and
+marginal occasionally, and the occasions are not reproducible.</p>
+<p>Which is why a control loop runs from a <strong>timer interrupt at a fixed priority</strong>,
+never from the main loop. Tutorial 10’s superloop analysis arrives here with
+teeth: a loop whose period depends on what else ran this pass has jitter equal
+to the variation in everything else in the system.</p>
+<p>Measure it rather than assuming. Toggle a pin at the top of the control ISR and
+look at the period on a scope with infinite persistence — the width of the band
+is your jitter, and if it is a significant fraction of the period, fix that
+before touching any gain.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-jitter"><title id="fig-jitter">A constant delay can be compensated or designed around, while a varying one cannot, so a loop running from a jittery software timer behaves worse than one with more delay that is always the same.</title><text x="8" y="14" class="dim">TWO LOOPS, SAME AVERAGE DELAY</text><text x="8" y="46" class="tight">FIXED 120 US</text><path class="rule" d="M110 58 H134 V44 H158 V58 H182 V44 H206 V58 H230 V44 H254"></path><text x="110" y="76" class="tight">PREDICTABLE. DESIGN FOR IT</text><text x="8" y="118" class="tight">80 TO 160 US</text><path class="accent" d="M110 130 H128 V116 H160 V130 H174 V116 H212 V130 H226 V116 H254"></path><circle class="mark" cx="160" cy="116" r="7"></circle><text x="110" y="148" class="tight">THE MARGIN MUST COVER THE WORST CASE</text><text x="8" y="176" class="dim">SO RUN THE LOOP FROM A TIMER INTERRUPT AT A FIXED</text><text x="8" y="190" class="dim">PRIORITY, NEVER FROM THE MAIN LOOP</text></svg><figcaption class="fig-cap">Same average, and only one of them is designable.</figcaption></figure>
+<h2 id="worked-example-recovering-the-margin-the-filter-took">Worked example: recovering the margin the filter took</h2>
+<p>The opening failure. Velocity loop at 1 kHz, crossover at 80 Hz, was stable with
+about 50° of phase margin. Adding a 2 kHz first-order filter on the current
+feedback made it oscillate.</p>
+<p><strong>Step 1 — account for the phase, before and after.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Delay</th>
+<th>Phase at 80 Hz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sampling at 1 kHz, half period</td>
+<td>500 µs</td>
+<td>14.4°</td>
+</tr>
+<tr>
+<td>Computation</td>
+<td>40 µs</td>
+<td>1.2°</td>
+</tr>
+<tr>
+<td>PWM hold at 20 kHz</td>
+<td>50 µs</td>
+<td>1.4°</td>
+</tr>
+<tr>
+<td>Plant and current loop</td>
+<td>—</td>
+<td>24°</td>
+</tr>
+<tr>
+<td><strong>Before the filter</strong></td>
+<td></td>
+<td><strong>41°, so 139° used of 180</strong></td>
+</tr>
+<tr>
+<td>New 2 kHz filter</td>
+<td>—</td>
+<td><strong>2.3°</strong></td>
+</tr>
+</tbody>
+</table>
+<p>2.3°? That cannot cause an oscillation. So the filter is <strong>not</strong> the direct
+cause, and this is the point of the exercise: the arithmetic refutes the obvious
+explanation.</p>
+<p><strong>Step 2 — find what the filter actually did.</strong> Look again at what changed. The
+filter was implemented in the velocity loop at 1 kHz, not in the current loop at
+20 kHz. A 2 kHz corner <strong>cannot exist at a 1 kHz sample rate</strong> — the discrete
+filter coefficient was computed from a formula assuming a much higher rate, and
+what was actually implemented has a corner near 160 Hz.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intended corner</td>
+<td>2,000 Hz</td>
+</tr>
+<tr>
+<td>Sample rate it runs at</td>
+<td>1,000 Hz</td>
+</tr>
+<tr>
+<td>Actual corner, from the coefficient</td>
+<td>160 Hz</td>
+</tr>
+<tr>
+<td>Phase at 80 Hz crossover</td>
+<td><strong>26.6°</strong></td>
+</tr>
+</tbody>
+</table>
+<p>26.6° against 41° of margin leaves 14°, which is an oscillating loop. There it
+is.</p>
+<p><strong>Step 3 — three fixes, and their arithmetic.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Margin after</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Move the filter into the 20 kHz current loop</td>
+<td>38.7°</td>
+<td>free, it belongs there</td>
+</tr>
+<tr>
+<td>Keep it at 1 kHz, corner at 400 Hz</td>
+<td>29.7°</td>
+<td>some noise remains</td>
+</tr>
+<tr>
+<td>Remove it and accept the noise</td>
+<td>41°</td>
+<td>noisier plots</td>
+</tr>
+</tbody>
+</table>
+<p>Take the first. The signal being filtered is a current measurement, it is
+sampled at 20 kHz, and filtering it at 1 kHz was a category error — the noise
+was already aliased into the velocity loop’s band by the time it got there.</p>
+<p><strong>The transferable lesson</strong>, and it is the reason this example is here: a filter
+specified by its corner frequency behaves completely differently depending on
+the rate it runs at, and a coefficient copied from elsewhere silently carries
+that rate with it. Always express a digital filter as a ratio of corner to
+sample rate, and check that ratio when you move it.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 1 is the number most loops have never had measured.</p>
+<ol>
+<li>Toggle a pin in your control ISR and measure both the period and its
+variation on a scope with persistence on. The band width is your jitter.</li>
+<li>Add up your delay chain the way the table above does. Find the largest term.
+It is very unlikely to be the arithmetic.</li>
+<li>Work out your loop’s crossover frequency — where the open-loop gain passes
+through 1 — and convert your total delay to degrees at that frequency. That
+is how much margin the timing costs you before anything else.</li>
+<li>Then take every filter in the loop and check its corner against the sample
+rate it actually runs at. A filter whose corner is above half the sample rate
+is not the filter you think you have.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Why does raising the proportional gain make an existing delay more damaging?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-0-0" name="machines/04-control-on-hardware/21-sample-rate-and-latency-0"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-0-0"><span class="quiz-letter">A</span><span>It amplifies the delayed signal, so the error arrives larger</span></label><p class="quiz-why"><b>Not quite.</b> Amplitude and phase are separate effects, and the instability comes from the timing. A larger signal with adequate margin stays stable.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-0-1" name="machines/04-control-on-hardware/21-sample-rate-and-latency-0"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-0-1" data-correct><span class="quiz-letter">B</span><span>It raises the crossover, and phase lost scales with frequency</span></label><p class="quiz-why"><b>Right.</b> The delay is unchanged, but the loop now works at a higher frequency where the same microseconds buy more degrees of lag.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-0-2" name="machines/04-control-on-hardware/21-sample-rate-and-latency-0"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-0-2"><span class="quiz-letter">C</span><span>It shortens the sample period, adding computation to each cycle</span></label><p class="quiz-why"><b>Not quite.</b> Gain does not change the loop rate at all. The sample period is set by the timer and is unaffected by any tuning constant.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-0-3" name="machines/04-control-on-hardware/21-sample-rate-and-latency-0"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-0-3"><span class="quiz-letter">D</span><span>It saturates the actuator sooner, which adds its own transport lag</span></label><p class="quiz-why"><b>Not quite.</b> Saturation does introduce nonlinear behaviour and matters for windup. The mechanism here is linear and applies well below any limit.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>In a 20 kHz control loop, which term is usually the largest?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-1-0" name="machines/04-control-on-hardware/21-sample-rate-and-latency-1"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-1-0"><span class="quiz-letter">A</span><span>The ADC conversion, which takes several microseconds per channel</span></label><p class="quiz-why"><b>Not quite.</b> Conversion is genuinely a few microseconds and is worth overlapping with computation. It is small beside the hold and the sampling interval.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-1-1" name="machines/04-control-on-hardware/21-sample-rate-and-latency-1"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-1-1"><span class="quiz-letter">B</span><span>The transform arithmetic, which dominates the cycle on a small part</span></label><p class="quiz-why"><b>Not quite.</b> Measured at around 4 microseconds of a 159 microsecond chain, it is about 2.5 per cent. Its reputation outlives the hardware that earned it.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-1-2" name="machines/04-control-on-hardware/21-sample-rate-and-latency-1"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-1-2"><span class="quiz-letter">C</span><span>The interrupt latency before the control handler starts running</span></label><p class="quiz-why"><b>Not quite.</b> That is well under a microsecond on a Cortex-M with the loop at high priority. It matters for jitter more than for total delay.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-1-3" name="machines/04-control-on-hardware/21-sample-rate-and-latency-1"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-1-3" data-correct><span class="quiz-letter">D</span><span>The hold until the next PWM update, which no code listing shows</span></label><p class="quiz-why"><b>Right.</b> A new duty cycle waits for a period boundary, so it contributes a full period. It is structural and invisible in the source.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What does sampling at twice the loop bandwidth cost in phase?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-2-0" name="machines/04-control-on-hardware/21-sample-rate-and-latency-2"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-2-0" data-correct><span class="quiz-letter">A</span><span>About 90 degrees, from the half-period sampling delay alone</span></label><p class="quiz-why"><b>Right.</b> At that ratio the sampling delay consumes the entire margin before the plant is counted. Nyquist guarantees reconstruction rather than controllability.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-2-1" name="machines/04-control-on-hardware/21-sample-rate-and-latency-2"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-2-1"><span class="quiz-letter">B</span><span>About 18 degrees, which is the usual target for a digital loop</span></label><p class="quiz-why"><b>Not quite.</b> That is roughly what a 10x ratio costs, which is the common design point. Two times bandwidth is five times worse than that.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-2-2" name="machines/04-control-on-hardware/21-sample-rate-and-latency-2"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-2-2"><span class="quiz-letter">C</span><span>Nothing, since Nyquist says the signal is fully represented</span></label><p class="quiz-why"><b>Not quite.</b> Representation is preserved and that is the point of the theorem. Acting on the signal requires it to arrive in time, which is a stronger condition.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-2-3" name="machines/04-control-on-hardware/21-sample-rate-and-latency-2"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-2-3"><span class="quiz-letter">D</span><span>About 45 degrees, which most loops can absorb comfortably</span></label><p class="quiz-why"><b>Not quite.</b> That figure corresponds to roughly a 4x ratio. At exactly Nyquist the half period is a full half cycle at the bandwidth.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Where should a first-order filter&#39;s corner sit relative to loop crossover?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-3-0" name="machines/04-control-on-hardware/21-sample-rate-and-latency-3"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-3-0" data-correct><span class="quiz-letter">A</span><span>At least five times above it, where it costs around 11 degrees</span></label><p class="quiz-why"><b>Right.</b> At the crossover itself it costs 45 degrees, which is most of a healthy margin. Five times above is the usual affordable compromise.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-3-1" name="machines/04-control-on-hardware/21-sample-rate-and-latency-3"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-3-1"><span class="quiz-letter">B</span><span>Below the crossover, so noise is removed before the loop sees it</span></label><p class="quiz-why"><b>Not quite.</b> A corner below crossover filters the control signal itself and costs well over 45 degrees. The loop stops responding to what it needs to.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-3-2" name="machines/04-control-on-hardware/21-sample-rate-and-latency-3"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-3-2"><span class="quiz-letter">C</span><span>At the crossover, so it attenuates exactly the troublesome band</span></label><p class="quiz-why"><b>Not quite.</b> That is where it does most damage, spending 45 degrees. Noise at the crossover is inside the control band and filtering removes signal with it.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-3-3" name="machines/04-control-on-hardware/21-sample-rate-and-latency-3"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-3-3"><span class="quiz-letter">D</span><span>At half the sample rate, the highest frequency the loop can represent</span></label><p class="quiz-why"><b>Not quite.</b> A corner at Nyquist barely filters anything and wastes the component. It also cannot be realised meaningfully in a discrete implementation.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why is a varying delay worse than a constant one of the same average?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-4-0" name="machines/04-control-on-hardware/21-sample-rate-and-latency-4"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-4-0" data-correct><span class="quiz-letter">A</span><span>Margin must cover the worst case while tuning suits the average</span></label><p class="quiz-why"><b>Right.</b> The loop ends up over-damped most of the time and marginal occasionally, and the marginal occasions do not reproduce on demand.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-4-1" name="machines/04-control-on-hardware/21-sample-rate-and-latency-4"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-4-1"><span class="quiz-letter">B</span><span>A constant delay is cancelled automatically by the integral term</span></label><p class="quiz-why"><b>Not quite.</b> Integral action corrects steady-state error, not phase lag. A constant delay still consumes margin; it is merely predictable.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-4-2" name="machines/04-control-on-hardware/21-sample-rate-and-latency-4"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-4-2"><span class="quiz-letter">C</span><span>Varying delay introduces harmonics that excite plant resonances</span></label><p class="quiz-why"><b>Not quite.</b> Modulation can produce sidebands and it is worth knowing about. The dominant practical problem is that the worst case sets the design.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/21-sample-rate-and-latency-4-3" name="machines/04-control-on-hardware/21-sample-rate-and-latency-4"><label class="quiz-opt" for="machines/04-control-on-hardware/21-sample-rate-and-latency-4-3"><span class="quiz-letter">D</span><span>The average of a varying delay is higher than it appears to be</span></label><p class="quiz-why"><b>Not quite.</b> The average is whatever it is, and the premise fixes it as equal. What differs is the spread rather than the mean.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Åström &amp; Murray, Feedback Systems, ch. 10-12 · Franklin, Powell &amp; Emami-Naeini, ch. 8 · Buttazzo, Hard Real-Time Computing Systems, ch. 4</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/04-control-on-hardware/20-nonlinearities" class="text-ash transition-colors hover:text-bone">← Deadband, backlash and stiction</a><a href="/course/machines/04-control-on-hardware/22-anti-windup-and-feedforward" class="text-ash transition-colors hover:text-bone">Anti-windup, derivative filtering, feedforward →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

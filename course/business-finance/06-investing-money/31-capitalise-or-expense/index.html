@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Capitalise or expense, including software (IAS 38) — Business Finance · Aerens</title><meta name="description" content="Research is expensed and development may not be, six conditions that must all hold, where the line falls in a software project, and what capitalising commits you to."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/06-investing-money/31-capitalise-or-expense/"><meta property="og:type" content="website"><meta property="og:title" content="Capitalise or expense, including software (IAS 38) — Business Finance · Aerens"><meta property="og:description" content="Research is expensed and development may not be, six conditions that must all hold, where the line falls in a software project, and what capitalising commits you to."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/06-investing-money/31-capitalise-or-expense/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · Investing money</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Capitalise or expense, including software (IAS 38)</h1><p class="mt-3 text-bone/70">Research is expensed and development may not be, six conditions that must all hold, where the line falls in a software project, and what capitalising commits you to.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 05 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Apply IAS 38&#39;s research/development split to a real project</li><li>Name the six conditions and say which one usually decides</li><li>Say what happens to capitalised development if the product is abandoned</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Two years of engineering on a platform. Roughly €1.4m of salary. How much of it
+is a cost of those two years and how much is an asset the company now owns?</p>
+<p>The answer moves reported profit by hundreds of thousands of euros, it is
+decided by six conditions in one standard, and in a Belgian group it can be two
+different answers in two sets of accounts for the same work.</p>
+<h2 id="research-is-expensed-development-may-be-capitalised">Research is expensed; development may be capitalised</h2>
+<p>IAS 38 splits internally generated intangibles at one line.</p>
+<p><strong>Research</strong> — work aimed at finding out whether something is possible. Must be
+expensed as incurred, always, with no option.</p>
+<p><strong>Development</strong> — applying that knowledge to produce something specific. May be
+capitalised, if six conditions hold.</p>
+<p>The distinction in one sentence: <strong>finding out whether it can be done is
+research; building it is development.</strong> A spike to see whether an approach
+works is research even if the code is kept. Building the thing after you know
+the approach works is development.</p>
+<p>Note the asymmetry in the rules. Research is a prohibition; development is a
+permission with conditions attached. There is no discretion at all on the first
+half.</p>
+<figure class="fig"><svg viewBox="0 0 320 180" role="img" aria-labelledby="fig-research-vs-development"><title id="fig-research-vs-development">Under IAS 38 research must be expensed as incurred, while development may be capitalised, but only once six conditions are all met.</title><text x="8" y="14" class="dim">IAS 38 SPLITS THE WORK IN TWO</text><rect class="box" x="8" y="30" width="140" height="80"></rect><text x="20" y="54" class="tight">RESEARCH</text><text x="20" y="76" class="tight">EXPENSED AS</text><text x="20" y="98" class="tight">IT IS INCURRED</text><rect class="mark" x="172" y="30" width="140" height="80"></rect><text x="184" y="54" class="tight">DEVELOPMENT</text><text x="184" y="76" class="tight">MAY BE</text><text x="184" y="98" class="tight">CAPITALISED</text><text x="8" y="150" class="dim">FINDING OUT WHETHER IT IS POSSIBLE IS</text><text x="8" y="168" class="dim">RESEARCH. BUILDING IT IS DEVELOPMENT</text></svg><figcaption class="fig-cap">One is forbidden. The other is permitted with conditions.</figcaption></figure>
+<h2 id="the-six-conditions-all-of-which-must-hold">The six conditions, all of which must hold</h2>
+<p>IAS 38.57, in plain terms:</p>
+<ol>
+<li>It is <strong>technically feasible</strong> to complete it.</li>
+<li>You <strong>intend</strong> to complete it and use or sell it.</li>
+<li>You are <strong>able</strong> to use or sell it.</li>
+<li>It will <strong>probably generate future economic benefit</strong>.</li>
+<li><strong>Adequate resources</strong> exist to finish it.</li>
+<li>The expenditure can be <strong>measured reliably</strong>.</li>
+</ol>
+<p>All six. Failing any one means the spend is expensed.</p>
+<p>Condition 1 is the one that usually decides, and it is what makes the
+research/development line real rather than semantic: until the approach is
+demonstrated, technical feasibility is precisely what is unknown, so the work
+cannot pass the first test. That is why the line sits where the design is
+committed rather than where the project is approved.</p>
+<p>Condition 6 is the one that fails in practice for reasons nobody expects: if
+engineers do not book time to the project, the spend cannot be measured
+reliably, and a genuine asset gets expensed for want of timesheets.</p>
+<figure class="fig"><svg viewBox="0 0 320 216" role="img" aria-labelledby="fig-six-conditions"><title id="fig-six-conditions">IAS 38 permits capitalising development only when technical feasibility, intention, ability to use or sell, probable future benefit, adequate resources and reliable measurement all hold.</title><text x="8" y="14" class="dim">ALL SIX, OR IT GOES TO THE P&amp;L</text><rect class="box" x="8" y="26" width="304" height="26"></rect><text x="20" y="44" class="tight">1 · TECHNICALLY FEASIBLE TO COMPLETE</text><rect class="box" x="8" y="58" width="304" height="26"></rect><text x="20" y="76" class="tight">2 · YOU INTEND TO COMPLETE IT</text><rect class="box" x="8" y="90" width="304" height="26"></rect><text x="20" y="108" class="tight">3 · YOU ARE ABLE TO USE OR SELL IT</text><rect class="box" x="8" y="122" width="304" height="26"></rect><text x="20" y="140" class="tight">4 · IT WILL PROBABLY GENERATE BENEFIT</text><rect class="box" x="8" y="154" width="304" height="26"></rect><text x="20" y="172" class="tight">5 · RESOURCES EXIST TO FINISH IT</text><rect class="mark" x="8" y="186" width="304" height="26"></rect><text x="20" y="204" class="tight">6 · THE SPEND CAN BE MEASURED RELIABLY</text></svg><figcaption class="fig-cap">Six gates in series, and the first one is where the argument is.</figcaption></figure>
+<h2 id="where-the-line-falls-in-a-software-project">Where the line falls in a software project</h2>
+<p>Map the conditions onto a real project and three phases appear.</p>
+<p><strong>Discovery and prototyping.</strong> Working out what to build and whether the
+approach holds. Research — expensed.</p>
+<p><strong>Build, after the design is committed.</strong> Feasibility demonstrated, intent
+clear, resources allocated. Development — capitalise, if the other conditions
+hold.</p>
+<p><strong>Support and enhancement after go-live.</strong> Maintaining what exists. Expensed
+again, with the exception of a substantial enhancement that meets the conditions
+in its own right, which starts the cycle over.</p>
+<p>Two dates therefore have to be set by somebody, written down, and defended:
+when feasibility was established, and when the asset went live. Neither is a
+fact in a system; both are judgements, and both are the first thing an auditor
+asks for.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-software-phases"><title id="fig-software-phases">In a software project the discovery and prototyping phases are research, the build after a committed design is development, and support after go-live is operating cost again.</title><text x="8" y="14" class="dim">ONE PROJECT, THREE TREATMENTS</text><rect class="box" x="8" y="30" width="96" height="52"></rect><text x="18" y="52" class="tight">DISCOVERY</text><text x="18" y="70" class="tight">EXPENSE</text><rect class="mark" x="112" y="30" width="96" height="52"></rect><text x="122" y="52" class="tight">BUILD</text><text x="122" y="70" class="tight">CAPITALISE</text><rect class="box" x="216" y="30" width="96" height="52"></rect><text x="226" y="52" class="tight">SUPPORT</text><text x="226" y="70" class="tight">EXPENSE</text><path class="rule" d="M16 100 H304"></path><path class="thin" d="M108 94 V106 M212 94 V106"></path><text x="8" y="140" class="dim">THE FIRST LINE IS WHERE THE DESIGN IS</text><text x="8" y="158" class="dim">COMMITTED. THE SECOND IS GO-LIVE. BOTH</text><text x="8" y="176" class="dim">ARE JUDGEMENTS SOMEBODY HAS TO DATE</text></svg><figcaption class="fig-cap">Expense, capitalise, expense. Two dated judgements decide the boundaries.</figcaption></figure>
+<h2 id="once-capitalised-it-has-to-be-lived-with">Once capitalised, it has to be lived with</h2>
+<p>Capitalising is not a way of making a cost disappear. It is a decision to carry
+it, and it has three consequences.</p>
+<p><strong>An asset appears</strong> on the balance sheet, which raises reported assets and
+equity.</p>
+<p><strong>It is amortised from go-live</strong>, over its useful life — commonly three to five
+years for software. So the €1.4m returns to the P&amp;L at €280,000 to €470,000 a
+year, and next year’s profit is worse than it would have been.</p>
+<p><strong>It is impaired in full if abandoned.</strong> Cancel the product in year two and the
+unamortised balance is written off in one charge. That is the moment a
+capitalisation decision becomes visible, and it is why the write-offs cluster
+around strategy changes and new management.</p>
+<p>The honest summary: capitalising moves profit from this year into later years,
+and it converts a cost that was already absorbed into a risk that can arrive all
+at once.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-then-amortise"><title id="fig-then-amortise">Capitalised development becomes an asset that must be amortised over its useful life, and written off in full if the product it belongs to is abandoned.</title><text x="8" y="14" class="dim">WHAT CAPITALISING COMMITS YOU TO</text><rect class="box" x="8" y="30" width="304" height="30"></rect><text x="20" y="50" class="tight">AN ASSET APPEARS ON THE BALANCE SHEET</text><rect class="box" x="8" y="68" width="304" height="30"></rect><text x="20" y="88" class="tight">IT IS AMORTISED FROM GO-LIVE ONWARDS</text><rect class="mark" x="8" y="106" width="304" height="30"></rect><text x="20" y="126" class="tight">AND IMPAIRED IN FULL IF ABANDONED</text><text x="8" y="162" class="dim">THE PROFIT YOU SAVED IN YEAR ONE COMES</text><text x="8" y="180" class="dim">BACK, EITHER SLOWLY OR ALL AT ONCE</text></svg><figcaption class="fig-cap">The profit you saved in year one comes back, slowly or all at once.</figcaption></figure>
+<h2 id="belgian-gaap-diverges-here">Belgian GAAP diverges here</h2>
+<p>Belgian statutory accounting under the CBN/CNC rules is more permissive on
+development costs than IFRS: capitalisation is available on looser terms, and
+the prudence principle shapes the treatment differently.</p>
+<p>The practical consequence for anyone in a Belgian group: the <strong>statutory
+accounts</strong> of the Belgian entity and the <strong>IFRS consolidation</strong> can legitimately
+carry different figures for the same engineering work, and both are correct.</p>
+<p>If you are handed two numbers for the same project and told they disagree, this
+is one of the places to look before assuming somebody has made a mistake. Ask
+which framework each set of accounts is prepared under.</p>
+<figure class="fig"><svg viewBox="0 0 320 182" role="img" aria-labelledby="fig-belgian-divergence"><title id="fig-belgian-divergence">Belgian statutory accounting permits capitalising development more readily than IFRS does, so a Belgian filing and a group consolidation can legitimately disagree on the same project.</title><text x="8" y="14" class="dim">TWO FRAMEWORKS, ONE PROJECT</text><rect class="box" x="8" y="30" width="140" height="76"></rect><text x="20" y="54" class="tight">IFRS</text><text x="20" y="76" class="tight">SIX CONDITIONS,</text><text x="20" y="96" class="tight">STRICTLY APPLIED</text><rect class="mark" x="172" y="30" width="140" height="76"></rect><text x="184" y="54" class="tight">BELGIAN GAAP</text><text x="184" y="76" class="tight">MORE PERMISSIVE</text><text x="184" y="96" class="tight">ON DEVELOPMENT</text><text x="8" y="146" class="dim">A STATUTORY FILING AND A GROUP</text><text x="8" y="164" class="dim">CONSOLIDATION CAN DIFFER, LEGITIMATELY</text></svg><figcaption class="fig-cap">The same project, two frameworks, two defensible answers.</figcaption></figure>
+<h2 id="worked-example-14m-over-two-years">Worked example: €1.4m over two years</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Months</th>
+<th>Cost</th>
+<th>Treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Discovery, options, spikes</td>
+<td>4</td>
+<td>220,000</td>
+<td>Expense — research</td>
+</tr>
+<tr>
+<td>Architecture agreed, build</td>
+<td>14</td>
+<td>890,000</td>
+<td>Capitalise</td>
+</tr>
+<tr>
+<td>Documentation, training</td>
+<td>2</td>
+<td>110,000</td>
+<td>Capitalise, directly attributable</td>
+</tr>
+<tr>
+<td>Post-launch support</td>
+<td>4</td>
+<td>180,000</td>
+<td>Expense</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>1,400,000</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Capitalised: €1,000,000. Expensed: €400,000.</strong></p>
+<p>Now the effect on reported profit, against a five-year amortisation.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Expense everything</th>
+<th>Capitalise €1m</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Year 1 charge</td>
+<td>700,000</td>
+<td>130,000</td>
+</tr>
+<tr>
+<td>Year 2 charge</td>
+<td>700,000</td>
+<td>470,000</td>
+</tr>
+<tr>
+<td>Year 3 charge</td>
+<td>—</td>
+<td>200,000</td>
+</tr>
+<tr>
+<td>Years 4–6 charge</td>
+<td>—</td>
+<td>200,000 each</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>1,400,000</strong></td>
+<td><strong>1,400,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The total is identical, as it must be. Year 1 differs by €570,000.</p>
+<p>And the risk: if the product is cancelled at the end of year 2, the unamortised
+balance is roughly €800,000, written off in one charge. The €570,000 of year-1
+profit that capitalising protected turns into an €800,000 charge in a year
+somebody is already having a bad time. That is the trade, stated plainly, and it
+is worth stating before the decision rather than after.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Find your organisation’s accounting policy note on internally generated
+intangibles. It will name which phases are capitalised.</li>
+<li>Take one project and split its cost into research, development and support
+using the two dates from the third section.</li>
+<li>Check whether engineers actually book time to it. If not, condition 6 fails
+and none of the rest matters.</li>
+<li>Then compute the unamortised balance on anything capitalised more than a year
+ago, and ask what would happen to it if the product were retired.</li>
+</ol>
+<p>Step 4 is the number that turns an accounting policy into a risk register entry.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>A team spends four weeks on spikes establishing whether an approach works. What is that?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-0-0" name="business-finance/06-investing-money/31-capitalise-or-expense-0"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-0-0"><span class="quiz-letter">A</span><span>Development, provided the spikes are retained in the codebase</span></label><p class="quiz-why"><b>Not quite.</b> Retention does not convert it. The activity was investigation, which the standard places on the research side.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-0-1" name="business-finance/06-investing-money/31-capitalise-or-expense-0"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-0-1" data-correct><span class="quiz-letter">B</span><span>Research, so it is expensed however useful the code proves</span></label><p class="quiz-why"><b>Right.</b> Finding out whether something can be done is research by definition, and IAS 38 allows no discretion on it.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-0-2" name="business-finance/06-investing-money/31-capitalise-or-expense-0"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-0-2"><span class="quiz-letter">C</span><span>Development, since working code was produced during the weeks</span></label><p class="quiz-why"><b>Not quite.</b> Producing code is not the test. What matters is whether the work was establishing feasibility or applying it.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-0-3" name="business-finance/06-investing-money/31-capitalise-or-expense-0"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-0-3"><span class="quiz-letter">D</span><span>Either, depending on how the project chooses to classify it</span></label><p class="quiz-why"><b>Not quite.</b> Development is a permission with conditions; research is a prohibition. There is no choice on the first half.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Which of IAS 38&#39;s six conditions usually decides where the line falls?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-1-0" name="business-finance/06-investing-money/31-capitalise-or-expense-1"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-1-0"><span class="quiz-letter">A</span><span>Adequate resources, since budgets are set a year in advance</span></label><p class="quiz-why"><b>Not quite.</b> Funding is normally demonstrable once a project is approved. It rarely determines where the boundary sits.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-1-1" name="business-finance/06-investing-money/31-capitalise-or-expense-1"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-1-1"><span class="quiz-letter">B</span><span>Probable future benefit, since benefits are hard to forecast</span></label><p class="quiz-why"><b>Not quite.</b> The bar is probability rather than certainty, so an approved business case usually satisfies it.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-1-2" name="business-finance/06-investing-money/31-capitalise-or-expense-1"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-1-2" data-correct><span class="quiz-letter">C</span><span>Technical feasibility, unknown until the approach is proven</span></label><p class="quiz-why"><b>Right.</b> That is what makes the research boundary real: before feasibility is shown, the first test simply cannot be met.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-1-3" name="business-finance/06-investing-money/31-capitalise-or-expense-1"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-1-3"><span class="quiz-letter">D</span><span>Intention to complete, since plans change during a project</span></label><p class="quiz-why"><b>Not quite.</b> Intention is usually easy to evidence from an approved plan. Feasibility is the one genuinely in question early.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>Which two dates have to be set by a person and defended to an auditor?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-2-0" name="business-finance/06-investing-money/31-capitalise-or-expense-2"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-2-0"><span class="quiz-letter">A</span><span>When the contract was signed, and when the supplier invoiced</span></label><p class="quiz-why"><b>Not quite.</b> Those are procurement events. The phases turn on feasibility and go-live rather than on paperwork.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-2-1" name="business-finance/06-investing-money/31-capitalise-or-expense-2"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-2-1" data-correct><span class="quiz-letter">B</span><span>When feasibility was established, and when it went live</span></label><p class="quiz-why"><b>Right.</b> They bound the capitalised phase at each end, and neither exists as a fact in any system.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-2-2" name="business-finance/06-investing-money/31-capitalise-or-expense-2"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-2-2"><span class="quiz-letter">C</span><span>When the project was approved, and when the budget was loaded</span></label><p class="quiz-why"><b>Not quite.</b> Both are recorded automatically and neither marks a change in accounting treatment.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-2-3" name="business-finance/06-investing-money/31-capitalise-or-expense-2"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-2-3"><span class="quiz-letter">D</span><span>When the first commit landed, and when the last one did</span></label><p class="quiz-why"><b>Not quite.</b> Commits bracket the coding rather than the phases. Discovery produces commits and is still expensed.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>A capitalised platform is abandoned in year two. What happens to the balance?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-3-0" name="business-finance/06-investing-money/31-capitalise-or-expense-3"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-3-0"><span class="quiz-letter">A</span><span>The prior years are restated to expense the cost properly</span></label><p class="quiz-why"><b>Not quite.</b> Earlier capitalisation was correct on the facts then. The charge falls in the year of abandonment.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-3-1" name="business-finance/06-investing-money/31-capitalise-or-expense-3"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-3-1"><span class="quiz-letter">B</span><span>The asset is transferred to a different project&#39;s balance</span></label><p class="quiz-why"><b>Not quite.</b> Assets are not moved between projects to avoid a write-off. The remaining balance is impaired.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-3-2" name="business-finance/06-investing-money/31-capitalise-or-expense-3"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-3-2" data-correct><span class="quiz-letter">C</span><span>The unamortised amount is impaired in a single charge</span></label><p class="quiz-why"><b>Right.</b> There is no future benefit left to support the asset, so what remains is written off at once rather than spread.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-3-3" name="business-finance/06-investing-money/31-capitalise-or-expense-3"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-3-3"><span class="quiz-letter">D</span><span>Amortisation continues to the end of the original useful life</span></label><p class="quiz-why"><b>Not quite.</b> Amortisation presumes continued benefit. Once the product is retired the carrying amount cannot be justified.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>A Belgian statutory filing and the group&#39;s IFRS consolidation carry different figures for one project. What should you check first?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-4-0" name="business-finance/06-investing-money/31-capitalise-or-expense-4"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-4-0" data-correct><span class="quiz-letter">A</span><span>Which framework each set of accounts is prepared under</span></label><p class="quiz-why"><b>Right.</b> Belgian rules are more permissive on development costs, so both figures can be right under their own framework.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-4-1" name="business-finance/06-investing-money/31-capitalise-or-expense-4"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-4-1"><span class="quiz-letter">B</span><span>Whether intercompany recharges have been eliminated twice</span></label><p class="quiz-why"><b>Not quite.</b> A real consolidation risk in general. It does not explain a difference confined to development costs.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-4-2" name="business-finance/06-investing-money/31-capitalise-or-expense-4"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-4-2"><span class="quiz-letter">C</span><span>Whether one of the two sets contains a posting error</span></label><p class="quiz-why"><b>Not quite.</b> Worth eliminating eventually. The likelier explanation for a development-cost gap is the framework difference.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/31-capitalise-or-expense-4-3" name="business-finance/06-investing-money/31-capitalise-or-expense-4"><label class="quiz-opt" for="business-finance/06-investing-money/31-capitalise-or-expense-4-3"><span class="quiz-letter">D</span><span>Whether the group has applied a different useful life</span></label><p class="quiz-why"><b>Not quite.</b> Life affects the amortisation profile rather than how much was capitalised in the first place.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: IAS 38, Intangible Assets · Kieso, Intermediate Accounting, ch. 12 · CBN/CNC advies on development costs (Belgian GAAP)</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/06-investing-money/30-cost-of-capital" class="text-ash transition-colors hover:text-bone">← Cost of capital and hurdle rates</a><a href="/course/business-finance/06-investing-money/32-earned-value" class="text-ash transition-colors hover:text-bone">Earned value: CPI, SPI, EAC, and what EVM cannot see →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

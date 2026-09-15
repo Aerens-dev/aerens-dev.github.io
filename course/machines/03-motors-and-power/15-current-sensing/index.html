@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Current sensing you can afford — Machines · Aerens</title><meta name="description" content="Three places to put the sensor, the shunt value that is neither hot nor invisible, and why the timer triggers the ADC rather than software."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/03-motors-and-power/15-current-sensing/"><meta property="og:type" content="website"><meta property="og:title" content="Current sensing you can afford — Machines · Aerens"><meta property="og:description" content="Three places to put the sensor, the shunt value that is neither hot nor invisible, and why the timer triggers the ADC rather than software."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/03-motors-and-power/15-current-sensing/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Motors, drivers, and power</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Current sensing you can afford</h1><p class="mt-3 text-bone/70">Three places to put the sensor, the shunt value that is neither hot nor invisible, and why the timer triggers the ADC rather than software.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 08 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Choose a shunt value from amplifier offset rather than from thermal headroom</li><li>Say why a low-side shunt must be sampled in the middle of the on time</li><li>Explain what two shunts give you on a three-phase motor, and what it costs</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Your current reading is noise. Not noisy — noise. It bears no relation to the
+torque the motor is producing, it changes when you touch the board, and at 30%
+duty it reads about half what it reads at 60% for the same load.</p>
+<p>Nothing is broken. You put the shunt in a sensible place, chose a sensible
+value, and read it whenever the control loop came round. Each of those three
+decisions is wrong in a different way, and current sensing is the part of a
+motor drive where being approximately right produces something completely
+useless.</p>
+<p>Torque is current. Everything in track 4 is a current loop underneath. So this
+measurement is the one the rest of the course rests on.</p>
+<h2 id="three-places-to-put-the-sensor">Three places to put the sensor</h2>
+<p><strong>Low-side shunt</strong> sits between the bottom of the bridge and ground. Cheap, and
+the signal is referenced to ground so an ordinary op-amp reads it. The cost is
+that it only sees current while the low-side switch conducts — during
+freewheeling the current is going round through the motor and the diodes and
+the shunt sees nothing.</p>
+<p><strong>In-line shunt</strong> sits in the phase wire itself and sees the current
+continuously, whatever the switches are doing. The cost is that it floats: one
+end swings between ground and the rail at 20 kHz, so it needs a differential
+amplifier with high common-mode rejection and enough bandwidth to ignore a
+12 V step while measuring 50 mV.</p>
+<p><strong>Hall effect</strong> sensors measure the field around the conductor. Galvanically
+isolated, no insertion loss, and available as a chip with the conductor built
+in. The cost is bandwidth — typically 50 to 200 kHz — plus offset drift with
+temperature.</p>
+<p>For field-oriented control in tutorial 17, in-line is what you want, and two
+low-side shunts with careful timing is the affordable answer.</p>
+<figure class="fig"><svg viewBox="0 0 320 202" role="img" aria-labelledby="fig-current-sensing"><title id="fig-current-sensing">Low-side shunts are cheap and cannot see current during freewheeling, in-line shunts see everything and need a differential amplifier that rejects the switching node, and hall sensors are isolated and slower.</title><text x="8" y="14" class="dim">THREE PLACES TO PUT THE SENSOR</text><rect class="fill" x="8" y="26" width="304" height="50"></rect><text x="18" y="44" class="tight">LOW SIDE SHUNT</text><text x="18" y="62" class="tight">CHEAP · BLIND WHILE THE PHASE FREEWHEELS</text><rect class="mark" x="8" y="82" width="304" height="50"></rect><text x="18" y="100" class="tight">IN LINE SHUNT</text><text x="18" y="118" class="tight">SEES EVERYTHING · NEEDS A FAST DIFF AMP</text><rect class="fill" x="8" y="138" width="304" height="50"></rect><text x="18" y="156" class="tight">HALL EFFECT</text><text x="18" y="174" class="tight">ISOLATED · SLOWER, AND DRIFTS WITH HEAT</text><text x="8" y="200" class="dim">FOC WANTS THE MARKED ONE, OR TWO LOW SIDE ONES</text></svg><figcaption class="fig-cap">Cheap and blind, complete and awkward, or isolated and slow.</figcaption></figure>
+<h2 id="choosing-the-shunt-value">Choosing the shunt value</h2>
+<p>The obvious trade is signal against heat: a bigger shunt gives more millivolts
+and dissipates more watts. At 10 A, a 100 mΩ shunt gives a full volt and burns
+<strong>10 W</strong>, which is absurd. So smaller is better, and people then reach for the
+smallest shunt the thermal budget permits.</p>
+<p>That is the wrong end to optimise from. The real floor is the <strong>amplifier’s
+input offset and its drift</strong>, because that error is added to your signal and no
+amount of averaging removes it.</p>
+<p>A typical current-sense amplifier has 50 to 150 µV of offset. Against a 50 mV
+full-scale signal that is 0.3%, which is fine. Against a 5 mV signal it is 3%,
+and the drift with temperature is another 1% you cannot calibrate out because it
+moves while you run.</p>
+<p>So: <strong>pick the smallest shunt that gives an amplifier a signal it can work
+with</strong>, which in practice means aiming for 50 to 100 mV at maximum current. At
+10 A that is 5 to 10 mΩ, dissipating 0.5 to 1 W — real, and manageable with a
+proper power resistor and some copper.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-shunt-sizing"><title id="fig-shunt-sizing">A larger shunt gives more signal and dissipates more power, so the sensible design uses the smallest shunt an amplifier can work with rather than the largest the thermal budget allows.</title><text x="8" y="14" class="dim">AT 10 AMPS, THREE CHOICES</text><rect class="fill" x="8" y="28" width="304" height="38"></rect><text x="18" y="46" class="tight">100 MILLIOHM · 1.0 V SIGNAL · 10 WATTS</text><text x="18" y="60" class="tight">NO AMPLIFIER NEEDED, AND IT IS ON FIRE</text><rect class="mark" x="8" y="72" width="304" height="38"></rect><text x="18" y="90" class="tight">5 MILLIOHM · 50 MV SIGNAL · 0.5 WATT</text><text x="18" y="104" class="tight">GAIN OF 40 GIVES 2 V. THIS IS THE ANSWER</text><rect class="fill" x="8" y="116" width="304" height="38"></rect><text x="18" y="134" class="tight">0.5 MILLIOHM · 5 MV SIGNAL · 0.05 WATT</text><text x="18" y="148" class="tight">AMPLIFIER OFFSET IS NOW A TENTH OF SIGNAL</text><text x="8" y="180" class="dim">PICK THE SMALLEST SHUNT A REAL AMPLIFIER CAN USE.</text><text x="8" y="194" class="dim">OFFSET AND DRIFT SET THE FLOOR, NOT RESOLUTION</text></svg><figcaption class="fig-cap">Offset sets the floor. Thermal headroom is the ceiling, not the target.</figcaption></figure>
+<h2 id="when-to-sample">When to sample</h2>
+<p>Here is the source of the opening symptom — the reading that changes with duty
+cycle.</p>
+<p>A low-side shunt sees current <strong>only while its switch is on</strong>. Sample outside
+that window and you read zero or ringing. And the switching edges are violent:
+di/dt through the parasitic inductance of the shunt and its traces produces
+hundreds of nanoseconds of ringing that dwarfs the signal.</p>
+<p>So there is exactly one good instant: the <strong>middle of the on time</strong>, after the
+ringing has died and before the next edge. At 20 kHz and 50% duty that window is
+about 25 µs wide, and at 10% duty it is 5 µs.</p>
+<p>Software cannot hit that reliably — an interrupt with jitter lands anywhere in
+the period, which is precisely why the reading tracked duty cycle. The answer is
+that <strong>the timer triggers the ADC in hardware</strong>. Every motor-capable timer has
+this: a compare channel dedicated to firing the ADC at a programmed point in the
+period, with no software in the path and no jitter.</p>
+<p>Set that up before writing any control code. A current loop built on a
+badly-timed measurement will be tuned to compensate for the timing, and then
+break when the duty cycle changes.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-when-to-sample"><title id="fig-when-to-sample">Switching edges ring for hundreds of nanoseconds, so a low-side shunt must be sampled in the settled middle of the on time, which is why the ADC trigger comes from the timer rather than from software.</title><text x="8" y="14" class="dim">SAMPLE IN THE MIDDLE, NOT AT THE EDGE</text><text x="8" y="46" class="tight">GATE</text><path class="rule" d="M56 60 V38 H224 V60 H300"></path><text x="8" y="104" class="tight">SHUNT</text><path class="accent" d="M56 118 Q62 88 68 108 Q74 96 80 104 H208 Q218 128 226 106 Q232 118 240 116 H300"></path><path class="dash" d="M140 84 V132"></path><circle class="mark" cx="140" cy="102" r="7"></circle><text x="150" y="80" class="tight">SAMPLE HERE</text><text x="8" y="162" class="dim">THE TIMER TRIGGERS THE ADC IN HARDWARE, CENTRED</text><text x="8" y="176" class="dim">IN THE ON TIME. SOFTWARE CANNOT HIT A WINDOW</text><text x="8" y="190" class="dim">THIS NARROW, AND A MISS READS THE RINGING</text></svg><figcaption class="fig-cap">One instant per period, and hardware has to find it.</figcaption></figure>
+<h2 id="the-amplifier-has-to-have-settled">The amplifier has to have settled</h2>
+<p>The sample instant is fixed by the timer. Whether the amplifier has caught up by
+then is a separate question, and it turns the amplifier’s bandwidth from a
+specification into a requirement.</p>
+<p>A current-sense amplifier sees a step from zero to full scale at every switching
+edge, and it needs to settle to within your resolution before the sample. A
+100 kHz part has a step response measured in tens of microseconds; at 20 kHz PWM
+and low duty, that is longer than the whole window, so the ADC reads a number
+partway up the settling curve. It looks plausible, it is repeatable, and it is
+wrong by an amount that varies with duty cycle.</p>
+<p>The rule: <strong>amplifier bandwidth at least ten times the PWM frequency</strong>, and
+check the settling time against the shortest on-time you will use rather than
+against the average. At 20 kHz that means 200 kHz or better, which is
+inexpensive and is not what a general-purpose op-amp gives you.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-amp-settling"><title id="fig-amp-settling">A current-sense amplifier has to settle to within the resolution you need before the sample instant, so the available window in the PWM period sets a minimum bandwidth rather than being a free choice.</title><text x="8" y="14" class="dim">SETTLING AGAINST THE WINDOW</text><path class="thin" d="M40 30 V112 H272"></path><path class="rule" d="M44 108 Q72 44 116 40 H268"></path><text x="120" y="34" class="tight">1 MHZ PART · SETTLED IN 2 US</text><path class="accent" d="M44 108 Q140 60 200 46 Q240 40 268 40"></path><circle class="mark" cx="200" cy="46" r="7"></circle><text x="60" y="86" class="tight">100 KHZ PART · 20 US</text><path class="dash" d="M104 30 V120"></path><text x="60" y="136" class="tight">SAMPLE</text><text x="8" y="166" class="dim">AT 20 KHZ PWM AND 50 PER CENT DUTY THE WINDOW IS</text><text x="8" y="180" class="dim">25 US. THE SLOW PART IS STILL MOVING WHEN ASKED</text></svg><figcaption class="fig-cap">Fixed sample instant. The question is whether it has arrived.</figcaption></figure>
+<h2 id="two-shunts-three-currents">Two shunts, three currents</h2>
+<p>A three-phase motor with no neutral connection obeys Kirchhoff: <strong>i_a + i_b +
+i_c = 0</strong>, always. So measuring two phases gives the third by subtraction, and
+you save a shunt, an amplifier and an ADC channel.</p>
+<p>This is standard and it is what most drives do. Two things are worth knowing
+before adopting it.</p>
+<p><strong>Error concentrates in the calculated phase.</strong> The third current carries the
+noise and offset of both measurements, so it is roughly 1.4× noisier than either
+and carries the sum of both offsets. If your control algorithm treats the three
+symmetrically, one of them is quietly worse.</p>
+<p><strong>Measuring all three buys a check.</strong> With three sensors the sum should be zero,
+and it is a continuous, free validation of the whole sensing chain. A shunt that
+has gone open, an amplifier that has saturated, an ADC channel misconfigured —
+all of them show up as a sum that is not zero, immediately, rather than as a
+control loop that behaves oddly.</p>
+<p>On a board where a sensing failure means an uncontrolled motor, that check is
+worth the third channel. On the test stand, two is fine.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-two-shunts"><title id="fig-two-shunts">The three currents in a star-connected motor sum to zero, so measuring two of them gives the third by subtraction and saves a shunt, an amplifier and an ADC channel.</title><text x="8" y="14" class="dim">MEASURE TWO, CALCULATE THE THIRD</text><rect class="fill" x="8" y="30" width="90" height="44"></rect><text x="18" y="50" class="tight">PHASE A</text><text x="18" y="66" class="tight">MEASURED</text><rect class="fill" x="106" y="30" width="90" height="44"></rect><text x="116" y="50" class="tight">PHASE B</text><text x="116" y="66" class="tight">MEASURED</text><rect class="mark" x="204" y="30" width="108" height="44"></rect><text x="214" y="50" class="tight">PHASE C</text><text x="214" y="66" class="tight">= MINUS A MINUS B</text><text x="8" y="104" class="tight">IA + IB + IC = 0, WITH NO NEUTRAL CONNECTED</text><text x="8" y="136" class="dim">IT ALSO CONCENTRATES ERROR: THE THIRD CHANNEL</text><text x="8" y="150" class="dim">CARRIES BOTH MEASUREMENTS' NOISE. GOOD DRIVES</text><text x="8" y="164" class="dim">MEASURE ALL THREE AND USE THE SUM AS A CHECK</text><text x="8" y="178" class="dim">THAT SHOULD BE ZERO, WHICH CATCHES A DEAD SHUNT</text></svg><figcaption class="fig-cap">Two is enough. Three is a self-test.</figcaption></figure>
+<h2 id="worked-example-a-sensing-chain-for-the-test-stand">Worked example: a sensing chain for the test stand</h2>
+<p>The 2205 motor from tutorial 13. 10 A software current limit, 20 kHz
+centre-aligned PWM, a 12-bit ADC with a 3.3 V reference. Design the chain from
+the ADC backwards.</p>
+<p><strong>Step 1 — what resolution do you need?</strong> The current loop in track 4 wants
+about 1% of full scale to be several LSBs, so aim for 10 mA resolution at 10 A
+full scale, which is 1,000 counts. A 12-bit ADC has 4,096, so there is room.</p>
+<p><strong>Step 2 — the shunt.</strong> Target 50 mV at 10 A, giving 5 mΩ and 0.5 W. Use a 1 W
+2512 part, and note that its tempco matters: 100 ppm/°C over a 50 °C rise is
+0.5%, which is inside the budget but not negligible.</p>
+<p><strong>Step 3 — the gain.</strong> The signal is bipolar (current flows both ways), so bias
+the amplifier output to mid-rail at 1.65 V and swing ±1.5 V around it.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shunt signal at 10 A</td>
+<td>50 mV</td>
+</tr>
+<tr>
+<td>Wanted output swing</td>
+<td>1.5 V</td>
+</tr>
+<tr>
+<td><strong>Gain</strong></td>
+<td><strong>30</strong></td>
+</tr>
+<tr>
+<td>Offset referred to input, at 100 µV</td>
+<td>0.02 A</td>
+</tr>
+<tr>
+<td><strong>Error from offset</strong></td>
+<td><strong>0.2% of full scale</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4 — check the bandwidth.</strong> 20 kHz PWM, and the shortest on-time to be
+usable is about 10% duty, so 5 µs. Settling to 12-bit accuracy takes roughly
+nine time constants, so τ ≤ 0.55 µs, so bandwidth ≥ 290 kHz. Specify a 500 kHz
+part and stop worrying.</p>
+<p><strong>Step 5 — the sample point.</strong> Centre-aligned PWM puts the counter’s underflow
+event exactly in the middle of the on time for the low-side switches, and every
+motor timer can trigger the ADC on underflow. One register write, zero software.</p>
+<p><strong>Now check the whole chain against the requirement.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Error source</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Amplifier offset and drift</td>
+<td>0.2%</td>
+</tr>
+<tr>
+<td>Shunt tolerance, 1% part</td>
+<td>1.0%</td>
+</tr>
+<tr>
+<td>Shunt tempco over 50 °C</td>
+<td>0.5%</td>
+</tr>
+<tr>
+<td>ADC INL and reference</td>
+<td>0.3%</td>
+</tr>
+<tr>
+<td><strong>Root sum square</strong></td>
+<td><strong>1.2%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>1.2% of 10 A is 120 mA, against a 10 mA resolution target. Read that back: <strong>the
+resolution is fifteen times better than the accuracy</strong>, and the dominant term is
+the shunt’s own tolerance — a 1% resistor, not any of the clever parts.</p>
+<p>That is the useful conclusion. If you want better, buy a 0.1% shunt for a few
+euro more, which improves the total to 0.6%. Buying a better amplifier improves
+nothing, and buying a 16-bit ADC improves nothing at all.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 2 is the one that explains the opening symptom.</p>
+<ol>
+<li>Find a current-sense amplifier’s datasheet and note its input offset voltage
+and bandwidth. Work out what shunt value makes offset 0.5% of full scale.</li>
+<li>If you have a bridge running, scope the shunt voltage directly across the
+resistor. Look at how long the ringing lasts after each edge, and compare it
+to the on-time at low duty.</li>
+<li>Set up your timer to trigger the ADC rather than reading it from software,
+and compare the two readings at 20% and 80% duty with the same load.</li>
+<li>Then do the error budget for whatever you plan to build. If the dominant term
+is not the one you expected, you have just saved yourself money on the wrong
+component.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What does a low-side shunt fail to see?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-0-0" name="machines/03-motors-and-power/15-current-sensing-0"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-0-0"><span class="quiz-letter">A</span><span>Current above the shunt&#39;s rating, where it saturates and clips</span></label><p class="quiz-why"><b>Not quite.</b> A resistor stays linear until it fails thermally, so there is no saturation knee. The amplifier may clip, which is a different limit.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-0-1" name="machines/03-motors-and-power/15-current-sensing-0"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-0-1"><span class="quiz-letter">B</span><span>Current at low duty cycles, too small for the ADC to resolve well</span></label><p class="quiz-why"><b>Not quite.</b> The signal amplitude follows current rather than duty cycle. What low duty shortens is the window in which the shunt is carrying anything.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-0-2" name="machines/03-motors-and-power/15-current-sensing-0"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-0-2"><span class="quiz-letter">C</span><span>Current flowing in the reverse direction during regenerative braking</span></label><p class="quiz-why"><b>Not quite.</b> Reverse current through the shunt gives a negative voltage, which a biased amplifier reads perfectly well. Direction is not the blind spot.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-0-3" name="machines/03-motors-and-power/15-current-sensing-0"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-0-3" data-correct><span class="quiz-letter">D</span><span>Current circulating through the motor while the phase freewheels</span></label><p class="quiz-why"><b>Right.</b> It only carries current while its own switch conducts. During freewheeling the loop closes through the motor and the diodes, bypassing the shunt.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>What sets the lower limit on how small a shunt can usefully be?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-1-0" name="machines/03-motors-and-power/15-current-sensing-1"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-1-0" data-correct><span class="quiz-letter">A</span><span>Amplifier offset and drift, which add error you cannot average away</span></label><p class="quiz-why"><b>Right.</b> A hundred microvolts of offset against a five millivolt signal is three per cent, and the drift moves while you run. Averaging does not remove a bias.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-1-1" name="machines/03-motors-and-power/15-current-sensing-1"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-1-1"><span class="quiz-letter">B</span><span>The resistor&#39;s tolerance, which is specified as a fixed percentage</span></label><p class="quiz-why"><b>Not quite.</b> Tolerance is proportional, so it scales with the value and does not worsen as the shunt shrinks. It matters for accuracy at any size.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-1-2" name="machines/03-motors-and-power/15-current-sensing-1"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-1-2"><span class="quiz-letter">C</span><span>Thermal noise in the resistor, which dominates at low resistance</span></label><p class="quiz-why"><b>Not quite.</b> Johnson noise in a milliohm resistor is nanovolts and is far below the amplifier&#39;s own contribution. It is not a practical limit here.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-1-3" name="machines/03-motors-and-power/15-current-sensing-1"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-1-3"><span class="quiz-letter">D</span><span>The ADC&#39;s resolution, which runs out below a few millivolts of signal</span></label><p class="quiz-why"><b>Not quite.</b> Gain between the shunt and the ADC solves resolution cheaply. Gain amplifies the offset along with the signal, which is why offset is the real floor.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>Why must the timer rather than software trigger the ADC for a low-side shunt?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-2-0" name="machines/03-motors-and-power/15-current-sensing-2"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-2-0"><span class="quiz-letter">A</span><span>The timer applies filtering that a software-triggered read would skip</span></label><p class="quiz-why"><b>Not quite.</b> Triggering selects when the conversion happens and applies no filtering of its own. Any averaging is configured separately in the ADC.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-2-1" name="machines/03-motors-and-power/15-current-sensing-2"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-2-1"><span class="quiz-letter">B</span><span>The ADC needs a hardware trigger to reach its full sampling rate</span></label><p class="quiz-why"><b>Not quite.</b> Software-triggered conversions run at the same speed once started. What hardware triggering supplies is a precise and repeatable instant.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-2-2" name="machines/03-motors-and-power/15-current-sensing-2"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-2-2"><span class="quiz-letter">C</span><span>Software is locked out of the shunt while the transistor is on</span></label><p class="quiz-why"><b>Not quite.</b> It can read at any time, which is the difficulty. Nothing prevents the read; the problem is that most instants give a meaningless answer.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-2-3" name="machines/03-motors-and-power/15-current-sensing-2"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-2-3" data-correct><span class="quiz-letter">D</span><span>The usable window is microseconds wide and interrupt jitter misses it</span></label><p class="quiz-why"><b>Right.</b> The reading is valid only in the settled middle of the on time. Software arrives at an unpredictable point, so the value tracks duty cycle instead of current.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>How does PWM frequency constrain the current-sense amplifier&#39;s bandwidth?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-3-0" name="machines/03-motors-and-power/15-current-sensing-3"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-3-0"><span class="quiz-letter">A</span><span>It must exceed the PWM frequency, so the fundamental is not attenuated</span></label><p class="quiz-why"><b>Not quite.</b> Passing the switching fundamental is a much weaker requirement than settling to full accuracy. Ten times PWM is a useful rule of thumb for that reason.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-3-1" name="machines/03-motors-and-power/15-current-sensing-3"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-3-1"><span class="quiz-letter">B</span><span>It must match the ADC&#39;s sampling rate, so the two stay synchronised</span></label><p class="quiz-why"><b>Not quite.</b> The ADC samples once per period while the amplifier must track a step. The two requirements are unrelated in magnitude.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-3-2" name="machines/03-motors-and-power/15-current-sensing-3"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-3-2"><span class="quiz-letter">C</span><span>It must be below the PWM frequency, so switching noise is filtered out</span></label><p class="quiz-why"><b>Not quite.</b> Rolling off below the switching frequency does suppress noise and is tempting. It also guarantees the output has not settled when you sample.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-3-3" name="machines/03-motors-and-power/15-current-sensing-3"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-3-3" data-correct><span class="quiz-letter">D</span><span>It must settle within the shortest on-time you intend to command</span></label><p class="quiz-why"><b>Right.</b> The amplifier sees a step at every edge, and the sample happens partway through the on time. At low duty that window is a few microseconds.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What does measuring all three phase currents buy over calculating the third?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-4-0" name="machines/03-motors-and-power/15-current-sensing-4"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-4-0"><span class="quiz-letter">A</span><span>The ability to run the motor with the neutral point connected</span></label><p class="quiz-why"><b>Not quite.</b> A connected neutral breaks the sum-to-zero assumption, which is precisely when two shunts stop working. Three would then be required rather than optional.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-4-1" name="machines/03-motors-and-power/15-current-sensing-4"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-4-1" data-correct><span class="quiz-letter">B</span><span>A continuous check, since the three of them should sum to zero</span></label><p class="quiz-why"><b>Right.</b> A sum that drifts off zero reveals an open shunt, a saturated amplifier or a misconfigured channel at once, rather than as a loop behaving oddly.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-4-2" name="machines/03-motors-and-power/15-current-sensing-4"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-4-2"><span class="quiz-letter">C</span><span>Faster sampling, since three channels convert in parallel each period</span></label><p class="quiz-why"><b>Not quite.</b> Parallel conversion depends on how many sample-and-hold units the ADC has rather than on the sensing topology. It is not what the third shunt is for.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/15-current-sensing-4-3" name="machines/03-motors-and-power/15-current-sensing-4"><label class="quiz-opt" for="machines/03-motors-and-power/15-current-sensing-4-3"><span class="quiz-letter">D</span><span>Higher accuracy on every phase, with no value derived by subtraction</span></label><p class="quiz-why"><b>Not quite.</b> The two measured phases are equally accurate either way, so only the third improves. The self-check is the larger benefit.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Mohan, Power Electronics, ch. 8 · TI application notes on InstaSPIN current sensing · Hughes &amp; Drury, Electric Motors and Drives, ch. 8</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/03-motors-and-power/14-h-bridges" class="text-ash transition-colors hover:text-bone">← H-bridges, and why the MOSFET is hot</a><a href="/course/machines/03-motors-and-power/16-six-step" class="text-ash transition-colors hover:text-bone">Six-step commutation →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

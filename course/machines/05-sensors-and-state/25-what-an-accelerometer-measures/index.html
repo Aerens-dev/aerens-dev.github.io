@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>What an accelerometer actually measures — Machines · Aerens</title><meta name="description" content="Specific force rather than acceleration, why yaw is invisible to it, and why propeller vibration turns into a slow wobble."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/05-sensors-and-state/25-what-an-accelerometer-measures/"><meta property="og:type" content="website"><meta property="og:title" content="What an accelerometer actually measures — Machines · Aerens"><meta property="og:description" content="Specific force rather than acceleration, why yaw is invisible to it, and why propeller vibration turns into a slow wobble."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/05-sensors-and-state/25-what-an-accelerometer-measures/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Sensors and state</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">What an accelerometer actually measures</h1><p class="mt-3 text-bone/70">Specific force rather than acceleration, why yaw is invisible to it, and why propeller vibration turns into a slow wobble.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 02 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Say what an accelerometer reads at rest, in free fall and while tilted</li><li>Explain why an accelerometer fixes roll and pitch but never yaw</li><li>Choose a full-scale range, and say what a clipped sample does to an average</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>The device is sitting perfectly still on your desk. The accelerometer reports
+9.81 m/s² upward.</p>
+<p>It is not accelerating. Nothing about it is moving. And yet the name on the part
+says accelerometer and the number says 9.81.</p>
+<p>That is not a calibration error or a sign convention. The sensor is reporting
+exactly what it measures, and what it measures is not what the name suggests.
+Getting this straight is the difference between an attitude estimate that works
+and one that has a sign error nobody can find.</p>
+<h2 id="it-measures-specific-force">It measures specific force</h2>
+<p>Inside the part is a small proof mass on springs. The sensor reports the
+<strong>force per unit mass</strong> the springs are exerting to hold that mass in place —
+<em>specific force</em>, and it excludes gravity by construction, because gravity acts
+on the proof mass and the frame equally and stretches no spring.</p>
+<p>Work through the three cases and the name stops being confusing.</p>
+<p><strong>On a table</strong>: gravity pulls the mass down, the table pushes the case up, the
+springs carry that push. Reading: <strong>1 g upward</strong>. Acceleration: zero.</p>
+<p><strong>In free fall</strong>: nothing pushes on anything, the springs are relaxed. Reading:
+<strong>zero</strong>. Acceleration: 9.81 m/s² downward.</p>
+<p><strong>Hovering, tilted 10°</strong>: the thrust holding the aircraft up is 1 g along the
+tilted body axis, so the reading is 1 g rotated 10° in the body frame.</p>
+<p>So an accelerometer at rest is a <strong>gravity direction sensor</strong>, which is exactly
+what an attitude estimate needs — and the words “at rest” are doing all the
+work.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-specific-force"><title id="fig-specific-force">An accelerometer measures the non-gravitational force per unit mass acting on its proof mass, so at rest it reads one g upward and in free fall it reads zero.</title><text x="8" y="14" class="dim">THREE SITUATIONS, THREE READINGS</text><rect class="fill" x="8" y="28" width="304" height="40"></rect><text x="18" y="46" class="tight">SITTING ON A TABLE</text><text x="18" y="60" class="tight">READS 1 G UP. NOT ACCELERATING AT ALL</text><rect class="mark" x="8" y="74" width="304" height="40"></rect><text x="18" y="92" class="tight">IN FREE FALL</text><text x="18" y="106" class="tight">READS ZERO. ACCELERATING AT 9.81</text><rect class="fill" x="8" y="120" width="304" height="40"></rect><text x="18" y="138" class="tight">HOVERING, TILTED 10 DEGREES</text><text x="18" y="152" class="tight">READS 1 G ALONG THE TILTED BODY AXIS</text><text x="8" y="182" class="dim">SO IT IS A GRAVITY DIRECTION SENSOR WHEN NOT</text><text x="8" y="196" class="dim">ACCELERATING, AND AMBIGUOUS WHEN IT IS</text></svg><figcaption class="fig-cap">Three situations, and only one of them is accelerating.</figcaption></figure>
+<h2 id="two-angles-from-one-vector">Two angles from one vector</h2>
+<p>Knowing which way gravity points fixes <strong>roll</strong> and <strong>pitch</strong>: tilt the device
+and the 1 g vector moves across the three body axes, and two arctangents recover
+the angles.</p>
+<p>It fixes nothing about <strong>yaw</strong>. Rotate about the vertical and gravity stays
+pointing exactly where it was — every axis reads the same value throughout. Yaw
+is not merely hard to measure with an accelerometer; it is <em>unobservable</em>.</p>
+<p>This is why heading always needs a second reference: a magnetometer, a GNSS
+course over ground, or a visual one. And it is why yaw is reliably the worst of
+the three angles in any attitude estimate — roll and pitch have a strong,
+always-available absolute reference and yaw has a weak, easily-disturbed one.</p>
+<p>The gyro can hold yaw between references, and tutorial 24 gave you the budget
+for how long: about a minute with a good bias estimate, before it is degrees
+out.</p>
+<figure class="fig"><svg viewBox="0 0 320 192" role="img" aria-labelledby="fig-tilt"><title id="fig-tilt">The gravity vector fixes roll and pitch because tilting moves it across the body axes, but rotating about the vertical leaves it unchanged, so yaw is invisible to an accelerometer.</title><text x="8" y="14" class="dim">WHAT ONE VECTOR CAN AND CANNOT FIX</text><rect class="fill" x="8" y="28" width="146" height="60"></rect><text x="18" y="48" class="tight">ROLL AND PITCH</text><text x="18" y="68" class="tight">GRAVITY MOVES</text><text x="18" y="82" class="tight">ACROSS THE AXES</text><rect class="mark" x="166" y="28" width="146" height="60"></rect><text x="176" y="48" class="tight">YAW</text><text x="176" y="68" class="tight">GRAVITY DOES NOT</text><text x="176" y="82" class="tight">MOVE AT ALL</text><text x="8" y="116" class="tight">SPIN ON THE SPOT AND EVERY AXIS READS THE SAME</text><text x="8" y="148" class="dim">SO HEADING NEEDS A SECOND REFERENCE: A MAGNETO-</text><text x="8" y="162" class="dim">METER, A GNSS COURSE, OR A VISUAL ONE. THE GYRO</text><text x="8" y="176" class="dim">CAN HOLD IT BRIEFLY AND WILL DRIFT, WHICH IS WHY</text><text x="8" y="190" class="dim">YAW IS ALWAYS THE WORST OF THE THREE ANGLES</text></svg><figcaption class="fig-cap">Roll and pitch are observable. Yaw is not.</figcaption></figure>
+<h2 id="acceleration-looks-exactly-like-tilt">Acceleration looks exactly like tilt</h2>
+<p>Here is the ambiguity that shapes every attitude filter.</p>
+<p>An accelerating vehicle experiences a horizontal specific force in addition to
+the vertical one. The sum is a vector tilted away from vertical — and it is
+<strong>identical</strong> to what a stationary, genuinely tilted device would produce. There
+is no information in the measurement that separates them.</p>
+<p>At 2 m/s² of forward acceleration, the apparent tilt is arctan(2/9.81) =
+<strong>11.5°</strong>. A multirotor accelerating briskly reports a tilt that is simply wrong,
+and a filter that trusts the accelerometer during that manoeuvre will rotate the
+vehicle to correct an error that does not exist — which produces more
+acceleration, and so on.</p>
+<p>The resolution is the one every attitude filter uses: <strong>trust the gyro over short
+intervals and the accelerometer over long ones</strong>. Acceleration averages to
+roughly zero over time for most vehicles; gravity does not. That single
+observation is the whole design of the complementary filter in the next
+tutorial.</p>
+<p>A refinement worth knowing: weight the accelerometer by how close its magnitude
+is to 1 g. If the vector’s length is 1.4 g, the vehicle is definitely
+accelerating and the reading should be largely ignored for attitude.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-accel-tilt"><title id="fig-accel-tilt">Linear acceleration adds to the gravity vector, so an accelerating vehicle produces exactly the reading a tilted stationary one would, and nothing in the measurement distinguishes them.</title><text x="8" y="14" class="dim">TWO CAUSES, ONE MEASUREMENT</text><path class="thin" d="M60 34 V110"></path><path class="accent" d="M60 110 L60 44"></path><text x="20" y="128" class="tight">AT REST</text><path class="thin" d="M180 34 V110"></path><path class="accent" d="M180 110 L216 50"></path><circle class="mark" cx="216" cy="50" r="7"></circle><text x="150" y="128" class="tight">ACCELERATING, OR TILTED</text><text x="8" y="158" class="dim">AT 2 M/S/S THE APPARENT TILT IS 11.5 DEGREES, AND</text><text x="8" y="172" class="dim">IT IS INDISTINGUISHABLE FROM A REAL ONE. THIS IS</text><text x="8" y="186" class="dim">WHY A FILTER TRUSTS THE GYRO WHILE MANOEUVRING</text></svg><figcaption class="fig-cap">Eleven and a half degrees of tilt that is not there.</figcaption></figure>
+<h2 id="choosing-full-scale">Choosing full scale</h2>
+<p>The range setting is a resolution decision in one direction and a clipping
+decision in the other, and clipping is much the worse failure.</p>
+<p>On a 16-bit part, ±2 g gives 0.06 mg per code and ±16 g gives 0.49 mg. Eight
+times the resolution sounds decisive until you consider what happens at the
+limit.</p>
+<p><strong>A clipped sample is not a large reading — it is a wrong one.</strong> The true value
+was 3 g and the sensor reports 2 g, and that error is one-sided, so it biases
+every average, every filter and every integral downstream. One clipped sample
+per second contaminates the whole estimate, and nothing in the data marks it as
+suspect unless you check for saturation explicitly.</p>
+<p>On an aircraft, a prop strike or a hard landing produces tens of g for a
+millisecond. <strong>±8 g</strong> is the usual answer for a multirotor and ±16 g if the
+vehicle is small and stiff. And whatever you choose, <strong>count the saturated
+samples and expose the count</strong> — a rising saturation counter is one of the most
+informative diagnostics a flight log can carry.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-range-noise"><title id="fig-range-noise">Choosing a wider full-scale range spreads the same number of codes over more span, so resolution falls, while choosing one too narrow clips during vibration and loses the measurement entirely.</title><text x="8" y="14" class="dim">CHOOSING FULL SCALE, 16 BIT PART</text><rect class="fill" x="8" y="28" width="304" height="40"></rect><text x="18" y="46" class="tight">PLUS OR MINUS 2 G · 0.06 MG PER CODE</text><text x="18" y="60" class="tight">FINE, AND CLIPS ON EVERY PROP STRIKE</text><rect class="mark" x="8" y="74" width="304" height="40"></rect><text x="18" y="92" class="tight">PLUS OR MINUS 8 G · 0.24 MG PER CODE</text><text x="18" y="106" class="tight">USUALLY THE RIGHT ANSWER ON AN AIRCRAFT</text><rect class="fill" x="8" y="120" width="304" height="40"></rect><text x="18" y="138" class="tight">PLUS OR MINUS 16 G · 0.49 MG PER CODE</text><text x="18" y="152" class="tight">SAFE FROM CLIPPING, HALF THE RESOLUTION</text><text x="8" y="182" class="dim">A CLIPPED SAMPLE IS NOT A LARGE READING, IT IS A</text><text x="8" y="196" class="dim">WRONG ONE, AND IT BIASES EVERY AVERAGE AFTER IT</text></svg><figcaption class="fig-cap">Eight times the resolution, and one-sided error at the limit.</figcaption></figure>
+<h2 id="vibration-becomes-a-slow-wobble">Vibration becomes a slow wobble</h2>
+<p>The last one is the practical problem that dominates real installations.</p>
+<p>Motors and propellers produce vibration at their rotation frequency and its
+harmonics — hundreds of hertz. If those frequencies are above half your sample
+rate, they <strong>alias</strong>: they fold down and appear as low-frequency content that
+looks exactly like slow vehicle motion.</p>
+<p>A 320 Hz vibration sampled at 500 Hz appears at 180 Hz. Sampled at 250 Hz it
+appears at 70 Hz. And once it has been sampled, <strong>no digital filter can remove
+it</strong>, because it is now indistinguishable from real motion at that frequency.</p>
+<p>The fixes are therefore all before the converter:</p>
+<ul>
+<li><strong>Soft-mount the sensor</strong> — this is why flight controllers sit on gel or
+O-rings, and it is the single most effective measure.</li>
+<li><strong>Balance the props</strong>, which is five minutes with tape and removes most of the
+fundamental.</li>
+<li><strong>Use the sensor’s own analogue anti-alias filter</strong>, which every modern IMU
+provides and many projects leave at its widest setting.</li>
+<li><strong>Sample fast and decimate</strong>, which puts the folding point above the vibration.</li>
+</ul>
+<p>Track 8’s build gate includes a soft mount for exactly this reason, and a
+vibration check is part of it.</p>
+<figure class="fig"><svg viewBox="0 0 320 206" role="img" aria-labelledby="fig-vibration"><title id="fig-vibration">Motor vibration at hundreds of hertz folds below the sample rate as an alias that looks like slow vehicle motion, and no digital filter can remove it once it has been sampled.</title><text x="8" y="14" class="dim">WHERE THE SLOW WOBBLE COMES FROM</text><path class="thin" d="M40 30 V104 H288"></path><text x="250" y="120" class="tight">HZ</text><path class="dash" d="M160 30 V108"></path><text x="120" y="126" class="tight">NYQUIST</text><path class="accent" d="M212 104 V48"></path><text x="196" y="40" class="tight">PROP AT 320 HZ</text><path class="rule" d="M108 104 V62"></path><circle class="mark" cx="108" cy="62" r="7"></circle><text x="56" y="54" class="tight">FOLDS TO 180</text><text x="8" y="156" class="dim">THE FIX IS MECHANICAL AND ANALOGUE: SOFT MOUNT</text><text x="8" y="170" class="dim">THE SENSOR, BALANCE THE PROPS, AND USE THE PART'S</text><text x="8" y="184" class="dim">OWN ANTI-ALIAS FILTER BEFORE SAMPLING. AFTERWARDS</text><text x="8" y="198" class="dim">IS TOO LATE, BECAUSE THE ALIAS IS NOW THE SIGNAL</text></svg><figcaption class="fig-cap">Above Nyquist it folds down, and then it is your signal.</figcaption></figure>
+<h2 id="worked-example-why-the-hover-drifts-forward">Worked example: why the hover drifts forward</h2>
+<p>A quadcopter holds attitude well but creeps forward in hover, about 0.4 m/s,
+consistently, in still air.</p>
+<p><strong>Hypothesis 1 — accelerometer bias.</strong> A pitch-axis bias would tilt the
+estimate, so the vehicle pitches to correct and flies forward. Check it: log the
+accelerometer with the aircraft level on a flat surface.</p>
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>Reading</th>
+<th>Expected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x (forward)</td>
+<td>+0.021 g</td>
+<td>0</td>
+</tr>
+<tr>
+<td>y</td>
+<td>−0.004 g</td>
+<td>0</td>
+</tr>
+<tr>
+<td>z</td>
+<td>+0.998 g</td>
+<td>+1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>0.021 g on x.</strong> That is an apparent pitch of arctan(0.021) = <strong>1.2°</strong>.</p>
+<p><strong>Does that explain the speed?</strong> In hover, a 1.2° tilt gives a horizontal
+acceleration of 9.81 × sin(1.2°) = 0.21 m/s². The vehicle accelerates until drag
+balances it. For a 550 g quad with a drag coefficient giving roughly 0.3 N at
+0.5 m/s, terminal speed works out at about <strong>0.45 m/s</strong>.</p>
+<p>Measured 0.4, predicted 0.45. The bias explains it.</p>
+<p><strong>Now the fix, and the part that matters.</strong> Level calibration removes the
+0.021 g and the drift stops. But ask <em>why</em> the bias was there, because that
+decides whether it stays fixed:</p>
+<table>
+<thead>
+<tr>
+<th>Candidate</th>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sensor bias</td>
+<td>rotate 180° and re-measure</td>
+<td>reading follows the vehicle</td>
+</tr>
+<tr>
+<td>Mounting not level</td>
+<td>measure the frame with a level</td>
+<td>frame is 1.1° nose-down</td>
+</tr>
+<tr>
+<td>Calibration done tilted</td>
+<td>check the surface used</td>
+<td>it was the workbench</td>
+</tr>
+</tbody>
+</table>
+<p>The reading followed the vehicle rather than staying fixed in the world, which
+means it is <strong>not</strong> a sensor bias — the sensor is fine and the <strong>mounting</strong> is
+tilted 1.1°. Calibrating it out is correct, and it must be redone if the
+controller is ever remounted.</p>
+<p>That distinction is the point of the example. A level calibration silently
+absorbs both sensor bias and mounting error, and the two have completely
+different lifetimes: one is a property of the part and one is a property of the
+last person who took the top plate off.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 4 is the one that decides your mounting.</p>
+<ol>
+<li>Put an accelerometer flat on a table and read all three axes. Then invert it
+and read again. Half the difference per axis is the bias, and the average of
+the magnitudes is your scale.</li>
+<li>Rotate it slowly through 360° about the vertical and watch all three axes.
+Nothing changes. That is yaw being unobservable, seen directly.</li>
+<li>Accelerate it by hand along a table and watch the apparent tilt. Compare the
+angle to arctan(a/g) and confirm they match.</li>
+<li>Then spin up a motor near the sensor and log at full rate. Look at the
+spectrum. Anything above half your filter rate is going to fold down, and
+you now know whether your mount needs work.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What does an accelerometer read while in free fall?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-0" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-0"><span class="quiz-letter">A</span><span>One g downward, matching the acceleration it is undergoing</span></label><p class="quiz-why"><b>Not quite.</b> That is what the name suggests and it is the reverse of what happens. Gravity acts on case and proof mass alike, so it stretches nothing.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-1" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-1"><span class="quiz-letter">B</span><span>Two g, combining gravity with the acceleration of the fall</span></label><p class="quiz-why"><b>Not quite.</b> Nothing adds here, and the two are the same effect counted twice. Free fall is the condition in which the reading vanishes.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-2" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-2" data-correct><span class="quiz-letter">C</span><span>Zero, since nothing is pushing on the proof mass at all</span></label><p class="quiz-why"><b>Right.</b> It reports specific force, which excludes gravity by construction. In free fall the springs are relaxed even though the device is accelerating hard.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-3" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-0-3"><span class="quiz-letter">D</span><span>One g upward, the same as it reads sitting still on a table</span></label><p class="quiz-why"><b>Not quite.</b> On a table the table pushes back and the springs carry that push. In free fall there is no such contact force.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why can an accelerometer never determine heading?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-0" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-0"><span class="quiz-letter">A</span><span>The two horizontal axes are cross-coupled, so their ratio is ambiguous</span></label><p class="quiz-why"><b>Not quite.</b> Cross-axis sensitivity is a real specification and usually under one per cent. The obstacle here is geometric rather than a sensor imperfection.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-1" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-1"><span class="quiz-letter">B</span><span>Heading changes are too slow for the sensor&#39;s bandwidth to capture</span></label><p class="quiz-why"><b>Not quite.</b> The sensor responds at DC and would see a slow change if there were one. There is simply nothing in the signal that varies with heading.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-2" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-2" data-correct><span class="quiz-letter">C</span><span>Rotating about the vertical leaves the gravity vector unchanged</span></label><p class="quiz-why"><b>Right.</b> Every axis reads the same value throughout such a rotation, so the measurement carries no information about yaw. It is unobservable rather than noisy.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-3" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-1-3"><span class="quiz-letter">D</span><span>Magnetic interference corrupts the horizontal axes during rotation</span></label><p class="quiz-why"><b>Not quite.</b> Accelerometers are not magnetically sensitive in any useful way. That objection belongs to the magnetometer in a later tutorial.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>How does an attitude filter resolve the ambiguity between tilt and acceleration?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-0" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-0"><span class="quiz-letter">A</span><span>Compare the two horizontal axes, since tilt alone affects both</span></label><p class="quiz-why"><b>Not quite.</b> Acceleration in any direction affects the horizontal axes exactly as a tilt in that direction would. Nothing about the pattern distinguishes them.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-1" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-1"><span class="quiz-letter">B</span><span>Subtract the commanded acceleration, which the controller already knows</span></label><p class="quiz-why"><b>Not quite.</b> Model-based compensation does help on vehicles with a good dynamic model, and it is used. It needs a model rather than being available for free.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-2" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-2" data-correct><span class="quiz-letter">C</span><span>Trust the gyro over short intervals and the accelerometer over long</span></label><p class="quiz-why"><b>Right.</b> Acceleration averages to roughly zero for most vehicles while gravity does not, so the long-term average points down. That is the complementary split.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-3" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-2-3"><span class="quiz-letter">D</span><span>Sample faster, so the acceleration transient falls between readings</span></label><p class="quiz-why"><b>Not quite.</b> Faster sampling captures the transient better rather than missing it. The ambiguity is present in every individual sample.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why is a clipped accelerometer sample worse than a merely noisy one?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-0" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-0"><span class="quiz-letter">A</span><span>The sensor needs several samples to recover from saturation</span></label><p class="quiz-why"><b>Not quite.</b> Modern parts recover within a sample or two, so the lost window is short. The damage is in the value reported rather than in the recovery.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-1" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-1"><span class="quiz-letter">B</span><span>A clipped sample sets an error flag that halts the filter update</span></label><p class="quiz-why"><b>Not quite.</b> Most parts report saturation only if you go looking, and no filter halts by default. That is why counting them explicitly is worth doing.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-2" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-2"><span class="quiz-letter">C</span><span>Clipping produces harmonics that alias into the control bandwidth</span></label><p class="quiz-why"><b>Not quite.</b> Hard clipping does generate harmonics and that is a genuine secondary effect. The dominant problem is the one-sided bias it introduces.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-3" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-3-3" data-correct><span class="quiz-letter">D</span><span>The error is one-sided, so it biases every average downstream</span></label><p class="quiz-why"><b>Right.</b> Noise averages away while saturation always errs in the same direction. One clipped sample per second quietly contaminates the whole estimate.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why can no digital filter remove aliased propeller vibration?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-0" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-0"><span class="quiz-letter">A</span><span>Propeller frequency varies with throttle, so no fixed filter tracks it</span></label><p class="quiz-why"><b>Not quite.</b> Variable frequency does defeat a fixed notch, which is why dynamic notches exist. Aliased energy stays unremovable even with perfect tracking.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-1" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-1" data-correct><span class="quiz-letter">B</span><span>After sampling it sits at a low frequency, indistinguishable from motion</span></label><p class="quiz-why"><b>Right.</b> Folding moves the energy to a frequency where real vehicle motion also lives. Nothing downstream can separate two signals at the same frequency.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-2" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-2"><span class="quiz-letter">C</span><span>The vibration amplitude exceeds what a digital filter can attenuate</span></label><p class="quiz-why"><b>Not quite.</b> Filters attenuate by ratio rather than by absolute amplitude, so a large signal is not inherently unfilterable. Its frequency is the problem.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-3" name="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4"><label class="quiz-opt" for="machines/05-sensors-and-state/25-what-an-accelerometer-measures-4-3"><span class="quiz-letter">D</span><span>Digital filters introduce delay, which the control loop will not accept</span></label><p class="quiz-why"><b>Not quite.</b> Delay is a real cost and is why filters are placed carefully. It explains reluctance to filter rather than an inability to.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Groves, GNSS and Inertial Navigation, ch. 4-5 · Beard &amp; McLain, Small Unmanned Aircraft, ch. 7 · Madgwick (2010), An efficient orientation filter</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/05-sensors-and-state/24-every-sensor-lies" class="text-ash transition-colors hover:text-bone">← Every sensor is a liar</a><a href="/course/machines/05-sensors-and-state/26-complementary-and-kalman" class="text-ash transition-colors hover:text-bone">The complementary filter, then the Kalman filter →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

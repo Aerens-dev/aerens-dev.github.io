@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>The four motors you will actually use — Machines · Aerens</title><meta name="description" content="What each motor asks of the electronics, why the brush is a consumable, and what deleting it hands to your firmware."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/03-motors-and-power/12-four-motors/"><meta property="og:type" content="website"><meta property="og:title" content="The four motors you will actually use — Machines · Aerens"><meta property="og:description" content="What each motor asks of the electronics, why the brush is a consumable, and what deleting it hands to your firmware."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/03-motors-and-power/12-four-motors/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Motors, drivers, and power</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">The four motors you will actually use</h1><p class="mt-3 text-bone/70">What each motor asks of the electronics, why the brush is a consumable, and what deleting it hands to your firmware.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 01 of 08 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Pick a motor type from what the electronics must do rather than from the shaft output</li><li>Say what a stepper&#39;s missed step costs and why nothing reports it</li><li>Explain what removing the brushes transfers to the controller</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You need something to move. The catalogue offers brushed motors, steppers, RC
+servos and brushless motors, and the specifications you can compare — torque,
+speed, size, price — are the ones least likely to decide it.</p>
+<p>What actually decides it is what each motor asks of the electronics and the
+firmware. A brushed motor and a brushless motor of the same size do nearly the
+same mechanical job; one needs a single H-bridge and the other needs three half
+bridges, rotor position, and about four hundred lines of code. That is the
+choice, and the shaft is nearly incidental to it.</p>
+<h2 id="what-each-one-asks-of-the-electronics">What each one asks of the electronics</h2>
+<p><strong>Brushed DC</strong> is two wires and one bridge. Apply voltage, it spins; reverse it,
+it reverses. The commutation — switching current between windings as the rotor
+turns — is already solved, mechanically, inside the motor.</p>
+<p><strong>Steppers</strong> hold position without any sensor, by moving a known angle per
+command. Two bridges, a fixed step sequence, and no feedback loop at all.</p>
+<p><strong>RC servos</strong> are a complete position loop in a box. One signal wire, a pulse
+width in, and a shaft that goes there.</p>
+<p><strong>Brushless</strong> — BLDC or PMSM — needs three half bridges and needs to know where
+the rotor is. Everything the brushes were doing is now yours.</p>
+<p>The pattern: as you go down that list the electronics get harder and the motor
+gets better. Where you stop is a judgement about how much firmware the job is
+worth.</p>
+<figure class="fig"><svg viewBox="0 0 320 208" role="img" aria-labelledby="fig-four-motors"><title id="fig-four-motors">Brushed, stepper, servo and brushless motors differ in what they need from the electronics, and that requirement rather than the mechanical output is what usually decides which one a design uses.</title><text x="8" y="14" class="dim">WHAT EACH ONE ASKS OF THE ELECTRONICS</text><rect class="fill" x="8" y="26" width="304" height="42"></rect><text x="18" y="44" class="tight">BRUSHED DC</text><text x="18" y="60" class="tight">TWO WIRES, ONE BRIDGE. BRUSHES WEAR OUT</text><rect class="fill" x="8" y="72" width="304" height="42"></rect><text x="18" y="90" class="tight">STEPPER</text><text x="18" y="106" class="tight">OPEN LOOP POSITION, IF IT NEVER MISSES A STEP</text><rect class="fill" x="8" y="118" width="304" height="42"></rect><text x="18" y="136" class="tight">RC SERVO</text><text x="18" y="152" class="tight">A LOOP IN A BOX. ONE PULSE, NO FEEDBACK OUT</text><rect class="mark" x="8" y="164" width="304" height="42"></rect><text x="18" y="182" class="tight">BLDC / PMSM</text><text x="18" y="198" class="tight">THREE HALF BRIDGES AND A COMMUTATION PROBLEM</text></svg><figcaption class="fig-cap">The mechanical output is similar. The electrical demand is not.</figcaption></figure>
+<h2 id="the-brush-is-a-consumable">The brush is a consumable</h2>
+<p>A brushed motor’s cleverness is that the switching problem is solved by
+geometry. Carbon brushes press on a segmented commutator, and as the rotor
+turns, the contact moves from segment to segment and the current in the windings
+reverses at the right moment, automatically, with no electronics at all.</p>
+<p>It works, and it charges rent in three currencies. <strong>Arcing</strong> every time contact
+breaks, which is a broadband noise source sitting inside your enclosure and
+coupling into everything. <strong>Carbon dust</strong>, which accumulates and eventually
+tracks across insulation. And <strong>contact resistance</strong>, which is a fixed voltage
+drop that matters most at low speed and high current, exactly where you often
+want the motor to work hardest.</p>
+<p>The number that ends the argument for anything that runs continuously: brushed
+motor life is measured in <strong>hundreds to a few thousand hours</strong>. Brushless is
+tens of thousands, limited by bearings. That is why a drone motor is not
+brushed, and it is a life figure rather than a performance one.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-brush-wear"><title id="fig-brush-wear">A brushed motor solves commutation with a sliding contact, which means the switching problem is already handled in the mechanics and the price is a wear item, arcing and conducted noise.</title><text x="8" y="14" class="dim">THE SWITCH IS INSIDE THE MOTOR</text><rect class="fill" x="8" y="28" width="146" height="52"></rect><text x="18" y="46" class="tight">WHAT YOU GET</text><text x="18" y="64" class="tight">TWO WIRES, ONE BRIDGE</text><rect class="mark" x="166" y="28" width="146" height="52"></rect><text x="176" y="46" class="tight">WHAT IT COSTS</text><text x="176" y="64" class="tight">A CONSUMABLE CONTACT</text><text x="8" y="106" class="tight">ARCING AT EVERY SEGMENT</text><text x="196" y="106" class="tight">BROADBAND NOISE</text><text x="8" y="128" class="tight">CARBON DUST INSIDE</text><text x="196" y="128" class="tight">SHORTS, EVENTUALLY</text><text x="8" y="150" class="tight">CONTACT RESISTANCE</text><text x="196" y="150" class="tight">LOSS AT LOW SPEED</text><text x="8" y="180" class="dim">HUNDREDS OF HOURS, NOT TENS OF THOUSANDS. THAT</text><text x="8" y="194" class="dim">NUMBER IS WHY A DRONE IS NOT BRUSHED</text></svg><figcaption class="fig-cap">Commutation for free, paid for in a wear item.</figcaption></figure>
+<h2 id="position-without-measuring-it">Position without measuring it</h2>
+<p>A stepper’s appeal is that it gives you position with no encoder. Command 200
+steps and the shaft has turned exactly one revolution, because the rotor has 200
+stable equilibria and it settles into each one in turn.</p>
+<p>The catch is the word <em>exactly</em>, which holds only while the load stays below the
+motor’s torque at that speed. Exceed it for one moment — a jam, an acceleration
+too steep, a resonance — and the rotor slips to the next equilibrium instead of
+the one you meant.</p>
+<p>Then two things happen, and the second is the problem. The position is wrong,
+and <strong>the controller does not know</strong>. It is counting commands, not measuring
+angle, so it carries on with a position that is permanently off by however many
+steps were lost. The error never washes out, and the first evidence is usually
+the machine hitting something.</p>
+<p>This is why serious stepper systems either run with generous torque margin —
+often 50% — or add an encoder and stop being open loop, at which point they have
+most of the complexity of a brushless drive and less of the performance.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-missed-step"><title id="fig-missed-step">A stepper holds position by counting commands rather than by measuring, so exceeding its torque at any moment loses steps permanently and the controller carries on believing a position that is now wrong.</title><text x="8" y="14" class="dim">COUNTED, NOT MEASURED</text><path class="thin" d="M40 34 V112 H288"></path><path class="rule" d="M44 108 L280 40"></path><text x="200" y="34" class="tight">COMMANDED</text><path class="accent" d="M44 108 L150 78 L150 92 L280 62"></path><circle class="mark" cx="150" cy="85" r="7"></circle><text x="196" y="80" class="tight">ACTUAL</text><text x="112" y="130" class="tight">LOAD SPIKE HERE</text><text x="8" y="160" class="dim">THE GAP NEVER CLOSES. NOTHING MEASURES POSITION,</text><text x="8" y="174" class="dim">SO THE ERROR IS PERMANENT AND SILENT UNTIL THE</text><text x="8" y="188" class="dim">MACHINE HITS SOMETHING OR A HOMING SWITCH FIRES</text></svg><figcaption class="fig-cap">Counted, not measured. The gap never closes.</figcaption></figure>
+<h2 id="a-loop-you-cannot-see-into">A loop you cannot see into</h2>
+<p>An RC servo is a small closed-loop position controller sold as a component: a
+potentiometer on the output shaft, a comparator, an H-bridge and a gearbox. The
+pulse width you send is the setpoint — 1.0 to 2.0 ms across the range — and the
+loop inside does the rest.</p>
+<p>That is genuinely useful, and it is worth being clear about what it costs. The
+signal is one-way. <strong>Nothing comes back out</strong>: no measured position, no current,
+no fault, no indication that it reached the commanded angle or that it is still
+trying.</p>
+<p>So a servo stalled against an obstruction keeps pushing at full current until
+something gives — the gears, usually nylon, are the intended sacrifice. The only
+way to detect it from outside is to watch the supply current, which means your
+board needs a current sense on the servo rail if you care.</p>
+<p>The design rule that follows: an RC servo is right where the load is
+well-behaved and a failure is cheap, and wrong anywhere you need to know what
+happened.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-servo-box"><title id="fig-servo-box">An RC servo is a complete position loop in a box: a pulse width is the setpoint, a potentiometer is the feedback, and none of the loop's internal state is available outside the case.</title><text x="8" y="14" class="dim">A CLOSED LOOP YOU CANNOT SEE INTO</text><rect class="box" x="66" y="28" width="188" height="94"></rect><text x="8" y="60" class="tight">PULSE</text><path class="accent" d="M46 56 H58"></path><path class="accent-fill" d="M58 52 L66 56 L58 60 Z"></path><rect class="fill" x="78" y="42" width="76" height="30"></rect><text x="86" y="62" class="tight">COMPARE</text><rect class="fill" x="166" y="42" width="76" height="30"></rect><text x="174" y="62" class="tight">DRIVE</text><rect class="mark" x="78" y="80" width="164" height="30"></rect><text x="86" y="100" class="tight">POT ON THE OUTPUT SHAFT</text><text x="262" y="60" class="tight">SHAFT</text><text x="8" y="150" class="dim">NOTHING COMES BACK OUT. NO POSITION, NO CURRENT,</text><text x="8" y="164" class="dim">NO FAULT. IF IT STALLS AGAINST AN OBSTRUCTION IT</text><text x="8" y="178" class="dim">KEEPS PUSHING UNTIL SOMETHING GIVES, AND THE</text><text x="8" y="192" class="dim">ONLY WAY YOU FIND OUT IS THE SUPPLY CURRENT</text></svg><figcaption class="fig-cap">One wire in, nothing out. The gearbox is the fuse.</figcaption></figure>
+<h2 id="deleting-the-brushes-moves-the-work">Deleting the brushes moves the work</h2>
+<p>Take the brushes out and the wear item, the arcing and the contact drop all go
+with them. What does not go is the <strong>commutation</strong> — the windings still have to
+be energised in sequence as the rotor turns. That job moves into the
+electronics, and it needs two things it did not need before: three half bridges
+instead of one, and knowledge of <strong>where the rotor is right now</strong>.</p>
+<p>That second requirement is the whole of the difficulty, and it is why the rest
+of this track exists. Tutorial 16 solves it crudely with hall sensors and six
+discrete states. Tutorial 17 solves it properly with field-oriented control,
+which is the same problem answered continuously instead of in sixty-degree
+lumps.</p>
+<p>What you buy is worth the trouble for anything that runs: roughly twice the
+power density, efficiency in the high eighties rather than the seventies, and a
+life limited by bearings. The multirotor in track 8 is not possible any other
+way.</p>
+<figure class="fig"><svg viewBox="0 0 320 192" role="img" aria-labelledby="fig-why-brushless"><title id="fig-why-brushless">Removing the brushes removes the wear item and the arcing, and transfers the commutation they performed to the electronics, which is where the whole of the rest of this track comes from.</title><text x="8" y="14" class="dim">THE JOB DOES NOT GO AWAY, IT MOVES</text><rect class="fill" x="8" y="28" width="130" height="70"></rect><text x="18" y="48" class="tight">BRUSHED</text><text x="18" y="70" class="tight">COMMUTATION</text><text x="18" y="86" class="tight">IN THE MECHANICS</text><path class="accent" d="M146 62 H172"></path><path class="accent-fill" d="M172 58 L182 62 L172 66 Z"></path><rect class="mark" x="188" y="28" width="124" height="70"></rect><text x="198" y="48" class="tight">BRUSHLESS</text><text x="198" y="70" class="tight">COMMUTATION</text><text x="198" y="86" class="tight">IN YOUR CODE</text><text x="8" y="126" class="tight">YOU GAIN</text><text x="176" y="126" class="tight">YOU TAKE ON</text><text x="8" y="146" class="tight">LIFE, POWER DENSITY</text><text x="176" y="146" class="tight">THREE HALF BRIDGES</text><text x="8" y="164" class="tight">EFFICIENCY, SILENCE</text><text x="176" y="164" class="tight">ROTOR POSITION</text><text x="8" y="188" class="dim">TUTORIALS 16 AND 17 ARE THAT SECOND COLUMN</text></svg><figcaption class="fig-cap">The job does not disappear. It moves into your code.</figcaption></figure>
+<h2 id="worked-example-choosing-a-motor-for-the-test-stand">Worked example: choosing a motor for the test stand</h2>
+<p>The track 3 gate needs a motor to hold velocity under a load you apply by hand.
+Four candidates, same rough size and price.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Brushed</th>
+<th>Stepper</th>
+<th>RC servo</th>
+<th>BLDC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bridges needed</td>
+<td>1</td>
+<td>2</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Rotor position needed</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td><strong>yes</strong></td>
+</tr>
+<tr>
+<td>Feedback available</td>
+<td>none</td>
+<td>none</td>
+<td>none</td>
+<td>encoder or hall</td>
+</tr>
+<tr>
+<td>Firmware, roughly</td>
+<td>40 lines</td>
+<td>120</td>
+<td>10</td>
+<td>400+</td>
+</tr>
+<tr>
+<td>Continuous life</td>
+<td>~1,000 h</td>
+<td>10,000+</td>
+<td>~500 h</td>
+<td>10,000+</td>
+</tr>
+<tr>
+<td>Useful for track 4?</td>
+<td>partly</td>
+<td>no</td>
+<td>no</td>
+<td><strong>yes</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The last row decides it, and it is worth spelling out why the obvious cheap
+answer fails.</p>
+<p><strong>The stepper is out</strong> because there is nothing to control. It goes where it is
+told until it does not, and a velocity loop around it has no measurement to
+close on. Track 4 needs a plant with feedback.</p>
+<p><strong>The RC servo is out</strong> for the same reason from the other direction: the loop
+already exists and is sealed. You cannot tune what you cannot see, so it teaches
+nothing about cascade control.</p>
+<p><strong>The brushed motor with an encoder would work</strong> for track 4 — it is a real
+plant, it has a real velocity loop, and it is much less firmware. It is a
+legitimate cheaper path and worth naming as one. What it does not give you is
+current control inside the velocity loop, because a brushed motor’s current is
+not something you resolve into components; and the cascade in tutorial 23 is
+built around exactly that.</p>
+<p><strong>BLDC with an encoder</strong> is the answer. It costs the most firmware and it is the
+only one that carries you into tracks 4, 5 and 8 without being replaced.</p>
+<p>One number to size it: a 2205-class motor at 12 V draws about 1.2 A holding a
+modest load, and peaks near 8 A on a step change. The supply’s current limit
+from tutorial 01 goes at 10 A, not at 2 — set it for the transient, not the
+average, or your first velocity step trips the bench.</p>
+<h2 id="do-it">Do it</h2>
+<p>Fifteen minutes, and step 3 is the one that changes a purchase.</p>
+<ol>
+<li>Take any motorised thing near you — a printer, a drill, a fan, a hard drive
+— and work out which of the four it uses. The clue is the wire count: two,
+four, three, or three plus signal.</li>
+<li>Find a stepper datasheet and its pull-out torque curve. Note how fast the
+torque falls with speed, and pick the speed where you would stop trusting it.</li>
+<li>Price a brushed motor and a BLDC of the same shaft power, then add the
+driver for each. The motors are close; the drivers are not, and that gap is
+the real cost of the choice.</li>
+<li>Then, for the gate: pick the motor you will actually buy and write down its
+stall current. That number sets the bridge, the shunt, the wire gauge and the
+supply limit, and everything in the next six tutorials refers back to it.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What separates a brushed motor from a brushless one of similar mechanical output?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-0-0" name="machines/03-motors-and-power/12-four-motors-0"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-0-0"><span class="quiz-letter">A</span><span>The supply voltage each needs, differing by a factor of three</span></label><p class="quiz-why"><b>Not quite.</b> Both are wound for whatever voltage the application wants, and both are sold across the same ranges. Voltage is a winding choice, not a type difference.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-0-1" name="machines/03-motors-and-power/12-four-motors-0"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-0-1"><span class="quiz-letter">B</span><span>The direction of rotation, which brushless motors fix in hardware</span></label><p class="quiz-why"><b>Not quite.</b> Reversing a brushless motor is a matter of swapping two phases or two commutation states. Both reverse readily enough.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-0-2" name="machines/03-motors-and-power/12-four-motors-0"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-0-2" data-correct><span class="quiz-letter">C</span><span>Where commutation happens, and so how much firmware it takes</span></label><p class="quiz-why"><b>Right.</b> One solves it mechanically inside the motor, the other hands it to three half bridges and your code. The shafts do a comparable job.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-0-3" name="machines/03-motors-and-power/12-four-motors-0"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-0-3"><span class="quiz-letter">D</span><span>The available torque, which is far higher on the brushless one</span></label><p class="quiz-why"><b>Not quite.</b> Brushless does win on power density, by roughly a factor of two. For a given rated torque both will deliver it, so this does not decide the design.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Which figure most clearly rules a brushed motor out of a continuously running application?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-1-0" name="machines/03-motors-and-power/12-four-motors-1"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-1-0"><span class="quiz-letter">A</span><span>The broadband electrical noise that arcing couples into the enclosure</span></label><p class="quiz-why"><b>Not quite.</b> Brush noise is a genuine nuisance and needs filtering. It is a design problem with known fixes rather than a reason the motor stops working.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-1-1" name="machines/03-motors-and-power/12-four-motors-1"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-1-1"><span class="quiz-letter">B</span><span>The contact voltage drop, which is worst at low speed and high current</span></label><p class="quiz-why"><b>Not quite.</b> That drop does hurt exactly where many loads work hardest. It degrades performance rather than ending the motor&#39;s usable life.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-1-2" name="machines/03-motors-and-power/12-four-motors-1"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-1-2" data-correct><span class="quiz-letter">C</span><span>A service life of hundreds to a few thousand hours before wear</span></label><p class="quiz-why"><b>Right.</b> Brushless life runs into tens of thousands of hours, limited by bearings. For anything running continuously that gap decides it on its own.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-1-3" name="machines/03-motors-and-power/12-four-motors-1"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-1-3"><span class="quiz-letter">D</span><span>An efficiency in the seventies rather than the high eighties</span></label><p class="quiz-why"><b>Not quite.</b> The efficiency gap is real and worth money over time. It is a running cost rather than a hard limit on whether the design works.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>A stepper loses two steps during an acceleration. What happens next?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-2-0" name="machines/03-motors-and-power/12-four-motors-2"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-2-0"><span class="quiz-letter">A</span><span>The error averages out, since slips occur in both directions equally</span></label><p class="quiz-why"><b>Not quite.</b> Slips happen when torque is exceeded, which is directional and load-dependent. They accumulate rather than cancelling.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-2-1" name="machines/03-motors-and-power/12-four-motors-2"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-2-1"><span class="quiz-letter">B</span><span>The rotor slips back into the correct equilibrium at the next step</span></label><p class="quiz-why"><b>Not quite.</b> Each step has its own stable point, so the rotor settles into the wrong one and stays there. Nothing pulls it back towards where it should be.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-2-2" name="machines/03-motors-and-power/12-four-motors-2"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-2-2"><span class="quiz-letter">C</span><span>The driver raises a stall flag once the phase current deviates</span></label><p class="quiz-why"><b>Not quite.</b> Some advanced drivers do offer stall detection through back-EMF sensing, which is worth having. A plain stepper driver has no such indication.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-2-3" name="machines/03-motors-and-power/12-four-motors-2"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-2-3" data-correct><span class="quiz-letter">D</span><span>The error persists indefinitely, and the controller reports nothing</span></label><p class="quiz-why"><b>Right.</b> Position is counted rather than measured, so there is nothing to detect the slip. The offset stays until a homing switch or a collision reveals it.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>How can a board detect that an RC servo has stalled against an obstruction?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-3-0" name="machines/03-motors-and-power/12-four-motors-3"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-3-0"><span class="quiz-letter">A</span><span>By reading the position feedback the servo returns on the same wire</span></label><p class="quiz-why"><b>Not quite.</b> The standard three-wire servo interface is one-way. Some digital servos add a bus that reports position, and those are a different product.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-3-1" name="machines/03-motors-and-power/12-four-motors-3"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-3-1" data-correct><span class="quiz-letter">B</span><span>By measuring the current on the servo&#39;s supply rail from outside</span></label><p class="quiz-why"><b>Right.</b> The signal wire carries only the setpoint and returns nothing. Supply current is the one observable that changes when the internal loop is fighting.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-3-2" name="machines/03-motors-and-power/12-four-motors-3"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-3-2"><span class="quiz-letter">C</span><span>By timing how long the servo takes to acknowledge the new setpoint</span></label><p class="quiz-why"><b>Not quite.</b> There is no acknowledgement of any kind in the protocol. The servo simply acts on whatever pulse width arrives.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-3-3" name="machines/03-motors-and-power/12-four-motors-3"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-3-3"><span class="quiz-letter">D</span><span>By watching for the pulse train to be echoed back with an error flag</span></label><p class="quiz-why"><b>Not quite.</b> Nothing is echoed and there are no flags. The interface is a pulse in and a shaft that moves, with no channel back.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What does a brushless drive need that a brushed one does not?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-4-0" name="machines/03-motors-and-power/12-four-motors-4"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-4-0" data-correct><span class="quiz-letter">A</span><span>Knowledge of the rotor angle, to energise the windings in sequence</span></label><p class="quiz-why"><b>Right.</b> The brushes were performing that sequencing mechanically. Removing them means the controller has to know where the rotor is at every moment.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-4-1" name="machines/03-motors-and-power/12-four-motors-4"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-4-1"><span class="quiz-letter">B</span><span>A separate excitation supply for the field windings on the rotor</span></label><p class="quiz-why"><b>Not quite.</b> The rotor carries permanent magnets, so there is nothing to excite. That describes a wound-field machine, which is a different topology.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-4-2" name="machines/03-motors-and-power/12-four-motors-4"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-4-2"><span class="quiz-letter">C</span><span>A higher supply voltage, to overcome the absence of brush contact</span></label><p class="quiz-why"><b>Not quite.</b> Removing the brush drop slightly reduces the voltage needed for a given output. Both types are wound for whatever rail is available.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/12-four-motors-4-3" name="machines/03-motors-and-power/12-four-motors-4"><label class="quiz-opt" for="machines/03-motors-and-power/12-four-motors-4-3"><span class="quiz-letter">D</span><span>A gearbox, since brushless motors produce very little torque directly</span></label><p class="quiz-why"><b>Not quite.</b> Both types are often geared for the same reasons, and brushless has the better torque density of the two. Gearing is a load decision.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Hughes &amp; Drury, Electric Motors and Drives, ch. 3-4 and 9 · Mohan, Electric Machines and Drives: A First Course, ch. 5-7</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/02-embedded-c/11-fixed-point-and-float" class="text-ash transition-colors hover:text-bone">← Fixed point against float on a Cortex-M4</a><a href="/course/machines/03-motors-and-power/13-torque-against-speed" class="text-ash transition-colors hover:text-bone">Torque against speed, the curve that decides the design →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

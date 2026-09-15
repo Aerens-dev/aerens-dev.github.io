@@ -1,0 +1,199 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>UART, I2C and SPI, and how to debug each on a scope — Machines · Aerens</title><meta name="description" content="Three buses separated by how they address and how they clock, and the scope signature of each common failure."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/02-embedded-c/09-uart-i2c-spi/"><meta property="og:type" content="website"><meta property="og:title" content="UART, I2C and SPI, and how to debug each on a scope — Machines · Aerens"><meta property="og:description" content="Three buses separated by how they address and how they clock, and the scope signature of each common failure."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/02-embedded-c/09-uart-i2c-spi/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Embedded C that doesn&#39;t lie to you</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">UART, I2C and SPI, and how to debug each on a scope</h1><p class="mt-3 text-bone/70">Three buses separated by how they address and how they clock, and the scope signature of each common failure.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Choose between the three buses from addressing and rate rather than from habit</li><li>Read a framing error as a clock mismatch rather than as noise</li><li>Name the scope appearance of the five commonest bus failures</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>The sensor worked yesterday. Today it returns 0xFF to every read. You have
+checked the wiring twice, rewritten the driver once, and swapped the sensor for
+a new one, which also returns 0xFF.</p>
+<p>Thirty seconds with a probe on the clock line would have told you the bus is
+running at 12 kHz instead of 400 kHz, because you changed the system clock
+source last week and the peripheral divider came along for the ride.</p>
+<p>This tutorial is mostly about that reflex — put the probe on before you open the
+driver — and about knowing what you are looking at once it is there.</p>
+<h2 id="wires-addressing-speed">Wires, addressing, speed</h2>
+<p>Three buses, and the useful way to separate them is by <strong>how a device is
+addressed</strong> and <strong>where the clock comes from</strong>.</p>
+<p><strong>UART</strong> has no clock and no addressing. Two wires, point to point, and both
+ends have independently agreed to run at the same rate. Simple, and the absence
+of a shared clock is the source of its one characteristic failure.</p>
+<p><strong>I²C</strong> has a clock and addresses devices in-band, by sending a seven-bit
+address that everyone hears and one device answers. Two wires for any number of
+devices, which is the whole appeal. The cost is speed — 100 or 400 kHz
+typically — and open-drain lines that need the pull-ups from tutorial 02.</p>
+<p><strong>SPI</strong> has a clock and addresses devices out-of-band, with a dedicated select
+pin each. Four wires plus one per device, no acknowledgement of any kind, and
+tens of megahertz. That is the trade: it is fast and it never tells you whether
+anyone was listening.</p>
+<p>For the IMU in the track 2 build gate, at 1 kHz with 12 bytes per sample, SPI is
+the only comfortable answer.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-three-buses"><title id="fig-three-buses">UART, I2C and SPI differ most in how they address a device and how they clock it, and those two properties decide which one a given problem wants.</title><text x="8" y="14" class="dim">WIRES, ADDRESSING, SPEED</text><rect class="fill" x="8" y="26" width="304" height="48"></rect><text x="18" y="44" class="tight">UART  2 WIRES, NO CLOCK</text><text x="18" y="62" class="tight">POINT TO POINT · BOTH ENDS GUESS THE RATE</text><rect class="fill" x="8" y="80" width="304" height="48"></rect><text x="18" y="98" class="tight">I2C  2 WIRES, SHARED</text><text x="18" y="116" class="tight">ADDRESSED · SLOW · ACKS EVERY BYTE</text><rect class="mark" x="8" y="134" width="304" height="48"></rect><text x="18" y="152" class="tight">SPI  4 WIRES, ONE PER DEVICE</text><text x="18" y="170" class="tight">SELECTED BY PIN · FAST · NO ACKNOWLEDGE</text><text x="8" y="200" class="dim">THE MARKED ONE IS WHAT AN IMU AT 1 KHZ NEEDS</text></svg><figcaption class="fig-cap">Addressing and clocking. Everything else follows.</figcaption></figure>
+<h2 id="a-uart-byte-and-why-framing-errors-are-a-clock-story">A UART byte, and why framing errors are a clock story</h2>
+<p>A byte on the wire is a <strong>start bit</strong> (a falling edge, from an idle high), eight
+data bits <strong>least significant first</strong>, and a <strong>stop bit</strong> (high). No clock is
+transmitted.</p>
+<p>The receiver starts its own clock on that falling edge and samples in the middle
+of each bit cell. That is the design’s whole cleverness and its whole weakness:
+resynchronisation happens once per byte, and after that the receiver is counting
+on its own.</p>
+<p>So a rate error accumulates across the byte. At 3% error, by bit seven the
+sample point has drifted about a quarter of a cell; at 5% it is closing on a
+half and the stop bit gets sampled low. A <strong>framing error</strong> is therefore almost
+never noise — it is the two ends disagreeing about the rate, and the usual cause
+is an integer division that did not come out exactly.</p>
+<p>Check the arithmetic rather than the wiring: 16 MHz / (16 × 115200) = 8.68,
+which the hardware rounds to 9, giving 111,111 baud and 3.5% error. That is
+marginal on its own and fails as soon as the other end is off in the same
+direction.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-uart-framing"><title id="fig-uart-framing">A UART byte is a start bit, eight data bits least significant first and a stop bit, and the receiver samples in the middle of each cell using its own clock, so a rate mismatch shows as a stop-bit error.</title><text x="8" y="14" class="dim">ONE BYTE, LSB FIRST</text><path class="rule" d="M16 52 H40 V82 H64 V52 H88 V82 H136 V52 H160 V82 H208 V52 H256 V82 H280 V52 H304"></path><text x="16" y="102" class="tight">START</text><text x="72" y="102" class="tight">D0 . . . . . . . D7</text><text x="272" y="102" class="tight">STOP</text><path class="dash" d="M52 44 V90"></path><circle class="mark" cx="52" cy="44" r="7"></circle><text x="60" y="36" class="tight">SAMPLED MID-CELL</text><text x="8" y="140" class="dim">THE RECEIVER STARTS ITS OWN CLOCK ON THE FALLING</text><text x="8" y="154" class="dim">EDGE AND COUNTS. A 3 PER CENT RATE ERROR HAS</text><text x="8" y="168" class="dim">DRIFTED HALF A CELL BY BIT SEVEN, SO THE STOP BIT</text><text x="8" y="182" class="dim">LANDS LOW AND YOU GET A FRAMING ERROR, NOT NOISE</text></svg><figcaption class="fig-cap">It resynchronises once per byte and counts from there.</figcaption></figure>
+<h2 id="ic-and-the-acknowledge-as-the-only-feedback">I²C, and the acknowledge as the only feedback</h2>
+<p>A transaction is: <strong>start</strong>, seven-bit address plus a read/write bit,
+<strong>acknowledge</strong>, then data bytes each acknowledged, then <strong>stop</strong>.</p>
+<p>The acknowledge is the only feedback the protocol has, and that makes it the
+most informative thing on the bus. Three failures, three meanings.</p>
+<p><strong>No ACK after the address</strong> means nobody is at that address. Wrong address,
+wrong bus, device not powered, or — very commonly — the seven-bit versus
+eight-bit confusion, where the datasheet quotes 0xD0 including the direction bit
+and your driver wants 0x68.</p>
+<p><strong>No ACK mid-transfer</strong> means the device is there and refused that byte. Usually
+a register address it does not have, or a write while it is busy.</p>
+<p><strong>SCL stuck low</strong> means a device is clock-stretching and has not let go, or has
+lost sync and thinks it is mid-byte. The recovery is to clock SCL manually nine
+times with SDA released, which walks any stuck device to the end of a byte, then
+issue a stop. Worth having in your init code, because otherwise the fix is a
+power cycle.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-i2c"><title id="fig-i2c">An I2C transaction is a start condition, a seven bit address with a direction bit, an acknowledge from the addressed device, data bytes each acknowledged, and a stop, and a missing acknowledge is the most informative failure.</title><text x="8" y="14" class="dim">ONE TRANSACTION, AND WHERE IT STOPS</text><rect class="fill" x="8" y="28" width="52" height="34"></rect><text x="16" y="50" class="tight">START</text><rect class="fill" x="64" y="28" width="86" height="34"></rect><text x="72" y="50" class="tight">ADDR + R/W</text><rect class="mark" x="154" y="28" width="48" height="34"></rect><text x="162" y="50" class="tight">ACK</text><rect class="fill" x="206" y="28" width="56" height="34"></rect><text x="214" y="50" class="tight">DATA</text><rect class="fill" x="266" y="28" width="46" height="34"></rect><text x="274" y="50" class="tight">STOP</text><text x="8" y="88" class="tight">NO ACK AFTER THE ADDRESS</text><text x="176" y="88" class="tight">NOBODY IS THERE</text><text x="8" y="110" class="tight">NO ACK MID-TRANSFER</text><text x="176" y="110" class="tight">IT REFUSED THE BYTE</text><text x="8" y="132" class="tight">SCL STUCK LOW</text><text x="176" y="132" class="tight">A DEVICE IS HOLDING IT</text><text x="8" y="164" class="dim">THE ACKNOWLEDGE IS THE ONLY FEEDBACK IN THE</text><text x="8" y="178" class="dim">PROTOCOL, WHICH MAKES IT THE FIRST THING TO PUT</text><text x="8" y="192" class="dim">A SCOPE ON WHEN A SENSOR STOPS ANSWERING</text></svg><figcaption class="fig-cap">The acknowledge is the only feedback there is.</figcaption></figure>
+<h2 id="spis-four-modes-and-the-one-that-looks-like-a-wiring-fault">SPI’s four modes, and the one that looks like a wiring fault</h2>
+<p>SPI has two configuration bits. <strong>CPOL</strong> says whether the clock idles low or
+high. <strong>CPHA</strong> says whether data is sampled on the first or the second edge of
+each clock cycle. Four combinations, numbered 0 to 3, and both ends must agree.</p>
+<p>Getting CPOL wrong usually produces obvious garbage. Getting <strong>CPHA</strong> wrong is
+the interesting one: you sample half a bit period early or late, which means you
+consistently read the previous bit. Every byte comes back <strong>shifted by one bit</strong>
+— 0x2A reads as 0x54 or 0x15 — and that looks like a wiring fault or a broken
+sensor rather than a configuration line.</p>
+<p>The tell is consistency. Noise gives you different wrong answers; a phase error
+gives you the same wrong answer every time, and one that is arithmetically
+related to the right one. When a device returns a value that is exactly double
+or exactly half what you expect, check CPHA before you check anything else.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-spi-modes"><title id="fig-spi-modes">Clock polarity and clock phase give four SPI modes, and getting the phase wrong samples on the wrong clock edge so the data reads as shifted by one bit rather than as garbage.</title><text x="8" y="14" class="dim">CPOL AND CPHA, AND WHAT EACH ONE MOVES</text><rect class="fill" x="8" y="28" width="148" height="42"></rect><text x="18" y="46" class="tight">CPOL</text><text x="18" y="62" class="tight">IDLE LOW OR HIGH</text><rect class="mark" x="164" y="28" width="148" height="42"></rect><text x="174" y="46" class="tight">CPHA</text><text x="174" y="62" class="tight">SAMPLE 1ST OR 2ND</text><text x="8" y="98" class="tight">CLK</text><path class="rule" d="M56 118 V100 H80 V118 H104 V100 H128 V118 H152 V100 H176 V118 H200"></path><path class="accent" d="M56 124 V136"></path><path class="accent" d="M104 124 V136"></path><path class="accent" d="M152 124 V136"></path><text x="208" y="132" class="tight">CPHA 0 SAMPLES</text><text x="8" y="168" class="dim">GET CPHA WRONG AND EVERY BYTE READS SHIFTED BY</text><text x="8" y="182" class="dim">ONE BIT, WHICH LOOKS LIKE A WIRING FAULT RATHER</text><text x="8" y="196" class="dim">THAN A CONFIGURATION ONE. THAT IS THE TELL</text></svg><figcaption class="fig-cap">A phase error is arithmetically related to the right answer.</figcaption></figure>
+<h2 id="what-the-scope-shows-and-what-it-means">What the scope shows, and what it means</h2>
+<p>Five appearances worth recognising on sight, because each one skips a different
+amount of debugging.</p>
+<p><strong>Rounded I²C edges</strong> are the pull-up losing to the bus capacitance — tutorial
+02’s arithmetic, arriving in visible form. <strong>Nothing at all</strong> on a line means
+the peripheral clock is off or the pin is not muxed to the peripheral, and both
+are one register. <strong>The right shape at the wrong rate</strong> is a clock-tree
+assumption that stopped being true, and it is the commonest of the five and the
+least suspected. <strong>Data shifted by one bit</strong> is SPI phase. <strong>Only the first
+byte</strong> is a missing acknowledge on I²C or a receive overrun on any of them.</p>
+<p>None of these needs the driver source. All of them need a probe.</p>
+<figure class="fig"><svg viewBox="0 0 320 210" role="img" aria-labelledby="fig-bus-failures"><title id="fig-bus-failures">Each common bus failure has a distinctive appearance on a scope, so putting a probe on the line first tells you whether the problem is electrical, configuration or software before any code is read.</title><text x="8" y="14" class="dim">WHAT THE SCOPE SHOWS, AND WHAT IT MEANS</text><text x="8" y="42" class="tight">ROUNDED I2C EDGES</text><text x="184" y="42" class="tight">PULL-UP TOO WEAK</text><text x="8" y="66" class="tight">NOTHING AT ALL</text><text x="184" y="66" class="tight">CLOCK OR PIN MUX</text><rect class="mark" x="4" y="76" width="308" height="28"></rect><text x="8" y="96" class="tight">RIGHT SHAPE, WRONG RATE</text><text x="184" y="96" class="tight">CLOCK TREE ASSUMPTION</text><text x="8" y="122" class="tight">DATA SHIFTED ONE BIT</text><text x="184" y="122" class="tight">SPI PHASE WRONG</text><text x="8" y="146" class="tight">FIRST BYTE ONLY</text><text x="184" y="146" class="tight">NO ACK, OR OVERRUN</text><text x="8" y="178" class="dim">THE MARKED ROW IS THE COMMONEST AND THE LEAST</text><text x="8" y="192" class="dim">SUSPECTED: THE PERIPHERAL IS NOT ON THE CLOCK YOU</text><text x="8" y="206" class="dim">THINK IT IS, SO EVERY DIVIDER BELOW IT IS WRONG</text></svg><figcaption class="fig-cap">Five appearances, five conclusions, no source code.</figcaption></figure>
+<h2 id="worked-example-does-spi-fit-the-1-khz-imu-budget">Worked example: does SPI fit the 1 kHz IMU budget?</h2>
+<p>The track 2 gate wants an IMU read at 1 kHz with no dropped samples. Check it
+before building it.</p>
+<p><strong>What one sample costs.</strong> An ICM-42688 burst read is 1 register address byte
+plus 12 data bytes — accelerometer and gyroscope, three axes each, two bytes per
+axis — so <strong>13 bytes</strong>, or 104 clocks.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPI clock</td>
+<td>10 MHz</td>
+</tr>
+<tr>
+<td>Bits per sample</td>
+<td>104</td>
+</tr>
+<tr>
+<td>Time on the wire</td>
+<td>10.4 µs</td>
+</tr>
+<tr>
+<td>Budget at 1 kHz</td>
+<td>1,000 µs</td>
+</tr>
+<tr>
+<td><strong>Wire utilisation</strong></td>
+<td><strong>1.04%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Comfortable, obviously. Which means the wire is not the constraint, and the
+interesting question is what is.</p>
+<p><strong>The CPU cost, done three ways.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CPU per sample</th>
+<th>CPU at 1 kHz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Polled, byte at a time</td>
+<td>10.4 µs busy-waiting</td>
+<td>1.04%</td>
+</tr>
+<tr>
+<td>Interrupt per byte</td>
+<td>13 × 38 cycles = 5.9 µs</td>
+<td>0.59%</td>
+</tr>
+<tr>
+<td>DMA, one interrupt per burst</td>
+<td>38 cycles = 0.45 µs</td>
+<td>0.045%</td>
+</tr>
+</tbody>
+</table>
+<p>Polled looks fine at 1 kHz and that is the trap: it scales with rate, and the
+whole 10.4 µs is spent doing nothing. Interrupt-per-byte is <em>worse</em> than polling
+in total cycles, because 24 cycles of entry and exit dominate the one byte of
+work — a genuinely counter-intuitive result and a good reason to count rather
+than assume. DMA costs one interrupt per burst and is twenty times cheaper than
+either.</p>
+<p><strong>Now the real constraint, which is neither.</strong> At 1 kHz you have 1 ms per
+sample, and the sample is useless unless the <em>control loop</em> consuming it also
+fits. Reading takes 10.4 µs of wall clock; the filter in track 5 takes about 40
+µs; the FOC loop in track 3 takes about 25 µs. That is 76 µs of 1,000, so the
+budget is fine — but it is fine by 13×, not by 1000×, and that ratio is the
+number to remember when track 5 proposes a Kalman filter.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes. Step 1 will probably surprise you.</p>
+<ol>
+<li>Put a scope on the clock line of any bus you have running and measure the
+actual frequency. Compare it to what you configured. Clock-tree drift is
+extremely common and almost nobody checks.</li>
+<li>Deliberately misconfigure CPHA on a working SPI link and look at what comes
+back. Confirm the shifted-by-one signature so you recognise it later.</li>
+<li>Work out your UART’s real baud rate from the divisor your hardware actually
+holds, rather than the number you asked for. Note the percentage error.</li>
+<li>Then write the I²C bus-recovery routine — nine clocks on SCL with SDA
+released, then a stop — and put it in your init. It costs fifteen lines and
+saves a power cycle every time a sensor locks the bus.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What does SPI give up in exchange for its speed?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-0-0" name="machines/02-embedded-c/09-uart-i2c-spi-0"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-0-0"><span class="quiz-letter">A</span><span>Reliable clocking, since each end runs from its own oscillator</span></label><p class="quiz-why"><b>Not quite.</b> That describes UART, which sends no clock. SPI transmits its clock on a wire, which is a large part of why it can run fast.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-0-1" name="machines/02-embedded-c/09-uart-i2c-spi-0"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-0-1"><span class="quiz-letter">B</span><span>Multiple devices, which need a separate bus for each of them</span></label><p class="quiz-why"><b>Not quite.</b> They share the clock and data lines and take one select pin each, so extra devices cost a pin rather than a bus.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-0-2" name="machines/02-embedded-c/09-uart-i2c-spi-0"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-0-2"><span class="quiz-letter">C</span><span>Full duplex operation, since the clock is shared between ends</span></label><p class="quiz-why"><b>Not quite.</b> SPI is full duplex by construction, with a line in each direction. That is one of its advantages rather than something it trades away.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-0-3" name="machines/02-embedded-c/09-uart-i2c-spi-0"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-0-3" data-correct><span class="quiz-letter">D</span><span>Any acknowledgement, so a silent device looks like a working one</span></label><p class="quiz-why"><b>Right.</b> There is no feedback in the protocol at all. A missing or dead device returns whatever the idle line is, which reads as valid data.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>You get framing errors on a link that is electrically clean. What should you check?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-1-0" name="machines/02-embedded-c/09-uart-i2c-spi-1"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-1-0"><span class="quiz-letter">A</span><span>The parity setting, since a mismatch corrupts the final data bit</span></label><p class="quiz-why"><b>Not quite.</b> A parity mismatch raises a parity error rather than a framing one, and the two are reported separately. Framing is about where the stop bit landed.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-1-1" name="machines/02-embedded-c/09-uart-i2c-spi-1"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-1-1" data-correct><span class="quiz-letter">B</span><span>The divisor, since rounding it produces a rate error that accumulates</span></label><p class="quiz-why"><b>Right.</b> The receiver resynchronises only on the start bit and counts from there. A few percent of error has drifted past the stop bit by the eighth data bit.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-1-2" name="machines/02-embedded-c/09-uart-i2c-spi-1"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-1-2"><span class="quiz-letter">C</span><span>The flow control, since an overrun drops bytes mid-transmission</span></label><p class="quiz-why"><b>Not quite.</b> An overrun raises an overrun flag and loses whole bytes rather than mangling their framing. It is a separate error with its own bit.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-1-3" name="machines/02-embedded-c/09-uart-i2c-spi-1"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-1-3"><span class="quiz-letter">D</span><span>The cable length, since reflections distort the edges at distance</span></label><p class="quiz-why"><b>Not quite.</b> Reflections do matter on long runs and produce genuine bit errors. The question says the link is clean, which points at timing instead.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>A device does not acknowledge its address, but it is powered and wired correctly. What is the likely cause?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-2-0" name="machines/02-embedded-c/09-uart-i2c-spi-2"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-2-0"><span class="quiz-letter">A</span><span>The bus speed exceeds what the device supports at that supply voltage</span></label><p class="quiz-why"><b>Not quite.</b> Too fast a clock usually gives corrupted data or intermittent acknowledges. A consistent silence at the address stage points at the address itself.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-2-1" name="machines/02-embedded-c/09-uart-i2c-spi-2"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-2-1"><span class="quiz-letter">B</span><span>The pull-ups are too strong for the device to pull the line down</span></label><p class="quiz-why"><b>Not quite.</b> An undersized pull-up does load the open-drain output, and it is worth checking against the sink current. It would corrupt data rather than suppress the acknowledge cleanly.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-2-2" name="machines/02-embedded-c/09-uart-i2c-spi-2"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-2-2" data-correct><span class="quiz-letter">C</span><span>The address includes the direction bit, so it is off by a factor of two</span></label><p class="quiz-why"><b>Right.</b> Datasheets often quote the eight-bit form, such as 0xD0, where the driver wants the seven-bit 0x68. It is the single commonest I2C mistake.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-2-3" name="machines/02-embedded-c/09-uart-i2c-spi-2"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-2-3"><span class="quiz-letter">D</span><span>The device needs a repeated start rather than a plain start condition</span></label><p class="quiz-why"><b>Not quite.</b> Repeated starts matter for combined read transactions after the address is accepted. The first addressing still uses an ordinary start.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Every byte from a SPI sensor reads as exactly double the expected value. What does that indicate?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-3-0" name="machines/02-embedded-c/09-uart-i2c-spi-3"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-3-0"><span class="quiz-letter">A</span><span>The sensor is configured for sixteen-bit words rather than eight</span></label><p class="quiz-why"><b>Not quite.</b> A word-length mismatch usually splits or merges bytes rather than scaling them cleanly. A consistent factor of two is a single-bit shift.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-3-1" name="machines/02-embedded-c/09-uart-i2c-spi-3"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-3-1" data-correct><span class="quiz-letter">B</span><span>The clock phase is wrong, so each bit is sampled one edge late</span></label><p class="quiz-why"><b>Right.</b> A phase error shifts the whole stream by one bit position, which is a doubling or halving. The arithmetic relationship is the giveaway.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-3-2" name="machines/02-embedded-c/09-uart-i2c-spi-3"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-3-2"><span class="quiz-letter">C</span><span>The chip select is released too early, truncating the final bit</span></label><p class="quiz-why"><b>Not quite.</b> Losing the last bit would halve rather than double, and it usually produces intermittent results. Worth checking, but the phase is likelier.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-3-3" name="machines/02-embedded-c/09-uart-i2c-spi-3"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-3-3"><span class="quiz-letter">D</span><span>The bytes are arriving least significant bit first and need reversing</span></label><p class="quiz-why"><b>Not quite.</b> A full bit reversal scrambles values unpredictably rather than doubling them. Some devices do offer the option, so it is worth ruling out.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Which bus failure is described as the commonest and the least suspected?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-4-0" name="machines/02-embedded-c/09-uart-i2c-spi-4"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-4-0" data-correct><span class="quiz-letter">A</span><span>The right waveform shape running at an unexpected clock rate</span></label><p class="quiz-why"><b>Right.</b> A clock-tree change upstream rescales every peripheral divider below it. The bus looks perfectly healthy, so nobody measures the frequency.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-4-1" name="machines/02-embedded-c/09-uart-i2c-spi-4"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-4-1"><span class="quiz-letter">B</span><span>A single byte arriving, from a missing acknowledge or an overrun</span></label><p class="quiz-why"><b>Not quite.</b> Distinctive and quickly diagnosed once seen, since the transaction visibly stops. It points at a short list of causes.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-4-2" name="machines/02-embedded-c/09-uart-i2c-spi-4"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-4-2"><span class="quiz-letter">C</span><span>A flat line where the peripheral clock was left disabled at reset</span></label><p class="quiz-why"><b>Not quite.</b> This one happens constantly, especially early on. Nothing at all on the line is unambiguous, which is why it does not survive long.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/09-uart-i2c-spi-4-3" name="machines/02-embedded-c/09-uart-i2c-spi-4"><label class="quiz-opt" for="machines/02-embedded-c/09-uart-i2c-spi-4-3"><span class="quiz-letter">D</span><span>Rounded edges on an I2C line from an oversized pull-up resistor</span></label><p class="quiz-why"><b>Not quite.</b> Common, and immediately visible once a probe is on the line. It looks wrong on screen, so it gets suspected quickly.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: White, Making Embedded Systems, ch. 6 · Yiu, The Definitive Guide to Arm Cortex-M, ch. 10 · NXP UM10204, the I2C-bus specification</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/02-embedded-c/08-timers-and-pwm" class="text-ash transition-colors hover:text-bone">← Timers, and PWM as the primitive under everything</a><a href="/course/machines/02-embedded-c/10-superloop-state-machine-rtos" class="text-ash transition-colors hover:text-bone">Superloop, state machine, RTOS →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

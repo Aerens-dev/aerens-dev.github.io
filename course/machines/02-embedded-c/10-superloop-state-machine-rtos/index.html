@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Superloop, state machine, RTOS — Machines · Aerens</title><meta name="description" content="Three architectures, the one question that picks between them, and the two bills an RTOS sends."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/02-embedded-c/10-superloop-state-machine-rtos/"><meta property="og:type" content="website"><meta property="og:title" content="Superloop, state machine, RTOS — Machines · Aerens"><meta property="og:description" content="Three architectures, the one question that picks between them, and the two bills an RTOS sends."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/02-embedded-c/10-superloop-state-machine-rtos/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Embedded C that doesn&#39;t lie to you</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Superloop, state machine, RTOS</h1><p class="mt-3 text-bone/70">Three architectures, the one question that picks between them, and the two bills an RTOS sends.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 05 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Say why a superloop&#39;s worst-case latency is the sum of everything in it</li><li>Turn one long blocking job into a run-to-completion state machine</li><li>Name the two costs of an RTOS, and the deadline count that justifies them</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Your control loop ran at 1 kHz. You added logging to an SD card. The control
+loop now runs at 24 Hz, and nothing in the control loop’s code changed.</p>
+<p>The instinct at this point is to reach for an RTOS, because that is what you do
+when a system has more than one thing to do. Sometimes that is right. Often it
+is buying a scheduler, a stack per task and a new category of bug in order to
+solve a problem that a hundred lines of state machine would have solved without
+any of them.</p>
+<p>This tutorial is about which of three architectures a system actually needs, and
+the question that decides it is narrower than it looks.</p>
+<h2 id="add-one-slow-job-delay-everything">Add one slow job, delay everything</h2>
+<p>In a plain superloop, each pass calls everything in turn. The worst case wait
+for any one task is therefore <strong>the total duration of every other task</strong>, and
+that is a property of the whole loop rather than of any task in it.</p>
+<p>That is why the SD write destroyed the control rate. The write takes 40 ms
+because the card occasionally goes away to do internal housekeeping, and during
+that time the loop is inside a blocking call. The control code is unchanged,
+still correct, and now running at 24 Hz.</p>
+<p>The property to notice is that <strong>nothing local tells you</strong>. Reviewing the
+control loop shows nothing wrong. Reviewing the logging code shows a normal
+blocking write. Only the composition is broken, and composition is what no file
+displays.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-superloop"><title id="fig-superloop">In a plain superloop the worst case wait for any one task is the total duration of every other task in the loop, so adding an unrelated slow job degrades the response time of everything.</title><text x="8" y="14" class="dim">ADD ONE SLOW JOB, DELAY EVERYTHING</text><rect class="fill" x="8" y="30" width="44" height="30"></rect><text x="16" y="50" class="tight">READ</text><rect class="fill" x="56" y="30" width="44" height="30"></rect><text x="64" y="50" class="tight">FILT</text><rect class="fill" x="104" y="30" width="44" height="30"></rect><text x="112" y="50" class="tight">CTRL</text><rect class="fill" x="152" y="30" width="44" height="30"></rect><text x="160" y="50" class="tight">LOG</text><text x="8" y="82" class="tight">LOOP TIME 1.2 MS</text><rect class="fill" x="8" y="96" width="44" height="30"></rect><text x="16" y="116" class="tight">READ</text><rect class="fill" x="56" y="96" width="44" height="30"></rect><text x="64" y="116" class="tight">FILT</text><rect class="fill" x="104" y="96" width="44" height="30"></rect><text x="112" y="116" class="tight">CTRL</text><rect class="mark" x="152" y="96" width="150" height="30"></rect><text x="160" y="116" class="tight">SD CARD WRITE</text><text x="8" y="148" class="tight">LOOP TIME 41 MS</text><text x="8" y="178" class="dim">THE CONTROL LOOP DID NOT CHANGE AND ITS RATE</text><text x="8" y="192" class="dim">FELL BY THIRTY FOLD. NOTHING IN ITS CODE SAYS SO</text></svg><figcaption class="fig-cap">Nothing in the control code changed. Its rate fell thirty-fold.</figcaption></figure>
+<h2 id="cut-the-long-job-into-short-ones">Cut the long job into short ones</h2>
+<p>The fix that does not need a scheduler is to stop having long jobs.</p>
+<p>An <strong>event-driven state machine</strong> keeps the loop, but every function it calls
+must <strong>run to completion</strong> quickly and return. A long operation becomes a
+sequence of states: instead of one call that writes 8 kB and blocks for 40 ms,
+you get sixteen visits that each push 512 bytes into a peripheral and return in
+40 µs.</p>
+<p>The state is an ordinary enum, the transitions are a switch, and the whole thing
+is inspectable — you can print the current state, log the transitions, and
+assert that an event arriving in the wrong state is a bug rather than a
+surprise. Samek’s argument is that most embedded systems are state machines
+already, and the only question is whether the states are written down or
+scattered through flags.</p>
+<p>This is the architecture most projects should reach for second, and most reach
+for never.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-state-machine"><title id="fig-state-machine">An event-driven state machine turns a long blocking job into a series of short run-to-completion steps, so the loop keeps its responsiveness without needing threads or a scheduler.</title><text x="8" y="14" class="dim">THE SAME JOB, CUT INTO STEPS</text><rect class="fill" x="8" y="30" width="60" height="34"></rect><text x="14" y="51" class="tight">IDLE</text><path class="accent" d="M70 47 H86"></path><path class="accent-fill" d="M86 43 L94 47 L86 51 Z"></path><rect class="fill" x="96" y="30" width="60" height="34"></rect><text x="102" y="51" class="tight">ARMED</text><path class="accent" d="M158 47 H174"></path><path class="accent-fill" d="M174 43 L182 47 L174 51 Z"></path><rect class="mark" x="184" y="30" width="60" height="34"></rect><text x="190" y="51" class="tight">WRITING</text><path class="accent" d="M246 47 H262"></path><path class="accent-fill" d="M262 43 L270 47 L262 51 Z"></path><rect class="fill" x="272" y="30" width="40" height="34"></rect><text x="278" y="51" class="tight">DONE</text><text x="8" y="92" class="tight">EACH TRANSITION RUNS TO COMPLETION AND RETURNS</text><text x="8" y="126" class="dim">THE SD WRITE BECOMES SIXTEEN VISITS OF 40 US</text><text x="8" y="140" class="dim">RATHER THAN ONE OF 40 MS, SO THE CONTROL LOOP</text><text x="8" y="154" class="dim">KEEPS ITS RATE. NO THREADS AND NO SCHEDULER,</text><text x="8" y="168" class="dim">AND THE STATE IS AN ENUM YOU CAN PRINT</text></svg><figcaption class="fig-cap">Sixteen visits of 40 microseconds, not one of forty milliseconds.</figcaption></figure>
+<h2 id="what-an-rtos-buys-and-what-it-charges">What an RTOS buys, and what it charges</h2>
+<p>An RTOS buys two real things. <strong>Independent deadlines</strong> — a high-priority task
+meets its deadline regardless of what a low-priority one is doing, because the
+scheduler preempts. And <strong>blocking calls that read naturally</strong>: <code>read(); wait(); process();</code> in a straight line, instead of a state machine turned inside out.</p>
+<p>The second is a bigger deal than it sounds. A protocol with eight sequential
+steps is unpleasant as a state machine and obvious as a task.</p>
+<p>It charges twice. <strong>A stack per task</strong>, each sized by somebody’s guess, and
+eight tasks at 1 kB is 8 kB of RAM gone before any work is done — go back to
+tutorial 06 and see what that does to the budget. And <strong>a whole class of bug
+that a superloop cannot have</strong>: races, deadlock, priority inversion. In a
+superloop, two functions cannot interleave. Under a scheduler they can, at any
+instruction boundary, and only sometimes.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-rtos-costs"><title id="fig-rtos-costs">An RTOS buys independent deadlines and blocking calls that read naturally, and charges for it in a stack per task and in a class of concurrency bug that a superloop cannot have.</title><text x="8" y="14" class="dim">BUYS</text><text x="168" y="14" class="dim">CHARGES</text><rect class="fill" x="8" y="24" width="146" height="106"></rect><text x="18" y="46" class="tight">DEADLINES THAT DO</text><text x="18" y="60" class="tight">NOT INTERACT</text><text x="18" y="84" class="tight">BLOCKING CALLS</text><text x="18" y="98" class="tight">THAT READ LINEARLY</text><text x="18" y="120" class="tight">PRIORITY BY DEADLINE</text><rect class="mark" x="168" y="24" width="144" height="106"></rect><text x="178" y="46" class="tight">ONE STACK PER TASK</text><text x="178" y="60" class="tight">SIZED BY GUESSWORK</text><text x="178" y="84" class="tight">RACES, DEADLOCK,</text><text x="178" y="98" class="tight">PRIORITY INVERSION</text><text x="178" y="120" class="tight">A SCHEDULER TO LEARN</text><text x="8" y="164" class="dim">THE STACK BILL IS THE ONE THAT BITES FIRST: EIGHT</text><text x="8" y="178" class="dim">TASKS AT 1 KB EACH IS 8 KB GONE BEFORE ANY WORK,</text><text x="8" y="192" class="dim">AND EACH ONE SIZED BY A NUMBER SOMEBODY GUESSED</text></svg><figcaption class="fig-cap">The stack bill arrives first. The concurrency bill arrives later.</figcaption></figure>
+<h2 id="priority-inversion">Priority inversion</h2>
+<p>The classic, and worth knowing by name because it is the one that will not
+reproduce.</p>
+<p>A <strong>low</strong> priority task takes a lock. A <strong>high</strong> priority task tries to take the
+same lock and blocks — correct so far, and bounded by how long the low task
+holds it. Then a <strong>medium</strong> priority task, which wants nothing to do with the
+lock, becomes runnable and preempts the low one.</p>
+<p>Now the medium task runs, the low task cannot run to release the lock, and the
+high task waits behind both. The highest-priority work in the system is
+effectively running at the medium priority, and there is no bound on how long
+that lasts. This is what put Mars Pathfinder into a reset loop on the surface
+in 1997.</p>
+<p>The fix is <strong>priority inheritance</strong>: while a low-priority task holds a lock that
+a high-priority task wants, it temporarily runs at the high priority. FreeRTOS
+mutexes do this and its binary semaphores do not, which is the practical reason
+to use a mutex for mutual exclusion and keep semaphores for signalling.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-inversion"><title id="fig-inversion">Priority inversion happens when a high priority task blocks on a lock held by a low priority one and an unrelated medium priority task then preempts the holder, so the highest priority work waits on the middle one.</title><text x="8" y="14" class="dim">THE HIGHEST PRIORITY TASK WAITS ON THE MIDDLE ONE</text><text x="8" y="52" class="tight">LOW</text><path class="rule" d="M56 56 H104"></path><path class="dash" d="M104 56 H232"></path><path class="rule" d="M232 56 H268"></path><text x="112" y="48" class="tight">HOLDS THE LOCK THROUGHOUT</text><text x="8" y="94" class="tight">MED</text><path class="accent" d="M104 98 H232"></path><text x="8" y="136" class="tight">HIGH</text><path class="dash" d="M88 140 H268"></path><circle class="mark" cx="88" cy="140" r="7"></circle><text x="100" y="132" class="tight">BLOCKED ON THE LOCK</text><text x="8" y="172" class="dim">PRIORITY INHERITANCE FIXES IT BY LIFTING THE</text><text x="8" y="186" class="dim">HOLDER TO THE WAITER'S PRIORITY WHILE IT HOLDS</text></svg><figcaption class="fig-cap">The highest priority work, running at the middle priority.</figcaption></figure>
+<h2 id="the-question-that-decides-it">The question that decides it</h2>
+<p>Not “how big is the system” and not “how important is it”. The question is
+<strong>how many genuinely independent deadlines are there</strong>.</p>
+<p><strong>One or none</strong> — a superloop, and no apology needed. Most motor controllers,
+most sensor nodes, most of what this course builds. It is the easiest thing to
+reason about and the easiest to measure.</p>
+<p><strong>A few, with some long jobs</strong> — event-driven state machines. The long job stops
+being long and the superloop keeps working.</p>
+<p><strong>Many, genuinely unrelated</strong> — an RTOS. A device doing motor control at 10 kHz,
+a TCP stack, a filesystem and a display has four unrelated deadlines and no
+sensible superloop.</p>
+<p>The flight controller in track 8 is the interesting case: the rate loop at 8 kHz
+and everything else. That is <em>one</em> hard deadline and a pile of soft ones, which
+is why real flight controllers run the rate loop in an interrupt and the rest in
+a superloop underneath it.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-which-arch"><title id="fig-which-arch">The choice between a superloop, a state machine and an RTOS is decided by how many independent deadlines the system has, not by how large or how important it is.</title><text x="8" y="14" class="dim">HOW MANY INDEPENDENT DEADLINES</text><rect class="fill" x="8" y="28" width="304" height="44"></rect><text x="18" y="46" class="tight">ONE, OR NONE</text><text x="18" y="64" class="tight">SUPERLOOP. DO NOT APOLOGISE FOR IT</text><rect class="mark" x="8" y="78" width="304" height="44"></rect><text x="18" y="96" class="tight">A FEW, WITH LONG JOBS</text><text x="18" y="114" class="tight">EVENT-DRIVEN STATE MACHINES</text><rect class="fill" x="8" y="128" width="304" height="44"></rect><text x="18" y="146" class="tight">MANY, GENUINELY UNRELATED</text><text x="18" y="164" class="tight">RTOS, AND PAY THE STACK BILL</text><text x="8" y="192" class="dim">SIZE AND IMPORTANCE ARE NOT THE QUESTION</text></svg><figcaption class="fig-cap">Count deadlines. Size and importance are not the question.</figcaption></figure>
+<h2 id="worked-example-rescuing-the-1-khz-loop-three-ways">Worked example: rescuing the 1 kHz loop three ways</h2>
+<p>The opening system: control at 1 kHz, and an 8 kB SD write that blocks for 40 ms
+once a second.</p>
+<p><strong>Option A — superloop with the write split by state machine.</strong></p>
+<p>The write becomes sixteen 512-byte pushes through DMA, one per pass, each
+costing 40 µs of CPU to set up.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control loop budget</td>
+<td>1,000 µs</td>
+</tr>
+<tr>
+<td>Control work</td>
+<td>180 µs</td>
+</tr>
+<tr>
+<td>Log state step</td>
+<td>40 µs</td>
+</tr>
+<tr>
+<td><strong>Worst case pass</strong></td>
+<td><strong>220 µs</strong></td>
+</tr>
+<tr>
+<td>Control rate achieved</td>
+<td>1 kHz, with 78% headroom</td>
+</tr>
+</tbody>
+</table>
+<p>Logging now takes 16 ms of wall clock instead of 40 ms, spread across 16 passes.
+The control loop never notices. Cost: about 120 lines and one enum.</p>
+<p><strong>Option B — FreeRTOS, two tasks.</strong></p>
+<p>Control at priority 3, logging at priority 1, a queue between them.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control task stack</td>
+<td>1.0 kB</td>
+</tr>
+<tr>
+<td>Log task stack, needs the FatFs buffers</td>
+<td>2.5 kB</td>
+</tr>
+<tr>
+<td>Idle task stack</td>
+<td>0.5 kB</td>
+</tr>
+<tr>
+<td>Kernel objects, queue of 32 samples</td>
+<td>0.9 kB</td>
+</tr>
+<tr>
+<td><strong>RAM added</strong></td>
+<td><strong>4.9 kB</strong></td>
+</tr>
+<tr>
+<td>Context switch, 84 MHz</td>
+<td>3.4 µs, twice per switch</td>
+</tr>
+<tr>
+<td>Control jitter</td>
+<td>±8 µs from switch latency</td>
+</tr>
+</tbody>
+</table>
+<p>It works, it reads better than option A, and it costs 4.9 kB of the 38 kB spare
+from tutorial 06’s budget. Also: the queue is now a place where a race can live,
+and the log task’s stack is a guess until measured.</p>
+<p><strong>Option C — rate loop in an interrupt, everything else in a superloop.</strong></p>
+<p>Control moves into the timer ISR at 1 kHz. Logging stays a plain blocking write
+in the main loop and is allowed to take its 40 ms.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control jitter</td>
+<td>±0.4 µs, interrupt latency only</td>
+</tr>
+<tr>
+<td>RAM added</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Log latency</td>
+<td>40 ms, and nothing cares</td>
+</tr>
+<tr>
+<td>Constraint</td>
+<td>control must fit in 180 µs and use no blocking call</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Which one.</strong> C, for this system, and it is worth being clear why: there is one
+hard deadline, and an interrupt is a one-task scheduler that is already in the
+silicon and costs nothing. B becomes right when there are three or four such
+deadlines and the interrupt approach runs out of priorities to arrange. A is the
+right answer when the long job is one you control and the deadline count is
+still one.</p>
+<p>The general shape: <strong>pay for a scheduler when you have more independent
+deadlines than the interrupt controller can express</strong>, and not before.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 1 is the measurement most projects have never made.</p>
+<ol>
+<li>Toggle a pin at the top of your main loop and measure the period on a scope,
+with the system doing its heaviest work. That is your real loop time, and the
+worst case is what matters rather than the average.</li>
+<li>Find the longest blocking call in your codebase and time it. If it is longer
+than your shortest deadline, you already have the opening problem.</li>
+<li>Take one long operation and rewrite it as a state machine with a <code>switch</code> and
+an enum. Measure the loop again.</li>
+<li>Then, if you run an RTOS: print the high-water mark for every task stack
+after an hour of load. The numbers are usually nothing like what was
+allocated, in both directions.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Why does reviewing the control loop&#39;s source fail to reveal why its rate collapsed?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-0-0" name="machines/02-embedded-c/10-superloop-state-machine-rtos-0"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-0-0"><span class="quiz-letter">A</span><span>The control loop&#39;s own timing depends on an interrupt that changed</span></label><p class="quiz-why"><b>Not quite.</b> Nothing about the interrupts changed here. The control code runs at the same speed; it simply runs far less often.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-0-1" name="machines/02-embedded-c/10-superloop-state-machine-rtos-0"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-0-1"><span class="quiz-letter">B</span><span>The compiler reordered the loop body once the write was added</span></label><p class="quiz-why"><b>Not quite.</b> Reordering does not move work across a function call with side effects, and it would not cost thirty-fold. The cost is the blocking write itself.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-0-2" name="machines/02-embedded-c/10-superloop-state-machine-rtos-0"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-0-2" data-correct><span class="quiz-letter">C</span><span>The defect is in the composition, which no single file displays</span></label><p class="quiz-why"><b>Right.</b> Both the control code and the logging code are individually correct. What broke is that one shares a loop with the other, which lives in neither.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-0-3" name="machines/02-embedded-c/10-superloop-state-machine-rtos-0"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-0-3"><span class="quiz-letter">D</span><span>The stack grew, so the control code now runs from slower memory</span></label><p class="quiz-why"><b>Not quite.</b> Stack growth does not relocate code, and instruction fetch is from flash regardless. The delay is time spent inside the write.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>What does run-to-completion mean in an event-driven state machine?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-1-0" name="machines/02-embedded-c/10-superloop-state-machine-rtos-1"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-1-0"><span class="quiz-letter">A</span><span>The machine is protected from interrupts during a transition</span></label><p class="quiz-why"><b>Not quite.</b> Interrupts still fire normally and often deliver the events. Transitions are short rather than protected.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-1-1" name="machines/02-embedded-c/10-superloop-state-machine-rtos-1"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-1-1"><span class="quiz-letter">B</span><span>Each job runs until finished, so the loop waits for the whole task</span></label><p class="quiz-why"><b>Not quite.</b> That is exactly what the pattern is avoiding, and it describes the blocking superloop instead. Completion here refers to one transition.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-1-2" name="machines/02-embedded-c/10-superloop-state-machine-rtos-1"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-1-2"><span class="quiz-letter">C</span><span>Every event is queued and processed after the current loop pass</span></label><p class="quiz-why"><b>Not quite.</b> Queuing events is a common companion to the pattern and often sensible. The defining property is that each handler returns promptly.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-1-3" name="machines/02-embedded-c/10-superloop-state-machine-rtos-1"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-1-3" data-correct><span class="quiz-letter">D</span><span>Each transition finishes quickly and returns before the next event</span></label><p class="quiz-why"><b>Right.</b> A long job becomes a sequence of short visits, each leaving the machine in a well defined state. Nothing blocks inside a transition.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>Which cost of an RTOS shows up first on a small microcontroller?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-2-0" name="machines/02-embedded-c/10-superloop-state-machine-rtos-2"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-2-0"><span class="quiz-letter">A</span><span>Interrupt latency, since the kernel masks interrupts for long periods</span></label><p class="quiz-why"><b>Not quite.</b> Good kernels keep their critical sections short and bounded, and publish the figure. It is worth checking rather than being the first problem.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-2-1" name="machines/02-embedded-c/10-superloop-state-machine-rtos-2"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-2-1"><span class="quiz-letter">B</span><span>Context switch time, which consumes most of the available cycles</span></label><p class="quiz-why"><b>Not quite.</b> A switch is a few microseconds and only happens at switch points, so it is rarely the binding cost. It matters for jitter more than throughput.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-2-2" name="machines/02-embedded-c/10-superloop-state-machine-rtos-2"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-2-2" data-correct><span class="quiz-letter">C</span><span>A stack for every task, each sized by an estimate somebody made</span></label><p class="quiz-why"><b>Right.</b> Eight tasks at a kilobyte apiece is 8 kB before any work, on a part that may have 128 kB total. It is spent at compile time and cannot be recovered.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-2-3" name="machines/02-embedded-c/10-superloop-state-machine-rtos-2"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-2-3"><span class="quiz-letter">D</span><span>The scheduler&#39;s own code, which dominates the whole flash budget</span></label><p class="quiz-why"><b>Not quite.</b> A small kernel is a few kilobytes of flash, which is usually the plentiful resource. RAM per task is the tighter constraint.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>How does priority inheritance resolve the inversion?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-3-0" name="machines/02-embedded-c/10-superloop-state-machine-rtos-3"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-3-0"><span class="quiz-letter">A</span><span>The scheduler releases the lock on behalf of the low priority task</span></label><p class="quiz-why"><b>Not quite.</b> Forcibly releasing a lock would leave whatever it protects half updated. The holder must finish, which is why it is promoted instead.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-3-1" name="machines/02-embedded-c/10-superloop-state-machine-rtos-3"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-3-1"><span class="quiz-letter">B</span><span>The medium priority task is deferred until every lock is released</span></label><p class="quiz-why"><b>Not quite.</b> That is priority ceiling territory and it is heavier handed, blocking tasks unrelated to the lock. Inheritance acts on the holder alone.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-3-2" name="machines/02-embedded-c/10-superloop-state-machine-rtos-3"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-3-2" data-correct><span class="quiz-letter">C</span><span>The lock holder is lifted to the priority of the task waiting on it</span></label><p class="quiz-why"><b>Right.</b> While it holds the contended lock the low task runs at high priority, so the medium task no longer preempts it and the wait becomes bounded.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-3-3" name="machines/02-embedded-c/10-superloop-state-machine-rtos-3"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-3-3"><span class="quiz-letter">D</span><span>The waiting task is lowered so it no longer blocks the medium one</span></label><p class="quiz-why"><b>Not quite.</b> That would make the high priority task even later, which is backwards. Inheritance raises the holder rather than lowering the waiter.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>A flight controller runs a rate loop at 8 kHz plus telemetry, logging and a display. What architecture does that argue for?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-4-0" name="machines/02-embedded-c/10-superloop-state-machine-rtos-4"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-4-0"><span class="quiz-letter">A</span><span>An RTOS with four tasks, one for each of the four activities</span></label><p class="quiz-why"><b>Not quite.</b> Four activities are not four independent hard deadlines, and this pays a stack for each. It becomes right when several deadlines are genuinely hard.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-4-1" name="machines/02-embedded-c/10-superloop-state-machine-rtos-4"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-4-1" data-correct><span class="quiz-letter">B</span><span>The rate loop in an interrupt, with the rest in a superloop below</span></label><p class="quiz-why"><b>Right.</b> There is one hard deadline and several soft ones. An interrupt is a one-task scheduler already in the silicon, and it costs no RAM.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-4-2" name="machines/02-embedded-c/10-superloop-state-machine-rtos-4"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-4-2"><span class="quiz-letter">C</span><span>A superloop, since the four jobs are periodic and well understood</span></label><p class="quiz-why"><b>Not quite.</b> A plain superloop puts the 8 kHz deadline at the mercy of the logging, which is the failure this tutorial opened with.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/10-superloop-state-machine-rtos-4-3" name="machines/02-embedded-c/10-superloop-state-machine-rtos-4"><label class="quiz-opt" for="machines/02-embedded-c/10-superloop-state-machine-rtos-4-3"><span class="quiz-letter">D</span><span>Four state machines in one loop, each advancing one step per pass</span></label><p class="quiz-why"><b>Not quite.</b> A reasonable structure for the three soft jobs, and it composes well. It still cannot guarantee the 8 kHz loop against a long pass.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: White, Making Embedded Systems, ch. 5 and 10 · Samek, Practical UML Statecharts in C/C++, ch. 2-3 · Mastering the FreeRTOS Real Time Kernel, ch. 3-4 and 7</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/02-embedded-c/09-uart-i2c-spi" class="text-ash transition-colors hover:text-bone">← UART, I2C and SPI, and how to debug each on a scope</a><a href="/course/machines/02-embedded-c/11-fixed-point-and-float" class="text-ash transition-colors hover:text-bone">Fixed point against float on a Cortex-M4 →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

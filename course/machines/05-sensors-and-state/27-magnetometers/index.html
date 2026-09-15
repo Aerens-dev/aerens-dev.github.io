@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Magnetometers, hard iron and soft iron — Machines · Aerens</title><meta name="description" content="The shape of the distortion tells you which fault it is, why heading needs attitude first, and why your own motor current is the biggest disturbance."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/05-sensors-and-state/27-magnetometers/"><meta property="og:type" content="website"><meta property="og:title" content="Magnetometers, hard iron and soft iron — Machines · Aerens"><meta property="og:description" content="The shape of the distortion tells you which fault it is, why heading needs attitude first, and why your own motor current is the biggest disturbance."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/05-sensors-and-state/27-magnetometers/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Sensors and state</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Magnetometers, hard iron and soft iron</h1><p class="mt-3 text-bone/70">The shape of the distortion tells you which fault it is, why heading needs attitude first, and why your own motor current is the biggest disturbance.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Diagnose hard iron and soft iron from the shape of a rotated sample cloud</li><li>Say why a tilted magnetometer gives a wrong heading, and by roughly how much</li><li>Estimate the field from a motor lead and place the sensor accordingly</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Tutorial 25 left yaw unobservable and tutorial 26 left it drifting at about
+7° per ten minutes. A magnetometer fixes that, in principle, by giving an
+absolute heading reference.</p>
+<p>In practice your first magnetometer reading will be wrong by tens of degrees,
+it will change when you advance the throttle, and it will change again when you
+tilt the aircraft. Each of those has a different cause and a different fix, and
+none of them is the sensor being faulty.</p>
+<p>This is the messiest sensor in the course, and it is worth the trouble because
+nothing else gives you heading without either GNSS motion or a camera.</p>
+<h2 id="the-shape-is-the-diagnosis">The shape is the diagnosis</h2>
+<p>Rotate a magnetometer through every orientation and plot the three axes against
+each other. A perfect sensor in a clean environment traces a <strong>sphere centred on
+the origin</strong>, because the field has constant magnitude and you are sampling its
+direction.</p>
+<p>Two things distort it, and they distort it differently.</p>
+<p><strong>Hard iron</strong> is a permanent magnetic field travelling with the sensor —
+magnets in the motors, magnetised steel screws, the speaker in a phone. It adds
+a constant vector, which <strong>moves the sphere off centre</strong> without changing its
+shape. Correction: subtract a vector, three numbers.</p>
+<p><strong>Soft iron</strong> is ferrous material that distorts the external field without
+generating one — a steel bracket, a battery case. It scales the field
+differently along different directions, <strong>squashing the sphere into an
+ellipsoid</strong>. Correction: a 3×3 matrix.</p>
+<p>The diagnostic value is that you can see which you have from the plot. Off
+centre and round is hard iron alone, which is the common case and the easy fix.
+Distinctly elliptical means soft iron as well.</p>
+<figure class="fig"><svg viewBox="0 0 320 208" role="img" aria-labelledby="fig-hard-soft"><title id="fig-hard-soft">Rotating a clean magnetometer traces a sphere centred on the origin, a hard-iron offset moves that sphere off centre without changing its shape, and soft iron squashes it into an ellipsoid.</title><text x="8" y="14" class="dim">ROTATE IT AND PLOT. THE SHAPE IS THE DIAGNOSIS</text><path class="thin" d="M56 34 V114"></path><path class="thin" d="M20 74 H92"></path><circle class="rule" cx="56" cy="74" r="28"></circle><text x="30" y="140" class="tight">CLEAN</text><text x="30" y="156" class="tight">CENTRED</text><path class="thin" d="M160 34 V114"></path><path class="thin" d="M124 74 H196"></path><circle class="accent" cx="174" cy="64" r="28"></circle><circle class="mark" cx="174" cy="64" r="7"></circle><text x="128" y="140" class="tight">HARD IRON</text><text x="128" y="156" class="tight">OFF CENTRE</text><path class="thin" d="M264 34 V114"></path><path class="thin" d="M228 74 H300"></path><ellipse class="rule" cx="264" cy="74" rx="15" ry="28"></ellipse><text x="232" y="140" class="tight">SOFT IRON</text><text x="232" y="156" class="tight">SQUASHED</text><text x="8" y="190" class="dim">SUBTRACT A VECTOR FOR THE MIDDLE ONE, AND A THREE</text><text x="8" y="204" class="dim">BY THREE MATRIX FOR THE ONE ON THE RIGHT</text></svg><figcaption class="fig-cap">Off-centre is hard iron. Squashed is soft iron.</figcaption></figure>
+<h2 id="heading-needs-attitude-first">Heading needs attitude first</h2>
+<p>Earth’s field does not lie flat along the ground. At Belgian latitudes it <strong>dips
+about 66° into the ground</strong> — the inclination — so only about 40% of the total
+field is horizontal and the rest points down.</p>
+<p>That matters because a magnetometer measures the field in the <strong>body</strong> frame. If
+the vehicle is tilted, part of that large vertical component lands on the axes
+you are using for heading, and the heading is wrong. At 10° of tilt the error
+can be tens of degrees, not a few.</p>
+<p>So heading is computed in two steps, in this order:</p>
+<ol>
+<li>Get <strong>roll and pitch</strong> from the accelerometer and gyro, per tutorial 26.</li>
+<li><strong>Rotate the magnetometer reading into the horizontal plane</strong> using those
+angles, then take the arctangent of the two horizontal components.</li>
+</ol>
+<p>This is <em>tilt compensation</em>, and skipping it is the commonest magnetometer
+mistake. It also explains a symptom that otherwise makes no sense: a heading
+that is correct while hovering level and swings wildly during a banked turn.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-tilt-comp"><title id="fig-tilt-comp">Earth's magnetic field dips steeply into the ground at European latitudes, so a tilted magnetometer reads part of the vertical component as horizontal and the heading is wrong until the tilt is removed.</title><text x="8" y="14" class="dim">THE FIELD IS NOT HORIZONTAL</text><path class="thin" d="M40 88 H272"></path><path class="accent" d="M60 52 L190 118"></path><circle class="mark" cx="190" cy="118" r="7"></circle><text x="60" y="112" class="tight">66 DEGREES DOWN</text><text x="60" y="44" class="tight">HORIZONTAL</text><text x="8" y="146" class="dim">SO ONLY 40 PER CENT OF THE FIELD IS HORIZONTAL,</text><text x="8" y="160" class="dim">AND A 10 DEGREE TILT LEAKS ENOUGH OF THE VERTICAL</text><text x="8" y="174" class="dim">PART INTO THE HORIZONTAL AXES TO MOVE HEADING BY</text><text x="8" y="188" class="dim">TENS OF DEGREES. ROLL AND PITCH COME FIRST</text></svg><figcaption class="fig-cap">Sixty-six degrees down. Only 40 per cent of it is heading.</figcaption></figure>
+<h2 id="your-own-current-is-the-biggest-disturbance">Your own current is the biggest disturbance</h2>
+<p>A straight wire carrying current produces a field of about <strong>2 µT per amp at
+10 mm</strong>, falling off as 1/r.</p>
+<p>Earth’s horizontal field in Belgium is about <strong>19 µT</strong>. So a motor lead carrying
+10 A at 10 mm from the sensor produces a disturbance <strong>the size of the entire
+signal you are trying to measure</strong> — and it varies with throttle, which means
+the heading error is correlated with exactly what the aircraft is doing.</p>
+<p>Three consequences that shape the physical build:</p>
+<ul>
+<li><strong>Distance is the whole fix</strong>, because the field falls off linearly. Doubling
+the separation halves the error. This is why GNSS-and-compass modules sit on a
+mast.</li>
+<li><strong>Twisting the motor leads</strong> helps a great deal: the go and return currents
+cancel, and the residual falls much faster than 1/r.</li>
+<li><strong>Current-based compensation</strong> — measure total current and subtract a fitted
+field — works and is used in real flight stacks, and is far inferior to
+moving the sensor 50 mm.</li>
+</ul>
+<p>The general form of this is worth carrying beyond magnetometers: <strong>a disturbance
+correlated with your own control action is much worse than a larger uncorrelated
+one</strong>, because it enters the loop rather than averaging out.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-current-mag"><title id="fig-current-mag">A current-carrying wire produces a field that falls off with distance, so motor leads near a magnetometer swing the heading with throttle, which is a disturbance correlated with exactly what you are doing.</title><text x="8" y="14" class="dim">HEADING ERROR AGAINST THROTTLE</text><path class="thin" d="M40 30 V108 H272"></path><text x="236" y="124" class="tight">AMPS</text><path class="accent" d="M44 104 L252 44"></path><circle class="mark" cx="180" cy="65" r="7"></circle><text x="56" y="128" class="tight">20 MM FROM A 40 A LEAD</text><text x="8" y="150" class="dim">A STRAIGHT WIRE GIVES 2 MICROTESLA PER AMP AT 10</text><text x="8" y="164" class="dim">MM. EARTH'S HORIZONTAL FIELD IN BELGIUM IS ABOUT</text><text x="8" y="178" class="dim">19. SO 10 A AT 10 MM IS THE WHOLE SIGNAL AGAIN,</text><text x="8" y="192" class="dim">AND IT MOVES WITH THROTTLE</text></svg><figcaption class="fig-cap">Ten amps at ten millimetres is the whole of Earth&#39;s field again.</figcaption></figure>
+<h2 id="what-the-calibration-dance-is-doing">What the calibration dance is doing</h2>
+<p>The figure-of-eight waving that every drone and phone asks for is sampling the
+sphere. What it needs is <strong>coverage of orientations</strong>, not duration — thirty
+seconds of thorough tumbling beats five minutes of rotating about one axis.</p>
+<p>Then a fit:</p>
+<p><strong>Sphere fit</strong> gives you the centre, which is the hard-iron offset. Subtract it.
+This is most of the available benefit, and for many installations it is all you
+need.</p>
+<p><strong>Ellipsoid fit</strong> gives you the axes as well, which is the soft-iron matrix.
+Only worth doing if the sphere fit leaves a poor residual — fitting nine more
+parameters to noisy data can easily make things worse.</p>
+<p>And the part that catches people: <strong>the calibration belongs to the vehicle, not
+to the sensor</strong>. Move the battery, add a steel bracket, re-route a motor lead,
+or remount the board, and it is invalid. A stored calibration with no record of
+what configuration it was taken in is a number nobody can trust later.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-mag-calib"><title id="fig-mag-calib">Waving the device through many orientations samples the sphere so an offset and a scaling can be fitted, and coverage rather than duration is what makes the fit good.</title><text x="8" y="14" class="dim">WHAT THE WAVING IS FOR</text><rect class="fill" x="8" y="28" width="304" height="38"></rect><text x="18" y="46" class="tight">COLLECT SAMPLES IN MANY ORIENTATIONS</text><text x="18" y="60" class="tight">COVERAGE MATTERS, NOT HOW LONG YOU WAVE</text><rect class="fill" x="8" y="72" width="304" height="38"></rect><text x="18" y="90" class="tight">FIT A SPHERE · CENTRE IS THE HARD IRON</text><text x="18" y="104" class="tight">SUBTRACT IT. THIS IS MOST OF THE BENEFIT</text><rect class="mark" x="8" y="116" width="304" height="38"></rect><text x="18" y="134" class="tight">FIT AN ELLIPSOID · AXES ARE THE SOFT IRON</text><text x="18" y="148" class="tight">ONLY WORTH IT IF THE SPHERE FIT IS POOR</text><text x="8" y="180" class="dim">AND REDO IT WHENEVER ANYTHING FERROUS MOVES,</text><text x="8" y="194" class="dim">BECAUSE THE CALIBRATION BELONGS TO THE VEHICLE</text></svg><figcaption class="fig-cap">Coverage, then a sphere. The ellipsoid only if the sphere fits badly.</figcaption></figure>
+<h2 id="magnetic-north-is-not-true-north">Magnetic north is not true north</h2>
+<p>Finally, the easy one that is easy to forget. A calibrated, tilt-compensated
+magnetometer gives you <strong>magnetic</strong> heading. Navigation wants <strong>true</strong> heading,
+and the difference is the <em>declination</em>.</p>
+<p>In Brussels it is currently about 1.4° east, which is small enough to ignore for
+many purposes and large enough to matter for a long autonomous leg. Elsewhere it
+is much larger, and everywhere it drifts by a fraction of a degree per year.</p>
+<p>The right approach is to look it up from position — the World Magnetic Model is
+a small table and GNSS gives you the position — rather than hard-coding a
+constant that silently goes stale. If you do hard-code it, write the date next
+to it.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-declination"><title id="fig-declination">The angle between magnetic and true north varies by location and drifts by a fraction of a degree each year, so a heading is only as good as the declination value applied to it.</title><text x="8" y="14" class="dim">TWO NORTHS, ONE LOOKUP</text><path class="thin" d="M110 120 V40"></path><text x="86" y="32" class="tight">TRUE</text><path class="accent" d="M110 120 L138 44"></path><circle class="mark" cx="138" cy="44" r="7"></circle><text x="150" y="40" class="tight">MAGNETIC</text><text x="8" y="148" class="tight">BRUSSELS, 2026 · ABOUT 1.4 DEGREES EAST</text><text x="8" y="176" class="dim">SMALL HERE AND LARGE ELSEWHERE. IT ALSO MOVES,</text><text x="8" y="190" class="dim">SO A HARD-CODED VALUE QUIETLY GOES STALE</text></svg><figcaption class="fig-cap">A lookup, not a constant. And it moves.</figcaption></figure>
+<h2 id="worked-example-where-to-put-the-compass">Worked example: where to put the compass</h2>
+<p>The track 8 quadcopter. 4S, four motors, up to 95 A total at full throttle.
+Decide the mounting position before the frame is drilled.</p>
+<p><strong>Step 1 — the error budget.</strong> Target: heading good to 3° under all throttle
+settings. Earth’s horizontal field is 19 µT, so 3° corresponds to a disturbance
+of 19 × tan(3°) = <strong>1.0 µT</strong>.</p>
+<p><strong>Step 2 — what the leads produce.</strong> Four leads, each up to 24 A, twisted pairs.
+A twisted pair’s residual field falls roughly as 1/r² rather than 1/r; measured
+on the bench at 24 A:</p>
+<table>
+<thead>
+<tr>
+<th>Distance</th>
+<th>Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 mm</td>
+<td>4.8 µT</td>
+</tr>
+<tr>
+<td>25 mm</td>
+<td>0.9 µT</td>
+</tr>
+<tr>
+<td>50 mm</td>
+<td>0.22 µT</td>
+</tr>
+<tr>
+<td>100 mm</td>
+<td>0.06 µT</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3 — the naive answer and why it fails.</strong> 25 mm looks adequate against the
+1.0 µT budget. But there are four leads, and they do not cancel — the worst case
+is roughly the sum, so at 25 mm the total is about 3.6 µT, giving <strong>10.7° of
+error at full throttle</strong>.</p>
+<p><strong>Step 4 — where it actually has to go.</strong> Needing 1.0 µT from four leads means
+0.25 µT each, which the table puts at about <strong>50 mm</strong>. On a 250 mm frame that
+means a short mast or a position on the top plate well away from the power
+distribution.</p>
+<p><strong>Step 5 — check the other sources before committing.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Field at the chosen spot</th>
+<th>Heading error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Four motor leads at 50 mm</td>
+<td>0.88 µT</td>
+<td>2.7°</td>
+</tr>
+<tr>
+<td>Battery current path</td>
+<td>0.31 µT</td>
+<td>0.9°</td>
+</tr>
+<tr>
+<td>Motor magnets, static</td>
+<td>2.1 µT</td>
+<td>calibrated out</td>
+</tr>
+<tr>
+<td>Steel M3 screws nearby</td>
+<td>0.4 µT</td>
+<td>calibrated out</td>
+</tr>
+<tr>
+<td><strong>Varying total</strong></td>
+<td><strong>1.19 µT</strong></td>
+<td><strong>3.6°</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Slightly over budget, and note which rows matter: the static sources are large
+and <strong>harmless</strong>, because hard-iron calibration removes anything constant. Only
+the current-dependent rows survive calibration, and they are the small ones.</p>
+<p>That is the whole design insight. <strong>Calibration handles the big constant fields
+and cannot touch the small varying ones</strong>, so mounting decisions should be made
+entirely on the varying sources — which means keeping the sensor away from
+current paths matters far more than keeping it away from magnets.</p>
+<p><strong>The fix to get under budget</strong>: move it to 65 mm, or accept 3.6° and note that
+the yaw estimate is good to about 4° in flight. For a vehicle that navigates by
+GNSS and uses the compass mainly at low speed, 4° is fine, and knowing that is
+better than chasing a number.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty-five minutes, and step 2 is the one that will surprise you.</p>
+<ol>
+<li>Log a magnetometer while tumbling it through every orientation, and plot the
+three axes pairwise. You will see the offset immediately, and probably the
+ellipse too.</li>
+<li>Now log it while running a motor at increasing throttle, holding the sensor
+still. Plot heading against current. The slope is your disturbance, and it is
+usually larger than expected.</li>
+<li>Compute heading with and without tilt compensation while tilting the device
+30°. The difference is why the compensation exists.</li>
+<li>Then look up the declination where you are, with today’s date, and note how
+much it has moved in ten years. That tells you whether hard-coding it is
+acceptable for your use.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>A rotated magnetometer traces a round sphere that is displaced from the origin. What does that indicate?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-0-0" name="machines/05-sensors-and-state/27-magnetometers-0"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-0-0"><span class="quiz-letter">A</span><span>Soft iron, where ferrous metal reshapes the external field</span></label><p class="quiz-why"><b>Not quite.</b> Soft iron scales the field differently along different directions, so it squashes the sphere into an ellipsoid. A round shape rules it out.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-0-1" name="machines/05-sensors-and-state/27-magnetometers-0"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-0-1"><span class="quiz-letter">B</span><span>A scale-factor error, since each axis carries its own gain</span></label><p class="quiz-why"><b>Not quite.</b> Independent axis gains would stretch the sphere into an ellipsoid aligned with the axes. Displacement without distortion is an additive fault.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-0-2" name="machines/05-sensors-and-state/27-magnetometers-0"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-0-2" data-correct><span class="quiz-letter">C</span><span>Hard iron, a constant field that travels with the sensor</span></label><p class="quiz-why"><b>Right.</b> A fixed magnetic source adds the same vector in every orientation, which shifts the sphere without deforming it. Subtracting three numbers corrects it.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-0-3" name="machines/05-sensors-and-state/27-magnetometers-0"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-0-3"><span class="quiz-letter">D</span><span>Cross-axis misalignment between the three sensing elements</span></label><p class="quiz-why"><b>Not quite.</b> Misalignment shears the sphere into a tilted ellipsoid, which is a shape change. It also has to be corrected with a matrix rather than a vector.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why must roll and pitch be known before a heading can be computed?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-1-0" name="machines/05-sensors-and-state/27-magnetometers-1"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-1-0"><span class="quiz-letter">A</span><span>Earth&#39;s field strength varies with altitude during a manoeuvre</span></label><p class="quiz-why"><b>Not quite.</b> Field strength does vary geographically and negligibly over the altitudes involved. The steep inclination is what makes tilt matter.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-1-1" name="machines/05-sensors-and-state/27-magnetometers-1"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-1-1" data-correct><span class="quiz-letter">B</span><span>The field dips steeply, so tilt leaks the vertical part into heading</span></label><p class="quiz-why"><b>Right.</b> At Belgian latitudes about 60 per cent of the field points down. A tilted sensor reads some of that on its horizontal axes and the heading swings.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-1-2" name="machines/05-sensors-and-state/27-magnetometers-1"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-1-2"><span class="quiz-letter">C</span><span>The hard-iron offset changes as the vehicle changes attitude</span></label><p class="quiz-why"><b>Not quite.</b> Hard iron travels with the sensor and is constant in the body frame by definition. That is exactly what makes it calibratable.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-1-3" name="machines/05-sensors-and-state/27-magnetometers-1"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-1-3"><span class="quiz-letter">D</span><span>The magnetometer&#39;s sensitivity varies with the angle to the field</span></label><p class="quiz-why"><b>Not quite.</b> A three-axis sensor measures the full vector regardless of orientation, so sensitivity is not the obstacle. The geometry of the projection is.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>Why is a throttle-dependent magnetic disturbance particularly damaging?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-2-0" name="machines/05-sensors-and-state/27-magnetometers-2"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-2-0"><span class="quiz-letter">A</span><span>It induces currents in the sensor, which raise its noise floor</span></label><p class="quiz-why"><b>Not quite.</b> Magnetoresistive elements respond to field rather than to induced current, so noise is not the mechanism. The field itself is the error.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-2-1" name="machines/05-sensors-and-state/27-magnetometers-2"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-2-1"><span class="quiz-letter">B</span><span>It changes the hard-iron offset, invalidating the stored calibration</span></label><p class="quiz-why"><b>Not quite.</b> Calibration removes constant fields, and a varying one was never captured by it. The offset itself is unchanged.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-2-2" name="machines/05-sensors-and-state/27-magnetometers-2"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-2-2"><span class="quiz-letter">C</span><span>It exceeds the magnetometer&#39;s full-scale range and clips the reading</span></label><p class="quiz-why"><b>Not quite.</b> Most parts have ranges well above Earth&#39;s field and a few microtesla of disturbance. Clipping would be a separate and more obvious failure.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-2-3" name="machines/05-sensors-and-state/27-magnetometers-2"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-2-3" data-correct><span class="quiz-letter">D</span><span>It correlates with your own control action, so it never averages out</span></label><p class="quiz-why"><b>Right.</b> A disturbance tied to what the vehicle is doing enters the loop rather than washing out over time. An uncorrelated one of the same size matters less.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>What makes a magnetometer calibration good?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-3-0" name="machines/05-sensors-and-state/27-magnetometers-3"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-3-0" data-correct><span class="quiz-letter">A</span><span>Coverage of orientations, rather than how long the waving lasts</span></label><p class="quiz-why"><b>Right.</b> The fit needs samples spread over the sphere. Thirty seconds of thorough tumbling beats five minutes of rotating about a single axis.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-3-1" name="machines/05-sensors-and-state/27-magnetometers-3"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-3-1"><span class="quiz-letter">B</span><span>A long sample period, so noise averages out of the fitted centre</span></label><p class="quiz-why"><b>Not quite.</b> More samples in the same few orientations leave the fit poorly constrained however clean they are. Geometry beats quantity here.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-3-2" name="machines/05-sensors-and-state/27-magnetometers-3"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-3-2"><span class="quiz-letter">C</span><span>Fitting an ellipsoid rather than a sphere, in every installation</span></label><p class="quiz-why"><b>Not quite.</b> The ellipsoid adds nine parameters and can fit noise when the sphere residual is already small. It is worth doing when the sphere fits badly.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-3-3" name="machines/05-sensors-and-state/27-magnetometers-3"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-3-3"><span class="quiz-letter">D</span><span>Performing it far from any ferrous material or magnetic source</span></label><p class="quiz-why"><b>Not quite.</b> Sources fixed to the vehicle are exactly what you want to capture, since they travel with it. External sources should indeed be avoided.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why should declination be looked up from position rather than hard-coded?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-4-0" name="machines/05-sensors-and-state/27-magnetometers-4"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-4-0"><span class="quiz-letter">A</span><span>It flips sign at the magnetic equator, beyond a constant to express</span></label><p class="quiz-why"><b>Not quite.</b> Declination varies continuously and is not tied to the equator in that way. Its gradual drift over years is the practical problem.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-4-1" name="machines/05-sensors-and-state/27-magnetometers-4"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-4-1"><span class="quiz-letter">B</span><span>It changes with altitude, which a fixed value fails to account for</span></label><p class="quiz-why"><b>Not quite.</b> Altitude dependence is negligible over the range these vehicles fly. Geography and time are what move it.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-4-2" name="machines/05-sensors-and-state/27-magnetometers-4"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-4-2"><span class="quiz-letter">C</span><span>It depends on the vehicle&#39;s hard-iron calibration, which is per build</span></label><p class="quiz-why"><b>Not quite.</b> Declination is a property of Earth&#39;s field and is entirely independent of the vehicle. Hard iron is corrected separately.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/27-magnetometers-4-3" name="machines/05-sensors-and-state/27-magnetometers-4"><label class="quiz-opt" for="machines/05-sensors-and-state/27-magnetometers-4-3" data-correct><span class="quiz-letter">D</span><span>It varies by location and drifts yearly, so a constant goes stale</span></label><p class="quiz-why"><b>Right.</b> The World Magnetic Model is a small table and position comes from GNSS anyway. A hard-coded value silently ages and is wrong elsewhere.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Groves, GNSS and Inertial Navigation, ch. 6 · Beard &amp; McLain, Small Unmanned Aircraft, ch. 7 · NOAA World Magnetic Model for declination and inclination</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/05-sensors-and-state/26-complementary-and-kalman" class="text-ash transition-colors hover:text-bone">← The complementary filter, then the Kalman filter</a><a href="/course/machines/05-sensors-and-state/28-baro-gnss-rangefinders" class="text-ash transition-colors hover:text-bone">Barometers, GNSS and rangefinders →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

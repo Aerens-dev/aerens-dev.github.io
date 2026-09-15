@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>The complementary filter, then the Kalman filter — Machines · Aerens</title><meta name="description" content="Two sensors split by frequency, the one constant that sets the crossover, and why a Kalman filter is the same idea with the weighting computed."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/05-sensors-and-state/26-complementary-and-kalman/"><meta property="og:type" content="website"><meta property="og:title" content="The complementary filter, then the Kalman filter — Machines · Aerens"><meta property="og:description" content="Two sensors split by frequency, the one constant that sets the crossover, and why a Kalman filter is the same idea with the weighting computed."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/05-sensors-and-state/26-complementary-and-kalman/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Sensors and state</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">The complementary filter, then the Kalman filter</h1><p class="mt-3 text-bone/70">Two sensors split by frequency, the one constant that sets the crossover, and why a Kalman filter is the same idea with the weighting computed.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 03 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Write a complementary filter and say what its time constant trades</li><li>Explain a Kalman filter as a complementary filter with a computed weight</li><li>Say what carrying gyro bias as a state buys over calibrating it at power-on</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You have two ways to know your roll angle and both are wrong.</p>
+<p>Integrate the gyro and you get a beautifully smooth angle that is right for a
+few seconds and then drifts away, because tutorial 24’s bias integrates without
+bound.</p>
+<p>Take the arctangent of the accelerometer and you get an angle that never drifts
+and is complete nonsense whenever the vehicle accelerates, because tutorial 25
+showed that acceleration and tilt are the same measurement.</p>
+<p>The useful observation is that these two failures are in <strong>different frequency
+bands</strong>. The gyro is excellent in the short term and bad in the long term; the
+accelerometer is the reverse. So do not choose — split them.</p>
+<h2 id="each-sensor-over-the-band-it-is-good-at">Each sensor over the band it is good at</h2>
+<p>A <strong>complementary filter</strong> high-passes the integrated gyro and low-passes the
+accelerometer angle, and adds the results. The two filters are designed so their
+responses <strong>sum to exactly one at every frequency</strong>, which means nothing is
+double-counted and nothing is missed.</p>
+<p>In practice it is one line:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#E1E4E8">angle </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> alpha </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> (angle </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> gyro </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> dt) </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">1.0</span><span style="color:#F97583">f</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8"> alpha) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> accel_angle;</span></span></code></pre>
+<p>That is the whole filter. The first term is the gyro path, integrating from the
+previous estimate; the second is the accelerometer pulling it back. <code>alpha</code> is
+close to 1 — typically 0.98 to 0.999 — and it is the only thing to choose.</p>
+<p>The relationship to a time constant: <strong>τ = α·dt / (1 − α)</strong>. At 1 kHz with
+α = 0.999, τ = 1 second.</p>
+<p>Understanding it as a frequency split rather than as a blend ratio is what makes
+it tunable. You are not choosing “how much to trust each sensor”; you are
+choosing <strong>where the crossover sits</strong>.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-complementary"><title id="fig-complementary">A complementary filter high-passes the integrated gyro and low-passes the accelerometer, so each sensor contributes over the band where it is trustworthy and the two responses sum to one at every frequency.</title><text x="8" y="14" class="dim">EACH SENSOR OVER THE BAND IT IS GOOD AT</text><path class="thin" d="M40 30 V108 H272"></path><text x="238" y="124" class="tight">FREQ</text><path class="rule" d="M44 96 Q110 94 152 70 Q194 44 264 40"></path><path class="accent" d="M44 40 Q110 44 152 70 Q194 94 264 96"></path><circle class="mark" cx="152" cy="70" r="7"></circle><text x="52" y="36" class="tight">ACCELEROMETER</text><text x="196" y="34" class="tight">GYRO</text><path class="dash" d="M152 30 V112"></path><text x="114" y="128" class="tight">CROSSOVER</text><text x="8" y="158" class="dim">THE TWO CURVES SUM TO ONE AT EVERY FREQUENCY, SO</text><text x="8" y="172" class="dim">NOTHING IS DOUBLE COUNTED AND NOTHING IS MISSED.</text><text x="8" y="186" class="dim">ONE CONSTANT SETS WHERE THEY CROSS</text></svg><figcaption class="fig-cap">Two responses that sum to one. Nothing counted twice.</figcaption></figure>
+<h2 id="choosing-the-time-constant">Choosing the time constant</h2>
+<p>τ is how long the estimate will believe the gyro before gravity is allowed to
+argue with it, and the two failure modes sit on either side.</p>
+<p><strong>Too short</strong> — τ = 0.2 s — and the accelerometer dominates. No drift, and the
+estimate tilts every time the vehicle accelerates, because there is no memory
+long enough to average the acceleration away.</p>
+<p><strong>Too long</strong> — τ = 20 s — and the gyro dominates. Manoeuvres are handled
+beautifully and the estimate drifts, slowly, and takes twenty seconds to recover
+from any disturbance.</p>
+<p><strong>τ ≈ 1 to 3 seconds</strong> is the usual answer for a multirotor, and the reasoning
+is physical: it should be longer than a typical acceleration burst (a second or
+two) and shorter than the time the gyro’s bias takes to matter (tutorial 24 said
+about a minute). Those two numbers bracket it, and anywhere in the bracket
+works.</p>
+<p>That bracketing argument is worth more than the number. When someone asks why τ
+is 2 and not 5, the answer is that both are inside the bracket and it does not
+much matter — which is a far healthier position than a number nobody can
+justify.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-tau"><title id="fig-tau">The complementary filter's time constant decides how long the estimate leans on the gyro before the accelerometer pulls it back, so it trades gyro drift against sensitivity to vehicle acceleration.</title><text x="8" y="14" class="dim">ONE CONSTANT, TWO FAILURE MODES</text><rect class="fill" x="8" y="28" width="304" height="40"></rect><text x="18" y="46" class="tight">TAU 0.2 S · ACCELEROMETER LEADS</text><text x="18" y="60" class="tight">NO DRIFT, AND IT TILTS WHEN YOU ACCELERATE</text><rect class="mark" x="8" y="74" width="304" height="40"></rect><text x="18" y="92" class="tight">TAU 2 S · BALANCED</text><text x="18" y="106" class="tight">THE USUAL ANSWER FOR A MULTIROTOR</text><rect class="fill" x="8" y="120" width="304" height="40"></rect><text x="18" y="138" class="tight">TAU 20 S · GYRO LEADS</text><text x="18" y="152" class="tight">IGNORES MANOEUVRES, AND DRIFTS SLOWLY</text><text x="8" y="182" class="dim">TAU IS HOW LONG THE ESTIMATE WILL BELIEVE THE</text><text x="8" y="196" class="dim">GYRO BEFORE GRAVITY IS ALLOWED TO ARGUE</text></svg><figcaption class="fig-cap">Longer than a manoeuvre, shorter than the drift.</figcaption></figure>
+<h2 id="a-kalman-filter-is-the-same-thing-with-the-weight-computed">A Kalman filter is the same thing, with the weight computed</h2>
+<p>The complementary filter uses a <strong>fixed</strong> weighting. A Kalman filter uses the
+same structure and recomputes the weighting every step from how uncertain each
+source currently is.</p>
+<p>Two steps, alternating.</p>
+<p><strong>Predict.</strong> Advance the state using the gyro, and <strong>grow the uncertainty</strong> —
+you integrated a noisy rate, so you know less than you did.</p>
+<p><strong>Update.</strong> Compare against the accelerometer, and <strong>shrink the uncertainty</strong> in
+whatever direction the measurement constrains. How far you move towards the
+measurement is the <em>Kalman gain</em>, and it is just the ratio of how uncertain you
+are to how uncertain the sensor is.</p>
+<p>That is the whole idea, and the matrix algebra is the bookkeeping required to do
+it for several correlated states at once. If you have one state and one
+measurement, the Kalman gain reduces to exactly the α above — the two filters
+are the same filter.</p>
+<p>What the extra machinery buys is <strong>adaptivity</strong>: during a violent manoeuvre the
+accelerometer’s effective uncertainty rises and the filter automatically leans
+on the gyro; while sitting still it does the reverse. A complementary filter
+cannot do that, because its constant is constant.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-kalman"><title id="fig-kalman">A Kalman filter is the same blend as a complementary filter with the weighting computed each step from how uncertain each source currently is, rather than fixed by hand.</title><text x="8" y="14" class="dim">THE SAME IDEA, WITH THE WEIGHT COMPUTED</text><rect class="fill" x="8" y="28" width="304" height="44"></rect><text x="18" y="46" class="tight">COMPLEMENTARY</text><text x="18" y="62" class="tight">ONE FIXED CONSTANT, CHOSEN BY YOU</text><rect class="mark" x="8" y="80" width="304" height="44"></rect><text x="18" y="98" class="tight">KALMAN</text><text x="18" y="114" class="tight">WEIGHT FROM THE CURRENT UNCERTAINTY OF EACH</text><text x="8" y="148" class="tight">PREDICT · GROW THE UNCERTAINTY</text><text x="8" y="166" class="tight">UPDATE · SHRINK IT WHERE A SENSOR AGREES</text><text x="8" y="196" class="dim">SAME CROSSOVER. THE BOOKKEEPING IS THE ADDITION</text></svg><figcaption class="fig-cap">Predict grows the uncertainty. Update shrinks it.</figcaption></figure>
+<h2 id="carrying-bias-as-a-state">Carrying bias as a state</h2>
+<p>Here is the part that earns the extra complexity, and it is not adaptivity.</p>
+<p>Add <strong>gyro bias</strong> to the state vector — so instead of estimating three angles
+you estimate three angles and three biases. Now, while the vehicle moves, the
+accelerometer’s long-term pull does not merely correct the angle; it also
+reveals the bias that has been corrupting it, and the filter estimates that out.</p>
+<p>Tutorial 24 gave the numbers. A power-on calibration leaves 0.02 °/s, drifting
+to worse, giving <strong>1.2°/minute</strong>. Estimating bias continuously takes it to the
+bias-instability floor, <strong>0.04°/minute</strong> — thirty times better, and it keeps
+working over hours where a power-on value degrades.</p>
+<p>This is why every serious attitude filter — Madgwick, Mahony, any EKF — carries
+bias as a state. It is also the single best argument for moving past the
+one-line complementary filter, and it is a much better argument than “Kalman is
+more principled”.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-bias-state"><title id="fig-bias-state">Carrying gyro bias as an estimated state lets the accelerometer correct it slowly while the vehicle moves, which removes the drift term that a power-on calibration cannot touch.</title><text x="8" y="14" class="dim">ANGLE ERROR OVER TEN MINUTES</text><path class="thin" d="M40 30 V108 H272"></path><path class="rule" d="M44 104 L260 36"></path><text x="150" y="52" class="tight">BIAS FIXED AT POWER-ON</text><path class="accent" d="M44 104 Q140 98 260 94"></path><circle class="mark" cx="200" cy="96" r="7"></circle><text x="120" y="88" class="tight">BIAS ESTIMATED</text><text x="8" y="146" class="dim">THE SECOND CURVE IS FLAT BECAUSE GRAVITY KEEPS</text><text x="8" y="160" class="dim">CORRECTING IT. THIS IS WHY THE STATE VECTOR HAS</text><text x="8" y="174" class="dim">SIX ENTRIES RATHER THAN THREE, AND IT IS MOST OF</text><text x="8" y="188" class="dim">WHAT THE EXTRA COMPLEXITY BUYS YOU</text></svg><figcaption class="fig-cap">Flat, because gravity keeps correcting the bias.</figcaption></figure>
+<h2 id="which-one-to-actually-use">Which one to actually use</h2>
+<p><strong>Complementary</strong>, twenty lines and one constant, is enough for a balancing
+robot, a gimbal, a camera stabiliser, and most things that are not aircraft.
+Start here, always. It is debuggable by reading it.</p>
+<p><strong>Madgwick or Mahony</strong>, about a hundred lines and still one constant, adds
+quaternions (tutorial 29), a bias estimate, and enough testing by other people
+that the failure modes are known. This is the sensible default for a
+multirotor’s attitude estimate and it is what track 8 uses.</p>
+<p><strong>A full EKF</strong>, several hundred lines and a covariance matrix to maintain, earns
+its place when you are fusing more than two sensors — GNSS, barometer,
+rangefinder, optical flow — because then the correlations between states carry
+real information and the hand-tuned approach runs out.</p>
+<p>The cost of the third is not CPU cycles. It is tuning and debugging: an EKF with
+a badly chosen process noise matrix fails in ways that are extremely hard to
+diagnose, and “the filter diverged” is not a useful error message.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-which-filter"><title id="fig-which-filter">A complementary filter, a Madgwick filter and a full extended Kalman filter differ mainly in how much tuning and computation they need, and the simplest adequate one is usually the right choice.</title><text x="8" y="14" class="dim">THREE ANSWERS, INCREASING IN COST</text><rect class="mark" x="8" y="28" width="304" height="46"></rect><text x="18" y="46" class="tight">COMPLEMENTARY · 20 LINES, ONE CONSTANT</text><text x="18" y="64" class="tight">ENOUGH FOR MOST VEHICLES. START HERE</text><rect class="fill" x="8" y="82" width="304" height="46"></rect><text x="18" y="100" class="tight">MADGWICK · 100 LINES, ONE CONSTANT</text><text x="18" y="118" class="tight">QUATERNIONS, BIAS ESTIMATE, WELL TESTED</text><rect class="fill" x="8" y="136" width="304" height="46"></rect><text x="18" y="154" class="tight">EXTENDED KALMAN · 500 LINES, A MATRIX</text><text x="18" y="172" class="tight">WORTH IT WHEN FUSING GNSS AND BARO TOO</text><text x="8" y="198" class="dim">THE COST IS TUNING AND DEBUGGING, NOT CYCLES</text></svg><figcaption class="fig-cap">Start at the top. Move down when something forces you.</figcaption></figure>
+<h2 id="worked-example-the-ten-minute-level-test">Worked example: the ten-minute level test</h2>
+<p>The track 5 build gate: an attitude estimate that stays level for ten minutes on
+a shaking table. Four implementations, same logged data.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Roll error at 10 min</th>
+<th>Yaw drift</th>
+<th>Lines</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gyro integration alone</td>
+<td>74°</td>
+<td>74°</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Accelerometer arctangent alone</td>
+<td>0.4°</td>
+<td>n/a</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Complementary, τ = 2 s</td>
+<td><strong>0.6°</strong></td>
+<td>9.2°</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Madgwick with bias estimate</td>
+<td><strong>0.3°</strong></td>
+<td>6.8°</td>
+<td>104</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read the first two rows together.</strong> The gyro is hopeless over ten minutes and
+the accelerometer alone is <em>better than both filters</em> at staying level — because
+the table is shaking but not accelerating in any sustained direction, so
+averaging gravity works beautifully.</p>
+<p>That is an uncomfortable result and it is the honest one: <strong>on this test, the
+simplest thing wins</strong>. If the requirement were only “stay level on a bench”, the
+arctangent is the right answer.</p>
+<p><strong>So why filter at all?</strong> Change the test. Same rig, now translating it back and
+forth by hand at about 1 m/s²:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Roll error, peak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accelerometer arctangent alone</td>
+<td><strong>11.8°</strong></td>
+</tr>
+<tr>
+<td>Complementary, τ = 2 s</td>
+<td>1.4°</td>
+</tr>
+<tr>
+<td>Madgwick with bias estimate</td>
+<td>1.1°</td>
+</tr>
+</tbody>
+</table>
+<p>There it is. The accelerometer’s 11.8° is tutorial 25’s arctan(a/g) arriving on
+schedule, and it is precisely the case the filter exists for. The gate’s shaking
+table tests one failure mode and hand translation tests the other, and a filter
+has to pass both.</p>
+<p><strong>And the yaw column, which is the real finding.</strong> Every row drifts in yaw,
+because nothing in this test observes heading — exactly as tutorial 25 said.
+6.8° in ten minutes is the gyro’s bias-instability floor doing its best, and the
+only way past it is a magnetometer, which is the next tutorial.</p>
+<p><strong>One implementation note that cost an afternoon.</strong> The complementary filter
+above uses <code>dt</code> from the actual timestamp rather than the nominal period. With a
+nominal <code>dt</code> and a loop that was running 3% slow, the integrated gyro was 3%
+short and the accelerometer spent the whole time correcting it — which looks
+exactly like a badly chosen τ and is not.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty-five minutes, and step 3 is the one that shows you the mechanism.</p>
+<ol>
+<li>Implement the one-line complementary filter on logged data rather than live.
+Being able to re-run the same data with different constants is worth the
+setup time many times over.</li>
+<li>Sweep τ from 0.1 to 20 seconds on the same log and plot the error. You will
+find a broad flat optimum rather than a sharp one, which is the bracketing
+argument made visible.</li>
+<li>Add a constant 0.5 °/s to your logged gyro to simulate an uncalibrated bias.
+Watch what the complementary filter does, then what a filter with a bias
+state does.</li>
+<li>Then use the real <code>dt</code> rather than the nominal one and compare. On a loop
+with any jitter at all, this matters more than the filter choice.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Why are the two halves of a complementary filter designed to sum to one?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-0-0" name="machines/05-sensors-and-state/26-complementary-and-kalman-0"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-0-0"><span class="quiz-letter">A</span><span>So the filter reaches steady state in a single time constant</span></label><p class="quiz-why"><b>Not quite.</b> Settling time follows from the constant chosen rather than from the sum. The complementary property is about coverage rather than speed.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-0-1" name="machines/05-sensors-and-state/26-complementary-and-kalman-0"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-0-1"><span class="quiz-letter">B</span><span>So the two sensors can be sampled at different rates safely</span></label><p class="quiz-why"><b>Not quite.</b> Mixed rates are handled by when each update runs, which is a separate implementation question. The summing property holds at one rate too.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-0-2" name="machines/05-sensors-and-state/26-complementary-and-kalman-0"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-0-2" data-correct><span class="quiz-letter">C</span><span>So no frequency is counted twice and none is left out</span></label><p class="quiz-why"><b>Right.</b> The pair forms a partition of the spectrum. Summing to anything else would scale the estimate or leave a band with no contribution at all.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-0-3" name="machines/05-sensors-and-state/26-complementary-and-kalman-0"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-0-3"><span class="quiz-letter">D</span><span>So the output stays within the range the sensors can represent</span></label><p class="quiz-why"><b>Not quite.</b> Range is set by the inputs rather than by the weighting, and either path alone spans it. The constraint is about spectral coverage.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>What brackets a sensible time constant for a multirotor&#39;s attitude filter?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-1-0" name="machines/05-sensors-and-state/26-complementary-and-kalman-1"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-1-0"><span class="quiz-letter">A</span><span>Longer than the propeller period, shorter than the battery&#39;s life</span></label><p class="quiz-why"><b>Not quite.</b> Propeller vibration is handled by mounting and anti-aliasing rather than by this constant, and battery life is unrelated.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-1-1" name="machines/05-sensors-and-state/26-complementary-and-kalman-1"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-1-1"><span class="quiz-letter">B</span><span>Longer than the control loop period, shorter than the flight duration</span></label><p class="quiz-why"><b>Not quite.</b> Both bounds are satisfied by almost any value from milliseconds to minutes, so they constrain nothing useful. The failure modes set tighter limits.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-1-2" name="machines/05-sensors-and-state/26-complementary-and-kalman-1"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-1-2"><span class="quiz-letter">C</span><span>Longer than the accelerometer&#39;s noise correlation, shorter than one second</span></label><p class="quiz-why"><b>Not quite.</b> Capping it at a second would put the usual answer of two or three outside the range. The upper bound comes from drift rather than from noise.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-1-3" name="machines/05-sensors-and-state/26-complementary-and-kalman-1"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-1-3" data-correct><span class="quiz-letter">D</span><span>Longer than an acceleration burst, shorter than the gyro&#39;s drift time</span></label><p class="quiz-why"><b>Right.</b> A second or two of manoeuvring sets the lower bound and roughly a minute of bias drift sets the upper. Anywhere between works about equally well.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What does a Kalman filter do that a complementary filter with a fixed constant cannot?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-2-0" name="machines/05-sensors-and-state/26-complementary-and-kalman-2"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-2-0"><span class="quiz-letter">A</span><span>Produce an estimate with no steady-state error against a reference</span></label><p class="quiz-why"><b>Not quite.</b> Both converge on the reference in steady state, since both low-pass the absolute sensor. Neither has a standing offset from the blend itself.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-2-1" name="machines/05-sensors-and-state/26-complementary-and-kalman-2"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-2-1" data-correct><span class="quiz-letter">B</span><span>Shift its weighting as each source&#39;s uncertainty changes in flight</span></label><p class="quiz-why"><b>Right.</b> During a violent manoeuvre the accelerometer&#39;s effective uncertainty rises and the filter leans on the gyro automatically. A fixed constant is fixed.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-2-2" name="machines/05-sensors-and-state/26-complementary-and-kalman-2"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-2-2"><span class="quiz-letter">C</span><span>Run without needing any tuning constants chosen by the designer</span></label><p class="quiz-why"><b>Not quite.</b> Process and measurement noise still have to be chosen, and a bad choice fails obscurely. The tuning moves rather than disappearing.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-2-3" name="machines/05-sensors-and-state/26-complementary-and-kalman-2"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-2-3"><span class="quiz-letter">D</span><span>Combine more than two sensors, which the simpler filter forbids</span></label><p class="quiz-why"><b>Not quite.</b> Complementary filters chain to handle several sources, and people do it. It grows awkward rather than being impossible.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>What does adding gyro bias to the state vector buy over calibrating at power-on?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-3-0" name="machines/05-sensors-and-state/26-complementary-and-kalman-3"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-3-0"><span class="quiz-letter">A</span><span>The calibration step at startup can be skipped, saving a few seconds</span></label><p class="quiz-why"><b>Not quite.</b> A good initial value still helps the filter converge quickly, so the step is usually kept. The gain is in what happens after startup.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-3-1" name="machines/05-sensors-and-state/26-complementary-and-kalman-3"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-3-1"><span class="quiz-letter">B</span><span>The accelerometer no longer needs to be trusted during manoeuvres</span></label><p class="quiz-why"><b>Not quite.</b> Gravity is exactly what reveals the bias, so the accelerometer matters more rather than less. The trust question is unchanged.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-3-2" name="machines/05-sensors-and-state/26-complementary-and-kalman-3"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-3-2"><span class="quiz-letter">C</span><span>Scale-factor error is estimated at the same time by the same mechanism</span></label><p class="quiz-why"><b>Not quite.</b> Some filters do estimate scale factors as additional states, which is a further extension. Adding bias alone does not address gain error.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-3-3" name="machines/05-sensors-and-state/26-complementary-and-kalman-3"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-3-3" data-correct><span class="quiz-letter">D</span><span>The drift is corrected while moving, taking error to the sensor floor</span></label><p class="quiz-why"><b>Right.</b> A power-on figure decays in validity, leaving about a degree a minute. Estimating it continuously reaches the bias instability floor, roughly thirty times better.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What is the real cost of an extended Kalman filter over a simpler one?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-4-0" name="machines/05-sensors-and-state/26-complementary-and-kalman-4"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-4-0"><span class="quiz-letter">A</span><span>Processor time, since the matrix arithmetic dominates the control loop</span></label><p class="quiz-why"><b>Not quite.</b> A small EKF runs comfortably on a modern microcontroller alongside everything else. The arithmetic is affordable in a way the debugging is not.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-4-1" name="machines/05-sensors-and-state/26-complementary-and-kalman-4"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-4-1"><span class="quiz-letter">B</span><span>Memory, since the covariance matrix grows with the number of states</span></label><p class="quiz-why"><b>Not quite.</b> It grows as the square of the state count, which matters for large filters. For an attitude filter it is a few hundred bytes.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-4-2" name="machines/05-sensors-and-state/26-complementary-and-kalman-4"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-4-2"><span class="quiz-letter">C</span><span>Latency, since the update step must complete before the estimate is used</span></label><p class="quiz-why"><b>Not quite.</b> The same is true of any filter, and an EKF&#39;s update is a few microseconds. It is not what makes the approach expensive.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/26-complementary-and-kalman-4-3" name="machines/05-sensors-and-state/26-complementary-and-kalman-4"><label class="quiz-opt" for="machines/05-sensors-and-state/26-complementary-and-kalman-4-3" data-correct><span class="quiz-letter">D</span><span>Tuning and debugging, since a diverged filter explains nothing</span></label><p class="quiz-why"><b>Right.</b> A badly chosen process noise matrix fails obscurely, and the failure message tells you nothing about which state went wrong. Cycles are rarely the constraint.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Thrun, Burgard &amp; Fox, Probabilistic Robotics, ch. 3 · Madgwick (2010) and the 2014 thesis · Groves, GNSS and Inertial Navigation, ch. 3 and 14</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/05-sensors-and-state/25-what-an-accelerometer-measures" class="text-ash transition-colors hover:text-bone">← What an accelerometer actually measures</a><a href="/course/machines/05-sensors-and-state/27-magnetometers" class="text-ash transition-colors hover:text-bone">Magnetometers, hard iron and soft iron →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

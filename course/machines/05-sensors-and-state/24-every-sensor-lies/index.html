@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Every sensor is a liar — Machines · Aerens</title><meta name="description" content="Four error terms that behave nothing alike, why averaging stops helping, and the plot that tells you how long to average for."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/05-sensors-and-state/24-every-sensor-lies/"><meta property="og:type" content="website"><meta property="og:title" content="Every sensor is a liar — Machines · Aerens"><meta property="og:description" content="Four error terms that behave nothing alike, why averaging stops helping, and the plot that tells you how long to average for."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/05-sensors-and-state/24-every-sensor-lies/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Sensors and state</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Every sensor is a liar</h1><p class="mt-3 text-bone/70">Four error terms that behave nothing alike, why averaging stops helping, and the plot that tells you how long to average for.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 01 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Separate noise, bias, drift and scale factor, and say which averaging fixes</li><li>Read an Allan deviation plot for a sensor&#39;s floor and its optimum averaging time</li><li>Decide where each error is removed: factory, power-on, or continuously</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Your gyroscope says the vehicle is rotating at 0.4 °/s. It is sitting on the
+desk.</p>
+<p>You average a thousand samples. It still says 0.4 °/s, with less jitter. You
+average ten thousand. Still 0.4, very smooth now. You conclude the sensor is
+broken and order another, and the new one says 0.6 °/s.</p>
+<p>Neither is broken. You are averaging away noise, which was never the problem,
+and the thing you actually want to remove is unaffected by averaging because it
+is not random. Sensor specifications collapse four quite different phenomena
+into the word “accuracy”, and getting anything out of a sensor starts with
+pulling them apart.</p>
+<h2 id="four-terms-four-behaviours">Four terms, four behaviours</h2>
+<p><strong>Noise</strong> is random and zero-mean. Average it and it shrinks as 1/√N. It is the
+only one of the four that averaging touches, and it is usually the one people
+worry about most.</p>
+<p><strong>Bias</strong> is a constant offset. The 0.4 °/s above. Averaging does not move it at
+all — the mean of a biased measurement is the bias. You remove it by measuring
+it once while you know the truth.</p>
+<p><strong>Drift</strong> is bias that wanders, on timescales of minutes to hours, with
+temperature and ageing. A bias measured at power-on is right at power-on and
+progressively less right afterwards. This is the term that makes dead reckoning
+fail.</p>
+<p><strong>Scale factor</strong> is a wrong gain: the sensor reports 0.92× the real rate. It is
+exactly zero at zero, so every check you do sitting still says the sensor is
+perfect.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-four-errors"><title id="fig-four-errors">Every sensor carries noise, bias, drift and scale-factor error, and they behave differently enough that treating them as one lump called accuracy makes the measurement unimprovable.</title><text x="8" y="14" class="dim">FOUR TERMS, FOUR BEHAVIOURS</text><rect class="fill" x="8" y="26" width="304" height="40"></rect><text x="18" y="44" class="tight">NOISE · RANDOM, ZERO MEAN</text><text x="18" y="58" class="tight">AVERAGING REMOVES IT. COSTS TIME</text><rect class="mark" x="8" y="72" width="304" height="40"></rect><text x="18" y="90" class="tight">BIAS · CONSTANT OFFSET</text><text x="18" y="104" class="tight">AVERAGING DOES NOTHING. MEASURE IT ONCE</text><rect class="fill" x="8" y="118" width="304" height="40"></rect><text x="18" y="136" class="tight">DRIFT · BIAS THAT WANDERS</text><text x="18" y="150" class="tight">RE-MEASURE, OR ESTIMATE IT CONTINUOUSLY</text><rect class="fill" x="8" y="164" width="304" height="40"></rect><text x="18" y="182" class="tight">SCALE FACTOR · WRONG GAIN</text><text x="18" y="196" class="tight">INVISIBLE AT REST. APPEARS AT FULL RANGE</text></svg><figcaption class="fig-cap">Four terms, and averaging touches exactly one.</figcaption></figure>
+<h2 id="where-averaging-stops">Where averaging stops</h2>
+<p>Averaging N samples reduces the noise by √N and leaves everything else where it
+was. So there is a crossing point: once the noise has fallen below the bias,
+further averaging buys <strong>delay and nothing else</strong>.</p>
+<p>Concretely, for a typical MEMS gyro: noise density 0.01 °/s/√Hz, so at 1 kHz a
+single sample carries about 0.32 °/s of noise. Average 100 samples and it is
+0.032 °/s — and the bias is 0.4 °/s. You are already twelve times below it after
+0.1 seconds. Averaging for a further second improves the noise threefold and
+improves the <em>measurement</em> not at all.</p>
+<p>The rule that falls out, and it applies well beyond sensors: <strong>find out which
+error term dominates before optimising anything</strong>. Reducing a term that is
+already an order of magnitude below another one is effort spent on a number
+nobody sees.</p>
+<figure class="fig"><svg viewBox="0 0 320 192" role="img" aria-labelledby="fig-averaging"><title id="fig-averaging">Averaging N samples reduces random noise by the square root of N and leaves bias exactly where it was, so past a certain point more averaging buys delay and no accuracy.</title><text x="8" y="14" class="dim">WHAT MORE SAMPLES BUY</text><path class="thin" d="M40 30 V112 H272"></path><path class="rule" d="M44 40 Q100 84 160 98 Q216 106 266 108"></path><text x="180" y="88" class="tight">NOISE, AS 1 OVER ROOT N</text><path class="accent" d="M44 70 H266"></path><circle class="mark" cx="200" cy="70" r="7"></circle><text x="60" y="64" class="tight">BIAS, UNMOVED</text><text x="8" y="148" class="dim">SIXTEEN SAMPLES HALVE THE NOISE AGAIN AND COST</text><text x="8" y="162" class="dim">SIXTEEN TIMES THE DELAY. ONCE NOISE IS UNDER THE</text><text x="8" y="176" class="dim">BIAS, EVERY FURTHER SAMPLE BUYS LAG AND NOTHING</text><text x="8" y="190" class="dim">ELSE. THAT CROSSING IS WHERE AVERAGING STOPS</text></svg><figcaption class="fig-cap">Noise falls as one over root N. Bias does not move.</figcaption></figure>
+<h2 id="allan-deviation-and-how-long-to-average">Allan deviation, and how long to average</h2>
+<p>There is a standard plot that separates these terms by the timescale each lives
+on, and it is the single most useful thing on an inertial sensor’s datasheet:
+<strong>Allan deviation</strong> against averaging time, on log-log axes.</p>
+<p>Read it in three parts. On the <strong>left</strong>, a slope of −½: this is white noise, and
+it falls as you average, exactly as above. At the <strong>bottom</strong>, a flat region: the
+<strong>bias instability</strong>, which is the best this sensor can do and the averaging time
+that achieves it. On the <strong>right</strong>, a rising slope of +½: <strong>random walk</strong>, where
+the bias itself is wandering faster than you can average, so longer averaging
+makes the estimate <em>worse</em>.</p>
+<p>That bottom point answers a question that otherwise gets guessed: how long
+should the power-on bias calibration run? For a typical MEMS gyro the floor sits
+somewhere between 10 and 100 seconds, which is far longer than the half-second
+most firmware allows — and also explains why a longer calibration does not keep
+improving indefinitely.</p>
+<figure class="fig"><svg viewBox="0 0 320 202" role="img" aria-labelledby="fig-allan"><title id="fig-allan">An Allan deviation plot separates a sensor's error terms by averaging time, with white noise falling on the left, the bias instability floor at the bottom, and random walk rising on the right.</title><text x="8" y="14" class="dim">ERROR AGAINST AVERAGING TIME</text><path class="thin" d="M40 30 V112 H272"></path><text x="222" y="128" class="tight">SECONDS</text><path class="rule" d="M46 40 L120 88 H180 L258 44"></path><circle class="mark" cx="150" cy="88" r="7"></circle><text x="48" y="60" class="tight">WHITE NOISE</text><text x="120" y="106" class="tight">FLOOR</text><text x="196" y="62" class="tight">RANDOM WALK</text><text x="8" y="152" class="dim">THE BOTTOM OF THE CURVE IS THE BEST THIS SENSOR</text><text x="8" y="166" class="dim">CAN DO AND HOW LONG TO AVERAGE FOR IT. BEYOND</text><text x="8" y="180" class="dim">THAT THE BIAS ITSELF IS WANDERING, AND MORE TIME</text><text x="8" y="194" class="dim">MAKES THE ESTIMATE WORSE RATHER THAN BETTER</text></svg><figcaption class="fig-cap">The bottom of the curve is the floor, and when to stop averaging.</figcaption></figure>
+<h2 id="scale-factor-hides-at-rest">Scale factor hides at rest</h2>
+<p>Of the four, scale factor is the one that most often ships.</p>
+<p>Every calibration done at standstill sees a scale-factor error of exactly zero,
+because the error is proportional to the signal and the signal is zero. The
+sensor passes. It then reports 8% low during an actual manoeuvre, and the
+integrated angle is 8% short, and nothing about the stationary behaviour hinted
+at it.</p>
+<p>Finding it requires a known non-zero input. For a gyro: rotate the device
+through exactly 360° — by hand, against a mark — and integrate the reported
+rate. If the integral says 331°, your scale factor is 0.92 and now you know. For
+an accelerometer: the six-position test, with each axis pointed up and then
+down, gives you scale and bias per axis from one gravity vector you can trust.</p>
+<p>Both take ten minutes and neither needs equipment. The reason they are skipped
+is that the sensor already looked fine.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-scale-factor"><title id="fig-scale-factor">A scale-factor error passes every check made at rest because it is zero at zero, and grows in proportion to the signal, so it only appears at the end of the range where testing is least convenient.</title><text x="8" y="14" class="dim">WHY A BENCH CHECK MISSES IT</text><path class="thin" d="M40 30 V112 H272"></path><path class="dash" d="M44 108 L252 36"></path><path class="accent" d="M44 108 L252 60"></path><circle class="mark" cx="44" cy="108" r="7"></circle><text x="150" y="44" class="tight">TRUE</text><text x="150" y="80" class="tight">MEASURED, 8 PER CENT LOW</text><text x="8" y="148" class="dim">AT ZERO THE TWO AGREE EXACTLY, SO A STATIONARY</text><text x="8" y="162" class="dim">CALIBRATION FINDS NOTHING. CHECK IT AT FULL SCALE</text><text x="8" y="176" class="dim">OR AGAINST A KNOWN ROTATION, OR DO NOT CLAIM IT</text><text x="8" y="190" class="dim">HAS BEEN CHECKED</text></svg><figcaption class="fig-cap">Zero error at zero input is why the bench check passes.</figcaption></figure>
+<h2 id="where-each-error-gets-removed">Where each error gets removed</h2>
+<p>The four terms belong in different places, and putting one in the wrong place is
+a design error rather than a tuning one.</p>
+<p><strong>Scale factor</strong> — once, on a rig or with the rotation test, and stored. It is
+stable over a device’s life.</p>
+<p><strong>Bias at rest</strong> — every power-on, by averaging while stationary. Cheap, and it
+handles the day-to-day part of drift.</p>
+<p><strong>Bias in flight</strong> — this one cannot be measured, because you have no stationary
+reference. It must be <strong>estimated continuously</strong> as part of the filter, which is
+the single biggest reason tutorial 26’s filter carries bias as a state rather
+than treating it as a constant.</p>
+<p><strong>Hard-iron offset</strong> on a magnetometer — per installation, because it comes from
+the magnetic material near the sensor rather than from the sensor.</p>
+<p><strong>Noise</strong> — never. It is not an error to be removed; it is a property to be
+weighted, which is exactly what a Kalman filter does with it.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-what-to-calibrate"><title id="fig-what-to-calibrate">Some sensor errors are removed once at the factory, some at every power-on, and some have to be estimated continuously while running, and putting each in the wrong place is a common design error.</title><text x="8" y="14" class="dim">WHEN EACH ERROR GETS REMOVED</text><text x="8" y="44" class="tight">SCALE FACTOR</text><text x="168" y="44" class="tight">ONCE, ON A RIG</text><text x="8" y="70" class="tight">GYRO BIAS AT REST</text><text x="168" y="70" class="tight">EVERY POWER-ON</text><rect class="mark" x="4" y="80" width="308" height="28"></rect><text x="8" y="100" class="tight">GYRO BIAS IN FLIGHT</text><text x="168" y="100" class="tight">CONTINUOUSLY, BY THE FILTER</text><text x="8" y="126" class="tight">HARD IRON</text><text x="168" y="126" class="tight">PER INSTALLATION</text><text x="8" y="152" class="tight">NOISE</text><text x="168" y="152" class="tight">NEVER. IT IS NOT AN ERROR</text><text x="8" y="182" class="dim">THE MARKED ROW IS WHY THE FILTER IN TUTORIAL 26</text><text x="8" y="196" class="dim">ESTIMATES BIAS AS A STATE RATHER THAN ASSUMING IT</text></svg><figcaption class="fig-cap">Factory, power-on, or continuously. Putting one in the wrong place is a design error.</figcaption></figure>
+<h2 id="worked-example-how-long-can-this-gyro-dead-reckon">Worked example: how long can this gyro dead-reckon?</h2>
+<p>An ICM-42688 on the test rig. From the datasheet and ten minutes of logging:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rate noise density</td>
+<td>0.0028 °/s/√Hz</td>
+</tr>
+<tr>
+<td>Bias instability, from the Allan floor</td>
+<td>2.5 °/hr</td>
+</tr>
+<tr>
+<td>Angular random walk</td>
+<td>0.17 °/√hr</td>
+</tr>
+<tr>
+<td>Power-on bias, measured</td>
+<td>0.41 °/s</td>
+</tr>
+<tr>
+<td>Bias repeatability between runs</td>
+<td>±0.02 °/s</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Without any calibration.</strong> Bias 0.41 °/s integrates to 0.41 × 60 = <strong>24.6° of
+heading error per minute</strong>. Useless within seconds for anything that cares about
+direction.</p>
+<p><strong>With a power-on bias calibration.</strong> The residual is the run-to-run
+repeatability, 0.02 °/s, so <strong>1.2°/minute</strong>. Two orders of magnitude better for
+thirty lines of code and two seconds of stillness. This is the single highest
+return available in the whole sensing chain.</p>
+<p><strong>With bias estimated continuously.</strong> Now the limit is the bias instability
+itself: 2.5 °/hr = 0.0007 °/s, giving <strong>0.04°/minute</strong>. Another thirty-fold, and
+this is what the filter in tutorial 26 buys.</p>
+<p><strong>And the floor nobody can remove.</strong> Angular random walk at 0.17 °/√hr means the
+error grows with the <em>square root</em> of time no matter how good the bias estimate
+is: 0.17° after an hour, 0.02° after a minute. That term is irreducible.</p>
+<p>Now assemble the answer to the actual question:</p>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Bias calibrated</th>
+<th>Bias estimated</th>
+<th>Random walk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 s</td>
+<td>0.2°</td>
+<td>0.007°</td>
+<td>0.009°</td>
+</tr>
+<tr>
+<td>1 min</td>
+<td>1.2°</td>
+<td>0.04°</td>
+<td>0.022°</td>
+</tr>
+<tr>
+<td>10 min</td>
+<td>12°</td>
+<td>0.4°</td>
+<td>0.07°</td>
+</tr>
+<tr>
+<td>1 hr</td>
+<td>72°</td>
+<td>2.5°</td>
+<td>0.17°</td>
+</tr>
+</tbody>
+</table>
+<p>Read the rows rather than the columns. With a good filter, <strong>random walk and
+bias instability are the same order of magnitude at around one minute</strong> — which
+is the useful design number: below a minute, this gyro’s heading is essentially
+free; beyond ten minutes, it needs an absolute reference or it is drifting
+degrees.</p>
+<p>That threshold is why the multirotor in track 8 carries a magnetometer at all,
+and it is why a robot that runs indoors for an hour needs something the gyro
+cannot provide.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 2 gives you a number you will reuse for the rest of the
+course.</p>
+<ol>
+<li>Log any IMU you have, completely stationary, for ten minutes at full rate.
+Plot the raw gyro. The offset from zero is your bias; the fuzz around it is
+your noise.</li>
+<li>Compute the Allan deviation of that log — twenty lines of Python, or any of
+the standard scripts. Find the bottom of the curve. That time is how long
+your power-on calibration should run.</li>
+<li>Power-cycle the device five times, re-measuring the bias each time. The
+spread between runs is what a power-on calibration leaves behind, and it is
+the number that sets your dead-reckoning budget.</li>
+<li>Then do the rotation test: turn the device through exactly 360° and integrate
+the reported rate. The ratio is your scale factor, and it is almost certainly
+not 1.000.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>A stationary gyro reads 0.4 degrees per second and averaging thousands of samples does not change it. What is that?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-0-0" name="machines/05-sensors-and-state/24-every-sensor-lies-0"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-0-0" data-correct><span class="quiz-letter">A</span><span>Bias, a constant offset that the mean of the data reproduces</span></label><p class="quiz-why"><b>Right.</b> Averaging converges on the true mean, and the true mean of a biased signal is the bias. It has to be measured against a known truth instead.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-0-1" name="machines/05-sensors-and-state/24-every-sensor-lies-0"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-0-1"><span class="quiz-letter">B</span><span>Scale factor, since the reported rate is proportional to the true one</span></label><p class="quiz-why"><b>Not quite.</b> A gain error is exactly zero when the input is zero, which is the case here. It cannot produce a reading on a stationary device.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-0-2" name="machines/05-sensors-and-state/24-every-sensor-lies-0"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-0-2"><span class="quiz-letter">C</span><span>Quantisation, since the reading is stuck on a single output code</span></label><p class="quiz-why"><b>Not quite.</b> Quantisation would pin the value to a multiple of the least significant bit and is usually far smaller. It also averages out with dither present.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-0-3" name="machines/05-sensors-and-state/24-every-sensor-lies-0"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-0-3"><span class="quiz-letter">D</span><span>Noise, which needs far more samples than this to average out</span></label><p class="quiz-why"><b>Not quite.</b> Noise falls as one over root N, so thousands of samples reduce it by tens of times. A value that refuses to move is not random.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>When does further averaging stop improving a measurement?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-1-0" name="machines/05-sensors-and-state/24-every-sensor-lies-1"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-1-0" data-correct><span class="quiz-letter">A</span><span>Once the noise has fallen below the bias, leaving only added delay</span></label><p class="quiz-why"><b>Right.</b> Averaging touches one term. When that term is already an order of magnitude below another, more samples buy lag and no accuracy.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-1-1" name="machines/05-sensors-and-state/24-every-sensor-lies-1"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-1-1"><span class="quiz-letter">B</span><span>Once the sample count exceeds the sensor&#39;s internal filter length</span></label><p class="quiz-why"><b>Not quite.</b> An internal filter changes the noise spectrum you are averaging, which is worth knowing. It does not set where averaging stops paying.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-1-2" name="machines/05-sensors-and-state/24-every-sensor-lies-1"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-1-2"><span class="quiz-letter">C</span><span>Once the averaging window exceeds the sensor&#39;s output data rate</span></label><p class="quiz-why"><b>Not quite.</b> The window is measured in samples and can be any length. Output rate determines how long a given count of samples takes.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-1-3" name="machines/05-sensors-and-state/24-every-sensor-lies-1"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-1-3"><span class="quiz-letter">D</span><span>Once the result reaches the resolution of the analogue converter</span></label><p class="quiz-why"><b>Not quite.</b> Averaging genuinely resolves below one code when noise dithers the input, so it can pass that point. The bias floor arrives first.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What does the flat bottom of an Allan deviation curve tell you?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-2-0" name="machines/05-sensors-and-state/24-every-sensor-lies-2"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-2-0"><span class="quiz-letter">A</span><span>The longest interval over which the sensor remains within its spec</span></label><p class="quiz-why"><b>Not quite.</b> Datasheet specification is a separate guarantee with its own conditions. The curve describes statistical behaviour rather than compliance.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-2-1" name="machines/05-sensors-and-state/24-every-sensor-lies-2"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-2-1"><span class="quiz-letter">B</span><span>The point where quantisation begins to dominate the measurement</span></label><p class="quiz-why"><b>Not quite.</b> Quantisation appears as a distinct slope on some plots and is usually below the other terms. The flat region is bias instability.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-2-2" name="machines/05-sensors-and-state/24-every-sensor-lies-2"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-2-2" data-correct><span class="quiz-letter">C</span><span>The sensor&#39;s floor, and the averaging time that reaches it</span></label><p class="quiz-why"><b>Right.</b> Left of it noise still dominates and averaging helps; right of it the bias itself wanders. The minimum is the best available and when to stop.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-2-3" name="machines/05-sensors-and-state/24-every-sensor-lies-2"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-2-3"><span class="quiz-letter">D</span><span>The sample rate at which the sensor&#39;s internal filter takes effect</span></label><p class="quiz-why"><b>Not quite.</b> Internal filtering shapes the left-hand slope rather than placing the minimum. The floor is set by bias instability.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why does a stationary calibration miss a scale-factor error?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-3-0" name="machines/05-sensors-and-state/24-every-sensor-lies-3"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-3-0" data-correct><span class="quiz-letter">A</span><span>The error is proportional to the input, which is zero at standstill</span></label><p class="quiz-why"><b>Right.</b> A gain error produces no discrepancy when there is no signal, so the sensor passes. It then reports several per cent low during a real manoeuvre.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-3-1" name="machines/05-sensors-and-state/24-every-sensor-lies-3"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-3-1"><span class="quiz-letter">B</span><span>The error cancels between axes when the device lies flat and still</span></label><p class="quiz-why"><b>Not quite.</b> Each axis carries its own independent scale factor, so nothing cancels. There is simply no signal for the error to act on.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-3-2" name="machines/05-sensors-and-state/24-every-sensor-lies-3"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-3-2"><span class="quiz-letter">C</span><span>The error is too small to resolve without a long averaging window</span></label><p class="quiz-why"><b>Not quite.</b> At full range it is several per cent, which is large and easy to see. At rest it is genuinely absent rather than merely small.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-3-3" name="machines/05-sensors-and-state/24-every-sensor-lies-3"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-3-3"><span class="quiz-letter">D</span><span>The error appears above the sensor&#39;s specified bandwidth alone</span></label><p class="quiz-why"><b>Not quite.</b> Gain errors are present across the band, including at very low frequency. Bandwidth affects the response shape rather than the scale.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why must gyro bias be estimated continuously rather than measured at power-on?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-4-0" name="machines/05-sensors-and-state/24-every-sensor-lies-4"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-4-0"><span class="quiz-letter">A</span><span>The bias depends on orientation, which is unknown before the filter runs</span></label><p class="quiz-why"><b>Not quite.</b> Gyro bias is largely independent of attitude, unlike an accelerometer&#39;s gravity component. Time rather than orientation is what invalidates it.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-4-1" name="machines/05-sensors-and-state/24-every-sensor-lies-4"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-4-1"><span class="quiz-letter">B</span><span>The power-on measurement is corrupted by the device warming up</span></label><p class="quiz-why"><b>Not quite.</b> Warm-up drift is real and is one reason the value degrades. The deeper issue is that it keeps moving long after thermal settling.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-4-2" name="machines/05-sensors-and-state/24-every-sensor-lies-4"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-4-2" data-correct><span class="quiz-letter">C</span><span>It drifts once running, and there is no stationary reference in flight</span></label><p class="quiz-why"><b>Right.</b> A power-on value is right at power-on and progressively less right after. In motion nothing else knows the truth, so the filter has to infer it.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/24-every-sensor-lies-4-3" name="machines/05-sensors-and-state/24-every-sensor-lies-4"><label class="quiz-opt" for="machines/05-sensors-and-state/24-every-sensor-lies-4-3"><span class="quiz-letter">D</span><span>Averaging at power-on leaves too much noise to resolve the bias</span></label><p class="quiz-why"><b>Not quite.</b> A second or two of averaging puts noise well below bias, so the measurement is perfectly good. Its validity is what expires.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Groves, Principles of GNSS, Inertial and Multisensor Integrated Navigation, ch. 4 · Thrun, Burgard &amp; Fox, Probabilistic Robotics, ch. 2-3 · IEEE Std 952 on Allan variance for gyroscopes</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/04-control-on-hardware/23-cascade" class="text-ash transition-colors hover:text-bone">← Cascade: current inside velocity inside position</a><a href="/course/machines/05-sensors-and-state/25-what-an-accelerometer-measures" class="text-ash transition-colors hover:text-bone">What an accelerometer actually measures →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

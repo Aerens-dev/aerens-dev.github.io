@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Cost per inference: a P&amp;L for one AI feature — Business Finance · Aerens</title><meta name="description" content="The unit is a request, output dominates, a flat price against usage-driven cost has a break-even user, and four levers in order of effect."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/08-software-and-ai-economics/41-cost-per-inference/"><meta property="og:type" content="website"><meta property="og:title" content="Cost per inference: a P&amp;L for one AI feature — Business Finance · Aerens"><meta property="og:description" content="The unit is a request, output dominates, a flat price against usage-driven cost has a break-even user, and four levers in order of effect."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/08-software-and-ai-economics/41-cost-per-inference/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · Software and AI economics</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Cost per inference: a P&amp;L for one AI feature</h1><p class="mt-3 text-bone/70">The unit is a request, output dominates, a flat price against usage-driven cost has a break-even user, and four levers in order of effect.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 04 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Build the cost of one request including retrieval and retries</li><li>Find the break-even usage level for a flat-priced feature</li><li>Rank the four cost levers and say which is usually worth the rest</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>A feature ships. It is popular. Six weeks later somebody notices the model bill
+has quadrupled and asks what the feature costs per user, and nobody has the
+number.</p>
+<p>This is the last tutorial in the course, and it is the one where every earlier
+piece of machinery gets pointed at something Niels is likely to build: cost
+behaviour, contribution margin, break-even, and a P&amp;L for a single thing.</p>
+<h2 id="the-unit-is-a-request-and-it-has-three-parts">The unit is a request, and it has three parts</h2>
+<p>Cost the smallest unit that scales. For a model feature that is one request, and
+it has three components rather than one.</p>
+<p><strong>Input tokens</strong> at the input price — the prompt, the system message, the
+retrieved context, the conversation history.</p>
+<p><strong>Output tokens</strong> at the output price, usually several times higher.</p>
+<p><strong>Everything around the call</strong> — the embedding for retrieval, the vector search,
+a reranking pass, and retries. This is the line missing from every first
+estimate, and in a retrieval-augmented feature it is frequently larger than the
+generation itself.</p>
+<p>A first estimate that counts only the generation call is typically half the real
+number or less, which is why the bill surprises people six weeks in.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-cost-per-call"><title id="fig-cost-per-call">The cost of one model call is input tokens plus output tokens at their respective prices, plus whatever retrieval, reranking and retries the feature performs around it.</title><text x="8" y="14" class="dim">WHAT ONE REQUEST ACTUALLY COSTS</text><rect class="box" x="8" y="30" width="304" height="30"></rect><text x="20" y="50" class="tight">INPUT TOKENS, AT THE INPUT PRICE</text><rect class="box" x="8" y="68" width="304" height="30"></rect><text x="20" y="88" class="tight">OUTPUT TOKENS, USUALLY DEARER</text><rect class="mark" x="8" y="106" width="304" height="30"></rect><text x="20" y="126" class="tight">PLUS RETRIEVAL, RERANKING AND RETRIES</text><text x="8" y="162" class="dim">THE THIRD LINE IS THE ONE LEFT OUT OF</text><text x="8" y="180" class="dim">EVERY FIRST ESTIMATE, AND IT IS OFTEN</text><text x="8" y="192" class="dim">LARGER THAN THE CALL ITSELF</text></svg><figcaption class="fig-cap">Three components. The third one is the one nobody counts first.</figcaption></figure>
+<h2 id="output-usually-dominates-and-you-control-it">Output usually dominates, and you control it</h2>
+<p>Output tokens generally cost several times what input tokens cost. Combined with
+the fact that prompts are often long and answers short, that produces a
+non-obvious result: <strong>the length of the answer is frequently a bigger lever than
+the size of the prompt.</strong></p>
+<p>It is also the lever most under your control. Prompt size is largely determined
+by how much context the task needs. Output length is determined by what you ask
+for, and “answer in at most three sentences” is a one-line change that can move
+the cost of a feature by a third.</p>
+<p>The general point, which is tutorial 12’s: know which component actually
+dominates before optimising. Teams routinely spend a sprint compressing prompts
+when the output was three quarters of the bill.</p>
+<figure class="fig"><svg viewBox="0 0 320 184" role="img" aria-labelledby="fig-output-dominates"><title id="fig-output-dominates">Output tokens usually cost several times what input tokens do, so the length of the answer is often a larger cost lever than the size of the prompt.</title><text x="8" y="14" class="dim">WHERE THE COST OF A CALL SITS</text><path class="thin" d="M32 28 V112 H304"></path><rect class="solid" x="64" y="88" width="56" height="24"></rect><rect class="mark" x="164" y="40" width="56" height="72"></rect><text x="58" y="130" class="tight">INPUT</text><text x="158" y="130" class="tight">OUTPUT</text><text x="8" y="158" class="dim">A SHORTER ANSWER IS USUALLY A BIGGER</text><text x="8" y="176" class="dim">SAVING THAN A SHORTER PROMPT</text></svg><figcaption class="fig-cap">Dearer per token, and the one you can shorten by asking.</figcaption></figure>
+<h2 id="a-flat-price-against-a-usage-driven-cost">A flat price against a usage-driven cost</h2>
+<p>Charge a flat monthly fee for a feature whose cost rises with use, and you have
+created something software businesses have not usually had to think about:
+<strong>a break-even user.</strong></p>
+<p>Below some level of activity a user is profitable. Above it they cost more than
+they pay. And because usage is heavily skewed — a small share of users generates
+most of the requests — the heaviest users can be materially loss-making while
+the average looks fine.</p>
+<p>That is a new problem. In classic software the heaviest user was the best
+customer: they were getting the most value at no marginal cost and were the most
+likely to renew and expand. With inference in the cost of revenue, the heaviest
+user may be the worst customer you have, and the metric that reveals it is
+gross profit per user rather than revenue per user.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-margin-per-user"><title id="fig-margin-per-user">Charging a flat monthly fee for a feature whose cost rises with use means every user has a level of activity beyond which they cost more than they pay.</title><text x="8" y="14" class="dim">FLAT PRICE, USAGE-DRIVEN COST</text><path class="thin" d="M32 28 V120 H304"></path><path class="dash" d="M40 60 H296"></path><path class="accent" d="M40 114 L296 32"></path><circle class="mark" cx="128" cy="86" r="7"></circle><path class="thin" d="M128 93 V128"></path><text x="46" y="54" class="tight">WHAT THEY PAY</text><text x="196" y="80" class="tight">WHAT THEY COST</text><text x="98" y="146" class="tight">BREAK-EVEN USER</text><text x="8" y="176" class="dim">YOUR HEAVIEST USERS ARE YOUR WORST</text><text x="8" y="188" class="dim">CUSTOMERS, WHICH IS A NEW PROBLEM</text></svg><figcaption class="fig-cap">Somewhere on the line every user crosses from profitable to not.</figcaption></figure>
+<h2 id="four-levers-in-rough-order-of-effect">Four levers, in rough order of effect</h2>
+<p><strong>Route easy work to a smaller model.</strong> Usually the largest single saving,
+because the price gap between model tiers is far larger than any efficiency you
+can find within one tier. Most features have a distribution of difficulty and
+send all of it to the model sized for the hardest case.</p>
+<p><strong>Cache what is asked repeatedly.</strong> Both response caching for identical requests
+and prompt caching for a shared prefix. Effectiveness depends entirely on how
+repetitive the traffic is, which is measurable before building anything.</p>
+<p><strong>Shorten the output.</strong> Cheap to try, immediate, and bounded by what the feature
+actually needs to say.</p>
+<p><strong>Cut retries.</strong> Retries are silent and they multiply. A feature retrying 12% of
+calls is 12% more expensive than anybody’s estimate, and the fix is usually
+failing faster rather than retrying better.</p>
+<p>The ordering is approximate and the first is usually worth more than the rest
+combined — which is worth knowing before a team spends two weeks on prompt
+compression.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-four-levers-2"><title id="fig-four-levers-2">The cost of an AI feature moves by routing simpler work to a cheaper model, caching repeated work, shortening outputs and reducing retries — roughly in that order of effect.</title><text x="8" y="14" class="dim">FOUR LEVERS, ROUGHLY IN ORDER</text><rect class="mark" x="8" y="28" width="304" height="32"></rect><text x="20" y="48" class="tight">ROUTE EASY WORK TO A SMALLER MODEL</text><rect class="box" x="8" y="68" width="304" height="32"></rect><text x="20" y="88" class="tight">CACHE WHAT IS ASKED REPEATEDLY</text><rect class="box" x="8" y="108" width="304" height="32"></rect><text x="20" y="128" class="tight">SHORTEN THE OUTPUT YOU ASK FOR</text><rect class="box" x="8" y="148" width="304" height="32"></rect><text x="20" y="168" class="tight">CUT RETRIES BY FAILING FASTER</text><text x="8" y="196" class="dim">THE FIRST ONE IS USUALLY WORTH THE REST</text></svg><figcaption class="fig-cap">Four levers. The first is usually worth more than the other three.</figcaption></figure>
+<h2 id="a-pl-for-one-feature">A P&amp;L for one feature</h2>
+<p>The way to make any of this arguable is to give the feature its own small P&amp;L.</p>
+<p><strong>Revenue attributable to it.</strong> The hard line, and the one people skip. If the
+feature is bundled, attribution is a judgement — but “we believe it drives X% of
+retention, worth €Y” is a claim somebody can disagree with, which is more than
+zero is.</p>
+<p><strong>Less inference and infrastructure.</strong> Cost per request times requests, plus the
+vector store and the serving stack.</p>
+<p><strong>Less the people maintaining it.</strong> A feature with a permanent engineer is a
+feature with a €120,000 annual cost that never appears in the model bill.</p>
+<p>What comes out is a number somebody can argue with. That is the whole objective
+— not precision, but a figure specific enough to be wrong, which is the standard
+this course has applied to a business case, a benefit estimate and a forecast
+alike.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-the-feature-pl"><title id="fig-the-feature-pl">Treating one AI feature as its own profit and loss account — revenue attributable to it, inference and infrastructure cost, and the people maintaining it — gives a figure that can be argued with.</title><text x="8" y="14" class="dim">ONE FEATURE, ITS OWN P&amp;L</text><rect class="box" x="8" y="30" width="304" height="30"></rect><text x="20" y="50" class="tight">REVENUE ATTRIBUTABLE TO IT</text><rect class="box" x="8" y="68" width="304" height="30"></rect><text x="20" y="88" class="tight">LESS INFERENCE AND INFRASTRUCTURE</text><rect class="box" x="8" y="106" width="304" height="30"></rect><text x="20" y="126" class="tight">LESS THE PEOPLE MAINTAINING IT</text><rect class="mark" x="8" y="144" width="304" height="30"></rect><text x="20" y="164" class="tight">= A NUMBER SOMEBODY CAN ARGUE WITH</text><text x="8" y="192" class="dim">THE FIRST LINE IS THE HARD ONE</text></svg><figcaption class="fig-cap">Three lines, and the first one is the hard one.</figcaption></figure>
+<h2 id="worked-example-costing-a-retrieval-feature">Worked example: costing a retrieval feature</h2>
+<p>Per request, at illustrative prices — check current rates, they move.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Tokens</th>
+<th>Rate per 1M</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedding the query</td>
+<td>40</td>
+<td>0.10</td>
+<td>0.000004</td>
+</tr>
+<tr>
+<td>Retrieved context, input</td>
+<td>3,200</td>
+<td>3.00</td>
+<td>0.009600</td>
+</tr>
+<tr>
+<td>Prompt and history, input</td>
+<td>900</td>
+<td>3.00</td>
+<td>0.002700</td>
+</tr>
+<tr>
+<td>Generated answer, output</td>
+<td>350</td>
+<td>15.00</td>
+<td>0.005250</td>
+</tr>
+<tr>
+<td>Reranking pass, input</td>
+<td>1,800</td>
+<td>0.50</td>
+<td>0.000900</td>
+</tr>
+<tr>
+<td><strong>Per successful request</strong></td>
+<td></td>
+<td></td>
+<td><strong>0.018454</strong></td>
+</tr>
+<tr>
+<td>Retries at 8%</td>
+<td></td>
+<td></td>
+<td>0.001476</td>
+</tr>
+<tr>
+<td><strong>Effective per request</strong></td>
+<td></td>
+<td></td>
+<td><strong>0.019930</strong></td>
+</tr>
+</tbody>
+</table>
+<p>About <strong>2 cents a request</strong>. Now the feature.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requests per active user per month</td>
+<td>240</td>
+</tr>
+<tr>
+<td><strong>Inference cost per user per month</strong></td>
+<td><strong>4.78</strong></td>
+</tr>
+<tr>
+<td>Vector store and serving, per user</td>
+<td>0.60</td>
+</tr>
+<tr>
+<td><strong>Cost of revenue per user</strong></td>
+<td><strong>5.38</strong></td>
+</tr>
+<tr>
+<td>Price of the tier, per user</td>
+<td>29.00</td>
+</tr>
+<tr>
+<td><strong>Gross profit per user</strong></td>
+<td><strong>23.62</strong></td>
+</tr>
+<tr>
+<td><strong>Gross margin</strong></td>
+<td><strong>81%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Comfortable. Now the distribution, which is where the average stops being
+useful.</p>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>Share</th>
+<th>Requests/month</th>
+<th>Cost</th>
+<th>Margin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Light</td>
+<td>70%</td>
+<td>60</td>
+<td>1.80</td>
+<td>94%</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>25%</td>
+<td>400</td>
+<td>8.57</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>Heavy</td>
+<td>5%</td>
+<td>2,900</td>
+<td>58.40</td>
+<td>(101%)</td>
+</tr>
+</tbody>
+</table>
+<p>The heavy 5% cost <strong>€58.40</strong> against €29 of revenue. They lose €29.40 each,
+month after month, and they are almost certainly the users who like the feature
+most.</p>
+<p>At 5% of users they cost 3.4% of gross margin overall — survivable. But the
+segment is growing, because heavy users are the ones who tell colleagues. Left
+alone, this becomes the whole business.</p>
+<p>Three responses, and the course has an opinion on the order. <strong>Route the heavy
+segment’s simpler requests to a smaller model</strong> — it changes the cost curve
+without changing the offer. <strong>Cache</strong>, if their traffic is repetitive. And only
+then <strong>change the pricing</strong>, because a usage cap on your most enthusiastic users
+is the option that costs the most goodwill and it should not be the first one
+reached for.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Cost one request in a feature you have built. Include retrieval, reranking
+and retries — especially retries.</li>
+<li>Multiply by requests per active user per month. Compare to what that user
+pays.</li>
+<li>Get the usage distribution rather than the mean. Find the level at which a
+user stops being profitable, and what share of users are past it.</li>
+<li>Then estimate what routing the easiest half of requests to a smaller model
+would do, before changing anything else.</li>
+</ol>
+<p>That is the end of the course. Step 3 is the calculation that most reliably
+surprises people, and it is the one you can do this afternoon.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Which component is missing from most first estimates of a request&#39;s cost?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-0" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-0"><span class="quiz-letter">A</span><span>Output tokens, which are priced separately from the input</span></label><p class="quiz-why"><b>Not quite.</b> Almost everybody counts the output. It is what surrounds the generation call that gets left out.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-1" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-1"><span class="quiz-letter">B</span><span>Storage of conversation history between the user sessions</span></label><p class="quiz-why"><b>Not quite.</b> A real cost and a small one. Retrieval and retries move the per-request figure far more.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-2" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-2"><span class="quiz-letter">C</span><span>The monthly platform fee charged by the model provider</span></label><p class="quiz-why"><b>Not quite.</b> Usage-based pricing rarely carries one, and any fixed fee is small next to the per-request components.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-3" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-0-3" data-correct><span class="quiz-letter">D</span><span>Retrieval, reranking and the retries around the call</span></label><p class="quiz-why"><b>Right.</b> In a retrieval-augmented feature they are frequently larger than the generation, which is why the bill surprises people.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why is answer length often a bigger cost lever than prompt size?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-0" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-0"><span class="quiz-letter">A</span><span>Providers meter output twice, once generated and once returned</span></label><p class="quiz-why"><b>Not quite.</b> Output is metered once. The reason it dominates is the higher rate combined with how controllable it is.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-1" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-1" data-correct><span class="quiz-letter">B</span><span>Output tokens cost more, and you decide how many there are</span></label><p class="quiz-why"><b>Right.</b> Prompt size is largely set by what the task needs; a limit on the answer is a one-line change with a large effect.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-2" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-2"><span class="quiz-letter">C</span><span>Prompts are short, so there is little left to compress in them</span></label><p class="quiz-why"><b>Not quite.</b> Prompts with retrieved context are often long. What matters is the price difference and the control you have.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-3" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-1-3"><span class="quiz-letter">D</span><span>Output tokens are generated more slowly, so they cost more time</span></label><p class="quiz-why"><b>Not quite.</b> Latency is a separate concern. The cost effect comes from the per-token price and the volume you request.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What is new about heavy users when inference sits in cost of revenue?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-0" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-0"><span class="quiz-letter">A</span><span>They churn more often, since the feature disappoints at volume</span></label><p class="quiz-why"><b>Not quite.</b> Heavy users usually churn less. What changed is that their gross profit can be negative.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-1" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-1" data-correct><span class="quiz-letter">B</span><span>They may cost more than they pay, which was not true before</span></label><p class="quiz-why"><b>Right.</b> In classic software the heaviest user was the best customer, since serving them cost almost nothing extra.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-2" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-2"><span class="quiz-letter">C</span><span>They generate support load that scales with their usage</span></label><p class="quiz-why"><b>Not quite.</b> Support has always scaled somewhat with use. The novel part is the direct per-request cost of serving them.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-3" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-2-3"><span class="quiz-letter">D</span><span>They are harder to price, since usage is difficult to measure</span></label><p class="quiz-why"><b>Not quite.</b> Requests are among the easiest things to measure. The problem is what the measurement reveals.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Which cost lever is usually worth more than the other three combined?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-0" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-0" data-correct><span class="quiz-letter">A</span><span>Routing easier requests to a smaller and cheaper model</span></label><p class="quiz-why"><b>Right.</b> The price gap between tiers is far larger than any efficiency available inside one, and most traffic is not hard.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-1" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-1"><span class="quiz-letter">B</span><span>Reducing retries by detecting failures earlier in the call</span></label><p class="quiz-why"><b>Not quite.</b> Worth doing and bounded by the retry rate. A 12% retry rate caps the saving at 12%.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-2" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-2"><span class="quiz-letter">C</span><span>Compressing prompts to reduce the input tokens sent</span></label><p class="quiz-why"><b>Not quite.</b> Often where teams start and usually the smallest of the four, since output is generally the dearer side.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-3" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-3-3"><span class="quiz-letter">D</span><span>Caching responses and prompt prefixes wherever possible</span></label><p class="quiz-why"><b>Not quite.</b> Valuable when traffic is repetitive, and its effect depends entirely on a distribution you should measure first.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What is the point of building a P&amp;L for a single feature?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-0" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-0" data-correct><span class="quiz-letter">A</span><span>To produce a figure specific enough to be argued with</span></label><p class="quiz-why"><b>Right.</b> Precision is not the goal. A number somebody can disagree with beats no number, which is the course&#39;s standard throughout.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-1" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-1"><span class="quiz-letter">B</span><span>To justify the engineering time already spent building it</span></label><p class="quiz-why"><b>Not quite.</b> That spend is sunk and outside the decision. The P&amp;L is about whether to keep running and investing in it.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-2" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-2"><span class="quiz-letter">C</span><span>To allocate the feature&#39;s cost accurately across the customers</span></label><p class="quiz-why"><b>Not quite.</b> Allocation follows later if you need it. The immediate value is having any defensible figure at all.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-3" name="business-finance/08-software-and-ai-economics/41-cost-per-inference-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/41-cost-per-inference-4-3"><span class="quiz-letter">D</span><span>To satisfy the accounting requirement to segment reporting</span></label><p class="quiz-why"><b>Not quite.</b> Segment reporting operates at a far higher level. This is a management exercise with no reporting requirement.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: FinOps Foundation, cloud unit economics · Horngren, Cost Accounting, ch. 3 and 5</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/08-software-and-ai-economics/40-saas-unit-economics" class="text-ash transition-colors hover:text-bone">← SaaS unit economics</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

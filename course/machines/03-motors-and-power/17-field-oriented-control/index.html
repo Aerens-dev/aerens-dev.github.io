@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Field-oriented control, implemented rather than derived — Machines · Aerens</title><meta name="description" content="One change of reference frame, two DC loops instead of three AC ones, and the calibration step that is worth more than any tuning."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/03-motors-and-power/17-field-oriented-control/"><meta property="og:type" content="website"><meta property="og:title" content="Field-oriented control, implemented rather than derived — Machines · Aerens"><meta property="og:description" content="One change of reference frame, two DC loops instead of three AC ones, and the calibration step that is worth more than any tuning."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/03-motors-and-power/17-field-oriented-control/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Motors, drivers, and power</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Field-oriented control, implemented rather than derived</h1><p class="mt-3 text-bone/70">One change of reference frame, two DC loops instead of three AC ones, and the calibration step that is worth more than any tuning.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 06 of 08 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Say what rotating the reference frame buys, in terms of what the PI loops see</li><li>Explain what d and q currents do, and why d is held at zero below base speed</li><li>Calibrate an encoder offset, and put a number on what leaving it costs</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Six-step gives you 86% of the available torque at the worst point, a rasp you
+can hear, and current waveforms that look like a square wave apologising.</p>
+<p>The obvious fix is to stop stepping the field and rotate it smoothly, which
+means each phase carries a sine wave and the controller has to track three
+moving targets at 700 Hz. A PI controller tracking a sinusoid has permanent
+phase lag and permanent amplitude error — that is what PI does to a moving
+reference — so the naive version is worse than what it replaced.</p>
+<p>Field-oriented control is the trick that makes the problem easy again, and the
+trick is not mathematical sophistication. It is a change of viewpoint.</p>
+<h2 id="sit-on-the-rotor">Sit on the rotor</h2>
+<p>Watch the currents from the stator and they are three sine waves at the
+electrical frequency. Watch the same currents from a frame <strong>rotating with the
+rotor</strong> and they are two numbers that barely move.</p>
+<p>That is the whole idea. Nothing about the motor changed; the observer moved. And
+in the rotating frame the control problem is transformed from <em>track a 700 Hz
+sinusoid with no lag</em> — which a PI loop cannot do — into <em>hold a constant</em>,
+which is the one thing a PI loop is perfect at.</p>
+<p>This is why FOC is not really about motors. It is a change of coordinates that
+turns a hard problem into an easy one, and the difficulty in implementing it is
+entirely in keeping track of where the rotor is.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-foc-idea"><title id="fig-foc-idea">Field-oriented control transforms three sinusoidal phase currents into two constants by rotating the reference frame with the rotor, which turns a hard AC tracking problem into two ordinary DC loops.</title><text x="8" y="14" class="dim">THE WHOLE IDEA, IN ONE MOVE</text><rect class="fill" x="8" y="28" width="130" height="70"></rect><text x="18" y="48" class="tight">STATOR FRAME</text><text x="18" y="70" class="tight">THREE SINE WAVES</text><text x="18" y="86" class="tight">MOVING TARGETS</text><path class="accent" d="M146 62 H176"></path><path class="accent-fill" d="M176 58 L186 62 L176 66 Z"></path><text x="146" y="52" class="tight">SPIN THE</text><text x="146" y="112" class="tight">FRAME</text><rect class="mark" x="192" y="28" width="120" height="70"></rect><text x="202" y="48" class="tight">ROTOR FRAME</text><text x="202" y="70" class="tight">TWO CONSTANTS</text><text x="202" y="86" class="tight">d AND q</text><text x="8" y="146" class="dim">A PI LOOP TRACKING A 700 HZ SINE HAS PERMANENT</text><text x="8" y="160" class="dim">LAG. THE SAME LOOP HOLDING A CONSTANT HAS NONE.</text><text x="8" y="174" class="dim">NOTHING ABOUT THE MOTOR CHANGED, ONLY THE FRAME</text><text x="8" y="188" class="dim">THE CONTROLLER IS SITTING IN</text></svg><figcaption class="fig-cap">The observer moved. The motor did not.</figcaption></figure>
+<h2 id="two-axes-and-only-one-of-them-useful">Two axes, and only one of them useful</h2>
+<p>In the rotor frame the current has two components, and they do completely
+different things.</p>
+<p><strong>q-axis current</strong> is perpendicular to the rotor’s magnetic field, and it is the
+one that produces torque. τ = (3/2)·p·λ·i_q, and every term but i_q is a
+property of the motor, so <strong>q current is torque</strong> and the constant is Kt from
+tutorial 13.</p>
+<p><strong>d-axis current</strong> is aligned with the rotor’s field. It pushes directly against
+the magnets, produces no rotation whatsoever, and dissipates I²R while doing it.</p>
+<p>So the setpoint below base speed is <strong>i_d = 0</strong> and i_q = whatever the outer
+loop asks for. That is the entire control law, and it is why FOC gives you a
+motor that behaves like a torque source you can command directly.</p>
+<p>The one exception is worth knowing about: above base speed, back-EMF approaches
+the supply rail and the motor cannot go faster. Deliberately commanding
+<strong>negative i_d</strong> weakens the rotor field, drops the back-EMF and buys more RPM
+— <em>field weakening</em>, and it costs efficiency to get speed you could not
+otherwise have. That is a trade you make on purpose, not a thing that happens.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-d-and-q"><title id="fig-d-and-q">In the rotor frame the q axis current produces torque and the d axis current only pushes against the magnets, so the d setpoint is zero below base speed and everything the controller wants is on q.</title><text x="8" y="14" class="dim">TWO AXES, ONE OF THEM USEFUL</text><rect class="mark" x="8" y="28" width="146" height="66"></rect><text x="18" y="48" class="tight">q AXIS</text><text x="18" y="68" class="tight">TORQUE PER AMP</text><text x="18" y="84" class="tight">THIS IS THE OUTPUT</text><rect class="fill" x="166" y="28" width="146" height="66"></rect><text x="176" y="48" class="tight">d AXIS</text><text x="176" y="68" class="tight">PUSHES ON MAGNETS</text><text x="176" y="84" class="tight">HEAT, NO TORQUE</text><text x="8" y="122" class="tight">SETPOINT: id = 0, iq = WHAT THE LOOP ASKS FOR</text><text x="8" y="152" class="dim">ABOVE BASE SPEED A NEGATIVE d WEAKENS THE FIELD</text><text x="8" y="166" class="dim">AND BUYS RPM BEYOND WHAT THE RAIL ALLOWS, WHICH</text><text x="8" y="180" class="dim">COSTS EFFICIENCY AND IS A DELIBERATE TRADE</text></svg><figcaption class="fig-cap">q is torque. d is heat, until you want speed more than efficiency.</figcaption></figure>
+<h2 id="two-matrices-and-a-sine-table">Two matrices and a sine table</h2>
+<p>The implementation is less than it sounds.</p>
+<p><strong>Clarke</strong> collapses three phase currents into two orthogonal components in the
+stationary frame. It is a fixed 2×3 matrix — no angle involved, and since the
+three currents sum to zero it is really just arithmetic on two of them.</p>
+<p><strong>Park</strong> rotates those two into the rotor frame, using the measured rotor angle.
+This is where the encoder enters, and it is the only place trigonometry appears:
+one sine and one cosine per cycle, from a lookup table.</p>
+<p>Then two PI controllers, one on d and one on q. Then the whole chain <strong>backwards</strong>
+— inverse Park, then space-vector modulation — to turn the two voltage commands
+into three duty cycles.</p>
+<p>Cost it honestly: about forty multiply-accumulates and two table lookups. On a
+Cortex-M4F at 168 MHz that is roughly <strong>3 µs</strong>, against a 50 µs budget at
+20 kHz. FOC is not expensive. It was expensive in 1985, and the folklore that it
+needs a DSP has outlived the hardware that made it true.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-clarke-park"><title id="fig-clarke-park">The Clarke transform collapses three phase currents to two orthogonal ones in the stator frame, and the Park transform rotates those into the rotor frame using the measured angle, which is all the maths there is.</title><text x="8" y="14" class="dim">THE WHOLE TRANSFORM CHAIN</text><rect class="fill" x="8" y="28" width="64" height="40"></rect><text x="16" y="46" class="tight">ia ib ic</text><text x="16" y="60" class="tight">MEASURED</text><path class="accent" d="M76 48 H88"></path><path class="accent-fill" d="M88 44 L96 48 L88 52 Z"></path><rect class="fill" x="100" y="28" width="64" height="40"></rect><text x="108" y="46" class="tight">CLARKE</text><text x="108" y="60" class="tight">3 TO 2</text><path class="accent" d="M168 48 H180"></path><path class="accent-fill" d="M180 44 L188 48 L180 52 Z"></path><rect class="fill" x="192" y="28" width="64" height="40"></rect><text x="200" y="46" class="tight">PARK</text><text x="200" y="60" class="tight">ROTATE</text><path class="accent" d="M260 48 H272"></path><path class="accent-fill" d="M272 44 L280 48 L272 52 Z"></path><rect class="mark" x="284" y="28" width="28" height="40"></rect><text x="290" y="52" class="tight">dq</text><text x="8" y="94" class="tight">PARK NEEDS THE ROTOR ANGLE. THAT IS THE ENCODER</text><text x="8" y="126" class="dim">INVERSE PARK AND SPACE VECTOR MODULATION RUN THE</text><text x="8" y="140" class="dim">SAME CHAIN BACKWARDS TO REACH THREE DUTY CYCLES.</text><text x="8" y="154" class="dim">ABOUT FORTY MULTIPLIES AND TWO TRIG LOOKUPS PER</text><text x="8" y="168" class="dim">CYCLE, WHICH IS 3 US ON A CORTEX-M4F AT 168 MHZ</text><text x="8" y="182" class="dim">AND WELL INSIDE A 20 KHZ BUDGET OF 50 US</text></svg><figcaption class="fig-cap">Forward for the measurement, backwards for the command.</figcaption></figure>
+<h2 id="the-angle-is-the-whole-thing">The angle is the whole thing</h2>
+<p>Everything above depends on knowing the rotor angle, and torque goes as the
+<strong>cosine of the angle error</strong>. Get it wrong and you are back to six-step’s
+problem by a different route.</p>
+<table>
+<thead>
+<tr>
+<th>Angle error</th>
+<th>Torque lost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1°</td>
+<td>0.015%</td>
+</tr>
+<tr>
+<td>5°</td>
+<td>0.4%</td>
+</tr>
+<tr>
+<td>10°</td>
+<td>1.5%</td>
+</tr>
+<tr>
+<td>20°</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>30°</td>
+<td>13.4% — no better than six-step</td>
+</tr>
+</tbody>
+</table>
+<p>Small errors are nearly free, which is the good news. The bad news is that the
+most common error is not small and not random: it is a <strong>constant offset</strong>
+between where your encoder says zero is and where the rotor’s magnetic zero
+actually is. Nobody aligns an encoder to a magnetic axis when they glue it on.</p>
+<p>That offset is free to remove and it takes one calibration at startup: energise
+the d axis with a modest current, wait for the rotor to be dragged into
+alignment and settle, and record the encoder reading. That angle is your zero.
+Store it, or re-run it at each power-on.</p>
+<p><strong>This one step is worth more than any amount of loop tuning</strong>, and skipping it
+is the commonest reason a first FOC implementation produces less torque than the
+six-step it replaced.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-angle-error"><title id="fig-angle-error">Field-oriented control produces torque proportional to the cosine of the angle error, so an encoder offset that is calibrated once at standstill is worth more than any amount of loop tuning.</title><text x="8" y="14" class="dim">TORQUE AGAINST ANGLE ERROR</text><path class="thin" d="M40 30 V112 H272"></path><path class="rule" d="M44 106 Q100 40 156 36 Q212 40 268 106"></path><circle class="mark" cx="156" cy="36" r="7"></circle><path class="dash" d="M156 40 V116"></path><text x="46" y="132" class="tight">-90</text><text x="146" y="132" class="tight">0</text><text x="248" y="132" class="tight">+90</text><text x="8" y="158" class="dim">5 DEGREES COSTS 0.4 PER CENT. 20 DEGREES COSTS 6.</text><text x="8" y="172" class="dim">A CONSTANT OFFSET IS FREE TO REMOVE: ENERGISE d,</text><text x="8" y="186" class="dim">LET THE ROTOR SETTLE, AND CALL THAT ANGLE ZERO</text></svg><figcaption class="fig-cap">Cosine, so small errors are cheap and a fixed offset is free to remove.</figcaption></figure>
+<h2 id="what-you-actually-gained">What you actually gained</h2>
+<p>Back to the figure that motivated all this, and now with FOC’s number next to
+it.</p>
+<p>Six-step’s field sits still for 60° while the rotor turns, giving ±30° of angle
+error, 13.4% torque loss at the extremes and about 14% peak-to-peak ripple at
+six times electrical frequency.</p>
+<p>FOC holds the angle error at whatever your encoder resolution and calibration
+allow — typically under 2° — so the torque loss is <strong>under 0.1%</strong> and the ripple
+that remains comes from the motor’s own cogging rather than from the
+controller.</p>
+<p>Concretely, on the test stand motor: 4.5% more average torque for the same
+current, no audible rasp, smooth current waveforms, and a machine that responds
+to a torque command rather than to a voltage. The last one is what track 4
+needs, and it is the real reason this tutorial exists.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-torque-ripple"><title id="fig-torque-ripple">Holding the field fixed for sixty degrees means the angle between field and rotor sweeps thirty degrees either side of ideal, so torque falls with the cosine of that error and ripples about fourteen per cent.</title><text x="8" y="14" class="dim">TORQUE ACROSS ONE COMMUTATION STEP</text><path class="thin" d="M40 30 V108 H272"></path><path class="dash" d="M44 44 H268"></path><text x="150" y="40" class="tight">IDEAL, FIELD HELD AT 90 DEG</text><path class="accent" d="M44 62 Q76 44 108 62 Q140 80 172 62 Q204 44 236 62 Q252 70 268 62"></path><circle class="mark" cx="140" cy="72" r="7"></circle><text x="8" y="132" class="tight">-30 DEG</text><text x="120" y="132" class="tight">0</text><text x="216" y="132" class="tight">+30 DEG</text><text x="8" y="160" class="dim">COS 30 IS 0.866, SO THE WORST POINT LOSES 13.4</text><text x="8" y="174" class="dim">PER CENT. THE AVERAGE LOSS IS ABOUT 4.5 PER CENT,</text><text x="8" y="188" class="dim">AND THE RIPPLE IS HEAT, NOISE AND VIBRATION</text></svg><figcaption class="fig-cap">The ripple FOC removes. What remains is the motor&#39;s own.</figcaption></figure>
+<h2 id="worked-example-the-foc-loop-cycle-by-cycle">Worked example: the FOC loop, cycle by cycle</h2>
+<p>20 kHz, centre-aligned, Cortex-M4F at 168 MHz. One pass of the loop, measured
+with a pin toggle.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Cycles</th>
+<th>µs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADC conversions complete, DMA delivered</td>
+<td>—</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Read encoder over SPI</td>
+<td>210</td>
+<td>1.25</td>
+</tr>
+<tr>
+<td>Clarke, two currents to alpha-beta</td>
+<td>24</td>
+<td>0.14</td>
+</tr>
+<tr>
+<td>Park, using sin and cos from a 1,024-entry table</td>
+<td>68</td>
+<td>0.40</td>
+</tr>
+<tr>
+<td>PI on d, PI on q, with anti-windup</td>
+<td>96</td>
+<td>0.57</td>
+</tr>
+<tr>
+<td>Inverse Park</td>
+<td>62</td>
+<td>0.37</td>
+</tr>
+<tr>
+<td>Space-vector modulation to three duties</td>
+<td>140</td>
+<td>0.83</td>
+</tr>
+<tr>
+<td>Write three compare registers</td>
+<td>18</td>
+<td>0.11</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>618</strong></td>
+<td><strong>3.7 µs</strong></td>
+</tr>
+</tbody>
+</table>
+<p>3.7 µs of a 50 µs period: <strong>7.4% of the CPU</strong>. Comfortable.</p>
+<p>Now the interesting part, which is where the time actually went. The maths — the
+part with a reputation for being expensive — is 2.3 µs. The <strong>encoder read is
+1.25 µs</strong>, a third of the total, and it is a SPI transaction rather than
+arithmetic.</p>
+<p>Two consequences follow, and both are the kind of thing you only see after
+measuring.</p>
+<p><strong>Push the rate to 40 kHz</strong> and the budget is 25 µs, so the loop is at 15%.
+Still fine. <strong>Push to 100 kHz</strong> and the budget is 10 µs, the loop is at 37%, and
+the encoder read alone is 12.5% — at which point moving the encoder to a
+DMA-driven background transfer buys more than optimising every transform.</p>
+<p><strong>The other consequence is latency, not load.</strong> Between the current
+measurement and the new duty cycle there is 3.7 µs of computation, plus up to
+one full PWM period before the new duty takes effect. That total, about 54 µs,
+is dead time in the current loop, and tutorial 21 in the next track is entirely
+about what such a delay does to the phase margin you have to work with.</p>
+<p>So the honest summary of FOC’s cost on modern hardware: cheap in CPU,
+non-trivial in latency, and the expensive part is the sensor rather than the
+arithmetic.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty-five minutes, and step 2 is the one with the biggest payoff.</p>
+<ol>
+<li>Implement Clarke and Park on paper for one set of numbers — three currents
+and an angle — and check that a pure q current with the rotor at 0° gives you
+the three phase currents you expect. Do this before writing any code.</li>
+<li>Run the alignment calibration on whatever motor you have: energise d, let the
+rotor settle, read the encoder. Compare that angle to what your code assumes
+zero is. The gap is usually tens of degrees.</li>
+<li>Log i_d and i_q while the motor runs under load. If i_d is not near zero, the
+angle is wrong or the current loop is not keeping up.</li>
+<li>Then measure the loop with a pin toggle rather than estimating it, and split
+the total between arithmetic and sensor reading. Deciding what to optimise
+without that split is guesswork.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What does rotating the reference frame with the rotor change for the PI controllers?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-0-0" name="machines/03-motors-and-power/17-field-oriented-control-0"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-0-0"><span class="quiz-letter">A</span><span>They see a lower frequency, so the same gains give more phase margin</span></label><p class="quiz-why"><b>Not quite.</b> The signal is not merely slowed, it becomes constant in steady state. Describing it as a frequency reduction understates what the transform does.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-0-1" name="machines/03-motors-and-power/17-field-oriented-control-0"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-0-1"><span class="quiz-letter">B</span><span>They can run at a lower rate, since the transform absorbs the dynamics</span></label><p class="quiz-why"><b>Not quite.</b> Loop rate is still set by the electrical time constant and the switching frequency. The transform changes the shape of the reference, not the plant.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-0-2" name="machines/03-motors-and-power/17-field-oriented-control-0"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-0-2" data-correct><span class="quiz-letter">C</span><span>They hold a constant instead of tracking a sinusoid, so lag vanishes</span></label><p class="quiz-why"><b>Right.</b> A PI loop following a moving reference has permanent phase and amplitude error. In the rotor frame the reference stops moving and the error goes away.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-0-3" name="machines/03-motors-and-power/17-field-oriented-control-0"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-0-3"><span class="quiz-letter">D</span><span>They control voltage rather than current, which is easier to command</span></label><p class="quiz-why"><b>Not quite.</b> The inner loops still regulate current and output a voltage command, exactly as before. What changed is the coordinate system they work in.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why is the d-axis current setpoint zero below base speed?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-1-0" name="machines/03-motors-and-power/17-field-oriented-control-1"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-1-0"><span class="quiz-letter">A</span><span>It would saturate the stator iron, limiting the torque available</span></label><p class="quiz-why"><b>Not quite.</b> Saturation is a concern at very high current on either axis. The reason d is held at zero is that it produces no torque in the first place.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-1-1" name="machines/03-motors-and-power/17-field-oriented-control-1"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-1-1"><span class="quiz-letter">B</span><span>It opposes the q current, so a d component cuts torque directly</span></label><p class="quiz-why"><b>Not quite.</b> The two axes are orthogonal and do not subtract from each other. A d component wastes current rather than cancelling the useful one.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-1-2" name="machines/03-motors-and-power/17-field-oriented-control-1"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-1-2" data-correct><span class="quiz-letter">C</span><span>It is aligned with the magnets, so it makes heat and no rotation</span></label><p class="quiz-why"><b>Right.</b> Only the perpendicular component produces rotation. Current along the rotor field dissipates I squared R while contributing nothing to the shaft.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-1-3" name="machines/03-motors-and-power/17-field-oriented-control-1"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-1-3"><span class="quiz-letter">D</span><span>It suits induction machines alone, which need magnetising current</span></label><p class="quiz-why"><b>Not quite.</b> An induction machine genuinely does need d current to establish its field, which is a real difference. On a permanent-magnet motor the magnets supply it.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>Which transform in the chain requires the rotor angle?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-2-0" name="machines/03-motors-and-power/17-field-oriented-control-2"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-2-0" data-correct><span class="quiz-letter">A</span><span>Park, which rotates the stationary pair into the rotor&#39;s own frame</span></label><p class="quiz-why"><b>Right.</b> Clarke is a fixed matrix with no angle in it. Park is the rotation, and it is the only place trigonometry and the encoder reading appear.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-2-1" name="machines/03-motors-and-power/17-field-oriented-control-2"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-2-1"><span class="quiz-letter">B</span><span>Clarke, which projects three phases onto two orthogonal axes</span></label><p class="quiz-why"><b>Not quite.</b> The three phase axes are fixed in the stator at known angles, so the matrix is constant. No measurement enters that step.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-2-2" name="machines/03-motors-and-power/17-field-oriented-control-2"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-2-2"><span class="quiz-letter">C</span><span>Both, since each step needs to know where the rotor is at that instant</span></label><p class="quiz-why"><b>Not quite.</b> Only the rotation does. Treating Clarke as angle-dependent suggests the two steps are doing the same kind of work, and they are not.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-2-3" name="machines/03-motors-and-power/17-field-oriented-control-2"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-2-3"><span class="quiz-letter">D</span><span>Space-vector modulation, which places the vector between two states</span></label><p class="quiz-why"><b>Not quite.</b> Modulation works from the voltage vector it is handed, in the stationary frame. The rotation back has already happened by then.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>What is the commonest angle error in a first FOC implementation, and why is it cheap to fix?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-3-0" name="machines/03-motors-and-power/17-field-oriented-control-3"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-3-0"><span class="quiz-letter">A</span><span>Drift in the encoder&#39;s zero position as the bearing wears over time</span></label><p class="quiz-why"><b>Not quite.</b> A mounted encoder&#39;s zero is mechanically fixed and does not wander in normal service. The offset is there from the moment it was fitted.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-3-1" name="machines/03-motors-and-power/17-field-oriented-control-3"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-3-1"><span class="quiz-letter">B</span><span>Latency between reading the angle and applying the duty cycles</span></label><p class="quiz-why"><b>Not quite.</b> This is real and grows with speed, and some drives compensate for it. It is a smaller effect than an uncalibrated offset of tens of degrees.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-3-2" name="machines/03-motors-and-power/17-field-oriented-control-3"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-3-2"><span class="quiz-letter">C</span><span>Encoder quantisation noise, reduced by averaging over several samples</span></label><p class="quiz-why"><b>Not quite.</b> Quantisation is usually well under a degree on any reasonable encoder, and averaging adds lag. It is not where the torque is going.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-3-3" name="machines/03-motors-and-power/17-field-oriented-control-3"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-3-3" data-correct><span class="quiz-letter">D</span><span>A fixed encoder offset, removable by aligning the rotor once at startup</span></label><p class="quiz-why"><b>Right.</b> Nobody glues an encoder aligned to the magnetic axis. Energising d, letting the rotor settle and recording that reading removes the whole error.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What remains of the torque ripple once FOC is working properly?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-4-0" name="machines/03-motors-and-power/17-field-oriented-control-4"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-4-0"><span class="quiz-letter">A</span><span>The PWM carrier ripple, which appears in the torque at the switching rate</span></label><p class="quiz-why"><b>Not quite.</b> Current ripple at the carrier does exist and inertia filters it out mechanically. It is not usually the dominant remaining torque variation.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-4-1" name="machines/03-motors-and-power/17-field-oriented-control-4"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-4-1"><span class="quiz-letter">B</span><span>Ripple from the dead time inserted between complementary switches</span></label><p class="quiz-why"><b>Not quite.</b> Dead-time distortion is a genuine effect and matters most at low current, where compensation helps. Cogging is the larger residual in most motors.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-4-2" name="machines/03-motors-and-power/17-field-oriented-control-4"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-4-2"><span class="quiz-letter">C</span><span>About half of six-step&#39;s ripple, since the field still advances in steps</span></label><p class="quiz-why"><b>Not quite.</b> The field rotates continuously under FOC and does not step at all. That is precisely the mechanism being removed.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/17-field-oriented-control-4-3" name="machines/03-motors-and-power/17-field-oriented-control-4"><label class="quiz-opt" for="machines/03-motors-and-power/17-field-oriented-control-4-3" data-correct><span class="quiz-letter">D</span><span>The motor&#39;s own cogging, since the controller contributes almost none</span></label><p class="quiz-why"><b>Right.</b> With angle error under a couple of degrees the controller&#39;s contribution is below a tenth of a per cent. What is left is magnetic, from the slots.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Mohan, Electric Machines and Drives, ch. 10-11 · Hughes &amp; Drury, Electric Motors and Drives, ch. 9 · SimpleFOC and TI InstaSPIN-FOC implementations</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/03-motors-and-power/16-six-step" class="text-ash transition-colors hover:text-bone">← Six-step commutation</a><a href="/course/machines/03-motors-and-power/18-batteries" class="text-ash transition-colors hover:text-bone">LiPo C-rating, sag, and the BMS you do not have →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

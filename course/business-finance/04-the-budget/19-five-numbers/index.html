@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Approved, control, committed, accrued, actual — Business Finance · Aerens</title><meta name="description" content="Five different figures for one cost centre, the funnel that connects them, and the fact that one of the five names has no standard meaning at all."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/04-the-budget/19-five-numbers/"><meta property="og:type" content="website"><meta property="og:title" content="Approved, control, committed, accrued, actual — Business Finance · Aerens"><meta property="og:description" content="Five different figures for one cost centre, the funnel that connects them, and the fact that one of the five names has no standard meaning at all."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/04-the-budget/19-five-numbers/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · The budget</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Approved, control, committed, accrued, actual</h1><p class="mt-3 text-bone/70">Five different figures for one cost centre, the funnel that connects them, and the fact that one of the five names has no standard meaning at all.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 03 of 06 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Name all five numbers for one cost centre and say how they differ</li><li>Use committed spend as an early warning rather than waiting for actuals</li><li>Establish which definition of “control budget” your organisation uses</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Someone says “we have €200,000 left in the budget”. Five people in the room hear
+five different numbers, and at least three of them are right.</p>
+<p>This is the tutorial that separates them.</p>
+<h2 id="five-numbers-one-funnel">Five numbers, one funnel</h2>
+<p>For a single cost centre in a single year, all of these exist at once.</p>
+<ul>
+<li><strong>Approved</strong> — what was signed off. €520,000.</li>
+<li><strong>Control</strong> — what you may actually spend. €480,000.</li>
+<li><strong>Committed</strong> — orders raised, money not yet gone. €310,000.</li>
+<li><strong>Accrued</strong> — delivered, cost recognised, invoice may not have arrived.
+€240,000.</li>
+<li><strong>Actual</strong> — posted in the ledger. €205,000.</li>
+</ul>
+<p>They descend, and they get more certain as they descend. Approved is a
+permission; actual is a fact. Everything in between is a claim of decreasing
+optimism about money that has not yet moved.</p>
+<p>“How much is left” has five answers: €315,000, €275,000, €170,000, €240,000
+short of nothing, or €315,000 against actuals — and the useful one depends
+entirely on what the question is for.</p>
+<figure class="fig"><svg viewBox="0 0 320 218" role="img" aria-labelledby="fig-five-numbers"><title id="fig-five-numbers">Approved, control, committed, accrued and actual are five distinct figures for the same cost centre, each smaller and each more certain than the one above it.</title><text x="8" y="14" class="dim">FIVE NUMBERS PEOPLE CALL THE BUDGET</text><rect class="box" x="8" y="28" width="304" height="30"></rect><text x="20" y="48" class="tight">APPROVED</text><text x="104" y="48" class="tight">520</text><rect class="box" x="8" y="64" width="256" height="30"></rect><text x="20" y="84" class="tight">CONTROL</text><text x="104" y="84" class="tight">480</text><rect class="box" x="8" y="100" width="200" height="30"></rect><text x="20" y="120" class="tight">COMMITTED</text><text x="104" y="120" class="tight">310</text><rect class="box" x="8" y="136" width="160" height="30"></rect><text x="20" y="156" class="tight">ACCRUED</text><text x="104" y="156" class="tight">240</text><rect class="mark" x="8" y="172" width="132" height="30"></rect><text x="20" y="192" class="tight">ACTUAL</text><text x="104" y="192" class="tight">205</text><text x="8" y="214" class="dim">THE FURTHER DOWN, THE MORE CERTAIN</text></svg><figcaption class="fig-cap">One cost centre, five figures, all of them current and all of them different.</figcaption></figure>
+<h2 id="approved-is-not-released">Approved is not released</h2>
+<p>The board approving €520,000 is an authorisation. It is not the same as finance
+loading €520,000 into your cost centre.</p>
+<p>Very commonly a portion is <strong>held</strong>: released in tranches, held pending a
+performance condition, or simply kept back centrally as a buffer against the
+group’s own target. You are told your budget is €480,000 and the difference is
+not lost — it is somewhere above you, and it may arrive in Q3.</p>
+<p>This is the single most common cause of a manager and a finance business partner
+disagreeing about the same cost centre, and it is resolved by asking one
+question: is this the approved figure or the released one?</p>
+<figure class="fig"><svg viewBox="0 0 320 176" role="img" aria-labelledby="fig-approved-not-released"><title id="fig-approved-not-released">A board-approved budget is an authorisation, not an allocation: finance commonly releases part of it and holds the rest back for release later in the year.</title><text x="8" y="14" class="dim">SIGNED OFF IS NOT THE SAME AS RELEASED</text><rect class="box" x="8" y="30" width="304" height="34"></rect><text x="20" y="52" class="tight">BOARD APPROVED 520 FOR THE YEAR</text><path class="accent" d="M160 64 V76"></path><path class="accent-fill" d="M155 76 L160 86 L165 76 Z"></path><rect class="mark" x="8" y="90" width="304" height="34"></rect><text x="20" y="112" class="tight">FINANCE RELEASED 480. THE REST IS HELD</text><text x="8" y="148" class="dim">THE HELD PORTION MAY ARRIVE IN Q3</text><text x="8" y="166" class="dim">OR MAY QUIETLY NEVER ARRIVE AT ALL</text></svg><figcaption class="fig-cap">The board authorised a number. Finance handed you a smaller one.</figcaption></figure>
+<h2 id="committed-spend-is-the-number-that-warns-you-first">Committed spend is the number that warns you first</h2>
+<p><strong>Committed</strong> is money you have promised: purchase orders raised, contracts
+signed, work ordered. No invoice, no accrual, nothing in the P&amp;L yet — and in
+many organisations, nothing in the report you are shown.</p>
+<p>It is also the only leading indicator you have. Actuals tell you where you were
+two months ago. Commitments tell you where you are going, because they are
+obligations you can no longer easily reverse.</p>
+<p>A cost centre whose actuals are at 40% of budget in June and whose commitments
+are at 95% is not comfortable. It is fully spent and does not know it yet. If
+your reporting does not show commitments, that is the single most valuable thing
+to ask for.</p>
+<figure class="fig"><svg viewBox="0 0 320 184" role="img" aria-labelledby="fig-commitment-leads"><title id="fig-commitment-leads">Committed spend rises as orders are raised, well ahead of the invoices, so it is the figure that breaches the budget first and the only early warning available.</title><text x="8" y="14" class="dim">THE NUMBER THAT WARNS YOU FIRST</text><path class="thin" d="M32 28 V132 H304"></path><path class="dash" d="M40 48 H288"></path><path class="accent" d="M40 120 L100 84 L160 64 L220 52 L288 44"></path><path class="rule" d="M40 128 L100 116 L160 96 L220 72 L288 50"></path><circle class="mark" cx="204" cy="48" r="7"></circle><text x="60" y="40" class="tight">BUDGET</text><text x="100" y="100" class="tight">COMMITTED</text><text x="230" y="92" class="tight">ACTUAL</text><text x="8" y="158" class="dim">COMMITMENTS RUN AHEAD OF ACTUALS</text><text x="8" y="176" class="dim">SO THEY BREACH THE BUDGET FIRST</text></svg><figcaption class="fig-cap">Actuals report the past. Commitments are the only line pointing forwards.</figcaption></figure>
+<h2 id="accrued-sits-between-committed-and-actual">Accrued sits between committed and actual</h2>
+<p>Track 2 covered what an accrual is. Here is where it sits in this sequence.</p>
+<p>A purchase moves through four states: the <strong>order is raised</strong> (committed), the
+<strong>work is delivered</strong> (accrued), the <strong>invoice is posted</strong> (actual), and the
+<strong>invoice is paid</strong> (cash). Only the last one is money moving.</p>
+<p>The accrual matters here because it is what makes your budget report honest at
+month end. Without it, work delivered in June with an invoice arriving in August
+makes June look underspent and August look catastrophic. With it, June carries
+the cost and the variance is real.</p>
+<p>Which is why the day-2 accrual request is not administrative box-ticking: it is
+what makes the difference between actual and committed mean something.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-accrual-bridge"><title id="fig-accrual-bridge">A single purchase passes through four states — order raised, work delivered, invoice posted, invoice paid — and each state is a different one of the five budget numbers.</title><text x="8" y="14" class="dim">BETWEEN COMMITTED AND PAID</text><rect class="box" x="8" y="30" width="304" height="30"></rect><text x="20" y="50" class="tight">ORDER RAISED · COMMITTED</text><rect class="box" x="8" y="68" width="304" height="30"></rect><text x="20" y="88" class="tight">WORK DELIVERED · ACCRUED</text><rect class="mark" x="8" y="106" width="304" height="30"></rect><text x="20" y="126" class="tight">INVOICE POSTED · ACTUAL</text><rect class="box" x="8" y="144" width="304" height="30"></rect><text x="20" y="164" class="tight">INVOICE PAID · CASH</text><text x="8" y="190" class="dim">FOUR EVENTS, AND ONLY ONE IS MONEY</text></svg><figcaption class="fig-cap">Four states, one purchase. The accrual is the one that keeps the month honest.</figcaption></figure>
+<h2 id="control-budget-is-not-standardised--find-out-which-one-they-mean">“Control budget” is not standardised — find out which one they mean</h2>
+<p>Now the term that sent us here, and the honest answer about it.</p>
+<p><strong>There is no single definition.</strong> The PMBOK Guide does not use “control
+budget”; it defines a <em>cost baseline</em> and a <em>project budget</em>. AACE’s terminology
+standard 10S-90 treats <em>control baseline</em> as a synonym for baseline and does not
+give “control budget” a separate entry. It is an organisational term, and it is
+used to mean at least three different things:</p>
+<ul>
+<li>the <strong>baseline plus contingency</strong> — the figure a project manager may commit
+against, excluding management reserve;</li>
+<li><strong>what finance has released</strong> — the approved figure less anything held back,
+which is the sense most common in annual opex budgeting;</li>
+<li><strong>the whole approved figure</strong>, used loosely as a synonym for “the budget”.</li>
+</ul>
+<p>None of these is wrong. They are different local conventions, and two people
+using different ones will disagree at length without ever discovering why.</p>
+<p>So the first question in any new organisation is not what the control budget is.
+It is <em>which of these your control budget means</em> — and the reliable way to find
+out is to ask what number a purchase order is validated against.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-which-stack"><title id="fig-which-stack">Control budget means different things in different organisations, and neither the PMBOK Guide nor AACE's terminology standard defines it, so the first job is to ask which stack is meant.</title><text x="8" y="14" class="dim">CONTROL BUDGET IS NOT A STANDARD TERM</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">SOME MEAN BASELINE PLUS CONTINGENCY</text><rect class="box" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">SOME MEAN WHAT FINANCE HAS RELEASED</text><rect class="box" x="8" y="110" width="304" height="32"></rect><text x="20" y="130" class="tight">SOME MEAN THE WHOLE APPROVED FIGURE</text><rect class="mark" x="8" y="150" width="304" height="30"></rect><text x="20" y="170" class="tight">ASK WHICH ONE BEFORE YOU ARGUE</text><text x="8" y="194" class="dim">PMBOK AND AACE DO NOT DEFINE IT EITHER</text></svg><figcaption class="fig-cap">Three meanings in circulation and no standard behind any of them.</figcaption></figure>
+<h2 id="worked-example-reading-the-same-cost-centre-five-ways">Worked example: reading the same cost centre five ways</h2>
+<p>Cost centre 4200 at the end of June. Approved €520,000; control €480,000.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>€</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Approved</td>
+<td>520,000</td>
+<td>Board authorisation</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>480,000</td>
+<td>Released by finance</td>
+</tr>
+<tr>
+<td>Committed</td>
+<td>310,000</td>
+<td>POs raised, mostly a 12-month contract</td>
+</tr>
+<tr>
+<td>Accrued</td>
+<td>240,000</td>
+<td>Delivered, including €35,000 not yet invoiced</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>205,000</td>
+<td>Posted in the ledger</td>
+</tr>
+</tbody>
+</table>
+<p>Five different answers to “how much is left”:</p>
+<table>
+<thead>
+<tr>
+<th>Question being asked</th>
+<th>Calculation</th>
+<th>€</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How much have we spent?</td>
+<td>Actual</td>
+<td>205,000</td>
+</tr>
+<tr>
+<td>What does the P&amp;L show?</td>
+<td>Accrued</td>
+<td>240,000</td>
+</tr>
+<tr>
+<td>What can I still commit?</td>
+<td>Control − committed</td>
+<td>170,000</td>
+</tr>
+<tr>
+<td>What is unspent on paper?</td>
+<td>Control − actual</td>
+<td>275,000</td>
+</tr>
+<tr>
+<td>What did the board give us?</td>
+<td>Approved</td>
+<td>520,000</td>
+</tr>
+</tbody>
+</table>
+<p>The dangerous one is the fourth. €275,000 looks like plenty and it is the figure
+most standard reports show. But €105,000 of the committed spend has neither been
+delivered nor invoiced, so the genuinely uncommitted amount is €170,000 — and
+if the €310,000 commitment includes a contract running to December, most of that
+is already gone too.</p>
+<p>The right number to manage against is <strong>control less committed</strong>, and it is
+frequently the one number not on the report.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>For your own cost centre, write down all five figures. Some will take a
+conversation to obtain, which is itself the finding.</li>
+<li>Establish which of the three meanings your organisation attaches to “control
+budget”. Ask what a purchase order is validated against.</li>
+<li>Compute control less committed. Compare it to the “remaining budget” figure
+on your monthly report and see whether they agree.</li>
+<li>Then find one commitment running beyond the year end and check whether it is
+in this year’s figure, next year’s, or both.</li>
+</ol>
+<p>Step 4 finds double-counted or missing multi-year commitments, which is where
+budget surprises in Q4 usually come from.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What changes as you move down from approved to actual?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-0-0" name="business-finance/04-the-budget/19-five-numbers-0"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-0-0"><span class="quiz-letter">A</span><span>The figure grows as commitments and accruals are added on</span></label><p class="quiz-why"><b>Not quite.</b> It descends. Committed is a subset of what may be spent, and actual is a subset of what has been committed.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-0-1" name="business-finance/04-the-budget/19-five-numbers-0"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-0-1" data-correct><span class="quiz-letter">B</span><span>The figure shrinks and becomes more certain at each step</span></label><p class="quiz-why"><b>Right.</b> Approved is a permission and actual is a fact. Each step down is a stronger claim about money that has moved or will.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-0-2" name="business-finance/04-the-budget/19-five-numbers-0"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-0-2"><span class="quiz-letter">C</span><span>The figure becomes less certain as estimates are layered in</span></label><p class="quiz-why"><b>Not quite.</b> The opposite: the estimating happens at the top. Actual is what the ledger has already recorded.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-0-3" name="business-finance/04-the-budget/19-five-numbers-0"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-0-3"><span class="quiz-letter">D</span><span>The figure shrinks because each step deducts what was spent</span></label><p class="quiz-why"><b>Not quite.</b> They are not deductions from one another; they are five separate measures of the same cost centre at one moment.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>The board approved €520,000 but your cost centre shows €480,000. What is the likely explanation?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-1-0" name="business-finance/04-the-budget/19-five-numbers-1"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-1-0" data-correct><span class="quiz-letter">A</span><span>Finance is holding part of it back, perhaps for release later</span></label><p class="quiz-why"><b>Right.</b> Approval authorises a figure; loading allocates one. Holding a tranche centrally is ordinary and rarely announced.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-1-1" name="business-finance/04-the-budget/19-five-numbers-1"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-1-1"><span class="quiz-letter">B</span><span>The approval covers a longer period than one financial year</span></label><p class="quiz-why"><b>Not quite.</b> Possible for a project, unusual for an annual opex budget. The routine cause is that finance released less.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-1-2" name="business-finance/04-the-budget/19-five-numbers-1"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-1-2"><span class="quiz-letter">C</span><span>The board figure includes tax that the cost centre excludes</span></label><p class="quiz-why"><b>Not quite.</b> Cost centre budgets and board approvals are both stated before tax. The gap is almost always a withheld tranche.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-1-3" name="business-finance/04-the-budget/19-five-numbers-1"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-1-3"><span class="quiz-letter">D</span><span>€40,000 has already been spent before the year formally began</span></label><p class="quiz-why"><b>Not quite.</b> Prior-year spend belongs to the prior year. An opening budget that is lower than approved points at a hold.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>In June, actuals are at 40% of budget and commitments at 95%. What is the position?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-2-0" name="business-finance/04-the-budget/19-five-numbers-2"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-2-0"><span class="quiz-letter">A</span><span>Overspent, since commitments and actuals together exceed budget</span></label><p class="quiz-why"><b>Not quite.</b> They overlap rather than add — actuals are invoices against commitments already counted. It is fully spent, not doubly.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-2-1" name="business-finance/04-the-budget/19-five-numbers-2"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-2-1"><span class="quiz-letter">B</span><span>Comfortable, since 60% of the budget has not yet been spent</span></label><p class="quiz-why"><b>Not quite.</b> That reads only the actuals, which describe the past. The commitments say where the year is already headed.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-2-2" name="business-finance/04-the-budget/19-five-numbers-2"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-2-2" data-correct><span class="quiz-letter">C</span><span>Effectively fully spent, since commitments are hard to reverse</span></label><p class="quiz-why"><b>Right.</b> Orders raised are obligations. The actuals will catch up as invoices arrive, and there is almost nothing left to allocate.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-2-3" name="business-finance/04-the-budget/19-five-numbers-2"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-2-3"><span class="quiz-letter">D</span><span>Unclear, since commitments may be cancelled without any cost</span></label><p class="quiz-why"><b>Not quite.</b> Some can, at a price. Treating raised orders as freely reversible is how a cost centre discovers an overspend in Q4.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>A purchase moves through four states. Which of them is money leaving the bank?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-3-0" name="business-finance/04-the-budget/19-five-numbers-3"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-3-0" data-correct><span class="quiz-letter">A</span><span>Only the last, when the posted invoice is finally paid</span></label><p class="quiz-why"><b>Right.</b> Order, delivery and posting are all recognition events. The bank moves once, at payment, often weeks after the rest.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-3-1" name="business-finance/04-the-budget/19-five-numbers-3"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-3-1"><span class="quiz-letter">B</span><span>The second, since delivery is when the obligation becomes real</span></label><p class="quiz-why"><b>Not quite.</b> Delivery is what makes the accrual valid. It creates the obligation rather than discharging it.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-3-2" name="business-finance/04-the-budget/19-five-numbers-3"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-3-2"><span class="quiz-letter">C</span><span>The third, since posting the invoice settles the supplier</span></label><p class="quiz-why"><b>Not quite.</b> Posting recognises the cost and creates a payable. Settlement is a separate event on the payment run.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-3-3" name="business-finance/04-the-budget/19-five-numbers-3"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-3-3"><span class="quiz-letter">D</span><span>The first, since raising an order commits the funds at once</span></label><p class="quiz-why"><b>Not quite.</b> Committing reserves budget rather than cash. No money moves when a purchase order is raised.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What is the reliable way to find out what your organisation means by control budget?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-4-0" name="business-finance/04-the-budget/19-five-numbers-4"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-4-0"><span class="quiz-letter">A</span><span>Look it up in the PMBOK Guide, which defines the term</span></label><p class="quiz-why"><b>Not quite.</b> It does not. PMBOK defines a cost baseline and a project budget, and leaves control budget alone entirely.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-4-1" name="business-finance/04-the-budget/19-five-numbers-4"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-4-1" data-correct><span class="quiz-letter">B</span><span>Ask which figure a purchase order is validated against</span></label><p class="quiz-why"><b>Right.</b> That is the number the system actually enforces, which settles it faster than any definition someone recites.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-4-2" name="business-finance/04-the-budget/19-five-numbers-4"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-4-2"><span class="quiz-letter">C</span><span>Take it as the approved figure, which is the usual convention</span></label><p class="quiz-why"><b>Not quite.</b> That is one of at least three meanings in circulation. Assuming it is how two people argue past each other.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/19-five-numbers-4-3" name="business-finance/04-the-budget/19-five-numbers-4"><label class="quiz-opt" for="business-finance/04-the-budget/19-five-numbers-4-3"><span class="quiz-letter">D</span><span>Check AACE 10S-90, where the term has a standard entry</span></label><p class="quiz-why"><b>Not quite.</b> 10S-90 treats control baseline as a synonym for baseline and gives control budget no separate definition.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: PMI, PMBOK Guide, ch. 7 · AACE International RP 10S-90, Cost Engineering Terminology · Anthony &amp; Govindarajan, Management Control Systems, ch. 9</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/04-the-budget/18-top-down-bottom-up" class="text-ash transition-colors hover:text-bone">← Top-down, bottom-up, and the negotiation in between</a><a href="/course/business-finance/04-the-budget/20-reserves" class="text-ash transition-colors hover:text-bone">Baseline, contingency reserve, management reserve →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

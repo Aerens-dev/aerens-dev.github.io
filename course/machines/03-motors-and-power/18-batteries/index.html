@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>LiPo C-rating, sag, and the BMS you do not have — Machines · Aerens</title><meta name="description" content="Why the pack is not the voltage on the label, what a C-rating is worth, and the four protections a hobby pack does not include."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/03-motors-and-power/18-batteries/"><meta property="og:type" content="website"><meta property="og:title" content="LiPo C-rating, sag, and the BMS you do not have — Machines · Aerens"><meta property="og:description" content="Why the pack is not the voltage on the label, what a C-rating is worth, and the four protections a hobby pack does not include."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/03-motors-and-power/18-batteries/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Motors, drivers, and power</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">LiPo C-rating, sag, and the BMS you do not have</h1><p class="mt-3 text-bone/70">Why the pack is not the voltage on the label, what a C-rating is worth, and the four protections a hobby pack does not include.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 07 of 08 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Measure a pack&#39;s internal resistance and predict its sag at a given current</li><li>Say why voltage is a poor state-of-charge estimate over most of the discharge</li><li>List what a hobby pack does not protect against, and who has to</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You size the drive for a 4S pack: 14.8 V, motors that want 60 A at full
+throttle, a 100C battery so the current is well within rating.</p>
+<p>At full throttle the pack reads 12.3 V, the motors produce noticeably less than
+you calculated, the low-voltage alarm fires, and the pack is warm afterwards.
+Nothing failed. The 14.8 V was a resting figure, the 100C was a number with no
+test behind it, and 144 W of your power budget is being dissipated inside the
+battery.</p>
+<p>The battery is the one component in the system that changes its behaviour based
+on how hard you use it, and every calculation downstream of it needs the loaded
+figure rather than the label.</p>
+<h2 id="the-pack-is-not-the-voltage-on-the-label">The pack is not the voltage on the label</h2>
+<p>A cell is a voltage source in series with a resistance, and that resistance is
+the whole story. Terminal voltage is <strong>V_rest − I·R_internal</strong>, so the harder you
+pull, the less you get.</p>
+<p>For a decent 4S pack, each cell has perhaps 8 to 12 mΩ of internal resistance,
+so the pack has about 40 mΩ. At 60 A:</p>
+<ul>
+<li>Voltage lost: 60 × 0.040 = <strong>2.4 V</strong></li>
+<li>Power dissipated inside the pack: 60² × 0.040 = <strong>144 W</strong></li>
+</ul>
+<p>Both numbers matter and the second is the one people miss. That 144 W is not
+reaching the motors; it is heating the battery, which is why a pack worked hard
+comes back warm and why a warm pack sags more than a cold one — resistance rises
+with temperature, so the effect compounds during a flight.</p>
+<p>The design consequence: <strong>every voltage-dependent calculation uses the loaded
+voltage</strong>. Motor RPM from Kv, available power, bootstrap headroom from tutorial
+14 — all of them see 12.3 V, not 14.8 V.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-cell-sag"><title id="fig-cell-sag">A cell's internal resistance means terminal voltage falls with current, so the pack voltage under load is far below its resting figure and it is the loaded voltage that every downstream calculation needs.</title><text x="8" y="14" class="dim">THE PACK IS NOT 14.8 V WHEN IT MATTERS</text><path class="thin" d="M40 30 V112 H272"></path><text x="20" y="36" class="tight">V</text><text x="252" y="128" class="tight">AMPS</text><path class="rule" d="M44 40 L264 100"></path><circle class="mark" cx="154" cy="70" r="7"></circle><text x="50" y="56" class="tight">14.8 AT REST</text><text x="170" y="94" class="tight">12.3 AT 60 A</text><text x="8" y="152" class="dim">FOUR CELLS AT 10 MILLIOHM EACH IS 40 MILLIOHM,</text><text x="8" y="166" class="dim">SO 60 A COSTS 2.4 V AND BURNS 144 W INSIDE THE</text><text x="8" y="180" class="dim">PACK. THAT HEAT IS WHY A SAGGING PACK GETS WARM</text></svg><figcaption class="fig-cap">Resting voltage is a specification. Loaded voltage is the design input.</figcaption></figure>
+<h2 id="what-a-c-rating-is-worth">What a C-rating is worth</h2>
+<p>C-rating is capacity multiplied by a number: a 1,500 mAh pack at 100C claims
+150 A.</p>
+<p>There is <strong>no standard test behind it</strong>. No agreed duration, no stated
+temperature, no maximum acceptable sag, and no independent verification. Two
+packs both labelled 100C can differ by a factor of two in what they actually
+deliver, and the number has inflated steadily for years because nothing
+constrains it.</p>
+<p>The honest alternative takes two minutes and gives you a number about <em>this</em>
+pack at <em>this</em> age:</p>
+<ol>
+<li>Measure the resting voltage.</li>
+<li>Apply a known load — the motors at a known throttle, with a current meter.</li>
+<li>Measure the voltage again.</li>
+<li>R = ΔV / I.</li>
+</ol>
+<p>Now you can predict sag at any current, which is what you actually wanted from
+the C-rating. And repeating it every few months tells you how the pack is
+ageing, because internal resistance is the property that degrades first and it
+degrades long before capacity does.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-c-rating"><title id="fig-c-rating">C rating is a marketing figure with no agreed test behind it, so the honest way to size a pack is from its measured internal resistance and the sag you are willing to accept.</title><text x="8" y="14" class="dim">WHAT THE WRAPPER SAYS</text><rect class="fill" x="8" y="26" width="304" height="44"></rect><text x="18" y="44" class="tight">1500 MAH, 100C · CLAIMS 150 AMPS</text><text x="18" y="62" class="tight">NO STANDARD TEST. NO STATED SAG. NO DURATION</text><rect class="mark" x="8" y="80" width="304" height="44"></rect><text x="18" y="98" class="tight">MEASURED: 9 MILLIOHM PER CELL</text><text x="18" y="116" class="tight">AT 60 A THAT IS 2.2 V DOWN. THAT IS THE LIMIT</text><text x="8" y="150" class="dim">MEASURE IT: REST VOLTAGE, THEN VOLTAGE UNDER A</text><text x="8" y="164" class="dim">KNOWN LOAD, DIVIDE THE DIFFERENCE BY THE CURRENT.</text><text x="8" y="178" class="dim">TWO MINUTES, AND IT BEATS ANY PRINTED CLAIM</text><text x="8" y="192" class="dim">BECAUSE IT IS THIS PACK, AT THIS AGE</text></svg><figcaption class="fig-cap">A number with no test behind it, against one you measured.</figcaption></figure>
+<h2 id="why-voltage-is-a-bad-fuel-gauge">Why voltage is a bad fuel gauge</h2>
+<p>A lithium polymer cell’s discharge curve is <strong>deliberately flat</strong> — that is a
+feature, since it means your electronics see a stable rail. It is also what
+makes state-of-charge estimation hard.</p>
+<p>Across the middle 80% of capacity the cell moves from about 3.9 V to 3.8 V. That
+is 0.1 V spread over most of the pack’s useful energy, against a sag that can be
+0.6 V per cell under load. <strong>The measurement noise is six times the signal.</strong></p>
+<p>Then, in the last 15%, it falls off a cliff.</p>
+<p>So: gauge by <strong>coulomb counting</strong> — integrate current over time — and use
+voltage only for the cutoff at the bottom, where the curve is finally steep
+enough to mean something. And take the cutoff decision <strong>under load</strong> rather
+than at rest, because a pack that reads 3.7 V resting may be at 3.2 V while
+flying, and 3.2 V is where damage starts.</p>
+<p>This is why every flight controller in track 8 reports both a percentage and a
+voltage, and why the percentage is the one to trust in the middle and the
+voltage the one to trust at the end.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-discharge"><title id="fig-discharge">A lithium polymer cell holds a nearly flat voltage across most of its capacity and then falls sharply, so voltage is a poor state-of-charge estimate until the point where very little is left.</title><text x="8" y="14" class="dim">VOLTAGE AGAINST CHARGE USED</text><path class="thin" d="M40 30 V112 H272"></path><path class="rule" d="M44 44 Q70 54 100 58 L212 68 Q236 74 252 106"></path><circle class="mark" cx="232" cy="80" r="7"></circle><path class="dash" d="M212 40 V116"></path><text x="60" y="132" class="tight">80 PER CENT OF CAPACITY</text><text x="216" y="132" class="tight">LAST 20</text><text x="8" y="158" class="dim">0.1 V ACROSS FOUR FIFTHS OF THE PACK, THEN A</text><text x="8" y="172" class="dim">CLIFF. SO GAUGE BY COULOMB COUNTING AND USE</text><text x="8" y="186" class="dim">VOLTAGE ONLY FOR THE CUTOFF AT THE MARKED POINT</text></svg><figcaption class="fig-cap">Flat where you need resolution, steep only when it is too late.</figcaption></figure>
+<h2 id="what-a-hobby-pack-does-not-have">What a hobby pack does not have</h2>
+<p>A laptop battery contains a protection board that prevents over-discharge,
+over-current, over-temperature and cell imbalance. <strong>A hobby lithium pack
+contains none of that.</strong> It is cells, wires and a plug.</p>
+<p>So the four protections are your problem:</p>
+<ul>
+<li><strong>Over-discharge.</strong> Below about 3.0 V per cell the cell is damaged; below 2.5
+it may be dangerous to recharge. You enforce a cutoff, and you enforce it
+under load.</li>
+<li><strong>Over-current.</strong> Nothing limits the pack. A short across a 4S pack delivers
+hundreds of amps into whatever caused it. A fuse costs one euro and is the
+only thing standing between a wiring mistake and a fire.</li>
+<li><strong>Cell imbalance.</strong> Cells drift apart over cycles, and one weak cell hits the
+danger zone while the pack average looks fine. The balance lead exists for
+this; use it every charge, not occasionally.</li>
+<li><strong>Temperature.</strong> Usually nothing at all watches this, and it is the honest gap
+in most hobby builds. A thermistor taped to the pack and read by the flight
+controller costs almost nothing.</li>
+</ul>
+<p>None of this is alarmism. Lithium polymer stores a great deal of energy in a
+soft pouch with no protective circuitry, and the failure mode is a fire that
+supplies its own oxidiser. Treat charging as an attended activity and storage
+as something that happens in a metal box at 3.8 V per cell.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-no-bms"><title id="fig-no-bms">A hobby lithium pack has no protection electronics of any kind, so over-discharge, over-current and cell imbalance are all the responsibility of the thing you are building.</title><text x="8" y="14" class="dim">A LAPTOP PACK HAS THESE. YOURS DOES NOT</text><rect class="fill" x="8" y="26" width="304" height="36"></rect><text x="18" y="42" class="tight">OVER-DISCHARGE CUTOFF</text><text x="18" y="56" class="tight">YOU: STOP AT 3.5 V PER CELL, UNDER LOAD</text><rect class="fill" x="8" y="66" width="304" height="36"></rect><text x="18" y="82" class="tight">OVER-CURRENT TRIP</text><text x="18" y="96" class="tight">YOU: A FUSE, AND A LIMIT IN THE FIRMWARE</text><rect class="fill" x="8" y="106" width="304" height="36"></rect><text x="18" y="122" class="tight">CELL BALANCING</text><text x="18" y="136" class="tight">YOU: THE BALANCE LEAD, AT EVERY CHARGE</text><rect class="mark" x="8" y="146" width="304" height="36"></rect><text x="18" y="162" class="tight">TEMPERATURE CUTOFF</text><text x="18" y="176" class="tight">YOU: NOTHING, USUALLY. THIS IS THE GAP</text><text x="8" y="196" class="dim">THE PACK IS A CHEMISTRY EXPERIMENT WITH A PLUG</text></svg><figcaption class="fig-cap">Four protections. Three are yours and the fourth is usually missing.</figcaption></figure>
+<h2 id="worked-example-sizing-a-pack-for-the-quadcopter">Worked example: sizing a pack for the quadcopter</h2>
+<p>Track 8’s aircraft, planned before buying. Four motors, 550 g all-up, a target
+of 10 minutes hover.</p>
+<p><strong>Step 1 — hover current.</strong> Hover is roughly 50% throttle, which for these
+motors and props is about 6.5 A each, so <strong>26 A total</strong> plus 1 A for the
+electronics.</p>
+<p><strong>Step 2 — capacity, honestly.</strong> 27 A for 10 minutes is 27 × (10/60) = 4.5 Ah.
+But you may not use the whole pack: 80% depth of discharge is the sensible
+ceiling for cycle life, so the pack must be 4.5 / 0.8 = <strong>5.6 Ah</strong>.</p>
+<p><strong>Step 3 — check the sag at full throttle</strong>, which is the step people skip.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>5,000 mAh, 4S, measured 6 mΩ/cell</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pack resistance</td>
+<td>24 mΩ</td>
+<td></td>
+</tr>
+<tr>
+<td>Hover current</td>
+<td>27 A</td>
+<td>sag 0.65 V</td>
+</tr>
+<tr>
+<td>Full throttle</td>
+<td>95 A</td>
+<td><strong>sag 2.3 V</strong></td>
+</tr>
+<tr>
+<td>Voltage at full throttle</td>
+<td>14.8 − 2.3 = <strong>12.5 V</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Power lost inside the pack at full throttle</td>
+<td>95² × 0.024 = <strong>217 W</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4 — the part that closes the loop.</strong> 12.5 V instead of 14.8 V is a 16%
+reduction, and motor RPM follows voltage, so full-throttle thrust is about 16%
+lower than the datasheet’s bench figure. If your thrust-to-weight calculation
+used 14.8 V, your actual margin is smaller than you think — and this is the
+arithmetic behind the advice in track 8 to size for a hover at 50% throttle
+rather than 70%.</p>
+<p><strong>Step 5 — and the weight, which changes the answer.</strong> A 5,000 mAh 4S pack is
+about 480 g, against an all-up target of 550 g. That does not fit. Going to
+3,000 mAh at 290 g brings the total to around 360 g of airframe plus battery,
+but the hover current drops with the weight, so the endurance does not fall
+proportionally.</p>
+<p>Iterating once: at 360 g the hover current is roughly 27 × (360/550) = 17.7 A,
+and 3,000 mAh at 80% gives 2.4 Ah, so endurance = 2.4 / 17.7 × 60 = <strong>8.1
+minutes</strong>. Less than 10, from a pack 40% smaller.</p>
+<p>That non-linearity is the whole of multirotor sizing: <strong>a bigger battery carries
+itself</strong>, and there is an optimum beyond which more capacity buys less flight
+time. Track 8 does this properly. What matters here is that the internal
+resistance you measured in step 3 is one of the inputs.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 1 gives you a number you will use repeatedly.</p>
+<ol>
+<li>Measure the internal resistance of a pack you own: rest voltage, then voltage
+under a known load, divide. Compare the implied maximum current to the
+C-rating printed on it.</li>
+<li>Work out the power dissipated inside that pack at your peak current. If it is
+more than a few percent of your total, the pack is a component in your
+thermal design.</li>
+<li>Log pack voltage through a full discharge and plot it. Find the point where
+the curve turns down, and set your cutoff there rather than at a number
+somebody recommended.</li>
+<li>Then check what your build does if a cell fails or the pack shorts. If the
+answer is nothing, fit a fuse before the next session — it is the cheapest
+item in this entire course.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 4 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>A 4S pack with 40 milliohms delivers 60 A. What happens besides the voltage falling?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-0-0" name="machines/03-motors-and-power/18-batteries-0"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-0-0"><span class="quiz-letter">A</span><span>The discharge curve steepens, so voltage becomes a usable fuel gauge</span></label><p class="quiz-why"><b>Not quite.</b> Loaded voltage is offset downward but the curve keeps its flat shape. Sag makes gauging by voltage harder rather than easier.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-0-1" name="machines/03-motors-and-power/18-batteries-0"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-0-1"><span class="quiz-letter">B</span><span>The pack&#39;s capacity in amp-hours falls by roughly the same fraction</span></label><p class="quiz-why"><b>Not quite.</b> Usable capacity does drop somewhat at high discharge rates, which is worth allowing for. It is a separate effect from the resistive loss.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-0-2" name="machines/03-motors-and-power/18-batteries-0"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-0-2" data-correct><span class="quiz-letter">C</span><span>About 144 watts is dissipated inside the pack itself, warming it</span></label><p class="quiz-why"><b>Right.</b> I squared R with 60 A through 40 milliohms. That power never reaches the motors, and the resulting heat raises resistance and worsens the sag.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-0-3" name="machines/03-motors-and-power/18-batteries-0"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-0-3"><span class="quiz-letter">D</span><span>The cells rebalance, since the weakest one carries the largest share</span></label><p class="quiz-why"><b>Not quite.</b> Cells in series carry identical current by definition, so no redistribution happens. A weak cell sags further rather than taking more load.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why is measuring internal resistance better than trusting a C-rating?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-1-0" name="machines/03-motors-and-power/18-batteries-1"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-1-0"><span class="quiz-letter">A</span><span>C-ratings describe charging rather than discharging on most packs</span></label><p class="quiz-why"><b>Not quite.</b> Packs usually carry separate charge and discharge C figures, so both are quoted. Neither is backed by a standard test.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-1-1" name="machines/03-motors-and-power/18-batteries-1"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-1-1"><span class="quiz-letter">B</span><span>C-ratings apply at a fixed temperature that hobby use rarely reaches</span></label><p class="quiz-why"><b>Not quite.</b> Temperature dependence is real and part of the problem. The deeper issue is that no defined test exists at any temperature.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-1-2" name="machines/03-motors-and-power/18-batteries-1"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-1-2" data-correct><span class="quiz-letter">C</span><span>There is no standard test, and your measurement describes this pack now</span></label><p class="quiz-why"><b>Right.</b> C-rating has no agreed duration, temperature or acceptable sag behind it. Resistance is measurable in two minutes and tracks ageing directly.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-1-3" name="machines/03-motors-and-power/18-batteries-1"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-1-3"><span class="quiz-letter">D</span><span>Resistance predicts capacity, which is what endurance depends on</span></label><p class="quiz-why"><b>Not quite.</b> Resistance and capacity are largely independent, and resistance degrades first. What it predicts is sag and internal heating.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What makes cell voltage a poor state-of-charge estimate across most of a discharge?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-2-0" name="machines/03-motors-and-power/18-batteries-2"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-2-0"><span class="quiz-letter">A</span><span>The measurement is too noisy at the resolution a typical ADC provides</span></label><p class="quiz-why"><b>Not quite.</b> A 12-bit ADC resolves a millivolt or so, which is ample against 0.1 V. The difficulty is what the voltage means, not how precisely it is read.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-2-1" name="machines/03-motors-and-power/18-batteries-2"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-2-1"><span class="quiz-letter">B</span><span>Voltage rises again as the cell warms, hiding the charge already used</span></label><p class="quiz-why"><b>Not quite.</b> Warming does lift terminal voltage a little by lowering resistance, which is a genuine confounder. The flatness of the curve is the larger problem.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-2-2" name="machines/03-motors-and-power/18-batteries-2"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-2-2" data-correct><span class="quiz-letter">C</span><span>It moves about 0.1 V over 80 per cent of capacity, less than the sag</span></label><p class="quiz-why"><b>Right.</b> The flat plateau is deliberate and good for the electronics. It means load-dependent sag swamps the signal you would be trying to read.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-2-3" name="machines/03-motors-and-power/18-batteries-2"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-2-3"><span class="quiz-letter">D</span><span>Cells in a pack diverge, so the average tells you about no single cell</span></label><p class="quiz-why"><b>Not quite.</b> Imbalance is a real hazard and a reason to monitor cells individually. Even a perfectly matched pack would still have the flat-curve problem.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Which protection is most often simply absent from a hobby build?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-3-0" name="machines/03-motors-and-power/18-batteries-3"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-3-0" data-correct><span class="quiz-letter">A</span><span>Temperature monitoring, which usually has nothing watching it at all</span></label><p class="quiz-why"><b>Right.</b> Cutoff, current limiting and balancing are routinely handled somewhere in a build. A thermistor on the pack costs almost nothing and is rarely fitted.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-3-1" name="machines/03-motors-and-power/18-batteries-3"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-3-1"><span class="quiz-letter">B</span><span>Over-current protection, which requires a shunt most builds lack</span></label><p class="quiz-why"><b>Not quite.</b> A fuse needs no shunt and costs about a euro, and most ESCs limit current in firmware. The measurement is not the obstacle.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-3-2" name="machines/03-motors-and-power/18-batteries-3"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-3-2"><span class="quiz-letter">C</span><span>Cell balancing, which needs equipment few hobbyists actually own</span></label><p class="quiz-why"><b>Not quite.</b> Every balance charger does this and the lead is on the pack for that purpose. Whether it is used at every charge is a discipline question.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/18-batteries-3-3" name="machines/03-motors-and-power/18-batteries-3"><label class="quiz-opt" for="machines/03-motors-and-power/18-batteries-3-3"><span class="quiz-letter">D</span><span>Over-discharge cutoff, which most flight controllers leave to the pilot</span></label><p class="quiz-why"><b>Not quite.</b> Nearly every flight controller has a configurable low-voltage alarm and many will act on it. It is one of the better covered protections.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Mohan, Power Electronics, ch. 11 · Quan Quan, Introduction to Multicopter Design and Control, ch. 3</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/03-motors-and-power/17-field-oriented-control" class="text-ash transition-colors hover:text-bone">← Field-oriented control, implemented rather than derived</a><a href="/course/machines/04-control-on-hardware/19-pid-as-tuned" class="text-ash transition-colors hover:text-bone">PID as it is tuned, not as it is derived →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Barometers, GNSS and rangefinders — Machines · Aerens</title><meta name="description" content="A barometer that resolves centimetres and drifts metres, the best number in a GNSS packet, and which rangefinder fails on which surface."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/05-sensors-and-state/28-baro-gnss-rangefinders/"><meta property="og:type" content="website"><meta property="og:title" content="Barometers, GNSS and rangefinders — Machines · Aerens"><meta property="og:description" content="A barometer that resolves centimetres and drifts metres, the best number in a GNSS packet, and which rangefinder fails on which surface."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/05-sensors-and-state/28-baro-gnss-rangefinders/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Sensors and state</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Barometers, GNSS and rangefinders</h1><p class="mt-3 text-bone/70">A barometer that resolves centimetres and drifts metres, the best number in a GNSS packet, and which rangefinder fails on which surface.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 05 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Say what a barometer is good for and what it is not, on two timescales</li><li>Name the most accurate quantity in a GNSS fix, and why it is usually ignored</li><li>Pick a rangefinder from what it will be looking at rather than from its range</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You want the aircraft to hold altitude. There are three sensors that claim to
+know it, and they disagree by several metres.</p>
+<p>The barometer says 41.2 m and is beautifully smooth. GNSS says 47 m and jumps
+around by two or three metres. The rangefinder says 1.8 m, which is obviously
+right, until the aircraft flies over a hedge and it says 0.4 m without anything
+having changed about the altitude.</p>
+<p>All three are working correctly. Each is answering a slightly different question,
+over a different band of timescales, and the job is to know which one to believe
+about what.</p>
+<h2 id="the-barometer-superb-relatively-poor-absolutely">The barometer: superb relatively, poor absolutely</h2>
+<p>A modern MEMS barometer resolves pressure changes corresponding to about <strong>10 cm
+of altitude</strong>, at tens of hertz. That is remarkable and it makes vertical speed
+and short-term altitude hold easy.</p>
+<p>Its absolute reference is worthless. Atmospheric pressure at a fixed point
+changes with the weather by an amount equivalent to <strong>tens of metres</strong> over a
+day, and by several metres over an hour. So an altitude computed from pressure
+is an altitude relative to whatever the pressure happened to be when you zeroed
+it, and it drifts from there.</p>
+<p>The practical split: use it for <strong>vertical rate</strong> and for <strong>holding an altitude
+over minutes</strong>. Do not use it to know how high you are, and do not use it to
+return to an altitude recorded twenty minutes ago.</p>
+<p>One physical detail that catches every first build: a barometer near a propeller
+is in a <strong>pressure field of its own making</strong>. Prop wash produces local pressure
+changes far larger than the signal. The fix is foam over the port and a sealed
+enclosure with one small vent — this is why flight controllers ship with a scrap
+of foam over one chip, and why removing it makes altitude hold much worse.</p>
+<figure class="fig"><svg viewBox="0 0 320 202" role="img" aria-labelledby="fig-baro"><title id="fig-baro">A barometer resolves centimetres of altitude change and its absolute reference wanders metres as the weather moves, so it is a superb relative sensor and a poor absolute one.</title><text x="8" y="14" class="dim">THE SAME SENSOR, TWO TIMESCALES</text><path class="thin" d="M40 30 V108 H272"></path><path class="accent" d="M44 96 Q80 94 116 92 Q170 88 216 72 Q244 62 264 54"></path><circle class="mark" cx="216" cy="72" r="7"></circle><text x="100" y="72" class="tight">DRIFTS METRES OVER HOURS</text><path class="rule" d="M44 104 H264"></path><text x="60" y="122" class="tight">RESOLVES 10 CM IN SECONDS</text><text x="8" y="152" class="dim">SO USE IT FOR VERTICAL SPEED AND FOR HOLDING AN</text><text x="8" y="166" class="dim">ALTITUDE OVER MINUTES, NOT FOR KNOWING HOW HIGH</text><text x="8" y="180" class="dim">YOU ARE. AND SHIELD IT FROM PROP WASH, WHICH IS</text><text x="8" y="194" class="dim">A PRESSURE SOURCE SITTING RIGHT NEXT TO IT</text></svg><figcaption class="fig-cap">Ten centimetres in seconds. Metres over hours.</figcaption></figure>
+<h2 id="the-best-number-in-a-gnss-packet">The best number in a GNSS packet</h2>
+<p>A GNSS fix gives horizontal position to <strong>2-5 m</strong>, and people build on that.</p>
+<p>Vertical position is <strong>two to three times worse</strong> — 5-15 m — and this is
+geometry rather than a defect. All the satellites are above you, so the vertical
+component is estimated from a much poorer geometric spread than the horizontal
+one. No receiver escapes it.</p>
+<p>And then the number nearly everyone ignores: <strong>velocity, from Doppler shift</strong>,
+accurate to about <strong>0.05 m/s</strong>. It is computed from the rate of change of the
+carrier phase rather than by differentiating positions, which is why it is
+extraordinarily good.</p>
+<p>That matters because differentiating a 3 m position to get speed gives you
+something dreadful, and the receiver already did the job properly and put the
+answer in the message. If you are estimating velocity for a position controller,
+<strong>use the velocity field</strong>. This is one of the highest-value, lowest-effort
+improvements available in a navigation stack.</p>
+<figure class="fig"><svg viewBox="0 0 320 208" role="img" aria-labelledby="fig-gnss"><title id="fig-gnss">A GNSS receiver gives horizontal position to a few metres, vertical position two to three times worse, and a velocity from Doppler that is far more accurate than differentiating the position would be.</title><text x="8" y="14" class="dim">WHAT A FIX IS ACTUALLY WORTH</text><rect class="fill" x="8" y="28" width="304" height="40"></rect><text x="18" y="46" class="tight">HORIZONTAL POSITION · 2 TO 5 M</text><text x="18" y="60" class="tight">GOOD ENOUGH TO NAVIGATE, NOT TO LAND</text><rect class="fill" x="8" y="74" width="304" height="40"></rect><text x="18" y="92" class="tight">VERTICAL POSITION · 5 TO 15 M</text><text x="18" y="106" class="tight">WORSE, ALWAYS. GEOMETRY, NOT A DEFECT</text><rect class="mark" x="8" y="120" width="304" height="40"></rect><text x="18" y="138" class="tight">VELOCITY, FROM DOPPLER · 0.05 M/S</text><text x="18" y="152" class="tight">THE BEST THING IN THE MESSAGE, AND IGNORED</text><text x="8" y="184" class="dim">DIFFERENTIATING POSITION GIVES A FAR WORSE SPEED</text><text x="8" y="198" class="dim">THAN THE DOPPLER FIGURE ALREADY IN THE PACKET</text></svg><figcaption class="fig-cap">Vertical is always worse. Velocity is always better.</figcaption></figure>
+<h2 id="rangefinders-and-what-each-one-cannot-see">Rangefinders, and what each one cannot see</h2>
+<p>Three technologies, and the useful way to choose is by <strong>what it will be
+looking at</strong> rather than by the quoted range.</p>
+<p><strong>Ultrasonic</strong> is cheap and slow, around 20 Hz. It fails on soft surfaces that
+absorb sound — long grass, snow, a ploughed field — and it is badly disturbed by
+prop wash, which is both acoustic noise and a moving medium.</p>
+<p><strong>Infrared time-of-flight</strong> is small and fast, up to a few metres. It fails in
+direct sunlight, which swamps the receiver, and on dark or matte surfaces that
+return too little light. Indoors it is excellent.</p>
+<p><strong>Lidar</strong> works to tens of metres at 100 Hz and costs more. It fails on water,
+glass and wet tarmac — specular surfaces that reflect the beam away rather than
+back.</p>
+<p>And the property they share, which is the one that produces surprises: <strong>they
+measure to the nearest thing below, not to the ground</strong>. Flying over a hedge, a
+parked car or a table gives a step change in reading with no change in altitude,
+and a naive altitude hold will climb over the obstacle and then descend on the
+far side.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-rangefinder"><title id="fig-rangefinder">Ultrasonic, infrared time-of-flight and lidar rangefinders each fail on a characteristic surface, so the right one depends on what you expect to be looking at rather than on the quoted range.</title><text x="8" y="14" class="dim">WHAT EACH ONE CANNOT SEE</text><rect class="fill" x="8" y="28" width="304" height="38"></rect><text x="18" y="46" class="tight">ULTRASONIC · CHEAP, 20 HZ</text><text x="18" y="60" class="tight">FAILS ON SOFT SURFACES AND IN PROP WASH</text><rect class="mark" x="8" y="72" width="304" height="38"></rect><text x="18" y="90" class="tight">INFRARED TIME OF FLIGHT · 50 HZ, 4 M</text><text x="18" y="104" class="tight">FAILS IN SUNLIGHT AND ON DARK SURFACES</text><rect class="fill" x="8" y="116" width="304" height="38"></rect><text x="18" y="134" class="tight">LIDAR · 100 HZ, 40 M, COSTS MORE</text><text x="18" y="148" class="tight">FAILS ON WATER, GLASS AND WET TARMAC</text><text x="8" y="180" class="dim">ALL THREE MEASURE TO THE NEAREST THING BELOW, NOT</text><text x="8" y="194" class="dim">TO THE GROUND. A TABLE READS AS A STEP CHANGE</text></svg><figcaption class="fig-cap">Three failure surfaces, and one shared assumption that is false.</figcaption></figure>
+<h2 id="fusing-altitude-is-the-same-argument-again">Fusing altitude is the same argument again</h2>
+<p>Four sources, each good over a different band — which is exactly tutorial 26’s
+complementary argument with more terms.</p>
+<p><strong>Accelerometer</strong>, integrated twice: excellent over <strong>milliseconds</strong>, and
+double-integration means its drift is quadratic in time, so it is useless within
+a second or two on its own.</p>
+<p><strong>Barometer</strong>: good over <strong>seconds to minutes</strong>, drifting beyond that.</p>
+<p><strong>GNSS vertical</strong>: poor but <strong>absolute</strong>, and its error does not grow with time.</p>
+<p><strong>Rangefinder</strong>: extremely good and genuinely absolute, but <strong>only near the
+ground</strong>, and it measures to whatever is underneath.</p>
+<p>So the filter takes short-term motion from the accelerometer, medium-term from
+the barometer, long-term from GNSS, and switches to the rangefinder below a few
+metres. That last switch is worth designing carefully, because a source appearing
+and disappearing is a discontinuity, and a landing is the worst moment for one.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-fusing-alt"><title id="fig-fusing-alt">Accelerometer, barometer and rangefinder each supply altitude information over a different band of timescales, so fusing them is the same complementary argument applied to a third sensor.</title><text x="8" y="14" class="dim">WHO IS RIGHT, AND OVER WHAT INTERVAL</text><text x="8" y="44" class="tight">MILLISECONDS</text><text x="168" y="44" class="tight">ACCELEROMETER</text><text x="8" y="70" class="tight">SECONDS TO MINUTES</text><text x="168" y="70" class="tight">BAROMETER</text><rect class="mark" x="4" y="80" width="308" height="28"></rect><text x="8" y="100" class="tight">NEAR THE GROUND</text><text x="168" y="100" class="tight">RANGEFINDER, ABSOLUTE</text><text x="8" y="126" class="tight">TENS OF METRES UP</text><text x="168" y="126" class="tight">GNSS, POORLY</text><text x="8" y="158" class="dim">THE MARKED ROW IS THE ONLY ABSOLUTE ONE, AND IT</text><text x="8" y="172" class="dim">WORKS FOR THE LAST FEW METRES. WHICH IS WHY IT IS</text><text x="8" y="186" class="dim">WORTH FITTING FOR LANDING AND NOTHING ELSE</text></svg><figcaption class="fig-cap">The same split as tutorial 26, with four terms instead of two.</figcaption></figure>
+<h2 id="worked-example-an-altitude-hold-that-survives-a-hedge">Worked example: an altitude hold that survives a hedge</h2>
+<p>The quadcopter, holding 2 m over a field with a 1.2 m hedge across it.</p>
+<p><strong>The naive version.</strong> Rangefinder straight into the altitude loop, setpoint
+2 m.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Over the field</td>
+<td>reads 2.0 m, holds</td>
+</tr>
+<tr>
+<td>Crossing the hedge</td>
+<td>reads 0.8 m, climbs</td>
+</tr>
+<tr>
+<td>Climb commanded</td>
+<td>1.2 m</td>
+</tr>
+<tr>
+<td>Past the hedge</td>
+<td>reads 3.2 m, descends</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>a 1.2 m bounce at every obstacle</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why the obvious fixes fail.</strong> Slew-rate limiting the rangefinder just delays
+the bounce. A median filter removes a narrow spike and a hedge is not narrow —
+the aircraft is over it for a second or more.</p>
+<p><strong>The version that works</strong> treats the rangefinder as measuring <strong>terrain height</strong>
+rather than altitude, and fuses it with the barometer, which knows nothing about
+terrain and everything about the aircraft’s own motion:</p>
+<ol>
+<li>Maintain a barometric altitude estimate, drifting slowly.</li>
+<li>Maintain a terrain estimate: <code>terrain = baro_alt − rangefinder</code>.</li>
+<li>Filter the <strong>terrain</strong> estimate slowly, with a time constant of a few seconds.</li>
+<li>Hold altitude against <code>baro_alt</code>, corrected by the slowly-filtered terrain.</li>
+</ol>
+<p>Now a hedge produces a fast change in the rangefinder and therefore a fast
+change in the terrain estimate — which the slow filter rejects. A genuine
+altitude change moves both the barometer and the rangefinder together and leaves
+the terrain estimate unchanged, so it passes straight through.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Naive</th>
+<th>Terrain-fused</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bounce crossing a 1.2 m hedge</td>
+<td>1.2 m</td>
+<td><strong>0.11 m</strong></td>
+</tr>
+<tr>
+<td>Response to a real 1 m climb command</td>
+<td>0.4 s</td>
+<td>0.45 s</td>
+</tr>
+<tr>
+<td>Behaviour on a gentle slope</td>
+<td>tracks it</td>
+<td>tracks it</td>
+</tr>
+</tbody>
+</table>
+<p><strong>And the thing to notice</strong>, which is the general lesson: the fix was not a
+better filter on the rangefinder. It was <strong>changing what the rangefinder is
+taken to measure</strong> — from altitude to terrain — after which an ordinary
+low-pass filter does the right thing automatically. Most sensor-fusion problems
+that resist filtering are really a question about what the sensor is measuring.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 2 is the free improvement.</p>
+<ol>
+<li>Log a barometer indoors for an hour without moving it. Plot it as altitude.
+The wander you see is your absolute error budget, and it is larger than
+people expect.</li>
+<li>Find the velocity fields in your GNSS receiver’s messages and compare them to
+what you get by differentiating position. The difference is usually an order
+of magnitude.</li>
+<li>Point a rangefinder at four surfaces — carpet, glass, a white wall, and out
+of a window in sunlight. Note which ones return nothing.</li>
+<li>Then take any altitude source you have and ask the question this tutorial
+ends on: is it measuring height above <em>the ground</em>, or height above <em>the
+nearest thing</em>? The answer changes how it should be fused.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 4 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What is a barometer genuinely good for on an aircraft?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-0" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-0"><span class="quiz-letter">A</span><span>Measuring height above the terrain the aircraft is crossing</span></label><p class="quiz-why"><b>Not quite.</b> It knows nothing about terrain at all, only ambient pressure. A rangefinder is the sensor that sees what is underneath.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-1" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-1"><span class="quiz-letter">B</span><span>Providing an absolute altitude to cross-check the GNSS figure</span></label><p class="quiz-why"><b>Not quite.</b> Its absolute value is the weakest thing about it, so the check would be the wrong way round. GNSS is the one with a stable long-term reference.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-2" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-2"><span class="quiz-letter">C</span><span>Returning to an altitude recorded earlier in the same flight</span></label><p class="quiz-why"><b>Not quite.</b> The reference drifts several metres over an hour, so a stored value ages badly. Short-term relative measurement is where it excels.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-3" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-0-3" data-correct><span class="quiz-letter">D</span><span>Vertical rate, and holding one altitude over a few minutes</span></label><p class="quiz-why"><b>Right.</b> It resolves around ten centimetres of change at tens of hertz. What it lacks is a stable absolute reference, which weather moves by metres.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why is GNSS velocity far more accurate than differentiated position?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-0" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-0"><span class="quiz-letter">A</span><span>It uses more satellites than the position solution needs to use</span></label><p class="quiz-why"><b>Not quite.</b> Both solutions use the same satellites in view. What differs is which observable is being used from each one.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-1" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-1"><span class="quiz-letter">B</span><span>Position error is mostly atmospheric, which affects speed equally</span></label><p class="quiz-why"><b>Not quite.</b> Atmospheric delay does dominate position error and it varies slowly, which is precisely why its effect on rate is small. That helps rather than hurting.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-2" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-2" data-correct><span class="quiz-letter">C</span><span>It comes from Doppler on the carrier rather than from position</span></label><p class="quiz-why"><b>Right.</b> Carrier phase rate is measured directly and very precisely, giving around five centimetres per second. Differentiating a few metres of position gives far worse.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-3" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-1-3"><span class="quiz-letter">D</span><span>It is averaged over many fixes, so position noise cancels out</span></label><p class="quiz-why"><b>Not quite.</b> Averaging positions would add lag and still leave correlated errors. The velocity is an independent measurement rather than a smoothed one.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What assumption do all three rangefinder technologies share, and why does it matter?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-0" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-0" data-correct><span class="quiz-letter">A</span><span>They measure to the nearest thing below, which is not the ground</span></label><p class="quiz-why"><b>Right.</b> A hedge, a car or a table gives a step change with no altitude change. An altitude hold built on the raw reading will climb over the obstacle.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-1" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-1"><span class="quiz-letter">B</span><span>They assume the surface below is flat and horizontal to the vehicle</span></label><p class="quiz-why"><b>Not quite.</b> A tilted surface does lengthen the measured range and is worth compensating for with attitude. Every technology still reports the nearest return.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-2" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-2"><span class="quiz-letter">C</span><span>They assume the medium between sensor and target is still air</span></label><p class="quiz-why"><b>Not quite.</b> Prop wash genuinely disturbs ultrasonic measurements, and optical methods are largely unaffected. It is not shared across all three.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-3" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-2-3"><span class="quiz-letter">D</span><span>They assume the target reflects at least part of the emitted signal</span></label><p class="quiz-why"><b>Not quite.</b> This is true and is exactly where each one fails differently. It is the mechanism behind their individual limits rather than the shared blind spot.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why is an accelerometer useless for altitude on its own within a couple of seconds?</legend><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-0" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-0" data-correct><span class="quiz-letter">A</span><span>It is integrated twice, so its error grows with the square of time</span></label><p class="quiz-why"><b>Right.</b> Double integration turns a small bias into a quadratic position error. It remains excellent over milliseconds, which is exactly its band in the fusion.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-1" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-1"><span class="quiz-letter">B</span><span>Its noise is too high to resolve altitude changes of a few centimetres</span></label><p class="quiz-why"><b>Not quite.</b> Over milliseconds it resolves motion very well, which is why it anchors the short end. Noise integrated twice becomes the random walk that ends it.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-2" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-2"><span class="quiz-letter">C</span><span>Vibration from the motors dominates the vertical axis completely</span></label><p class="quiz-why"><b>Not quite.</b> Vibration is a serious practical problem addressed by mounting and filtering. Even a perfectly clean signal would still drift quadratically.</p><input class="quiz-radio" type="radio" id="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-3" name="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3"><label class="quiz-opt" for="machines/05-sensors-and-state/28-baro-gnss-rangefinders-3-3"><span class="quiz-letter">D</span><span>It measures specific force, which includes no vertical information</span></label><p class="quiz-why"><b>Not quite.</b> The vertical channel carries plenty of information about vertical motion once gravity is removed. The problem is what integration does to its errors.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Groves, GNSS and Inertial Navigation, ch. 8-9 · Beard &amp; McLain, Small Unmanned Aircraft, ch. 7 · Quan Quan, Introduction to Multicopter Design and Control, ch. 8</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/05-sensors-and-state/27-magnetometers" class="text-ash transition-colors hover:text-bone">← Magnetometers, hard iron and soft iron</a><a href="/course/machines/05-sensors-and-state/29-quaternions" class="text-ash transition-colors hover:text-bone">Quaternions, and why not Euler angles →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

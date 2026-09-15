@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Torque against speed, the curve that decides the design — Machines · Aerens</title><meta name="description" content="One straight line, two constants that are the same constant, and why peak power and peak efficiency are nowhere near each other."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/03-motors-and-power/13-torque-against-speed/"><meta property="og:type" content="website"><meta property="og:title" content="Torque against speed, the curve that decides the design — Machines · Aerens"><meta property="og:description" content="One straight line, two constants that are the same constant, and why peak power and peak efficiency are nowhere near each other."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/03-motors-and-power/13-torque-against-speed/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Motors, drivers, and power</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Torque against speed, the curve that decides the design</h1><p class="mt-3 text-bone/70">One straight line, two constants that are the same constant, and why peak power and peak efficiency are nowhere near each other.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 02 of 08 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Convert between Kv and Kt, and say why a motor cannot have both</li><li>Explain why stall torque is a thermal figure rather than a magnetic one</li><li>Find the operating point as the crossing of a motor line and a load line</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You size a motor from its datasheet: it makes 0.14 Nm, you need 0.11 Nm, so
+there is margin. You build the machine and the motor runs hot enough to smell
+after four minutes, and it never reaches the speed you wanted.</p>
+<p>The 0.14 Nm was <strong>stall</strong> torque, available at zero speed for a few seconds
+before the winding cooks. The speed you wanted was <strong>no-load</strong> speed, available
+only when the motor is doing no work. Neither number describes the place you
+intended to operate, and the datasheet gave you both without saying so.</p>
+<p>Everything in this tutorial comes off one straight line, and the line is the
+thing to internalise rather than any of the numbers on it.</p>
+<h2 id="the-line">The line</h2>
+<p>For a brushed DC motor at a fixed voltage, torque falls <strong>linearly</strong> with speed.
+Two endpoints define it: <strong>stall torque</strong> at zero speed, and <strong>no-load speed</strong>
+at zero torque. Draw the line between them and you have the motor.</p>
+<p>Two consequences follow immediately, and both are counter-intuitive the first
+time.</p>
+<p><strong>Output power is a parabola on that line</strong>, zero at both ends — no power at
+stall because nothing moves, no power at no load because nothing is resisting —
+and peaking exactly in the middle, at half the stall torque and half the no-load
+speed.</p>
+<p><strong>Current is proportional to torque</strong>, not to speed. A motor spinning fast with
+no load draws almost nothing. The same motor held still draws its stall current,
+which is the supply voltage divided by the winding resistance and is often
+twenty times the running figure. That is the number your bridge, your shunt and
+your supply limit have to survive.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-torque-speed"><title id="fig-torque-speed">A brushed DC motor's torque falls linearly with speed from stall to no load, power peaks at the midpoint of that line, and efficiency peaks much nearer no load, so the operating point is a choice between two different optima.</title><text x="8" y="14" class="dim">TORQUE, POWER AND EFFICIENCY ON ONE AXIS</text><path class="thin" d="M40 30 V128 H216"></path><text x="18" y="36" class="tight">T</text><text x="212" y="144" class="tight">RPM</text><path class="rule" d="M44 36 L208 124"></path><path class="accent" d="M44 126 Q126 52 208 126"></path><circle class="mark" cx="126" cy="80" r="7"></circle><text x="224" y="42" class="tight">TORQUE</text><text x="224" y="86" class="tight">POWER</text><text x="46" y="146" class="tight">STALL</text><text x="176" y="146" class="tight">NO LOAD</text><text x="8" y="172" class="dim">PEAK POWER IS AT HALF THE NO-LOAD SPEED AND HALF</text><text x="8" y="186" class="dim">THE STALL TORQUE. PEAK EFFICIENCY IS NOT THERE</text></svg><figcaption class="fig-cap">Two endpoints, one line, and power peaking in the middle.</figcaption></figure>
+<h2 id="kv-and-kt-are-one-constant">Kv and Kt are one constant</h2>
+<p>A brushless motor is sold by <strong>Kv</strong>, in RPM per volt. A servo motor is sold by
+<strong>Kt</strong>, in newton-metres per amp. These look like two independent
+specifications and they are the same physical property written from opposite
+ends.</p>
+<p>They are related by a conversion that is worth memorising:</p>
+<p><strong>Kt [Nm/A] ≈ 9.55 / Kv [RPM/V]</strong></p>
+<p>So a 2,300 Kv racing motor makes 0.0042 Nm per amp. A 300 Kv gimbal motor makes
+0.032 Nm per amp — nearly eight times more torque for the same current, and
+roughly one eighth the speed for the same voltage.</p>
+<p>The important word is <em>trade</em>. Winding a motor for more turns of thinner wire
+raises Kt and lowers Kv; fewer turns of thicker wire does the reverse. The
+product is fixed by the magnetics and the iron, not by the winding, so <strong>no
+choice of winding escapes it</strong>.</p>
+<p>Gearing buys back whichever end you gave up, and charges for it in backlash,
+noise, mass, efficiency and one more thing to wear out. That is a real option
+and often the right one — just not a free one.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-two-constants"><title id="fig-two-constants">The speed constant and the torque constant are two views of one physical property, so a motor wound for high speed per volt necessarily produces low torque per amp, and no winding escapes the trade.</title><text x="8" y="14" class="dim">ONE PROPERTY, TWO NAMES</text><rect class="fill" x="8" y="28" width="140" height="60"></rect><text x="18" y="48" class="tight">Kv</text><text x="18" y="68" class="tight">RPM PER VOLT</text><text x="18" y="82" class="tight">WHAT SPINS</text><rect class="mark" x="172" y="28" width="140" height="60"></rect><text x="182" y="48" class="tight">Kt</text><text x="182" y="68" class="tight">NM PER AMP</text><text x="182" y="82" class="tight">WHAT PUSHES</text><path class="accent" d="M152 58 H166"></path><path class="accent-fill" d="M166 54 L172 58 L166 62 Z"></path><path class="accent" d="M168 46 H154"></path><path class="accent-fill" d="M154 42 L148 46 L154 50 Z"></path><text x="8" y="120" class="tight">Kt IN NM/A IS ABOUT 9.55 DIVIDED BY Kv IN RPM/V</text><text x="8" y="152" class="dim">SO A 2300 KV MOTOR MAKES 0.0042 NM PER AMP AND A</text><text x="8" y="166" class="dim">300 KV MOTOR MAKES 0.032 NM PER AMP. PICK ONE.</text><text x="8" y="180" class="dim">GEARING BUYS THE OTHER END BACK, AT A PRICE</text><text x="8" y="194" class="dim">IN BACKLASH, NOISE, MASS AND ONE MORE BEARING</text></svg><figcaption class="fig-cap">Two names, one property. Winding chooses where you sit on it.</figcaption></figure>
+<h2 id="stall-torque-is-a-thermal-number">Stall torque is a thermal number</h2>
+<p>Stall torque appears on the datasheet as a single figure, which invites you to
+treat it as a property of the motor. It is really a property of the motor <em>and
+how long you ask</em>.</p>
+<p>Nothing magnetic stops a motor producing stall torque indefinitely. What stops
+it is that the winding is dissipating I²R with the rotor stationary, so there is
+no airflow from rotation and often no useful conduction path. The winding heats
+on a thermal time constant measured in <strong>seconds to minutes</strong>, and the insulation
+has a temperature limit.</p>
+<p>So the datasheet’s stall torque is available for perhaps a second or two. The
+<strong>continuous</strong> rating — often a fifth to a tenth of it — is the one you may
+design around, and good datasheets give both. Datasheets that give only stall
+torque are quoting the impressive number.</p>
+<p>The practical consequence for track 4: a control loop that saturates its output
+against a stalled load is a heating problem on a timescale the loop knows
+nothing about. Current limiting is not only about protecting the bridge.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-stall"><title id="fig-stall">Stall torque appears on the datasheet as a single number but is limited by heating rather than by magnetics, so it is available briefly and the continuous rating is a small fraction of it.</title><text x="8" y="14" class="dim">THE SAME MOTOR, TWO TIME SCALES</text><path class="thin" d="M40 30 V116 H288"></path><text x="20" y="36" class="tight">T</text><text x="272" y="132" class="tight">SECONDS</text><path class="accent" d="M44 40 H80 Q120 40 150 76 Q190 100 284 104"></path><circle class="mark" cx="62" cy="40" r="7"></circle><path class="dash" d="M44 104 H284"></path><text x="150" y="60" class="tight">STALL, ON THE SHEET</text><text x="150" y="98" class="tight">CONTINUOUS</text><text x="8" y="156" class="dim">NOTHING MAGNETIC LIMITS STALL TORQUE. THE WINDING</text><text x="8" y="170" class="dim">TEMPERATURE DOES, AND IT RISES ON A THERMAL TIME</text><text x="8" y="184" class="dim">CONSTANT OF SECONDS TO MINUTES, NOT MILLISECONDS</text></svg><figcaption class="fig-cap">Available for a second. The dashed line is the one to design to.</figcaption></figure>
+<h2 id="the-operating-point-is-a-crossing">The operating point is a crossing</h2>
+<p>Here is the piece that makes the line useful rather than decorative.</p>
+<p>The motor’s line says what torque it produces at each speed. The <strong>load</strong> has a
+line too: a fan needs torque rising with the square of speed, a conveyor needs
+roughly constant torque, a pump is somewhere between. Plot both on the same
+axes and they cross at exactly one point.</p>
+<p>That crossing is where the machine runs. Not where you wanted it to run — where
+the physics puts it.</p>
+<p>And this reframes open-loop speed control entirely. Raising the applied voltage
+shifts the whole motor line to the right, so the crossing moves to a higher
+speed. Adding load steepens the load line, so the crossing moves left. There is
+no separate speed-setting mechanism; there is one intersection, and the two
+things you can move are the voltage and the load.</p>
+<p>Sketching the two lines before buying anything takes five minutes and answers
+the question the datasheet does not: what speed will this actually run at.</p>
+<figure class="fig"><svg viewBox="0 0 320 192" role="img" aria-labelledby="fig-operating-point"><title id="fig-operating-point">A motor's torque-speed line and the load's own torque-speed demand cross at one point, and that intersection is the operating point, which is why changing either curve moves the speed.</title><text x="8" y="14" class="dim">WHERE THE TWO LINES CROSS</text><path class="thin" d="M40 30 V116 H228"></path><text x="20" y="36" class="tight">T</text><text x="222" y="132" class="tight">RPM</text><path class="rule" d="M44 36 L216 112"></path><path class="accent" d="M44 110 Q140 104 216 44"></path><circle class="mark" cx="150" cy="86" r="7"></circle><text x="236" y="42" class="tight">MOTOR</text><text x="236" y="52" class="tight">AT 12 V</text><text x="236" y="96" class="tight">LOAD</text><text x="236" y="106" class="tight">DEMAND</text><text x="8" y="158" class="dim">RAISE THE VOLTAGE AND THE MOTOR LINE SHIFTS OUT,</text><text x="8" y="172" class="dim">SO THE CROSSING MOVES TO A HIGHER SPEED. THAT IS</text><text x="8" y="186" class="dim">ALL OPEN LOOP SPEED CONTROL ACTUALLY IS</text></svg><figcaption class="fig-cap">Not where you wanted it. Where the two lines meet.</figcaption></figure>
+<h2 id="peak-power-is-not-peak-efficiency">Peak power is not peak efficiency</h2>
+<p>Two optima on the same curve, in different places, and confusing them is how
+motors get sized badly.</p>
+<p><strong>Peak output power</strong> is at the midpoint: half stall torque, half no-load speed.
+<strong>Peak efficiency</strong> is much closer to no load, typically around 80% of no-load
+speed and at fairly light torque.</p>
+<p>At the peak-power point, efficiency is roughly <strong>50%</strong> — half the electrical
+input is becoming heat in the winding. That is fine for a few seconds of
+acceleration and unpleasant as a steady state, because now you have a thermal
+design problem as well as an electrical one.</p>
+<p>So the rule for sizing: put the <strong>normal</strong> operating point near peak efficiency
+and let the peak-power point be somewhere you visit briefly. A motor chosen so
+that its everyday load is the maximum it can produce is a motor that will be hot
+every day.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-efficiency"><title id="fig-efficiency">Peak output power occurs at half the no-load speed while peak efficiency occurs much closer to no load, so a motor sized for maximum power is running at poor efficiency and will get hot.</title><text x="8" y="14" class="dim">TWO OPTIMA, NOT IN THE SAME PLACE</text><path class="thin" d="M40 30 V112 H240"></path><path class="rule" d="M44 110 Q136 44 232 108"></path><path class="accent" d="M44 108 Q160 32 200 40 Q220 52 232 108"></path><path class="dash" d="M136 52 V112"></path><path class="dash" d="M196 48 V112"></path><circle class="mark" cx="196" cy="42" r="7"></circle><text x="248" y="60" class="tight">POWER</text><text x="248" y="88" class="tight">EFFICIENCY</text><text x="104" y="130" class="tight">50%</text><text x="180" y="130" class="tight">80%</text><text x="8" y="160" class="dim">SIZE THE MOTOR SO ITS WORKING POINT IS NEAR THE</text><text x="8" y="174" class="dim">MARKED ONE. A MOTOR RUN AT PEAK POWER IS ABOUT</text><text x="8" y="188" class="dim">HALF EFFICIENT, WHICH IS A COOLING PROBLEM</text></svg><figcaption class="fig-cap">Run near the marked one. Visit the other briefly.</figcaption></figure>
+<h2 id="worked-example-sizing-the-test-stand-motor">Worked example: sizing the test stand motor</h2>
+<p>A 2205-size BLDC, 2,300 Kv, 12 V, phase resistance 0.11 Ω. Everything else
+follows from those four numbers.</p>
+<p><strong>The two endpoints.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kv</td>
+<td>2,300 RPM/V</td>
+</tr>
+<tr>
+<td>No-load speed at 12 V</td>
+<td>2,300 × 12 = 27,600 RPM</td>
+</tr>
+<tr>
+<td>Kt</td>
+<td>9.55 / 2,300 = 0.00415 Nm/A</td>
+</tr>
+<tr>
+<td>Stall current</td>
+<td>12 / 0.11 = <strong>109 A</strong></td>
+</tr>
+<tr>
+<td>Stall torque</td>
+<td>0.00415 × 109 = <strong>0.453 Nm</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Stop at that stall current. 109 A is not a number this motor survives, and it is
+not a number your bridge survives either — it is what the line says happens if
+you apply 12 V to a stationary motor with nothing limiting it. Which is exactly
+what a naive velocity loop does on its first step command.</p>
+<p><strong>Peak power, for reference.</strong></p>
+<p>Half of each: 13,800 RPM at 0.227 Nm. Power = τω = 0.227 × (13,800 × 2π/60) =
+<strong>328 W</strong>, drawing about 55 A. Also not survivable continuously.</p>
+<p><strong>Where it will actually live.</strong> The stand loads the motor by hand — call it
+0.02 Nm.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Torque</td>
+<td>0.020 Nm</td>
+</tr>
+<tr>
+<td>Current = τ/Kt</td>
+<td>4.8 A</td>
+</tr>
+<tr>
+<td>Copper loss = I²R × 3 phases</td>
+<td>4.8² × 0.11 × 3 = <strong>7.6 W</strong></td>
+</tr>
+<tr>
+<td>Speed from the line</td>
+<td>27,600 × (1 − 0.020/0.453) = 26,380 RPM</td>
+</tr>
+<tr>
+<td>Mechanical output</td>
+<td>0.020 × 2,762 = 55 W</td>
+</tr>
+<tr>
+<td>Rough efficiency</td>
+<td>55 / (55 + 7.6) = <strong>88%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>That is a sensible place to run: 88%, 7.6 W of heat in a motor that can shed it,
+and speed within 5% of no-load.</p>
+<p><strong>Now the numbers that size the hardware</strong>, which are none of the above.</p>
+<ul>
+<li><strong>The shunt and the bridge</strong> are sized by the transient, not the steady state.
+A step from rest with a 10 A software current limit means the bridge sees
+10 A, so a 30 A bridge and a shunt rated for it.</li>
+<li><strong>The supply’s current limit</strong> goes at 10–12 A, per tutorial 01. Setting it at
+6 A because “it only draws 4.8” means every acceleration trips the bench.</li>
+<li><strong>The current limit is what protects the motor from its own line.</strong> Without
+one, the 109 A stall figure is not hypothetical — it is what a shorted rotor
+or a jammed shaft delivers.</li>
+</ul>
+<p>Read it back: of the six numbers on the datasheet, the one that determined the
+whole electrical design is phase resistance, which is the one nobody looks at.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 4 is the design habit.</p>
+<ol>
+<li>Take any motor you own and find its Kv or its Kt. Convert to the other one.
+Check whether the result matches your intuition about the motor’s size.</li>
+<li>Compute its stall current from voltage over winding resistance. If the
+datasheet omits resistance, measure it with a meter across two phases —
+remember that reads two windings in series.</li>
+<li>Sketch its torque-speed line and the load line of whatever it drives. Mark
+the crossing and predict the running speed. Then measure it.</li>
+<li>Then, before you buy anything for the gate: work out where your intended
+operating point sits as a fraction of no-load speed. If it is near 50% you
+are at peak power and it will be hot; near 80% and you are near peak
+efficiency.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>A motor spins freely at high speed with no load. What is it drawing?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-0-0" name="machines/03-motors-and-power/13-torque-against-speed-0"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-0-0"><span class="quiz-letter">A</span><span>Its rated continuous current, which is what the winding is sized for</span></label><p class="quiz-why"><b>Not quite.</b> The continuous rating is what the winding can survive indefinitely, not what an unloaded motor takes. The load decides the draw.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-0-1" name="machines/03-motors-and-power/13-torque-against-speed-0"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-0-1"><span class="quiz-letter">B</span><span>Close to its stall current, since the speed is close to maximum</span></label><p class="quiz-why"><b>Not quite.</b> Stall current flows when the rotor is held still, which is the opposite condition. High speed with no load is the low-current corner.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-0-2" name="machines/03-motors-and-power/13-torque-against-speed-0"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-0-2"><span class="quiz-letter">C</span><span>About half its stall current, being the peak-power operating point</span></label><p class="quiz-why"><b>Not quite.</b> Peak power is at half the no-load speed, not at no load. At no load the output power is zero and so is the useful current.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-0-3" name="machines/03-motors-and-power/13-torque-against-speed-0"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-0-3" data-correct><span class="quiz-letter">D</span><span>Very little, since current follows torque rather than speed</span></label><p class="quiz-why"><b>Right.</b> Current is proportional to torque, and an unloaded motor produces almost none. Only friction and windage draw anything at all.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why can a motor not be wound for both high speed per volt and high torque per amp?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-1-0" name="machines/03-motors-and-power/13-torque-against-speed-1"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-1-0"><span class="quiz-letter">A</span><span>The magnets saturate at high current, capping the torque available</span></label><p class="quiz-why"><b>Not quite.</b> Saturation does flatten the torque curve at very high current, which is a real effect. The Kv against Kt trade exists well below that point.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-1-1" name="machines/03-motors-and-power/13-torque-against-speed-1"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-1-1"><span class="quiz-letter">B</span><span>Bearings limit the speed, so the extra torque goes undelivered</span></label><p class="quiz-why"><b>Not quite.</b> Bearings do impose a mechanical speed ceiling on any motor. That is a separate limit and does not create the relationship between the constants.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-1-2" name="machines/03-motors-and-power/13-torque-against-speed-1"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-1-2"><span class="quiz-letter">C</span><span>High speed windings overheat before they can develop useful torque</span></label><p class="quiz-why"><b>Not quite.</b> Thermal limits apply to any winding and are a separate constraint. The trade holds even with perfect cooling, because it is geometric.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-1-3" name="machines/03-motors-and-power/13-torque-against-speed-1"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-1-3" data-correct><span class="quiz-letter">D</span><span>They are one property, so winding turns trades one against the other</span></label><p class="quiz-why"><b>Right.</b> More turns of thinner wire raises Kt and lowers Kv, and the product is fixed by the magnetics. No winding choice escapes the relationship.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What limits how long a motor can produce its datasheet stall torque?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-2-0" name="machines/03-motors-and-power/13-torque-against-speed-2"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-2-0" data-correct><span class="quiz-letter">A</span><span>Winding temperature, which rises over seconds with no airflow</span></label><p class="quiz-why"><b>Right.</b> The rotor is not turning, so there is no cooling from rotation while the winding dissipates its full I squared R. Insulation temperature ends it.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-2-1" name="machines/03-motors-and-power/13-torque-against-speed-2"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-2-1"><span class="quiz-letter">B</span><span>Brush wear, which accelerates sharply when the rotor is stationary</span></label><p class="quiz-why"><b>Not quite.</b> Stationary brushes wear less rather than more, and brushless motors have none. The thermal limit applies to both types equally.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-2-2" name="machines/03-motors-and-power/13-torque-against-speed-2"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-2-2"><span class="quiz-letter">C</span><span>The supply, which will not sustain stall current for very long</span></label><p class="quiz-why"><b>Not quite.</b> A supply large enough will hold it indefinitely, and the motor still fails. The limit is inside the motor rather than upstream of it.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-2-3" name="machines/03-motors-and-power/13-torque-against-speed-2"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-2-3"><span class="quiz-letter">D</span><span>Magnetic saturation, which caps the torque once current is high</span></label><p class="quiz-why"><b>Not quite.</b> Saturation does limit the peak torque a motor can reach at all. It does not explain why a torque it can produce becomes unavailable after seconds.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>What does raising the supply voltage do in terms of the two lines?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-3-0" name="machines/03-motors-and-power/13-torque-against-speed-3"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-3-0"><span class="quiz-letter">A</span><span>It flattens the motor line, since the winding resistance is unchanged</span></label><p class="quiz-why"><b>Not quite.</b> The slope is set by resistance and the torque constant, so it stays roughly the same. The line moves rather than rotating.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-3-1" name="machines/03-motors-and-power/13-torque-against-speed-3"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-3-1" data-correct><span class="quiz-letter">B</span><span>It shifts the motor line outward, moving the crossing to more speed</span></label><p class="quiz-why"><b>Right.</b> Higher voltage raises both no-load speed and stall torque, translating the whole line. The load line is unchanged, so the intersection slides along it.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-3-2" name="machines/03-motors-and-power/13-torque-against-speed-3"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-3-2"><span class="quiz-letter">C</span><span>It steepens the load line, so the machine settles at a lower speed</span></label><p class="quiz-why"><b>Not quite.</b> The load line describes what the load demands and is untouched by supply voltage. Only the motor&#39;s own line moves.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-3-3" name="machines/03-motors-and-power/13-torque-against-speed-3"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-3-3"><span class="quiz-letter">D</span><span>It raises the crossing torque while leaving the speed unchanged</span></label><p class="quiz-why"><b>Not quite.</b> Both coordinates of the crossing move, because the whole motor line translates. Speed is usually the more visible change.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>A motor is sized so its everyday load is at the peak-power point. What is the consequence?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-4-0" name="machines/03-motors-and-power/13-torque-against-speed-4"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-4-0"><span class="quiz-letter">A</span><span>It falls short of its rated speed, since power peaks at the midpoint</span></label><p class="quiz-why"><b>Not quite.</b> The motor reaches whatever speed the crossing dictates and could go faster with less load. The issue is dissipation rather than speed.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-4-1" name="machines/03-motors-and-power/13-torque-against-speed-4"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-4-1"><span class="quiz-letter">B</span><span>It runs at maximum efficiency, since power output is also maximised</span></label><p class="quiz-why"><b>Not quite.</b> Peak efficiency sits much nearer no load, around 80 per cent of no-load speed. The two optima are in genuinely different places.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-4-2" name="machines/03-motors-and-power/13-torque-against-speed-4"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-4-2" data-correct><span class="quiz-letter">C</span><span>It runs near 50 per cent efficient, so cooling becomes a design problem</span></label><p class="quiz-why"><b>Right.</b> Half the electrical input is heat in the winding at that point. Acceptable for brief acceleration, unpleasant as a permanent condition.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/13-torque-against-speed-4-3" name="machines/03-motors-and-power/13-torque-against-speed-4"><label class="quiz-opt" for="machines/03-motors-and-power/13-torque-against-speed-4-3"><span class="quiz-letter">D</span><span>It delivers more torque than needed, so the margin is comfortable</span></label><p class="quiz-why"><b>Not quite.</b> There is margin in torque and none in heat. The thermal budget is what runs out first at that operating point.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Hughes &amp; Drury, Electric Motors and Drives, ch. 3 · Mohan, Electric Machines and Drives, ch. 5</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/03-motors-and-power/12-four-motors" class="text-ash transition-colors hover:text-bone">← The four motors you will actually use</a><a href="/course/machines/03-motors-and-power/14-h-bridges" class="text-ash transition-colors hover:text-bone">H-bridges, and why the MOSFET is hot →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

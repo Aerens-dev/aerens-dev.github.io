@@ -1,0 +1,277 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Cascade: current inside velocity inside position — Machines · Aerens</title><meta name="description" content="Three nested loops, why each one sees an easy plant, the limit at every handoff, and why the tuning order is forced rather than preferred."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/04-control-on-hardware/23-cascade/"><meta property="og:type" content="website"><meta property="og:title" content="Cascade: current inside velocity inside position — Machines · Aerens"><meta property="og:description" content="Three nested loops, why each one sees an easy plant, the limit at every handoff, and why the tuning order is forced rather than preferred."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/04-control-on-hardware/23-cascade/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Control that survives contact with hardware</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Cascade: current inside velocity inside position</h1><p class="mt-3 text-bone/70">Three nested loops, why each one sees an easy plant, the limit at every handoff, and why the tuning order is forced rather than preferred.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 05 of 06 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Say what each loop in a cascade commands, and roughly how fast each should run</li><li>Explain why every loop in the stack needs anti-windup, not just the innermost</li><li>Tune a cascade from the inside out and say why the order cannot be reversed</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You want the shaft at 90°. The obvious approach is one loop: measure position,
+compute error, produce a voltage.</p>
+<p>That loop has to cope with the winding’s inductance, the rotor’s inertia,
+friction that changes with temperature, back-EMF proportional to speed, and
+whatever the load is doing — all at once, with one set of three gains. It can be
+made to work and it is never very good, because a single set of gains cannot be
+right for dynamics that span four orders of magnitude in time.</p>
+<p>The cascade is the standard answer and it is the structure every servo drive,
+every ESC and every flight controller uses. It is worth understanding as a
+decomposition rather than as a convention.</p>
+<h2 id="three-loops-each-commanding-the-next">Three loops, each commanding the next</h2>
+<p>The stack, from the inside out:</p>
+<p><strong>Current loop</strong>, at the PWM rate — 20 kHz. Input: a torque request. Output: a
+voltage. This is the FOC loop from tutorial 17, and it converts <em>current
+command</em> into <em>current</em> against the winding’s electrical dynamics.</p>
+<p><strong>Velocity loop</strong>, ten to twenty times slower — 1 kHz. Input: a speed request.
+Output: a <strong>current</strong> command to the loop below. It sees the current loop as an
+ideal torque source, because from 1 kHz the 20 kHz loop looks instantaneous.</p>
+<p><strong>Position loop</strong>, ten times slower again — 100 Hz. Input: a position request.
+Output: a <strong>velocity</strong> command.</p>
+<p>The rate ratio is the load-bearing part. Each loop must be fast enough that the
+loop above it sees it as a solved problem rather than as dynamics. Ten times is
+the usual minimum and twenty is comfortable, which is exactly the rule from
+tutorial 21 applied at each level.</p>
+<figure class="fig"><svg viewBox="0 0 320 208" role="img" aria-labelledby="fig-cascade"><title id="fig-cascade">A cascade nests a fast current loop inside a velocity loop inside a position loop, each running about ten times slower than the one within it, so each outer loop sees a simple well-behaved plant.</title><text x="8" y="14" class="dim">EACH LOOP COMMANDS THE ONE INSIDE IT</text><rect class="fill" x="8" y="28" width="304" height="40"></rect><text x="18" y="46" class="tight">POSITION · 100 HZ</text><text x="18" y="60" class="tight">ASKS FOR A SPEED</text><rect class="fill" x="28" y="76" width="264" height="40"></rect><text x="38" y="94" class="tight">VELOCITY · 1 KHZ</text><text x="38" y="108" class="tight">ASKS FOR A TORQUE</text><rect class="mark" x="48" y="124" width="224" height="40"></rect><text x="58" y="142" class="tight">CURRENT · 20 KHZ</text><text x="58" y="156" class="tight">ASKS FOR A VOLTAGE</text><text x="8" y="188" class="dim">TUNE FROM THE INSIDE OUT. AN OUTER LOOP TUNED</text><text x="8" y="200" class="dim">AGAINST A BAD INNER ONE IS TUNED TO THAT FAULT</text></svg><figcaption class="fig-cap">Each loop&#39;s output is the next one&#39;s setpoint.</figcaption></figure>
+<h2 id="why-this-is-easier">Why this is easier</h2>
+<p>Compare what each arrangement has to model.</p>
+<p><strong>One loop</strong> confronts everything simultaneously: an electrical time constant of
+maybe 200 µs, a mechanical one of maybe 50 ms, friction, back-EMF coupling
+speed back into current, and load disturbance. One set of gains for all of it.</p>
+<p><strong>In a cascade</strong>, each loop sees roughly <em>one integrator and a delay</em>. The
+current loop sees an inductance. The velocity loop sees an inertia being driven
+by what is effectively an ideal torque source. The position loop sees an
+integrator. Each of those is a textbook plant that a PI controller handles well.</p>
+<p>The second benefit is about <strong>disturbances</strong>, and it is the one that shows up on
+an oscilloscope. A disturbance is caught by the innermost loop that can see it,
+at that loop’s speed. A sudden load change alters current within microseconds
+and the 20 kHz loop corrects it before the velocity loop has taken a single
+sample. In a single-loop design, that same disturbance has to propagate all the
+way out to the position error before anything responds.</p>
+<figure class="fig"><svg viewBox="0 0 320 202" role="img" aria-labelledby="fig-why-cascade"><title id="fig-why-cascade">A single position loop must contend with the motor's electrical dynamics, its mechanics and every disturbance at once, while a cascade lets the inner loop absorb the fast effects before the outer one sees them.</title><text x="8" y="14" class="dim">WHAT EACH ARRANGEMENT HAS TO COPE WITH</text><rect class="fill" x="8" y="28" width="304" height="52"></rect><text x="18" y="46" class="tight">ONE LOOP, POSITION TO VOLTAGE</text><text x="18" y="64" class="tight">INDUCTANCE, INERTIA, FRICTION, BACK-EMF, LOAD</text><rect class="mark" x="8" y="90" width="304" height="52"></rect><text x="18" y="108" class="tight">CASCADE</text><text x="18" y="126" class="tight">EACH LOOP SEES ONE INTEGRATOR AND A DELAY</text><text x="8" y="166" class="dim">AND A DISTURBANCE IS CAUGHT BY THE INNERMOST LOOP</text><text x="8" y="180" class="dim">THAT CAN SEE IT, IN ITS OWN FAST TIME, BEFORE THE</text><text x="8" y="194" class="dim">OUTER LOOPS HAVE NOTICED ANYTHING AT ALL</text></svg><figcaption class="fig-cap">One loop models everything. Three loops each model one thing.</figcaption></figure>
+<h2 id="a-limit-at-every-handoff">A limit at every handoff</h2>
+<p>Each loop’s output is the next loop’s setpoint, which makes every boundary a
+natural place for a limit — and each limit has a <strong>physical meaning</strong>, which is
+what makes the structure so pleasant to work with.</p>
+<ul>
+<li>Position loop output, limited → <strong>maximum speed</strong>.</li>
+<li>Velocity loop output, limited → <strong>maximum torque</strong>, which is your current
+limit and protects the motor and the bridge.</li>
+<li>Current loop output, limited → <strong>maximum voltage</strong>, which is the duty cycle
+ceiling from tutorial 14’s bootstrap.</li>
+</ul>
+<p>Setting a speed limit is now one line in one place, and it is enforced
+structurally rather than by hoping the trajectory generator behaves.</p>
+<p>And here is the point most implementations miss: <strong>each of those limits can wind
+up the loop above it</strong>. If the velocity loop’s output is clamped at the current
+limit, the <em>velocity</em> loop’s integrator winds up exactly as tutorial 22
+described. So every loop in the stack needs its own anti-windup, not just the
+innermost. This is the commonest omission in cascade code, and its symptom is a
+position loop that overshoots after any move long enough to hit the speed limit.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-limits"><title id="fig-limits">The output of each loop is the setpoint of the next, so each boundary is a natural place for a limit with a physical meaning, and each limit needs its own anti-windup.</title><text x="8" y="14" class="dim">A LIMIT AT EVERY HANDOFF</text><text x="8" y="44" class="tight">POSITION OUT</text><text x="160" y="44" class="tight">MAX SPEED</text><text x="8" y="70" class="tight">VELOCITY OUT</text><text x="160" y="70" class="tight">MAX TORQUE</text><rect class="mark" x="4" y="80" width="308" height="28"></rect><text x="8" y="100" class="tight">CURRENT OUT</text><text x="160" y="100" class="tight">MAX VOLTAGE, AND DUTY</text><text x="8" y="136" class="dim">EACH ONE IS A REAL PHYSICAL BOUND AND EACH ONE</text><text x="8" y="150" class="dim">CAN WIND UP THE LOOP ABOVE IT. SO EVERY LOOP IN</text><text x="8" y="164" class="dim">THE STACK NEEDS ITS OWN ANTI-WINDUP, NOT JUST THE</text><text x="8" y="178" class="dim">INNERMOST ONE. THIS IS THE COMMONEST OMISSION</text></svg><figcaption class="fig-cap">Three limits, three physical meanings, three anti-windups.</figcaption></figure>
+<h2 id="tune-from-the-inside-out">Tune from the inside out</h2>
+<p>The order is forced, not preferred, and the reason is simple: <strong>each outer loop’s
+plant includes the loop inside it</strong>. Tune the outer loop first and you are
+tuning against dynamics that are about to change.</p>
+<ol>
+<li><strong>Current loop, with the shaft mechanically held.</strong> Removing motion removes
+back-EMF, so you are tuning against the winding alone, which is what you
+want.</li>
+<li><strong>Velocity loop, with the current loop closed and its gains frozen.</strong></li>
+<li><strong>Position loop, with velocity closed and frozen.</strong></li>
+</ol>
+<p>Then the rule that follows from it: <strong>never go back and change an inner gain</strong>.
+If you do, every loop outside it is now tuned against a plant that no longer
+exists, and you must re-tune outward from the change. People discover this by
+adjusting the current loop to fix a noise problem and finding the position loop
+has started overshooting.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-inside-out"><title id="fig-inside-out">Each outer loop treats the loop inside it as its plant, so the inner loop must be finished before the outer one is tuned, or the outer tuning compensates for a fault that is about to be fixed.</title><text x="8" y="14" class="dim">THE ORDER IS NOT A PREFERENCE</text><rect class="fill" x="8" y="28" width="304" height="34"></rect><text x="18" y="50" class="tight">1 · CURRENT, WITH THE SHAFT HELD STILL</text><rect class="fill" x="8" y="68" width="304" height="34"></rect><text x="18" y="90" class="tight">2 · VELOCITY, WITH CURRENT CLOSED AND FIXED</text><rect class="fill" x="8" y="108" width="304" height="34"></rect><text x="18" y="130" class="tight">3 · POSITION, WITH VELOCITY CLOSED AND FIXED</text><rect class="mark" x="8" y="148" width="304" height="30"></rect><text x="18" y="168" class="tight">NEVER GO BACK AND CHANGE AN INNER GAIN</text><text x="8" y="192" class="dim">IF YOU DO, EVERY LOOP OUTSIDE IT IS NOW MISTUNED</text></svg><figcaption class="fig-cap">Each outer loop&#39;s plant is the loop inside it.</figcaption></figure>
+<h2 id="worked-example-adding-position-to-the-test-stand">Worked example: adding position to the test stand</h2>
+<p>The stand has a current loop at 20 kHz (tutorial 17) and a velocity loop at
+1 kHz (tutorial 19). Add position at 100 Hz.</p>
+<p><strong>Step 1 — check the rate ratios before tuning anything.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Rate</th>
+<th>Ratio to the loop inside</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current</td>
+<td>20 kHz</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Velocity</td>
+<td>1 kHz</td>
+<td>20:1</td>
+</tr>
+<tr>
+<td>Position</td>
+<td>100 Hz</td>
+<td>10:1</td>
+</tr>
+</tbody>
+</table>
+<p>Both inside the 10-to-20 band. If position had been placed at 500 Hz the ratio
+to velocity would be 2:1, and the two loops would interact — which presents as
+an oscillation that changes when you retune <em>either</em> loop, and is one of the
+more confusing things to debug.</p>
+<p><strong>Step 2 — the position loop is P-only, and this is worth explaining.</strong> The
+plant it sees is <em>velocity command in, position out</em>, which is an integrator.
+An integrator already gives zero steady-state error to a step, so adding an
+integral term to the position loop gives you two integrators in series, 180° of
+phase lag, and no margin at all.</p>
+<p>So: <strong>Kp only</strong>, and the tuning is one number.</p>
+<table>
+<thead>
+<tr>
+<th>Kp (RPM per degree)</th>
+<th>Rise</th>
+<th>Overshoot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>480 ms</td>
+<td>none</td>
+</tr>
+<tr>
+<td>12</td>
+<td>190 ms</td>
+<td>none</td>
+</tr>
+<tr>
+<td>30</td>
+<td>95 ms</td>
+<td>4%</td>
+</tr>
+<tr>
+<td>60</td>
+<td>70 ms</td>
+<td>ringing at 24 Hz</td>
+</tr>
+</tbody>
+</table>
+<p>Take <strong>Kp = 12</strong>, a quarter of the ultimate, which is more conservative than the
+usual half because the position loop is the outermost and inherits every
+approximation below it.</p>
+<p><strong>Step 3 — set the limits and confirm each one does something.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Value</th>
+<th>Verified by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Position output limit</td>
+<td>3,000 RPM</td>
+<td>commanding 180°, watching speed clip</td>
+</tr>
+<tr>
+<td>Velocity output limit</td>
+<td>10 A</td>
+<td>commanding a fast step, watching current clip</td>
+</tr>
+<tr>
+<td>Current output limit</td>
+<td>95% duty</td>
+<td>full-throttle command, scope on the gate</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4 — the bug this tutorial exists for.</strong> Command a 180° move. With
+anti-windup only on the velocity loop:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Time at the 3,000 RPM speed limit</td>
+<td>310 ms</td>
+</tr>
+<tr>
+<td>Overshoot past 180°</td>
+<td><strong>11°</strong></td>
+</tr>
+<tr>
+<td>Settle</td>
+<td>1,400 ms</td>
+</tr>
+</tbody>
+</table>
+<p>The <em>position</em> loop’s integrator— except it has none. So where is the overshoot
+coming from? From the <strong>velocity loop’s</strong> integrator, which is being held at a
+setpoint of 3,000 RPM by a position loop whose output is clamped. The velocity
+loop is not saturated and is tracking perfectly; the position loop is saturated
+and has no integrator to wind up.</p>
+<p>The actual mechanism is simpler and worth stating plainly: the position loop is
+commanding maximum speed right up until the moment the error is small, so the
+load arrives at the target still travelling at 3,000 RPM and the deceleration is
+limited by the current limit. It is not windup at all — it is a <strong>trajectory
+problem</strong>, and the fix is not anti-windup.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Overshoot</th>
+<th>Settle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P-only position, speed clamp</td>
+<td>11°</td>
+<td>1,400 ms</td>
+</tr>
+<tr>
+<td>Add velocity feedforward from a trapezoidal profile</td>
+<td><strong>0.4°</strong></td>
+<td>210 ms</td>
+</tr>
+</tbody>
+</table>
+<p>Generating a trajectory that decelerates in time — a trapezoidal velocity
+profile — and feeding it forward removes the whole problem. The feedback loop is
+then correcting a small tracking error rather than discovering the stop.</p>
+<p>That is the honest conclusion of this track: <strong>most of what looks like a tuning
+problem at the outermost loop is a trajectory problem</strong>, and the best control
+engineering available to you is often to ask for something the machine can
+actually do.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty-five minutes, and step 4 is the one that ties the track together.</p>
+<ol>
+<li>Draw your own system as a cascade, even if it is currently one loop. Write
+down what each level would command and at what rate.</li>
+<li>Check the rate ratios. Anything under about 5:1 between adjacent loops is
+where interaction lives.</li>
+<li>Put a limit at every handoff and verify each one clips, by commanding
+something extreme and watching the intermediate signal on a scope.</li>
+<li>Then command a large step and watch whether the machine arrives at speed. If
+it does, generate a trapezoidal profile instead and feed the velocity
+forward. Compare the overshoot before and after — this is usually the largest
+single improvement available to a position loop.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 4 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What does the velocity loop&#39;s output actually command?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-0-0" name="machines/04-control-on-hardware/23-cascade-0"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-0-0" data-correct><span class="quiz-letter">A</span><span>A current, which the loop inside it turns into a voltage</span></label><p class="quiz-why"><b>Right.</b> Each loop&#39;s output is the setpoint of the next one in. Velocity asks for torque, torque is current, and the current loop handles the electrical dynamics.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-0-1" name="machines/04-control-on-hardware/23-cascade-0"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-0-1"><span class="quiz-letter">B</span><span>A voltage, applied to the winding through the bridge directly</span></label><p class="quiz-why"><b>Not quite.</b> That is what the innermost loop produces. Going straight to voltage from velocity would collapse two loops into one and lose the decomposition.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-0-2" name="machines/04-control-on-hardware/23-cascade-0"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-0-2"><span class="quiz-letter">C</span><span>A position, which the loop outside it then tracks over time</span></label><p class="quiz-why"><b>Not quite.</b> Position is the outermost loop and commands velocity rather than being commanded by it. The direction of the cascade runs inward.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-0-3" name="machines/04-control-on-hardware/23-cascade-0"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-0-3"><span class="quiz-letter">D</span><span>A duty cycle, since that is what the timer hardware consumes</span></label><p class="quiz-why"><b>Not quite.</b> Duty is what the current loop eventually writes after its own regulation. Velocity is two levels away from the timer registers.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>How does a cascade improve disturbance rejection?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-1-0" name="machines/04-control-on-hardware/23-cascade-1"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-1-0"><span class="quiz-letter">A</span><span>Each loop adds its own integral, so the error is cancelled sooner</span></label><p class="quiz-why"><b>Not quite.</b> More integrators add phase lag and do not speed up rejection. The position loop usually has no integral at all for that reason.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-1-1" name="machines/04-control-on-hardware/23-cascade-1"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-1-1"><span class="quiz-letter">B</span><span>The outer loops average the disturbance over several samples</span></label><p class="quiz-why"><b>Not quite.</b> Averaging would slow the response rather than improve it. The benefit is that the fast loop acts before the slow ones are involved.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-1-2" name="machines/04-control-on-hardware/23-cascade-1"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-1-2"><span class="quiz-letter">C</span><span>The limits between loops cap how large a disturbance can become</span></label><p class="quiz-why"><b>Not quite.</b> Limits bound the commanded response rather than the disturbance itself. They protect hardware; they do not reject anything.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-1-3" name="machines/04-control-on-hardware/23-cascade-1"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-1-3" data-correct><span class="quiz-letter">D</span><span>The innermost loop that can see it corrects it at its own speed</span></label><p class="quiz-why"><b>Right.</b> A load change alters current within microseconds and the 20 kHz loop acts before the velocity loop has sampled. One loop would wait for a position error.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>Which loops in a cascade need anti-windup?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-2-0" name="machines/04-control-on-hardware/23-cascade-2"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-2-0"><span class="quiz-letter">A</span><span>The outermost one, since it accumulates over the longest timescale</span></label><p class="quiz-why"><b>Not quite.</b> Timescale affects how long the recovery takes rather than whether windup happens. Any clamped integrator is vulnerable.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-2-1" name="machines/04-control-on-hardware/23-cascade-2"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-2-1" data-correct><span class="quiz-letter">B</span><span>Every loop whose output can be clamped, which is all of them</span></label><p class="quiz-why"><b>Right.</b> Each handoff carries a limit, and any loop with an integrator upstream of a limit can wind up. Fitting it only to the innermost is the common omission.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-2-2" name="machines/04-control-on-hardware/23-cascade-2"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-2-2"><span class="quiz-letter">C</span><span>The innermost one, since that is where the actuator saturates</span></label><p class="quiz-why"><b>Not quite.</b> The physical actuator saturates there, and every limit above it saturates a loop too. The velocity loop clamped at a current limit winds up identically.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-2-3" name="machines/04-control-on-hardware/23-cascade-2"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-2-3"><span class="quiz-letter">D</span><span>Loops with an integral term, so a proportional loop is exempt</span></label><p class="quiz-why"><b>Not quite.</b> True as far as it goes, since windup is an integrator phenomenon. Most loops in a cascade carry integral action, so in practice it is every one.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why must you never adjust an inner loop&#39;s gains after tuning the outer ones?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-3-0" name="machines/04-control-on-hardware/23-cascade-3"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-3-0"><span class="quiz-letter">A</span><span>Inner gains are derived from the motor and should not be empirical</span></label><p class="quiz-why"><b>Not quite.</b> Inner loops are tuned empirically like any other, and often against a held shaft. Nothing makes their values less adjustable in principle.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-3-1" name="machines/04-control-on-hardware/23-cascade-3"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-3-1" data-correct><span class="quiz-letter">B</span><span>Each outer loop&#39;s plant includes the inner loop, which just changed</span></label><p class="quiz-why"><b>Right.</b> The outer tuning was fitted to the old inner dynamics. Change them and every loop outside is tuned against something that no longer exists.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-3-2" name="machines/04-control-on-hardware/23-cascade-3"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-3-2"><span class="quiz-letter">C</span><span>The anti-windup constants depend on the inner loop&#39;s integral time</span></label><p class="quiz-why"><b>Not quite.</b> Back-calculation gains do relate to the loop&#39;s own time constants, so they need revisiting. That is a smaller consequence than the retuning itself.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/23-cascade-3-3" name="machines/04-control-on-hardware/23-cascade-3"><label class="quiz-opt" for="machines/04-control-on-hardware/23-cascade-3-3"><span class="quiz-letter">D</span><span>The inner loop&#39;s gains are constrained by the outer loop&#39;s bandwidth</span></label><p class="quiz-why"><b>Not quite.</b> The constraint runs the other way: the inner loop sets what the outer can achieve. Retuning inward is possible if you then retune outward.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Åström &amp; Hägglund, PID Controllers, ch. 8 · Åström &amp; Murray, Feedback Systems, ch. 11 · Hughes &amp; Drury, Electric Motors and Drives, ch. 4</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/04-control-on-hardware/22-anti-windup-and-feedforward" class="text-ash transition-colors hover:text-bone">← Anti-windup, derivative filtering, feedforward</a><a href="/course/machines/05-sensors-and-state/24-every-sensor-lies" class="text-ash transition-colors hover:text-bone">Every sensor is a liar →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

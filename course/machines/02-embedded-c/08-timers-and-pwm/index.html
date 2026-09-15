@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Timers, and PWM as the primitive under everything — Machines · Aerens</title><meta name="description" content="Four pieces that make every timer feature, the trade between PWM frequency and resolution, and why motor drives count both ways."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/02-embedded-c/08-timers-and-pwm/"><meta property="og:type" content="website"><meta property="og:title" content="Timers, and PWM as the primitive under everything — Machines · Aerens"><meta property="og:description" content="Four pieces that make every timer feature, the trade between PWM frequency and resolution, and why motor drives count both ways."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/02-embedded-c/08-timers-and-pwm/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Embedded C that doesn&#39;t lie to you</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Timers, and PWM as the primitive under everything</h1><p class="mt-3 text-bone/70">Four pieces that make every timer feature, the trade between PWM frequency and resolution, and why motor drives count both ways.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 03 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Derive a PWM frequency and its duty resolution from a clock and a reload value</li><li>Say why a motor drive uses centre-aligned PWM rather than edge-aligned</li><li>Use input capture to measure an interval without interrupt latency in it</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You need to dim an LED, drive a motor, measure a pulse from an ultrasonic
+sensor, generate a servo signal, and schedule a control loop at exactly 1 kHz.</p>
+<p>Those look like five problems. They are one peripheral used five ways, and the
+peripheral is simpler than its reference-manual chapter suggests — a timer is a
+divider, a counter, and some comparators. Everything else in that chapter is
+built from those three.</p>
+<p>The reason to learn it properly rather than through a library is that the
+alternative is doing this work on the CPU, and the CPU is the one resource in
+the system you cannot buy more of.</p>
+<h2 id="four-pieces-and-every-feature-is-built-from-them">Four pieces, and every feature is built from them</h2>
+<p>The <strong>clock</strong> comes in at the peripheral bus frequency. The <strong>prescaler</strong>
+divides it, giving you a tick of whatever size you like. The <strong>counter</strong> counts
+those ticks and wraps at a reload value, which sets the period. <strong>Compare
+units</strong> watch the counter and do something — set a pin, clear a pin, raise an
+interrupt — when it passes a value you choose.</p>
+<p>That is the whole thing. PWM is a compare unit driving a pin. A periodic
+interrupt is the wrap event. A one-shot delay is a counter that stops. Input
+capture is the counter being read <em>by</em> the hardware instead of written to it.</p>
+<p>Concretely: 84 MHz in, prescaler 84, so a 1 µs tick. Reload 1000, so a 1 ms
+period, which is a 1 kHz PWM. Compare at 250, and the pin is high for the first
+quarter of every period. That is 25% duty, and it took two register writes.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-timer-chain"><title id="fig-timer-chain">A timer is a divider feeding a counter that wraps at a reload value, with compare units that fire somewhere inside the count, and every timer feature is built from those four pieces.</title><text x="8" y="14" class="dim">FOUR PIECES, AND EVERY FEATURE IS BUILT FROM THEM</text><rect class="fill" x="8" y="30" width="66" height="40"></rect><text x="14" y="48" class="tight">CLOCK</text><text x="14" y="62" class="tight">84 MHZ</text><path class="accent" d="M76 50 H90"></path><path class="accent-fill" d="M90 46 L98 50 L90 54 Z"></path><rect class="fill" x="100" y="30" width="72" height="40"></rect><text x="106" y="48" class="tight">PRESCALE</text><text x="106" y="62" class="tight">/ 84 = 1 MHZ</text><path class="accent" d="M174 50 H188"></path><path class="accent-fill" d="M188 46 L196 50 L188 54 Z"></path><rect class="mark" x="198" y="30" width="66" height="40"></rect><text x="204" y="48" class="tight">COUNTER</text><text x="204" y="62" class="tight">0 TO 999</text><path class="accent" d="M231 74 V92"></path><path class="accent-fill" d="M227 92 L231 100 L235 92 Z"></path><rect class="fill" x="198" y="102" width="66" height="40"></rect><text x="204" y="120" class="tight">COMPARE</text><text x="204" y="134" class="tight">AT 250</text><text x="8" y="170" class="dim">1 MHZ TICK, WRAPPING AT 1000, IS A 1 KHZ PERIOD.</text><text x="8" y="184" class="dim">A COMPARE AT 250 IS 25 PER CENT DUTY. THAT IS PWM</text></svg><figcaption class="fig-cap">Divider, counter, comparator. Everything else is these three.</figcaption></figure>
+<h2 id="frequency-and-resolution-are-the-same-number">Frequency and resolution are the same number</h2>
+<p>Here is the trade that catches people, and it is forced rather than a design
+choice.</p>
+<p>The reload value sets the period. It <em>also</em> sets how many distinct duty cycles
+exist, because the compare value can only be an integer between zero and the
+reload. So on a fixed timer clock, <strong>frequency and duty resolution are inversely
+related</strong>, and you cannot have both.</p>
+<p>At 84 MHz: 1 kHz PWM means a reload of 84,000, which is over 16 bits of duty
+resolution — far more than you need. 20 kHz means a reload of 4,200, so about
+12 bits. 200 kHz means 420, which is under 9 bits, and at that point a
+one-percent change in duty is four steps and quantisation starts to matter.</p>
+<p>For a motor, 20 kHz is the usual landing spot and it is chosen for a physical
+reason: it is above the range most people hear, so the drive does not whine,
+and it is low enough that switching losses stay reasonable. 4,200 steps is
+plenty.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-duty-resolution"><title id="fig-duty-resolution">PWM frequency and duty resolution are the same number seen twice, because both come from the reload value, so raising the frequency on a fixed clock costs you steps of control.</title><text x="8" y="14" class="dim">ONE COUNTER, TWO SPECIFICATIONS</text><text x="8" y="42" class="tight">84 MHZ TIMER CLOCK</text><rect class="fill" x="8" y="54" width="304" height="28"></rect><text x="18" y="72" class="tight">1 KHZ · RELOAD 84000 · 16 BITS OF DUTY</text><rect class="mark" x="8" y="86" width="304" height="28"></rect><text x="18" y="104" class="tight">20 KHZ · RELOAD 4200 · 12 BITS OF DUTY</text><rect class="fill" x="8" y="118" width="304" height="28"></rect><text x="18" y="136" class="tight">200 KHZ · RELOAD 420 · UNDER 9 BITS OF DUTY</text><text x="8" y="166" class="dim">THE MARKED ROW IS THE MOTOR ONE: ABOVE HEARING,</text><text x="8" y="180" class="dim">AND STILL 4200 STEPS OF CONTROL OVER THE EDGE</text></svg><figcaption class="fig-cap">Raise the frequency on a fixed clock and you buy it with steps.</figcaption></figure>
+<h2 id="counting-both-ways">Counting both ways</h2>
+<p>By default a counter counts up, wraps to zero, and starts again. Every channel’s
+pulse therefore starts at the same instant — <strong>edge-aligned</strong> PWM.</p>
+<p>For one channel that is fine. For three phases of a motor it means all three
+switching events happen simultaneously, so all three current spikes land on the
+same DC-link capacitor at the same moment. The ripple current is three times
+what it needs to be, and so is the conducted noise.</p>
+<p><strong>Centre-aligned</strong> PWM counts up to the reload and then back down to zero. Each
+pulse ends up centred in its period, so the three phases’ edges are spread
+across it. The DC-link ripple drops, the noise spectrum spreads out, and — the
+part that matters in track 3 — the current-sense window in the middle of the
+period is clean and identical for every phase.</p>
+<p>The cost is that the period is twice the count, so a reload of 4,200 gives 10
+kHz rather than 20. Set the prescaler accordingly.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-centre-aligned"><title id="fig-centre-aligned">Edge-aligned PWM starts every channel at the same instant so their current spikes add, while centre-aligned counts up and down and spreads the switching, which is why motor drives use it.</title><text x="8" y="14" class="dim">WHERE THE EDGES LAND</text><text x="8" y="44" class="tight">EDGE</text><path class="rule" d="M56 56 V34 H92 V56 H140 V34 H176 V56 H224 V34 H260 V56 H300"></path><text x="56" y="74" class="tight">ALL CHANNELS RISE TOGETHER</text><text x="8" y="116" class="tight">CENTRE</text><path class="accent" d="M56 128 H74 V106 H110 V128 H158 V106 H194 V128 H242 V106 H278 V128 H300"></path><circle class="mark" cx="92" cy="106" r="7"></circle><text x="56" y="146" class="tight">EACH PULSE CENTRED IN ITS PERIOD</text><text x="8" y="176" class="dim">THREE PHASES RISING AT ONCE IS A CURRENT SPIKE</text><text x="8" y="190" class="dim">THROUGH ONE CAPACITOR. CENTRED, THEY INTERLEAVE</text></svg><figcaption class="fig-cap">Three phases rising at once is one capacitor&#39;s problem.</figcaption></figure>
+<h2 id="input-capture-writes-down-the-time-for-you">Input capture writes down the time for you</h2>
+<p>The counter is free-running whether you look at it or not. <strong>Input capture</strong>
+puts a latch on it: when an edge arrives on a pin, the hardware copies the
+counter into a capture register at that instant, and <em>then</em> raises an interrupt.</p>
+<p>The difference from reading the counter in an interrupt handler is the whole
+point. A handler that reads the counter measures the event plus the interrupt
+latency plus whatever critical section was in the way — and that error is
+variable, so it does not even average out. A capture register holds the time the
+edge actually arrived, and your handler can turn up whenever it likes.</p>
+<p>Two captures give an interval exactly: 7,233 − 1,841 = 5,392 ticks, and at 1 MHz
+that is 5.392 ms with no software timing in it at all. This is how you measure a
+servo pulse, an ultrasonic echo, an RC receiver channel, or the period of a hall
+sensor — all of which appear later in this course.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-input-capture"><title id="fig-input-capture">Input capture latches the free-running counter in hardware at the instant an edge arrives, so the timestamp has no interrupt latency in it and two captures give an exact interval.</title><text x="8" y="14" class="dim">THE HARDWARE WRITES DOWN THE TIME</text><path class="thin" d="M40 100 H300"></path><text x="8" y="104" class="tight">COUNT</text><path class="accent" d="M96 108 V64"></path><circle class="mark" cx="96" cy="64" r="7"></circle><text x="72" y="52" class="tight">1841</text><path class="accent" d="M228 108 V64"></path><text x="204" y="52" class="tight">7233</text><path class="thin" d="M96 122 H228"></path><text x="128" y="140" class="tight">5392 TICKS</text><text x="8" y="168" class="dim">AT 1 MHZ THAT IS 5.392 MS, EXACT. AN INTERRUPT</text><text x="8" y="182" class="dim">THAT READS THE COUNTER INSTEAD MEASURES ITSELF</text></svg><figcaption class="fig-cap">The hardware timestamps it. Your handler can be late.</figcaption></figure>
+<h2 id="dead-time-and-why-it-is-a-timer-feature">Dead time, and why it is a timer feature</h2>
+<p>This one belongs to track 3 but it lives in the timer, so it is worth meeting
+here.</p>
+<p>A half bridge has two switches on one leg: high side and low side. Exactly one
+may conduct at a time, because both conducting is a short circuit across the
+supply, through two transistors, with nothing to limit it. It is called
+shoot-through and it is destructive within microseconds.</p>
+<p>The obvious approach — drive the low side with the inverse of the high side —
+fails, because <strong>turn-off is slower than turn-on</strong>. A MOSFET’s gate charge takes
+time to remove, so for a few hundred nanoseconds after you command it off it is
+still conducting, while the other one has already turned on.</p>
+<p>So the timer inserts a programmable <strong>dead time</strong> between one output going low
+and its complement going high. In hardware, in the peripheral, with no software
+involvement — because software cannot be trusted with a deadline measured in
+tens of nanoseconds, and because a firmware crash must not be able to turn the
+bridge into a short.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-dead-time"><title id="fig-dead-time">A high and low switch on the same half bridge must never conduct together, and since turn-off is slower than turn-on the timer inserts a dead time between them in hardware rather than in software.</title><text x="8" y="14" class="dim">THE GAP THAT STOPS A SHORT</text><text x="8" y="46" class="tight">HIGH</text><path class="rule" d="M56 58 H140 V36 H228 V58 H300"></path><text x="8" y="106" class="tight">LOW</text><path class="accent" d="M56 96 V118 H132 V96 H236 V118 H300"></path><path class="dash" d="M132 90 V124"></path><path class="dash" d="M140 30 V124"></path><circle class="mark" cx="136" cy="140" r="7"></circle><text x="150" y="144" class="tight">DEAD TIME</text><text x="8" y="176" class="dim">TURN-OFF IS SLOWER THAN TURN-ON, SO A NAIVELY</text><text x="8" y="190" class="dim">INVERTED PAIR OVERLAPS AND SHORTS THE RAIL</text></svg><figcaption class="fig-cap">Turn-off lags turn-on. The gap is not optional.</figcaption></figure>
+<h2 id="worked-example-one-timer-a-servo-and-a-motor">Worked example: one timer, a servo and a motor</h2>
+<p>A 84 MHz APB timer. You need a standard hobby servo on channel 1 and a brushed
+motor on channel 2. Can one timer do both?</p>
+<p><strong>The servo’s requirement.</strong> 50 Hz frame, pulse between 1.0 and 2.0 ms, and you
+want at least 0.5 µs of positioning resolution, which is about 1/2000 of the
+range.</p>
+<p><strong>The motor’s requirement.</strong> 20 kHz so it does not whine, and 10 bits of duty is
+comfortable.</p>
+<p>The two share a prescaler and a reload, and those are what set frequency. 50 Hz
+and 20 kHz cannot both come from one reload, so <strong>the answer is no</strong> — this
+needs two timers, and most parts have plenty. But work through the servo case
+anyway, because the arithmetic is the part worth having.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timer clock</td>
+<td>84,000,000 Hz</td>
+</tr>
+<tr>
+<td>Target frame</td>
+<td>50 Hz</td>
+</tr>
+<tr>
+<td>Total ticks per frame</td>
+<td>84,000,000 / 50 = 1,680,000</td>
+</tr>
+</tbody>
+</table>
+<p>1,680,000 does not fit in a 16-bit reload, so the prescaler has to take it down.
+Prescaler 84 gives a 1 µs tick and a reload of 20,000 — which fits, and makes
+the arithmetic trivial: the compare value <em>is</em> the pulse width in microseconds.
+Compare 1,500 is centre. Compare 1,000 is one extreme, 2,000 the other.</p>
+<p>Resolution: 1 µs steps over a 1,000 µs range is 1,000 positions. You wanted
+2,000. So take the prescaler to 42, giving a 0.5 µs tick — now reload is 40,000,
+still inside 16 bits, and you have 2,000 steps with the compare value being
+twice the microseconds.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Prescaler 84</th>
+<th>Prescaler 42</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tick</td>
+<td>1.0 µs</td>
+<td>0.5 µs</td>
+</tr>
+<tr>
+<td>Reload for 50 Hz</td>
+<td>20,000</td>
+<td>40,000</td>
+</tr>
+<tr>
+<td>Fits in 16 bits</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Steps across the servo range</td>
+<td>1,000</td>
+<td>2,000</td>
+</tr>
+<tr>
+<td>Compare value for 1.5 ms</td>
+<td>1,500</td>
+<td>3,000</td>
+</tr>
+</tbody>
+</table>
+<p>Take the second column. And notice what the exercise really produced: the
+constraint that decided it was not the servo at all, it was the 16-bit reload
+register. Halving the tick again would need 80,000 and would not fit, which is
+the kind of thing you find by doing this arithmetic rather than by choosing a
+number that feels right.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 4 is the one that pays off in track 3.</p>
+<ol>
+<li>Set up a timer for 1 kHz PWM on a pin and sweep the duty from 0 to 100%.
+Measure both frequency and duty on a scope, and check the frequency against
+your arithmetic to three digits.</li>
+<li>Now take the same timer to 200 kHz without changing the prescaler. Watch the
+duty resolution collapse — step the compare by one and see how much the duty
+moves.</li>
+<li>Feed a signal into an input capture channel and measure its period. Then do
+the same thing by reading the counter inside an ordinary interrupt handler,
+and compare the jitter between the two methods.</li>
+<li>Then read your part’s reference manual on dead-time insertion and
+complementary outputs, even though you have no bridge yet. Track 3 assumes
+you know the peripheral exists.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>An 84 MHz timer with a prescaler of 84 and a reload of 1000. What is the PWM frequency?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-0-0" name="machines/02-embedded-c/08-timers-and-pwm-0"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-0-0" data-correct><span class="quiz-letter">A</span><span>1 kHz, from a one microsecond tick wrapping every thousand ticks</span></label><p class="quiz-why"><b>Right.</b> The prescaler gives 1 MHz, and dividing that by the reload of 1000 gives a 1 ms period. Frequency is clock over prescaler over reload.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-0-1" name="machines/02-embedded-c/08-timers-and-pwm-0"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-0-1"><span class="quiz-letter">B</span><span>84 kHz, since the reload divides the incoming clock directly</span></label><p class="quiz-why"><b>Not quite.</b> That skips the prescaler, which has already taken 84 MHz down to 1 MHz. Both divisions apply, one after the other.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-0-2" name="machines/02-embedded-c/08-timers-and-pwm-0"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-0-2"><span class="quiz-letter">C</span><span>84 Hz, dividing the clock by the prescaler and reload together</span></label><p class="quiz-why"><b>Not quite.</b> The arithmetic is the right shape but out by the wrong factor: 84 MHz over 84 over 1000 is 1000 Hz rather than 84.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-0-3" name="machines/02-embedded-c/08-timers-and-pwm-0"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-0-3"><span class="quiz-letter">D</span><span>1 MHz, which is the tick rate the prescaler produces on its own</span></label><p class="quiz-why"><b>Not quite.</b> That is the tick rate rather than the wrap rate. The counter still has to reach 1000 before the period completes.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why does raising PWM frequency on a fixed timer clock cost duty resolution?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-1-0" name="machines/02-embedded-c/08-timers-and-pwm-1"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-1-0" data-correct><span class="quiz-letter">A</span><span>The reload sets the period and the number of compare values alike</span></label><p class="quiz-why"><b>Right.</b> A shorter period is a smaller reload, and the compare value is an integer bounded by it. Fewer counts means fewer distinct duty cycles.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-1-1" name="machines/02-embedded-c/08-timers-and-pwm-1"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-1-1"><span class="quiz-letter">B</span><span>The compare register narrows to fewer bits at higher frequencies</span></label><p class="quiz-why"><b>Not quite.</b> The register keeps its full width whatever the frequency. What shrinks is the range of values that mean anything, because the reload shrank.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-1-2" name="machines/02-embedded-c/08-timers-and-pwm-1"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-1-2"><span class="quiz-letter">C</span><span>The prescaler must rise with frequency, coarsening every tick</span></label><p class="quiz-why"><b>Not quite.</b> The prescaler usually falls or stays put when you want a higher frequency. It is the reload that has to come down, taking the steps with it.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-1-3" name="machines/02-embedded-c/08-timers-and-pwm-1"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-1-3"><span class="quiz-letter">D</span><span>Faster switching adds jitter that swamps the finer duty steps</span></label><p class="quiz-why"><b>Not quite.</b> Jitter is a real effect at high frequency and it does blur fine steps. The resolution limit here is arithmetic and applies with perfect timing.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What does centre-aligned PWM buy a three-phase motor drive?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-2-0" name="machines/02-embedded-c/08-timers-and-pwm-2"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-2-0" data-correct><span class="quiz-letter">A</span><span>The phases switch at different instants, so the ripple spreads out</span></label><p class="quiz-why"><b>Right.</b> Edge alignment makes all three spikes land on the DC-link capacitor together. Centring interleaves them and cleans the current-sense window too.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-2-1" name="machines/02-embedded-c/08-timers-and-pwm-2"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-2-1"><span class="quiz-letter">B</span><span>The average voltage is more accurate over each switching period</span></label><p class="quiz-why"><b>Not quite.</b> Both alignments deliver the same average for the same duty. What differs is when within the period the switching happens.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-2-2" name="machines/02-embedded-c/08-timers-and-pwm-2"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-2-2"><span class="quiz-letter">C</span><span>The switching frequency doubles for the same reload value</span></label><p class="quiz-why"><b>Not quite.</b> It halves, because the counter travels up and down. That is a cost to compensate for in the prescaler, not a benefit.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-2-3" name="machines/02-embedded-c/08-timers-and-pwm-2"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-2-3"><span class="quiz-letter">D</span><span>Dead time becomes unnecessary once the edges stop coinciding</span></label><p class="quiz-why"><b>Not quite.</b> Dead time is about the two switches on one leg, which still swap over. Centring changes when that happens, not whether it needs a gap.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why is input capture better than reading the counter inside an interrupt handler?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-3-0" name="machines/02-embedded-c/08-timers-and-pwm-3"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-3-0" data-correct><span class="quiz-letter">A</span><span>The latch happens at the edge, so latency is not in the number</span></label><p class="quiz-why"><b>Right.</b> Hardware copies the counter the moment the edge arrives. A handler that reads it later measures the edge plus a variable delay that does not average out.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-3-1" name="machines/02-embedded-c/08-timers-and-pwm-3"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-3-1"><span class="quiz-letter">B</span><span>The capture register has more bits than the counter it copies</span></label><p class="quiz-why"><b>Not quite.</b> They are the same width, since one is a snapshot of the other. The advantage is when the snapshot is taken.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-3-2" name="machines/02-embedded-c/08-timers-and-pwm-3"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-3-2"><span class="quiz-letter">C</span><span>It samples continuously, so a missed edge can still be recovered</span></label><p class="quiz-why"><b>Not quite.</b> A second edge before you read the register overwrites the first, which is a real hazard to design around. Capture does not buffer history.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-3-3" name="machines/02-embedded-c/08-timers-and-pwm-3"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-3-3"><span class="quiz-letter">D</span><span>It avoids an interrupt entirely, so the handler cost disappears</span></label><p class="quiz-why"><b>Not quite.</b> Capture still raises an interrupt to tell you a value is waiting. What it removes is the timing error, not the handler.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why is dead time inserted by the timer rather than by firmware?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-4-0" name="machines/02-embedded-c/08-timers-and-pwm-4"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-4-0" data-correct><span class="quiz-letter">A</span><span>The deadline is tens of nanoseconds, and a crash must fail safe</span></label><p class="quiz-why"><b>Right.</b> Software cannot meet that timing reliably, and hardware insertion means a hung processor leaves the bridge safe rather than conducting through both switches.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-4-1" name="machines/02-embedded-c/08-timers-and-pwm-4"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-4-1"><span class="quiz-letter">B</span><span>Dead time has to vary with duty cycle, faster than firmware can</span></label><p class="quiz-why"><b>Not quite.</b> It is set by the switch and gate drive rather than by duty, so a fixed value works. The reason it lives in hardware is the timescale.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-4-2" name="machines/02-embedded-c/08-timers-and-pwm-4"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-4-2"><span class="quiz-letter">C</span><span>The compare registers are write-protected while the timer runs</span></label><p class="quiz-why"><b>Not quite.</b> They are designed to be updated on the fly, which is how duty changes each cycle. Nothing blocks firmware from writing them.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/08-timers-and-pwm-4-3" name="machines/02-embedded-c/08-timers-and-pwm-4"><label class="quiz-opt" for="machines/02-embedded-c/08-timers-and-pwm-4-3"><span class="quiz-letter">D</span><span>Firmware has no way to read the gate voltages it would need</span></label><p class="quiz-why"><b>Not quite.</b> Some drivers do offer desaturation feedback, so sensing is possible. The argument is about timing precision and about failing safe.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Yiu, The Definitive Guide to Arm Cortex-M, ch. 9 · White, Making Embedded Systems, ch. 5 · Hughes &amp; Drury, Electric Motors and Drives, ch. 2</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/02-embedded-c/07-interrupts-and-volatile" class="text-ash transition-colors hover:text-bone">← Interrupts, and why the variable needs volatile</a><a href="/course/machines/02-embedded-c/09-uart-i2c-spi" class="text-ash transition-colors hover:text-bone">UART, I2C and SPI, and how to debug each on a scope →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

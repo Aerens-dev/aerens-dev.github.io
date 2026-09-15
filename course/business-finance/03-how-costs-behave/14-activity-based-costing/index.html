@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Activity-based costing, and when it is not worth it — Business Finance · Aerens</title><meta name="description" content="Replace one base with the drivers that actually cause the cost — what that reveals, what it costs to run, and the version that survives."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/03-how-costs-behave/14-activity-based-costing/"><meta property="og:type" content="website"><meta property="og:title" content="Activity-based costing, and when it is not worth it — Business Finance · Aerens"><meta property="og:description" content="Replace one base with the drivers that actually cause the cost — what that reveals, what it costs to run, and the version that survives."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/03-how-costs-behave/14-activity-based-costing/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · How costs behave</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Activity-based costing, and when it is not worth it</h1><p class="mt-3 text-bone/70">Replace one base with the drivers that actually cause the cost — what that reveals, what it costs to run, and the version that survives.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 03 of 05 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Describe the two-stage ABC map and say what the middle layer buys you</li><li>Read a whale curve and say what it implies for the customer list</li><li>Say when ABC is not worth building, and what to do instead</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>The last tutorial ended with a cross-subsidy and no way to prove it. ABC is the
+way to prove it, and the reason most companies that built one no longer run it.</p>
+<p>Both halves of that sentence are worth understanding, because the second half is
+what makes the first one usable.</p>
+<h2 id="abc-replaces-one-base-with-several-drivers">ABC replaces one base with several drivers</h2>
+<p>The traditional structure is one pool and one base. ABC breaks the pool into
+several — a pool per <strong>activity</strong> — and charges each on the driver that causes
+it.</p>
+<p>Setups are caused by production runs, not by units. Order processing is caused
+by orders, not by revenue. Inspection is caused by inspections. Once each pool
+is charged on its own driver, a product that triggers many setups and small
+orders picks up the cost it creates instead of hiding inside a volume average.</p>
+<p>That is the whole idea. Everything else is implementation.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-many-drivers"><title id="fig-many-drivers">Activity-based costing breaks one overhead pool into several, each charged on the driver that actually causes it — setups, orders, inspections — instead of a single volume measure.</title><text x="8" y="14" class="dim">ONE BASE BECOMES SEVERAL DRIVERS</text><text x="8" y="38" class="tight">TRADITIONAL</text><rect class="box" x="8" y="46" width="124" height="30"></rect><text x="20" y="66" class="tight">ONE POOL</text><path class="thin" d="M70 76 V90"></path><rect class="box" x="8" y="90" width="124" height="26"></rect><text x="20" y="108" class="tight">LABOUR HOURS</text><text x="172" y="38" class="tight">ACTIVITY-BASED</text><rect class="box" x="172" y="46" width="140" height="30"></rect><text x="184" y="66" class="tight">SEVERAL POOLS</text><path class="thin" d="M242 76 V92"></path><rect class="mark" x="172" y="92" width="140" height="70"></rect><text x="184" y="114" class="tight">SETUPS</text><text x="184" y="134" class="tight">ORDERS</text><text x="184" y="154" class="tight">INSPECTIONS</text><text x="8" y="192" class="dim">EACH POOL GETS THE DRIVER THAT CAUSES IT</text></svg><figcaption class="fig-cap">One pool becomes several, each on the thing that actually causes it.</figcaption></figure>
+<h2 id="the-mechanism-resources-to-activities-to-products">The mechanism: resources to activities to products</h2>
+<p>ABC runs in two stages, and the middle layer is what distinguishes it.</p>
+<p><strong>Stage 1.</strong> Assign resources — salaries, rent, depreciation — to <em>activities</em>.
+Half a team’s time goes to processing orders, a third to handling exceptions,
+the rest to reporting. This is usually the survey step.</p>
+<p><strong>Stage 2.</strong> Assign activities to <em>cost objects</em> — products, customers,
+channels — on activity drivers: number of orders, number of exceptions, number
+of reports.</p>
+<p>Traditional costing goes straight from resources to products and has to pick one
+base for the journey. ABC inserts a layer where the causation actually lives.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-two-stage-map"><title id="fig-two-stage-map">Activity-based costing works in two stages: resources are assigned to the activities that consume them, and activities are then assigned to the products that trigger them.</title><text x="8" y="14" class="dim">RESOURCES, ACTIVITIES, PRODUCTS</text><rect class="box" x="8" y="28" width="304" height="30"></rect><text x="20" y="48" class="tight">SALARIES, RENT, DEPRECIATION</text><path class="accent" d="M160 58 V70"></path><path class="accent-fill" d="M155 70 L160 78 L165 70 Z"></path><text x="176" y="70" class="tight">STAGE 1: RESOURCE DRIVERS</text><rect class="mark" x="8" y="82" width="304" height="30"></rect><text x="20" y="102" class="tight">SETUPS, ORDERS, INSPECTIONS, SUPPORT</text><path class="accent" d="M160 112 V124"></path><path class="accent-fill" d="M155 124 L160 132 L165 124 Z"></path><text x="176" y="124" class="tight">STAGE 2: ACTIVITY DRIVERS</text><rect class="box" x="8" y="136" width="304" height="30"></rect><text x="20" y="156" class="tight">PRODUCTS, CUSTOMERS, CHANNELS</text><text x="8" y="192" class="dim">THE MIDDLE LAYER IS THE WHOLE IDEA</text></svg><figcaption class="fig-cap">The middle layer is the whole idea. Everything else is the same mechanism.</figcaption></figure>
+<h2 id="what-it-reveals-the-whale-curve">What it reveals: the whale curve</h2>
+<p>Do this for customers rather than products, sort them by profitability, and
+accumulate. The result is a shape consistent enough to have a name.</p>
+<p>Cumulative profit rises steeply, peaks somewhere between 150% and 250% of the
+reported total, runs flat, and then falls back to 100% as the tail is added. The
+most profitable fifth of customers generate far more than all the profit; a long
+tail destroys the difference.</p>
+<p>The peak is the number that changes conversations. It says the company is
+already earning much more than it reports, and giving a chunk of it back to
+customers it would be better off serving differently — or repricing, or letting
+go.</p>
+<p>Two cautions. Much of the tail’s cost is capacity that does not disappear when
+the customer does, so firing the tail rarely delivers the peak. And a
+loss-making customer today may be a large one in three years.</p>
+<figure class="fig"><svg viewBox="0 0 320 188" role="img" aria-labelledby="fig-whale-curve"><title id="fig-whale-curve">Sorting customers by profitability and accumulating shows profit peaking well above the reported total before the least profitable customers pull it back down.</title><text x="8" y="14" class="dim">CUMULATIVE PROFIT BY CUSTOMER</text><path class="thin" d="M32 28 V140 H304"></path><path class="dash" d="M40 96 H296"></path><path class="accent" d="M40 120 C100 40 140 30 180 32 C230 34 260 70 296 96"></path><circle class="mark" cx="180" cy="32" r="7"></circle><path class="thin" d="M180 39 V62"></path><text x="146" y="74" class="tight">PEAK AT 180%</text><text x="232" y="90" class="tight">REPORTED</text><text x="176" y="124" class="tight">THE TAIL EATS IT BACK</text><text x="8" y="164" class="dim">SORT CUSTOMERS BY PROFIT AND ADD UP</text><text x="8" y="182" class="dim">THE SHAPE IS REMARKABLY CONSISTENT</text></svg><figcaption class="fig-cap">Peaks well above the total, then the tail gives it back.</figcaption></figure>
+<h2 id="what-it-costs-a-second-accounting-system">What it costs: a second accounting system</h2>
+<p>Here is why so few full ABC models are still running.</p>
+<p>The general ledger posts itself. It is a by-product of trading — invoices,
+payroll, payments — and it stays current without anyone deciding to keep it
+current.</p>
+<p>An ABC model does not. It needs activity definitions, time-allocation surveys,
+driver counts, and someone to redo all of that when the process changes. It is a
+second system with no transactional source, maintained by goodwill, and goodwill
+runs out. The classic failure is a model built during a project, believed for
+eighteen months, and quietly wrong for the four years after that.</p>
+<figure class="fig"><svg viewBox="0 0 320 176" role="img" aria-labelledby="fig-second-system"><title id="fig-second-system">An activity-based model is a second accounting system that has to be fed with surveys and driver counts, which is why most of them go stale within a couple of years.</title><text x="8" y="14" class="dim">WHAT IT COSTS TO RUN</text><rect class="box" x="8" y="30" width="140" height="100"></rect><text x="20" y="56" class="tight">THE LEDGER</text><text x="20" y="76" class="tight">POSTS ITSELF</text><text x="20" y="96" class="tight">AS A BY-PRODUCT</text><text x="20" y="116" class="tight">OF TRADING</text><rect class="mark" x="172" y="30" width="140" height="100"></rect><text x="184" y="56" class="tight">THE ABC MODEL</text><text x="184" y="76" class="tight">NEEDS SURVEYS,</text><text x="184" y="96" class="tight">DRIVER COUNTS,</text><text x="184" y="116" class="tight">AND MAINTENANCE</text><text x="8" y="154" class="dim">MOST ABC MODELS ARE BUILT ONCE AND</text><text x="8" y="172" class="dim">GO STALE WITHIN TWO YEARS</text></svg><figcaption class="fig-cap">One of these updates itself. The other one needs somebody to want it.</figcaption></figure>
+<h2 id="time-driven-abc-the-pragmatic-retreat">Time-driven ABC, the pragmatic retreat</h2>
+<p>Kaplan’s own answer to that failure, from around 2004, drops the surveys.</p>
+<p><strong>Time-driven ABC</strong> needs two estimates: the <strong>cost per minute of capacity</strong> for
+a department, and the <strong>minutes each activity takes</strong>. Multiply, and you have
+the cost of every activity without asking anyone how they spend their week.</p>
+<p>Two things fall out for free. Updating means changing a rate or a time estimate,
+not rerunning a survey. And because you cost the <em>time used</em> rather than
+allocating the whole department, the difference between capacity supplied and
+capacity used appears as <strong>unused capacity</strong> — which is the number the original
+method hid, since it always allocated 100% of the pool.</p>
+<p>For most organisations this is the version worth building, and for many the
+right answer is smaller still: run it once, as an analysis, learn what the
+cross-subsidies are, fix the prices, and do not build a system at all.</p>
+<figure class="fig"><svg viewBox="0 0 320 192" role="img" aria-labelledby="fig-time-driven"><title id="fig-time-driven">Time-driven activity-based costing needs only a cost per minute of capacity and the minutes each activity takes, and unused capacity emerges as the difference.</title><text x="8" y="14" class="dim">TWO NUMBERS INSTEAD OF A SURVEY</text><rect class="box" x="8" y="30" width="304" height="34"></rect><text x="20" y="52" class="tight">COST PER MINUTE OF CAPACITY</text><rect class="box" x="8" y="76" width="304" height="34"></rect><text x="20" y="98" class="tight">MINUTES EACH ACTIVITY TAKES</text><path class="accent" d="M160 110 V122"></path><path class="accent-fill" d="M155 122 L160 130 L165 122 Z"></path><rect class="mark" x="8" y="132" width="304" height="30"></rect><text x="20" y="152" class="tight">UNUSED CAPACITY FALLS OUT FOR FREE</text><text x="8" y="186" class="dim">NO SURVEY. THE MODEL UPDATES ITSELF</text></svg><figcaption class="fig-cap">Two estimates, no survey, and idle capacity emerges rather than being spread.</figcaption></figure>
+<h2 id="worked-example-two-customers-same-revenue">Worked example: two customers, same revenue</h2>
+<p>Both buy €200,000 a year at a 30% gross margin, so €60,000 of gross profit each.
+Service costs are pooled at €400,000 and traditionally charged on revenue, which
+gives each customer €40,000 and a €20,000 net margin.</p>
+<p>Now the activity drivers:</p>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Cost pool</th>
+<th>Driver</th>
+<th>Rate</th>
+<th>Alpha</th>
+<th>Beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Order processing</td>
+<td>120,000</td>
+<td>orders</td>
+<td>60</td>
+<td>40</td>
+<td>900</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>160,000</td>
+<td>drops</td>
+<td>200</td>
+<td>40</td>
+<td>300</td>
+</tr>
+<tr>
+<td>Support calls</td>
+<td>80,000</td>
+<td>calls</td>
+<td>40</td>
+<td>60</td>
+<td>900</td>
+</tr>
+<tr>
+<td>Account management</td>
+<td>40,000</td>
+<td>visits</td>
+<td>500</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Alpha</th>
+<th>Beta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Order processing</td>
+<td>2,400</td>
+<td>54,000</td>
+</tr>
+<tr>
+<td>Delivery</td>
+<td>8,000</td>
+<td>60,000</td>
+</tr>
+<tr>
+<td>Support calls</td>
+<td>2,400</td>
+<td>36,000</td>
+</tr>
+<tr>
+<td>Account management</td>
+<td>4,000</td>
+<td>4,000</td>
+</tr>
+<tr>
+<td><strong>Service cost</strong></td>
+<td><strong>16,800</strong></td>
+<td><strong>154,000</strong></td>
+</tr>
+<tr>
+<td>Gross profit</td>
+<td>60,000</td>
+<td>60,000</td>
+</tr>
+<tr>
+<td><strong>Net</strong></td>
+<td><strong>43,200</strong></td>
+<td><strong>(94,000)</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Same revenue, same gross margin, and one customer makes €43,200 while the other
+loses €94,000. Beta orders twenty-two times as often in small quantities and
+calls fifteen times as much. The revenue-based allocation charged them both
+€40,000 and reported that both were fine.</p>
+<p>The action is not necessarily to fire Beta. It is to raise the minimum order
+size, move them to a self-service support tier, or reprice — all of which are
+only visible once the driver counts are in front of you.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Pick one shared service you consume — support, deployment, procurement.
+Guess its total annual cost.</li>
+<li>Name the two or three activities it actually performs, and the countable
+thing that triggers each.</li>
+<li>Estimate your team’s counts. Multiply through. Compare to whatever recharge
+you are actually being sent.</li>
+<li>Then do the time-driven version: minutes per activity × cost per minute. See
+whether the two answers agree.</li>
+</ol>
+<p>If the answers differ wildly, the recharge base is the reason, and you now have
+the arithmetic to say so.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What is the core change ABC makes to a costing system?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-0-0" name="business-finance/03-how-costs-behave/14-activity-based-costing-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-0-0" data-correct><span class="quiz-letter">A</span><span>Each pool is charged on the driver that causes that pool</span></label><p class="quiz-why"><b>Right.</b> Setups follow production runs and orders follow orders. Splitting the pool lets each part travel on its own cause.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-0-1" name="business-finance/03-how-costs-behave/14-activity-based-costing-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-0-1"><span class="quiz-letter">B</span><span>Fixed costs are excluded and just the variable ones spread</span></label><p class="quiz-why"><b>Not quite.</b> ABC spreads the same overhead pool as before. The distinction it works with is causation, not cost behaviour.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-0-2" name="business-finance/03-how-costs-behave/14-activity-based-costing-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-0-2"><span class="quiz-letter">C</span><span>Indirect costs are traced to products instead of allocated</span></label><p class="quiz-why"><b>Not quite.</b> They are still allocated — that is unavoidable for shared costs. What changes is how many bases the allocation uses.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-0-3" name="business-finance/03-how-costs-behave/14-activity-based-costing-0"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-0-3"><span class="quiz-letter">D</span><span>Each pool is charged on the driver that is easiest to count</span></label><p class="quiz-why"><b>Not quite.</b> Ease of counting is what produced the single volume base in the first place. ABC deliberately trades ease for causation.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>What does the activity layer in the middle of an ABC map buy you?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-1-0" name="business-finance/03-how-costs-behave/14-activity-based-costing-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-1-0"><span class="quiz-letter">A</span><span>A second chance to allocate anything left over from stage one</span></label><p class="quiz-why"><b>Not quite.</b> Nothing is left over — stage one assigns everything to activities. The layer is about cause rather than mopping up.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-1-1" name="business-finance/03-how-costs-behave/14-activity-based-costing-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-1-1" data-correct><span class="quiz-letter">B</span><span>A place where the causation between cost and output lives</span></label><p class="quiz-why"><b>Right.</b> Resources are consumed by activities and activities are triggered by products, which is where the real link sits.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-1-2" name="business-finance/03-how-costs-behave/14-activity-based-costing-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-1-2"><span class="quiz-letter">C</span><span>A structure that matches how the departments are organised</span></label><p class="quiz-why"><b>Not quite.</b> Activities frequently cut across departments, which is part of the value. The layer follows work, not the org chart.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-1-3" name="business-finance/03-how-costs-behave/14-activity-based-costing-1"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-1-3"><span class="quiz-letter">D</span><span>A way to keep the ledger and the costing model reconciled</span></label><p class="quiz-why"><b>Not quite.</b> Reconciliation to the ledger is a requirement of any model. The layer exists to hold the causal chain, not to tie out.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>A whale curve peaks at 180% of reported profit. What does that mean?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-2-0" name="business-finance/03-how-costs-behave/14-activity-based-costing-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-2-0"><span class="quiz-letter">A</span><span>Roughly 80% of customers are being served at a loss overall</span></label><p class="quiz-why"><b>Not quite.</b> The loss-making tail is usually a minority by count and a large one by cost. The peak height says nothing about how many.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-2-1" name="business-finance/03-how-costs-behave/14-activity-based-costing-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-2-1" data-correct><span class="quiz-letter">B</span><span>The best customers earn far more than the business reports</span></label><p class="quiz-why"><b>Right.</b> Cumulative profit climbs well above the total before the unprofitable tail is added, which pulls it back to 100%.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-2-2" name="business-finance/03-how-costs-behave/14-activity-based-costing-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-2-2"><span class="quiz-letter">C</span><span>The business is understating its profit by roughly 80%</span></label><p class="quiz-why"><b>Not quite.</b> The reported total is correct. The curve shows how the total is composed, not that it has been measured wrongly.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-2-3" name="business-finance/03-how-costs-behave/14-activity-based-costing-2"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-2-3"><span class="quiz-letter">D</span><span>Removing the worst customers would raise profit by 80%</span></label><p class="quiz-why"><b>Not quite.</b> Tempting, and usually wrong: much of their cost is capacity that stays behind when the customer leaves.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why do full ABC models tend to fall out of use?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-3-0" name="business-finance/03-how-costs-behave/14-activity-based-costing-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-3-0"><span class="quiz-letter">A</span><span>They produce answers that conflict with the statutory accounts</span></label><p class="quiz-why"><b>Not quite.</b> A well-built model reconciles to the same total. What kills them is maintenance rather than disagreement.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-3-1" name="business-finance/03-how-costs-behave/14-activity-based-costing-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-3-1"><span class="quiz-letter">B</span><span>They allocate less of the pool each year as processes change</span></label><p class="quiz-why"><b>Not quite.</b> Traditional ABC allocates the whole pool by construction. The problem is that the allocation drifts out of date.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-3-2" name="business-finance/03-how-costs-behave/14-activity-based-costing-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-3-2" data-correct><span class="quiz-letter">C</span><span>They have no transactional source, so they need active upkeep</span></label><p class="quiz-why"><b>Right.</b> The ledger is a by-product of trading and stays current on its own. Surveys and driver counts need somebody to want them.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-3-3" name="business-finance/03-how-costs-behave/14-activity-based-costing-3"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-3-3"><span class="quiz-letter">D</span><span>They require software that most finance systems do not offer</span></label><p class="quiz-why"><b>Not quite.</b> Plenty of tooling exists and a spreadsheet will do for many. The binding constraint is the effort to keep it fed.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>What does time-driven ABC surface that the original method hides?</legend><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-4-0" name="business-finance/03-how-costs-behave/14-activity-based-costing-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-4-0" data-correct><span class="quiz-letter">A</span><span>Unused capacity, since only the time used is charged out</span></label><p class="quiz-why"><b>Right.</b> Traditional ABC spreads the whole pool, so idle capacity is buried in product costs. Costing time used leaves it visible.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-4-1" name="business-finance/03-how-costs-behave/14-activity-based-costing-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-4-1"><span class="quiz-letter">B</span><span>The true variable cost, since capacity is priced by the minute</span></label><p class="quiz-why"><b>Not quite.</b> Cost per minute is an average of a mostly fixed pool. What emerges is the idle share, not a variable rate.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-4-2" name="business-finance/03-how-costs-behave/14-activity-based-costing-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-4-2"><span class="quiz-letter">C</span><span>The overhead pool total, which surveys can leave incomplete</span></label><p class="quiz-why"><b>Not quite.</b> The pool comes from the ledger in either version and is complete. Idle capacity is the thing that becomes visible.</p><input class="quiz-radio" type="radio" id="business-finance/03-how-costs-behave/14-activity-based-costing-4-3" name="business-finance/03-how-costs-behave/14-activity-based-costing-4"><label class="quiz-opt" for="business-finance/03-how-costs-behave/14-activity-based-costing-4-3"><span class="quiz-letter">D</span><span>The activities themselves, which surveys tend to under-report</span></label><p class="quiz-why"><b>Not quite.</b> Both versions need the activity list. Dropping the survey changes how the times are obtained, not what is discovered.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Kaplan &amp; Atkinson, Advanced Management Accounting · Kaplan &amp; Anderson, Time-Driven Activity-Based Costing · Horngren, Cost Accounting, ch. 5</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/03-how-costs-behave/13-overhead-allocation" class="text-ash transition-colors hover:text-bone">← Direct vs indirect, and the overhead allocation problem</a><a href="/course/business-finance/03-how-costs-behave/15-contribution-margin" class="text-ash transition-colors hover:text-bone">Contribution margin and break-even →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

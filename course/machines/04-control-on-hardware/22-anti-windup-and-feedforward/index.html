@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Anti-windup, derivative filtering, feedforward — Machines · Aerens</title><meta name="description" content="What an integrator does while the actuator is saturated, why pure derivative is unusable, and the one improvement that costs no phase margin."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/04-control-on-hardware/22-anti-windup-and-feedforward/"><meta property="og:type" content="website"><meta property="og:title" content="Anti-windup, derivative filtering, feedforward — Machines · Aerens"><meta property="og:description" content="What an integrator does while the actuator is saturated, why pure derivative is unusable, and the one improvement that costs no phase margin."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/04-control-on-hardware/22-anti-windup-and-feedforward/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Control that survives contact with hardware</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Anti-windup, derivative filtering, feedforward</h1><p class="mt-3 text-bone/70">What an integrator does while the actuator is saturated, why pure derivative is unusable, and the one improvement that costs no phase margin.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 04 of 06 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Implement conditional integration and back-calculation, and say which recovers better</li><li>Bound derivative gain with a filter, and choose the ceiling deliberately</li><li>Add feedforward for the predictable part of a load, without affecting stability</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You command the test stand from rest to 3,000 RPM. It accelerates, reaches
+speed — and then sails past to 3,400 and takes two seconds to come back.</p>
+<p>Nothing is unstable. During the acceleration the current limit was holding the
+output at 10 A, so the loop had no authority left, and the error stayed positive
+for 400 ms. The integral term was dutifully accumulating throughout, and by the
+time the motor reached speed the integrator held a command far larger than
+anything the situation needed. It then had to count its way back down.</p>
+<p>This is windup, it happens to every loop with an integrator and a limit, and it
+is the commonest defect in otherwise well-tuned control code.</p>
+<h2 id="what-the-integral-does-while-saturated">What the integral does while saturated</h2>
+<p>An integrator’s job is to accumulate error until the error goes away. That is
+correct behaviour, and it depends on an assumption: <strong>that adding more command
+eventually reduces the error</strong>.</p>
+<p>Saturation breaks that assumption. Once the actuator is at its limit, extra
+command changes nothing about the plant. The error persists — not because the
+integral is too small but because the machine is doing all it can — and the
+integral responds to persistence by growing.</p>
+<p>The damage comes afterwards. On arriving at the setpoint, the integrator holds a
+large value that has to be unwound before the output comes off its limit, and
+during that unwinding the error is <em>negative</em> and the loop is still commanding
+maximum. The longer the saturation lasted, the longer and uglier the recovery.</p>
+<p>The tell: overshoot proportional to how long the loop spent saturated, rather
+than to the size of the step. If a bigger step gives a much longer overshoot,
+this is what you are looking at.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-windup"><title id="fig-windup">While the output is saturated the plant cannot respond, so the error persists and the integral keeps accumulating, and the accumulated excess has to be unwound before the actuator comes off its limit.</title><text x="8" y="14" class="dim">WHAT THE INTEGRAL DOES WHILE SATURATED</text><path class="thin" d="M40 30 V104 H288"></path><path class="rule" d="M44 96 L120 40 H284"></path><text x="130" y="36" class="tight">INTEGRAL, STILL CLIMBING</text><path class="accent" d="M44 96 L120 56 H284"></path><circle class="mark" cx="120" cy="56" r="7"></circle><text x="130" y="70" class="tight">ACTUATOR, AT ITS LIMIT</text><text x="8" y="140" class="dim">THE GAP IS COMMAND THAT DOES NOTHING AND MUST BE</text><text x="8" y="154" class="dim">UNWOUND LATER. SO THE LOOP OVERSHOOTS ON THE WAY</text><text x="8" y="168" class="dim">BACK AND STAYS PAST TARGET UNTIL THE INTEGRAL HAS</text><text x="8" y="182" class="dim">COUNTED ITS WAY DOWN AGAIN. A LONG SATURATION</text><text x="8" y="196" class="dim">MEANS A LONG, UGLY RECOVERY</text></svg><figcaption class="fig-cap">The gap is command that does nothing, and must be unwound later.</figcaption></figure>
+<h2 id="two-ways-to-stop-it">Two ways to stop it</h2>
+<p><strong>Conditional integration</strong> is the simple one: if the output is saturated and
+the error would push it further into saturation, do not accumulate. Three lines,
+no tuning constant, and it works.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> out </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> kp </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> e </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> integ </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> kd </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> de;</span></span>
+<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> sat </span><span style="color:#F97583">=</span><span style="color:#B392F0"> clamp</span><span style="color:#E1E4E8">(out, </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">LIM, LIM);</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (out </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> sat </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> (e </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> out) </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) integ </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> ki </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> e </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> dt;</span></span></code></pre>
+<p>The second condition matters: keep integrating when the error would bring you
+<em>out</em> of saturation, or the loop cannot recover.</p>
+<p><strong>Back-calculation</strong> is better and barely harder. Feed the amount you clipped
+back into the integrator, scaled:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> out </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> kp </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> e </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> integ </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> kd </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> de;</span></span>
+<span class="line"><span style="color:#F97583">float</span><span style="color:#E1E4E8"> sat </span><span style="color:#F97583">=</span><span style="color:#B392F0"> clamp</span><span style="color:#E1E4E8">(out, </span><span style="color:#F97583">-</span><span style="color:#E1E4E8">LIM, LIM);</span></span>
+<span class="line"><span style="color:#E1E4E8">integ </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> (ki </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> e </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> kt </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> (sat </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> out)) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> dt;</span></span></code></pre>
+<p>Now the integrator is continuously pulled towards whatever value would put the
+output exactly at the limit, instead of being frozen. Recovery is smooth rather
+than abrupt, and <code>kt</code> is usually set around 1/√(Ti·Td) or simply tuned — it is
+not sensitive.</p>
+<p>Whichever you pick, <strong>pick one</strong>. An integrator with a limit and no anti-windup
+is a bug waiting for a large enough step.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-anti-windup"><title id="fig-anti-windup">Conditional integration simply stops accumulating while saturated, while back-calculation feeds the saturation error back into the integrator so it unwinds proportionally, which recovers more smoothly.</title><text x="8" y="14" class="dim">TWO WAYS TO STOP IT</text><rect class="fill" x="8" y="28" width="304" height="52"></rect><text x="18" y="46" class="tight">CONDITIONAL INTEGRATION</text><text x="18" y="64" class="tight">STOP ACCUMULATING WHILE SATURATED. THREE LINES</text><rect class="mark" x="8" y="88" width="304" height="52"></rect><text x="18" y="106" class="tight">BACK-CALCULATION</text><text x="18" y="124" class="tight">FEED THE CLIPPED AMOUNT BACK IN, SCALED</text><text x="8" y="168" class="dim">THE FIRST IS FINE AND SLIGHTLY ABRUPT. THE SECOND</text><text x="8" y="182" class="dim">UNWINDS SMOOTHLY AND COSTS ONE MORE LINE AND ONE</text><text x="8" y="196" class="dim">CONSTANT, WHICH IS WHY IT IS USUALLY WORTH IT</text></svg><figcaption class="fig-cap">Freeze it, or pull it towards the limit. The second recovers better.</figcaption></figure>
+<h2 id="derivative-has-to-be-filtered">Derivative has to be filtered</h2>
+<p>A pure derivative multiplies each frequency component by its own frequency, so
+its gain rises without bound. Real signals have noise at every frequency, and
+quantised signals have noise concentrated at the sample rate — which is the
+worst possible place.</p>
+<p>Concretely: an encoder with one count of jitter, differentiated at 1 kHz,
+produces a rate estimate that swings by 1,000 counts per second between
+consecutive samples. Multiply by a derivative gain chosen for the physics and
+you get a full-scale command from a single count of noise. The motor buzzes and
+gets hot doing nothing.</p>
+<p>So derivative is always implemented as <strong>filtered derivative</strong>, with the filter
+setting a ceiling on the gain — typically at 10 to 20 times the proportional
+term. That ceiling is a design choice, and it is worth choosing rather than
+inheriting: too low and D does nothing, too high and the noise returns.</p>
+<p>And note the trap from tutorial 21: the filter costs phase, and phase is part of
+what D was buying. Beyond a certain noise level the filtered D term gives back
+everything it contributes, which is why so many good loops run without it.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-filtered-d"><title id="fig-filtered-d">A pure derivative multiplies every frequency by itself, so it amplifies noise without limit, and the filter that bounds it is what makes derivative action usable on real hardware.</title><text x="8" y="14" class="dim">DERIVATIVE GAIN AGAINST FREQUENCY</text><path class="thin" d="M40 30 V112 H272"></path><path class="rule" d="M44 108 L244 36"></path><text x="180" y="52" class="tight">PURE D</text><path class="accent" d="M44 108 L152 68 H264"></path><circle class="mark" cx="152" cy="68" r="7"></circle><text x="180" y="84" class="tight">FILTERED D</text><text x="8" y="148" class="dim">THE FILTER SETS A CEILING, USUALLY AT A GAIN OF</text><text x="8" y="162" class="dim">TEN TO TWENTY. WITHOUT IT, ONE ENCODER COUNT OF</text><text x="8" y="176" class="dim">JITTER AT 1 KHZ BECOMES A FULL-SCALE COMMAND AND</text><text x="8" y="190" class="dim">THE MOTOR BUZZES AT THE SAMPLE RATE</text></svg><figcaption class="fig-cap">The filter sets a ceiling. Without one, one count of jitter is full scale.</figcaption></figure>
+<h2 id="feedforward-costs-no-margin">Feedforward costs no margin</h2>
+<p>Everything above is about feedback, which can only respond <strong>after</strong> an error
+exists. That is its defining limitation: the error is the input, so there is no
+correction without one.</p>
+<p>Feedforward sidesteps it. Where part of the required command is <strong>predictable</strong>,
+compute it directly and add it to the output. The feedback loop is then left to
+correct only the unpredictable remainder, which is a much smaller job.</p>
+<p>Four things are usually predictable and usually ignored:</p>
+<ul>
+<li><strong>Gravity</strong> on an arm — a cosine of joint angle, exactly computable.</li>
+<li><strong>Friction</strong> — the deadband compensation from tutorial 20 is feedforward.</li>
+<li><strong>Acceleration</strong> — if you command a trajectory, you know its acceleration, so
+you know the torque it needs: τ = J·α.</li>
+<li><strong>Back-EMF</strong> — in a current loop, the voltage needed to overcome back-EMF is
+Kv times speed, and speed is measured.</li>
+</ul>
+<p>Here is the property that makes it worth the effort: <strong>feedforward is not in the
+loop</strong>, so it changes nothing about stability. It cannot cause oscillation, it
+costs no phase margin, and if the model is wrong the feedback simply covers the
+difference. It is the one way to improve tracking without spending margin, and
+it is underused precisely because it feels like cheating.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-feedforward"><title id="fig-feedforward">Feedback can only respond after an error exists, while feedforward computes the command the known part of the job requires, so the loop is left to correct only what was not predictable.</title><text x="8" y="14" class="dim">TWO PATHS TO THE SAME ACTUATOR</text><rect class="fill" x="8" y="30" width="126" height="44"></rect><text x="18" y="50" class="tight">FEEDBACK</text><text x="18" y="66" class="tight">NEEDS AN ERROR</text><rect class="mark" x="166" y="30" width="146" height="44"></rect><text x="176" y="50" class="tight">FEEDFORWARD</text><text x="176" y="66" class="tight">NEEDS A MODEL</text><text x="8" y="102" class="tight">GRAVITY, FRICTION, ACCELERATION, BACK-EMF</text><text x="8" y="120" class="tight">ALL KNOWN IN ADVANCE, ALL CHEAP TO ADD</text><text x="8" y="152" class="dim">FEEDFORWARD DOES NOT AFFECT STABILITY AT ALL,</text><text x="8" y="166" class="dim">SINCE IT IS NOT IN THE LOOP. IT IS THE ONE WAY TO</text><text x="8" y="180" class="dim">IMPROVE TRACKING WITHOUT SPENDING PHASE MARGIN,</text><text x="8" y="194" class="dim">AND IT IS UNDERUSED FOR EXACTLY THAT REASON</text></svg><figcaption class="fig-cap">Not in the loop, so it cannot destabilise anything.</figcaption></figure>
+<h2 id="worked-example-fixing-the-3400-rpm-overshoot">Worked example: fixing the 3,400 RPM overshoot</h2>
+<p>The opening failure. Velocity loop, Kp 0.030, Ki 0.20 from tutorial 19, 10 A
+current limit, commanded 0 to 3,000 RPM.</p>
+<p><strong>Step 1 — confirm it is windup rather than tuning.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Step size</th>
+<th>Time saturated</th>
+<th>Overshoot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 → 500 RPM</td>
+<td>0 ms</td>
+<td>2%</td>
+</tr>
+<tr>
+<td>0 → 1,500 RPM</td>
+<td>120 ms</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>0 → 3,000 RPM</td>
+<td>400 ms</td>
+<td>13%</td>
+</tr>
+</tbody>
+</table>
+<p>Overshoot tracks <strong>time saturated</strong>, not step size — 500 RPM never saturates and
+behaves perfectly. That is the signature. A tuning problem would show overshoot
+on the small step too.</p>
+<p><strong>Step 2 — how much has it accumulated?</strong> During 400 ms of saturation the
+average error is about 1,500 RPM, so the integral gains Ki × ē × t = 0.20 ×
+1,500 × 0.4 = <strong>120 units</strong> of command, against a limit of 10. It is twelve
+times over the limit and must unwind all of it.</p>
+<p><strong>Step 3 — add conditional integration.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overshoot on the 3,000 RPM step</td>
+<td>13%</td>
+<td>1.5%</td>
+</tr>
+<tr>
+<td>Time to settle within 1%</td>
+<td>2,100 ms</td>
+<td>260 ms</td>
+</tr>
+<tr>
+<td>Rise time</td>
+<td>410 ms</td>
+<td>410 ms</td>
+</tr>
+</tbody>
+</table>
+<p>Rise time is unchanged, which is the point: anti-windup does not slow the loop,
+because during acceleration the actuator was saturated anyway and the integral
+was contributing nothing useful.</p>
+<p><strong>Step 4 — and now feedforward, for comparison.</strong> Add an acceleration term: the
+commanded trajectory has a known ramp, J is measured at 4.1e-6 kg·m², so the
+torque needed is J·α and the current is that over Kt.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Feedback only</th>
+<th>With anti-windup</th>
+<th>Plus feedforward</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overshoot</td>
+<td>13%</td>
+<td>1.5%</td>
+<td>0.6%</td>
+</tr>
+<tr>
+<td>Settle to 1%</td>
+<td>2,100 ms</td>
+<td>260 ms</td>
+<td>190 ms</td>
+</tr>
+<tr>
+<td>Peak error during ramp</td>
+<td>1,500 RPM</td>
+<td>1,500 RPM</td>
+<td><strong>280 RPM</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The last row is the interesting one. Anti-windup fixed the <em>consequence</em> of a
+large tracking error; feedforward removed most of the <strong>error itself</strong>, because
+the loop no longer has to discover that acceleration needs torque — it was told.</p>
+<p><strong>And the honest caveat.</strong> The feedforward gain depends on J, which changes if
+you bolt something to the shaft. A wrong J is not dangerous, since feedback
+covers the difference, but it is one more constant with a physical meaning that
+somebody has to maintain. That maintenance burden is the real cost of
+feedforward and the reason it is skipped.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty-five minutes on hardware.</p>
+<ol>
+<li>Command a step big enough to saturate your actuator and log the output. If
+overshoot grows with saturation time rather than step size, you have windup.</li>
+<li>Add conditional integration — three lines. Re-run the same three step sizes
+and confirm rise time is unchanged while overshoot collapses.</li>
+<li>Take the filter off your derivative term, if you have one, and watch the
+output. Then work out what ceiling the filter was imposing.</li>
+<li>Then add one feedforward term. Acceleration is the easiest: you know the
+commanded trajectory, so estimate J by measuring how much current a known
+acceleration actually took, and feed it forward. Watch the tracking error
+during the ramp rather than the overshoot at the end.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 4 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What is the signature that an overshoot is windup rather than bad tuning?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-0" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-0"><span class="quiz-letter">A</span><span>It grows with step size, since a larger error accumulates faster</span></label><p class="quiz-why"><b>Not quite.</b> The two usually correlate because bigger steps saturate for longer. The distinguishing variable is the saturation time, not the amplitude.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-1" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-1"><span class="quiz-letter">B</span><span>It disappears when the proportional gain is reduced a little</span></label><p class="quiz-why"><b>Not quite.</b> Lower gain reaches the limit less readily, which masks it at some step sizes. A large enough command still saturates and still winds up.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-2" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-2" data-correct><span class="quiz-letter">C</span><span>It grows with time spent saturated rather than with step size</span></label><p class="quiz-why"><b>Right.</b> A step too small to saturate behaves perfectly, while a longer saturation gives a longer recovery. Tuning problems appear on small steps too.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-3" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-0-3"><span class="quiz-letter">D</span><span>It appears just when the derivative term is enabled in the loop</span></label><p class="quiz-why"><b>Not quite.</b> Windup is a property of the integrator and the limit, and occurs with derivative switched off entirely.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why must conditional integration keep integrating when the error would bring the output out of saturation?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-0" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-0"><span class="quiz-letter">A</span><span>It preserves the integral&#39;s history, which the loop needs afterwards</span></label><p class="quiz-why"><b>Not quite.</b> Discarding history is exactly what you want during saturation, since the accumulated value is meaningless. The issue is being able to unwind.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-1" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-1"><span class="quiz-letter">B</span><span>It keeps the derivative term consistent with the integrated value</span></label><p class="quiz-why"><b>Not quite.</b> Derivative acts on the error&#39;s rate and is independent of the accumulator. The two terms do not need to be kept consistent with each other.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-2" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-2" data-correct><span class="quiz-letter">C</span><span>Freezing in both directions would leave the loop stuck at its limit</span></label><p class="quiz-why"><b>Right.</b> If the integrator can never move while saturated, nothing reduces the command and the output stays pinned. Recovery needs the integral to fall.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-3" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-1-3"><span class="quiz-letter">D</span><span>The proportional term by itself will not pull the output off the limit</span></label><p class="quiz-why"><b>Not quite.</b> Proportional does respond immediately once the error reverses, and helps a great deal. The integral still has to come down from where it climbed.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What does one encoder count of jitter do to an unfiltered derivative at 1 kHz?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-0" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-0"><span class="quiz-letter">A</span><span>It averages to zero over several samples, so the effect is negligible</span></label><p class="quiz-why"><b>Not quite.</b> It does average to zero over time, which is why the mean position is fine. The instantaneous command still swings to full scale each sample.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-1" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-1" data-correct><span class="quiz-letter">B</span><span>It implies a rate of a thousand counts per second, so the term saturates</span></label><p class="quiz-why"><b>Right.</b> Differentiating divides by the sample interval, so a single count becomes a large apparent rate. Multiplied by a physical gain it commands full scale.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-2" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-2"><span class="quiz-letter">C</span><span>It shifts the phase of the derivative term by one sample interval</span></label><p class="quiz-why"><b>Not quite.</b> Discrete differentiation does introduce a half-sample phase shift as a separate matter. The amplification of quantisation noise is the larger problem.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-3" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-2-3"><span class="quiz-letter">D</span><span>It adds a small offset, since one count is below the resolution used</span></label><p class="quiz-why"><b>Not quite.</b> One count is exactly the resolution, and differentiation amplifies it by the sample rate. Nothing about it stays small.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why can feedforward not destabilise a control loop?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-0" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-0"><span class="quiz-letter">A</span><span>It is recomputed each cycle, so errors do not accumulate over time</span></label><p class="quiz-why"><b>Not quite.</b> Accumulation is an integrator property rather than a stability criterion. Feedforward would be safe even if it were held between updates.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-1" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-1"><span class="quiz-letter">B</span><span>It is scaled small enough that its contribution stays within limits</span></label><p class="quiz-why"><b>Not quite.</b> It is often the dominant part of the command, especially against gravity. Its size is not what keeps it safe.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-2" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-2"><span class="quiz-letter">C</span><span>It acts before the feedback term, so the loop corrects it afterwards</span></label><p class="quiz-why"><b>Not quite.</b> Ordering within one computation does not determine stability. What matters is that the signal never travels around the loop.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-3" name="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3"><label class="quiz-opt" for="machines/04-control-on-hardware/22-anti-windup-and-feedforward-3-3" data-correct><span class="quiz-letter">D</span><span>It is outside the loop, so it adds no phase around the feedback path</span></label><p class="quiz-why"><b>Right.</b> Stability is a property of the loop transfer function, and feedforward contributes nothing to it. A wrong model degrades tracking and nothing else.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Åström &amp; Hägglund, PID Controllers, ch. 3 and 5 · Åström &amp; Murray, Feedback Systems, ch. 11</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/04-control-on-hardware/21-sample-rate-and-latency" class="text-ash transition-colors hover:text-bone">← Sample rate, latency, and the phase you lose for free</a><a href="/course/machines/04-control-on-hardware/23-cascade" class="text-ash transition-colors hover:text-bone">Cascade: current inside velocity inside position →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

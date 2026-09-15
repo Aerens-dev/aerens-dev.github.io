@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Budget change control, and what a re-baseline destroys — Business Finance · Aerens</title><meta name="description" content="Four ways a budget moves, in increasing order of who has to agree — and the one that makes a problem disappear from the report without solving it."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/04-the-budget/22-change-control/"><meta property="og:type" content="website"><meta property="og:title" content="Budget change control, and what a re-baseline destroys — Business Finance · Aerens"><meta property="og:description" content="Four ways a budget moves, in increasing order of who has to agree — and the one that makes a problem disappear from the report without solving it."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/04-the-budget/22-change-control/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · The budget</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Budget change control, and what a re-baseline destroys</h1><p class="mt-3 text-bone/70">Four ways a budget moves, in increasing order of who has to agree — and the one that makes a problem disappear from the report without solving it.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 06 of 06 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Pick the right mechanism for a change and know whose signature it needs</li><li>Say what a re-baseline does to variance history and why that is the point</li><li>Recognise when a re-baseline is legitimate and when it is concealment</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You need €40,000 you do not have. There are four ways to get it, they need
+four different people to agree, and the one that is easiest to obtain is the one
+that does the most damage to everybody’s ability to see what is happening.</p>
+<h2 id="four-ways-a-budget-changes">Four ways a budget changes</h2>
+<p>In increasing order of how much authority they need:</p>
+<ul>
+<li><strong>Reallocate</strong> — move money between lines inside one cost centre. Total
+unchanged.</li>
+<li><strong>Transfer</strong> — move it between two cost centres. Group total unchanged.</li>
+<li><strong>Supplement</strong> — new money from above. Group total rises.</li>
+<li><strong>Re-baseline</strong> — the plan itself is replaced.</li>
+</ul>
+<p>The first three change <em>where</em> money sits. The fourth changes what the
+organisation considers the plan to have been, which is a different kind of act
+and deserves the section it gets at the end.</p>
+<figure class="fig"><svg viewBox="0 0 320 204" role="img" aria-labelledby="fig-four-ways"><title id="fig-four-ways">A budget changes by reallocating within a centre, transferring between centres, supplementing with new money, or re-baselining the plan itself — each needing more authority than the last.</title><text x="8" y="14" class="dim">FOUR WAYS A BUDGET CHANGES</text><rect class="box" x="8" y="28" width="304" height="32"></rect><text x="20" y="48" class="tight">REALLOCATE · WITHIN ONE CENTRE</text><rect class="box" x="8" y="68" width="304" height="32"></rect><text x="20" y="88" class="tight">TRANSFER · BETWEEN TWO CENTRES</text><rect class="box" x="8" y="108" width="304" height="32"></rect><text x="20" y="128" class="tight">SUPPLEMENT · NEW MONEY FROM ABOVE</text><rect class="mark" x="8" y="148" width="304" height="32"></rect><text x="20" y="168" class="tight">RE-BASELINE THE PLAN ITSELF CHANGES</text><text x="8" y="200" class="dim">THE FURTHER DOWN, THE MORE APPROVAL</text></svg><figcaption class="fig-cap">Four mechanisms, four levels of signature.</figcaption></figure>
+<h2 id="reallocation-within-a-centre-is-usually-yours">Reallocation within a centre is usually yours</h2>
+<p>Take €20,000 out of travel and put it into contractors. Same cost centre, same
+total, different account codes.</p>
+<p>Because the total does not move, most organisations let the owner do this
+themselves up to a threshold — often something like 10% of a line or a fixed
+euro amount, above which finance is notified or has to agree.</p>
+<p>Two limits worth knowing. It usually cannot cross the <strong>opex/capex</strong> boundary,
+for the reasons in the last tutorial. And it usually cannot touch <strong>payroll</strong>,
+because headcount is controlled separately from the money that pays for it — a
+distinction that surprises people, and exists because a permanent hire is a
+multi-year commitment made against a single-year budget.</p>
+<figure class="fig"><svg viewBox="0 0 320 168" role="img" aria-labelledby="fig-within-yours"><title id="fig-within-yours">Reallocating between lines inside one cost centre leaves the centre's total unchanged, which is why it is usually the owner's own decision up to a threshold.</title><text x="8" y="14" class="dim">MOVING MONEY INSIDE ONE CENTRE</text><rect class="box" x="8" y="30" width="304" height="80"></rect><text x="20" y="52" class="tight">COST CENTRE 4200</text><rect class="box" x="24" y="64" width="110" height="34"></rect><text x="34" y="86" class="tight">TRAVEL -20K</text><path class="accent" d="M134 81 H176"></path><path class="accent-fill" d="M176 76 L186 81 L176 86 Z"></path><rect class="mark" x="188" y="64" width="110" height="34"></rect><text x="198" y="86" class="tight">CONTRACT +20K</text><text x="8" y="140" class="dim">TOTAL UNCHANGED, SO THIS IS USUALLY</text><text x="8" y="158" class="dim">YOURS TO DO, INSIDE A THRESHOLD</text></svg><figcaption class="fig-cap">No total moves, so no one else has to agree.</figcaption></figure>
+<h2 id="a-transfer-needs-the-person-losing-it-to-agree">A transfer needs the person losing it to agree</h2>
+<p>Between two cost centres, the group total is still unchanged — but one owner is
+now €40,000 worse off and has to sign.</p>
+<p>That makes it a negotiation rather than an administrative act, and it has a
+predictable dynamic: whoever gives budget up is judged on a smaller number for
+the rest of the year, and they remember. Transfers are the currency of a lot of
+inter-team goodwill, and the giver rarely volunteers twice.</p>
+<p>The version worth watching is a transfer agreed mid-year to cover an overspend
+somewhere else. It solves the overspend and it moves the variance onto somebody
+who did nothing wrong, which is a real cost even though no group number changed.</p>
+<figure class="fig"><svg viewBox="0 0 320 174" role="img" aria-labelledby="fig-between-two"><title id="fig-between-two">Transferring budget between cost centres leaves the group total unchanged but requires both owners to agree, since one of them is giving something up.</title><text x="8" y="14" class="dim">MOVING IT TO SOMEONE ELSE</text><rect class="box" x="8" y="34" width="124" height="52"></rect><text x="20" y="58" class="tight">CENTRE 4200</text><text x="20" y="76" class="tight">GIVES 40K</text><path class="accent" d="M132 60 H176"></path><path class="accent-fill" d="M176 55 L188 60 L176 65 Z"></path><rect class="box" x="194" y="34" width="118" height="52"></rect><text x="206" y="58" class="tight">CENTRE 4300</text><text x="206" y="76" class="tight">GETS 40K</text><rect class="mark" x="8" y="106" width="304" height="30"></rect><text x="20" y="126" class="tight">BOTH OWNERS SIGN. GROUP TOTAL FLAT</text><text x="8" y="164" class="dim">THE GIVER RARELY VOLUNTEERS TWICE</text></svg><figcaption class="fig-cap">The total is flat and one person is now short.</figcaption></figure>
+<h2 id="a-supplement-is-new-money-so-the-original-approver-decides">A supplement is new money, so the original approver decides</h2>
+<p>A supplement takes nothing from anyone. Nobody objects on their own behalf, and
+the group total goes up.</p>
+<p>Which is exactly why it is the hardest to get. The total was approved by the
+board or the executive as a total, and raising it means going back to them.
+Supplements are usually reserved for genuine external change — an acquisition, a
+regulatory requirement, a contract nobody knew about — and they generally arrive
+with conditions attached.</p>
+<p>The tell that you are being managed rather than funded: a supplement offered as
+a <em>transfer from central contingency</em>. That is not new money; it is somebody
+else’s reserve, and it will be remembered as such.</p>
+<figure class="fig"><svg viewBox="0 0 320 178" role="img" aria-labelledby="fig-new-money"><title id="fig-new-money">A supplement takes nothing from anyone else, so it raises the group total and has to go back to whoever approved that total in the first place.</title><text x="8" y="14" class="dim">A SUPPLEMENT IS NEW MONEY</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">NOBODY ELSE LOSES ANYTHING</text><rect class="box" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">SO THE GROUP TOTAL GOES UP</text><rect class="mark" x="8" y="110" width="304" height="32"></rect><text x="20" y="130" class="tight">SO IT GOES BACK TO WHO APPROVED IT</text><text x="8" y="166" class="dim">THE HARDEST OF THE FOUR TO GET</text></svg><figcaption class="fig-cap">Nobody loses, the total rises, and the person who set the total decides.</figcaption></figure>
+<h2 id="a-re-baseline-destroys-the-variance-history">A re-baseline destroys the variance history</h2>
+<p>The fourth mechanism is different in kind. A re-baseline does not move money —
+it replaces the plan with a new one, usually the current forecast.</p>
+<p>The immediate effect is that the accumulated variance disappears. A project
+€400,000 over its original plan, re-baselined to the current forecast, is on
+plan. Nothing has been repaid and nothing has got cheaper. The line that showed
+the overspend has been moved to where the spend is.</p>
+<p>That is sometimes exactly right. If the scope genuinely changed, or the original
+plan was built on assumptions that no longer hold, measuring against it produces
+a variance that carries no information and distracts from the real question.</p>
+<p>It is also the single most effective way to make a problem stop appearing in a
+report, and the two cases look identical from the outside. Three questions
+separate them:</p>
+<ul>
+<li><strong>Did the scope change, or only the cost?</strong> Scope change justifies it; cost
+overrun on unchanged scope does not.</li>
+<li><strong>Is the original baseline still visible anywhere?</strong> A legitimate re-baseline
+keeps the original as a reference. A concealing one does not.</li>
+<li><strong>How many times?</strong> Once is a plan meeting reality. Three times is a reporting
+strategy.</li>
+</ul>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-history-erased"><title id="fig-history-erased">Re-baselining resets the plan to the current position, so the accumulated variance disappears and the trend that made it visible is no longer in the report.</title><text x="8" y="14" class="dim">WHAT A RE-BASELINE DOES</text><path class="thin" d="M32 28 V120 H304"></path><path class="dash" d="M40 100 H160"></path><path class="rule" d="M40 100 L160 60"></path><path class="accent" d="M160 60 L296 44"></path><rect class="mark" x="155" y="52" width="10" height="52"></rect><text x="44" y="88" class="tight">THE VARIANCE</text><text x="176" y="80" class="tight">AND NOW THERE IS NONE</text><text x="8" y="148" class="dim">THE OVERSPEND IS NOT REPAID, IT IS</text><text x="8" y="166" class="dim">ABSORBED INTO A NEW PLAN, AND THE</text><text x="8" y="184" class="dim">TREND THAT SHOWED IT IS GONE</text></svg><figcaption class="fig-cap">Nothing was repaid. The line that showed it was moved.</figcaption></figure>
+<h2 id="worked-example-finding-40000">Worked example: finding €40,000</h2>
+<p>Cost centre 4200 needs €40,000 more for contractors in September.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Who agrees</th>
+<th>Group total</th>
+<th>What it costs you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reallocate from travel</td>
+<td>You, under threshold</td>
+<td>Unchanged</td>
+<td>Something you wanted</td>
+</tr>
+<tr>
+<td>Transfer from 4300</td>
+<td>Both owners</td>
+<td>Unchanged</td>
+<td>Goodwill, once</td>
+</tr>
+<tr>
+<td>Supplement</td>
+<td>Executive</td>
+<td>+40,000</td>
+<td>A hard conversation</td>
+</tr>
+<tr>
+<td>Re-baseline the plan</td>
+<td>Finance and sponsor</td>
+<td>Unchanged on paper</td>
+<td>The variance history</td>
+</tr>
+</tbody>
+</table>
+<p>Take the first that works, in that order. The ordering is not about difficulty —
+it is that each step outward costs someone else more, and the last one costs
+everyone the ability to see what happened.</p>
+<p>Now the arithmetic that makes the last one attractive. Suppose the centre is
+already €25,000 over at the end of August and needs €40,000 more.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Original plan</th>
+<th>After re-baseline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Budget to date</td>
+<td>320,000</td>
+<td>345,000</td>
+</tr>
+<tr>
+<td>Actual to date</td>
+<td>345,000</td>
+<td>345,000</td>
+</tr>
+<tr>
+<td><strong>Variance</strong></td>
+<td><strong>(25,000)</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>Full-year budget</td>
+<td>480,000</td>
+<td>545,000</td>
+</tr>
+</tbody>
+</table>
+<p>The re-baseline solves both problems at once — the historic overspend and the
+future shortfall — with one act and no negotiation with any peer. It is a
+genuinely tempting option and it costs €65,000 of visibility rather than €40,000
+of anyone’s budget.</p>
+<p>The test to apply to yourself: if the scope has not changed, you are not
+re-baselining a plan. You are editing the record of what you said you would
+spend.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Find your organisation’s reallocation threshold. Ask finance what you can
+move without asking.</li>
+<li>Find out whether payroll and capex are ring-fenced from reallocation. They
+usually are, and people usually find out at the worst moment.</li>
+<li>Look at any project running more than a year and ask how many times it has
+been re-baselined, and whether the original baseline is still reported.</li>
+<li>Then, for the last budget change you were involved in, name which of the four
+it was and who bore the cost of it.</li>
+</ol>
+<p>Step 3 takes one question and it is the most informative thing you can ask about
+a long-running project.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What separates the first three mechanisms from a re-baseline?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-0-0" name="business-finance/04-the-budget/22-change-control-0"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-0-0" data-correct><span class="quiz-letter">A</span><span>The first three move money; the fourth replaces the plan</span></label><p class="quiz-why"><b>Right.</b> Reallocate, transfer and supplement change where money sits. A re-baseline changes what the organisation treats as the plan.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-0-1" name="business-finance/04-the-budget/22-change-control-0"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-0-1"><span class="quiz-letter">B</span><span>The first three are annual; the fourth applies to projects</span></label><p class="quiz-why"><b>Not quite.</b> Both apply in both settings. Annual budgets are re-baselined too, often under the name of a reforecast.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-0-2" name="business-finance/04-the-budget/22-change-control-0"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-0-2"><span class="quiz-letter">C</span><span>The first three need approval; the fourth can be done freely</span></label><p class="quiz-why"><b>Not quite.</b> A re-baseline needs finance and usually a sponsor. What makes it different is what it does, not how easily it is done.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-0-3" name="business-finance/04-the-budget/22-change-control-0"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-0-3"><span class="quiz-letter">D</span><span>The first three affect the total; the fourth leaves it alone</span></label><p class="quiz-why"><b>Not quite.</b> Only a supplement changes the group total. A re-baseline can change it as well, and often does.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Which reallocation is normally blocked even within one cost centre?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-1-0" name="business-finance/04-the-budget/22-change-control-1"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-1-0" data-correct><span class="quiz-letter">A</span><span>Moving budget into payroll, which is controlled separately</span></label><p class="quiz-why"><b>Right.</b> Headcount is authorised apart from the money, because a permanent hire is a multi-year commitment against a one-year budget.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-1-1" name="business-finance/04-the-budget/22-change-control-1"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-1-1"><span class="quiz-letter">B</span><span>Moving budget forward from one month into the next one</span></label><p class="quiz-why"><b>Not quite.</b> Phasing within the year is a normal adjustment. What is restricted is crossing into payroll or into capital.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-1-2" name="business-finance/04-the-budget/22-change-control-1"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-1-2"><span class="quiz-letter">C</span><span>Moving budget between two lines in the same account group</span></label><p class="quiz-why"><b>Not quite.</b> The easiest possible case, and generally not even reported. The restrictions are payroll and the capital boundary.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-1-3" name="business-finance/04-the-budget/22-change-control-1"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-1-3"><span class="quiz-letter">D</span><span>Moving budget from travel into contractors, across two codes</span></label><p class="quiz-why"><b>Not quite.</b> That is the ordinary case reallocation exists for. Different account codes within one centre is exactly what it handles.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>Why is a mid-year transfer to cover someone else&#39;s overspend worth watching?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-2-0" name="business-finance/04-the-budget/22-change-control-2"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-2-0"><span class="quiz-letter">A</span><span>It is irreversible once both cost centre owners have signed</span></label><p class="quiz-why"><b>Not quite.</b> It can be reversed by another transfer. The concern is where the variance ends up, not whether it is permanent.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-2-1" name="business-finance/04-the-budget/22-change-control-2"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-2-1" data-correct><span class="quiz-letter">B</span><span>It moves the variance onto a centre that did nothing wrong</span></label><p class="quiz-why"><b>Right.</b> The group total is unchanged and the reported problem relocates, so the overspend stops being visible where it occurred.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-2-2" name="business-finance/04-the-budget/22-change-control-2"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-2-2"><span class="quiz-letter">C</span><span>It requires a re-baseline of both centres to take effect</span></label><p class="quiz-why"><b>Not quite.</b> A transfer adjusts two budgets and needs no new plan. Re-baselining is the separate and heavier mechanism.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-2-3" name="business-finance/04-the-budget/22-change-control-2"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-2-3"><span class="quiz-letter">D</span><span>It raises the group total without going back to the board</span></label><p class="quiz-why"><b>Not quite.</b> A transfer leaves the group total exactly as it was. That is what distinguishes it from a supplement.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why is a supplement the hardest of the four to obtain?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-3-0" name="business-finance/04-the-budget/22-change-control-3"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-3-0" data-correct><span class="quiz-letter">A</span><span>It raises the total, so the person who set it must revisit it</span></label><p class="quiz-why"><b>Right.</b> Nobody objects on their own behalf, which sounds easier. It is harder because the group figure itself has to move.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-3-1" name="business-finance/04-the-budget/22-change-control-3"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-3-1"><span class="quiz-letter">B</span><span>It is granted at the start of a financial year, not later</span></label><p class="quiz-why"><b>Not quite.</b> Supplements are granted mid-year when the cause is genuine. Timing is not what makes them difficult.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-3-2" name="business-finance/04-the-budget/22-change-control-3"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-3-2"><span class="quiz-letter">C</span><span>It has to be justified against the original business case</span></label><p class="quiz-why"><b>Not quite.</b> Often required, and it is a condition rather than the barrier. The barrier is that the approved total increases.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-3-3" name="business-finance/04-the-budget/22-change-control-3"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-3-3"><span class="quiz-letter">D</span><span>It needs both cost centre owners to agree on the amount</span></label><p class="quiz-why"><b>Not quite.</b> That is a transfer. A supplement takes nothing from any peer, which is precisely why it goes higher.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Which question best separates a legitimate re-baseline from concealment?</legend><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-4-0" name="business-finance/04-the-budget/22-change-control-4"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-4-0" data-correct><span class="quiz-letter">A</span><span>Did the scope change, or only what the same scope now costs</span></label><p class="quiz-why"><b>Right.</b> Changed scope makes the old plan meaningless to measure against. Unchanged scope means the record is being edited.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-4-1" name="business-finance/04-the-budget/22-change-control-4"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-4-1"><span class="quiz-letter">B</span><span>Was it done at a period end rather than during a quarter</span></label><p class="quiz-why"><b>Not quite.</b> Timing is administrative convenience. What matters is whether the underlying scope moved.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-4-2" name="business-finance/04-the-budget/22-change-control-4"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-4-2"><span class="quiz-letter">C</span><span>Is the new baseline higher or lower than the original one</span></label><p class="quiz-why"><b>Not quite.</b> Almost all of them are higher. Direction says nothing about whether the change was warranted.</p><input class="quiz-radio" type="radio" id="business-finance/04-the-budget/22-change-control-4-3" name="business-finance/04-the-budget/22-change-control-4"><label class="quiz-opt" for="business-finance/04-the-budget/22-change-control-4-3"><span class="quiz-letter">D</span><span>Was the new baseline approved by finance and by a sponsor</span></label><p class="quiz-why"><b>Not quite.</b> Both versions carry those signatures, which is why approval alone does not distinguish them.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Anthony &amp; Govindarajan, Management Control Systems, ch. 9 · PMI, PMBOK Guide, Perform Integrated Change Control</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/04-the-budget/21-opex-vs-capex" class="text-ash transition-colors hover:text-bone">← Opex vs capex, and the behaviour it drives</a><a href="/course/business-finance/05-running-the-month/23-the-close" class="text-ash transition-colors hover:text-bone">The close: what happens between day 1 and day 6 →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

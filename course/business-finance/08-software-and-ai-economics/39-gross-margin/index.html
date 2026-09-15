@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Gross margin in a software business, and what belongs in COGS — Business Finance · Aerens</title><meta name="description" content="What sits above the line, how much the line's position moves the number, why the figure is watched — and what inference does to it."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/08-software-and-ai-economics/39-gross-margin/"><meta property="og:type" content="website"><meta property="og:title" content="Gross margin in a software business, and what belongs in COGS — Business Finance · Aerens"><meta property="og:description" content="What sits above the line, how much the line's position moves the number, why the figure is watched — and what inference does to it."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/08-software-and-ai-economics/39-gross-margin/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · Software and AI economics</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Gross margin in a software business, and what belongs in COGS</h1><p class="mt-3 text-bone/70">What sits above the line, how much the line&#39;s position moves the number, why the figure is watched — and what inference does to it.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 02 of 04 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>List what a software business puts in cost of revenue and say what is contested</li><li>Say how much gross margin moves when customer success crosses the line</li><li>Explain why an AI feature changes the shape of the cost curve</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>Two SaaS companies, identical products, identical costs. One reports 81% gross
+margin and the other 71%. Neither is misreporting.</p>
+<p>Tutorial 02 said where the cost-of-sales line falls is a policy choice. This is
+that tutorial applied to a business where the choice moves the single most
+scrutinised number on the page.</p>
+<h2 id="what-belongs-in-cost-of-revenue">What belongs in cost of revenue</h2>
+<p>For a software business, cost of revenue is what it takes to serve a customer
+who has already bought.</p>
+<ul>
+<li><strong>Hosting and infrastructure</strong> — the cloud bill attributable to production.</li>
+<li><strong>Support and customer success</strong> — or part of them, which is the contested
+part.</li>
+<li><strong>Third-party fees passed through</strong> — payment processing, licensed data,
+usage-based APIs the product depends on.</li>
+<li><strong>Amortisation of capitalised development</strong> — where tutorial 31’s decision
+lands on the P&amp;L.</li>
+</ul>
+<p>The first and third are uncontroversial. The second and fourth are where
+companies differ, and neither is settled by any standard: IFRS requires cost of
+sales to be presented but does not prescribe what a software company puts in it.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-what-is-in-cogs"><title id="fig-what-is-in-cogs">Cost of revenue for a software business is hosting, support, customer success and third-party fees — everything needed to serve a customer who has already bought.</title><text x="8" y="14" class="dim">ABOVE THE LINE, IN A SOFTWARE BUSINESS</text><rect class="box" x="8" y="28" width="304" height="28"></rect><text x="20" y="47" class="tight">HOSTING AND INFRASTRUCTURE</text><rect class="box" x="8" y="64" width="304" height="28"></rect><text x="20" y="83" class="tight">SUPPORT AND CUSTOMER SUCCESS</text><rect class="box" x="8" y="100" width="304" height="28"></rect><text x="20" y="119" class="tight">THIRD-PARTY FEES PASSED THROUGH</text><rect class="mark" x="8" y="136" width="304" height="28"></rect><text x="20" y="155" class="tight">AMORTISED CAPITALISED DEVELOPMENT</text><text x="8" y="188" class="dim">THE LAST ONE IS WHERE COMPANIES DIFFER</text></svg><figcaption class="fig-cap">Four components, and the last two are where companies differ.</figcaption></figure>
+<h2 id="where-the-line-moves-the-margin-moves">Where the line moves, the margin moves</h2>
+<p>Take the customer success team. It exists to keep customers using the product
+and renewing.</p>
+<p><strong>In cost of revenue</strong>, because it is required to serve customers who have
+bought. <strong>In operating expense</strong>, because it is really a retention and upsell
+function — closer to sales than to service.</p>
+<p>Both arguments are honest and the effect is large: on a typical mid-size SaaS
+P&amp;L, moving customer success across the line changes gross margin by around ten
+points. Same people, same cost, same operating profit, and a number that
+investors treat as a fact about the business model moves a tenth.</p>
+<p>Which is why the accounting policy note is worth reading before comparing two
+companies’ gross margins, and why any benchmark table of “typical SaaS gross
+margin” should be read as a range of conventions as much as a range of
+businesses.</p>
+<figure class="fig"><svg viewBox="0 0 320 184" role="img" aria-labelledby="fig-where-the-line-moves"><title id="fig-where-the-line-moves">Whether customer success sits in cost of revenue or in operating expense moves reported gross margin by several points without changing anything the company does.</title><text x="8" y="14" class="dim">ONE TEAM, TWO SIDES OF THE LINE</text><rect class="box" x="8" y="30" width="140" height="76"></rect><text x="20" y="54" class="tight">CS IN COGS</text><text x="20" y="76" class="tight">GROSS MARGIN 71%</text><rect class="mark" x="172" y="30" width="140" height="76"></rect><text x="184" y="54" class="tight">CS IN OPEX</text><text x="184" y="76" class="tight">GROSS MARGIN 81%</text><text x="8" y="146" class="dim">SAME PEOPLE, SAME COST, SAME OPERATING</text><text x="8" y="164" class="dim">PROFIT. TEN POINTS OF GROSS MARGIN, AND</text><text x="8" y="182" class="dim">NO STANDARD SAYS WHICH IS RIGHT</text></svg><figcaption class="fig-cap">Ten points, from a classification decision, with nothing else changed.</figcaption></figure>
+<h2 id="why-the-number-is-watched-so-closely">Why the number is watched so closely</h2>
+<p>Gross margin is scrutinised because of what it is taken to prove.</p>
+<p>A high gross margin says the <strong>next customer is nearly free to serve</strong> — that
+the cost of the product is mostly already sunk and revenue growth converts
+almost directly into gross profit. That claim is the entire investment case for
+software as an asset class.</p>
+<p>A low one says every customer costs real money to serve, which makes the
+business look more like a services firm, and services firms are valued on
+different multiples entirely.</p>
+<p>So the number carries a great deal of weight, it is not fully specified by any
+standard, and the people preparing it know both of those things. That is not an
+accusation; it is a reason to read the note.</p>
+<figure class="fig"><svg viewBox="0 0 320 180" role="img" aria-labelledby="fig-why-it-is-watched"><title id="fig-why-it-is-watched">Gross margin is watched because it is read as evidence of whether serving one more customer costs almost nothing, which is the whole software investment case.</title><text x="8" y="14" class="dim">WHAT THE NUMBER IS TAKEN TO MEAN</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">HIGH · THE NEXT CUSTOMER IS NEARLY FREE</text><rect class="box" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">LOW · EVERY CUSTOMER COSTS TO SERVE</text><rect class="mark" x="8" y="110" width="304" height="30"></rect><text x="20" y="130" class="tight">WHICH IS THE WHOLE INVESTMENT CASE</text><text x="8" y="166" class="dim">SO IT IS SCRUTINISED, AND SO IT IS</text><text x="8" y="178" class="dim">PRESENTED CAREFULLY</text></svg><figcaption class="fig-cap">The number is a claim about whether the model scales.</figcaption></figure>
+<h2 id="margin-differs-by-revenue-type-so-mix-matters">Margin differs by revenue type, so mix matters</h2>
+<p>Blended gross margin hides a mix, and the components are far apart.</p>
+<p><strong>Subscription</strong> revenue carries the highest margin — typically 75% to 85% —
+because the marginal cost of another seat is hosting and a share of support.</p>
+<p><strong>Usage-based</strong> revenue is lower, because it scales with the thing being
+consumed.</p>
+<p><strong>Professional services</strong> — implementation, training, custom work — is often 15%
+to 30%, because it is people’s time sold at a modest markup.</p>
+<p>So a blended margin that falls may mean the business got worse, or may mean it
+sold more services this year. Those are very different findings and the blended
+figure cannot distinguish them. Any company that reports the split has given you
+something useful; any that does not has made a choice.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-margin-by-type"><title id="fig-margin-by-type">Subscription revenue carries a high margin, professional services a much lower one, so a shift in mix moves blended gross margin without either line changing.</title><text x="8" y="14" class="dim">MARGIN BY REVENUE TYPE</text><path class="thin" d="M32 28 V120 H304"></path><rect class="mark" x="56" y="38" width="52" height="82"></rect><rect class="solid" x="132" y="62" width="52" height="58"></rect><rect class="solid" x="208" y="96" width="52" height="24"></rect><text x="52" y="138" class="tight">SUBS 82%</text><text x="128" y="138" class="tight">USAGE 64%</text><text x="204" y="138" class="tight">SERVICES 22%</text><text x="8" y="168" class="dim">A BLENDED MARGIN THAT FALLS MAY MEAN</text><text x="8" y="184" class="dim">MORE SERVICES, NOT WORSE SOFTWARE</text></svg><figcaption class="fig-cap">Three margins in one average. A falling blend may be a mix change.</figcaption></figure>
+<h2 id="what-inference-does-to-the-shape">What inference does to the shape</h2>
+<p>Here is the part that is new, and it matters for anything Niels builds.</p>
+<p>Classic software cost of revenue is <strong>nearly flat against usage</strong>. Hosting rises,
+but sublinearly; support rises with customers rather than with requests. That
+near-flatness is where 80% gross margins come from.</p>
+<p>Model inference is <strong>genuinely variable</strong>. Every request has a cost that scales
+with tokens in and tokens out. There is no economy of scale in the call itself —
+the millionth request costs what the first one did.</p>
+<p>So an AI feature bends the cost curve upward, and it does so <em>as the feature
+succeeds</em>. A feature nobody uses is free; a feature everybody uses is a
+materially different gross margin. That is a genuinely new problem for software
+businesses, and it is why the next tutorial’s unit is a request rather than a
+customer.</p>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-ai-changes-it"><title id="fig-ai-changes-it">Traditional software cost of revenue is nearly flat against usage, while model inference is genuinely variable, so an AI feature pulls the gross margin curve down as it succeeds.</title><text x="8" y="14" class="dim">COST OF SERVING, AGAINST USAGE</text><path class="thin" d="M32 28 V120 H304"></path><path class="dash" d="M40 104 L296 88"></path><path class="accent" d="M40 108 L296 40"></path><rect class="mark" x="250" y="42" width="10" height="46"></rect><text x="150" y="82" class="tight">CLASSIC SOFTWARE</text><text x="120" y="56" class="tight">WITH INFERENCE</text><text x="8" y="152" class="dim">THE OLD CURVE WAS NEARLY FLAT, WHICH IS</text><text x="8" y="170" class="dim">WHERE THE MARGINS CAME FROM. THIS ONE</text><text x="8" y="188" class="dim">RISES WITH EVERY REQUEST SERVED</text></svg><figcaption class="fig-cap">The old curve was nearly flat. This one rises with every request served.</figcaption></figure>
+<h2 id="worked-example-the-same-company-two-policies">Worked example: the same company, two policies</h2>
+<p>Revenue €40,000,000.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Policy A</th>
+<th>Policy B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hosting</td>
+<td>4,200,000</td>
+<td>4,200,000</td>
+</tr>
+<tr>
+<td>Support</td>
+<td>2,600,000</td>
+<td>2,600,000</td>
+</tr>
+<tr>
+<td>Customer success</td>
+<td>3,900,000</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Amortised development</td>
+<td>1,000,000</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Cost of revenue</strong></td>
+<td><strong>11,700,000</strong></td>
+<td><strong>6,800,000</strong></td>
+</tr>
+<tr>
+<td><strong>Gross profit</strong></td>
+<td><strong>28,300,000</strong></td>
+<td><strong>33,200,000</strong></td>
+</tr>
+<tr>
+<td><strong>Gross margin</strong></td>
+<td><strong>71%</strong></td>
+<td><strong>83%</strong></td>
+</tr>
+<tr>
+<td>Operating expenses</td>
+<td>24,000,000</td>
+<td>28,900,000</td>
+</tr>
+<tr>
+<td><strong>Operating profit</strong></td>
+<td><strong>4,300,000</strong></td>
+<td><strong>4,300,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Identical operating profit. Twelve points of gross margin.</p>
+<p>Policy B is not wrong. It puts customer success in sales and marketing, where
+its function arguably belongs, and it expenses development rather than
+capitalising it — which tutorial 31 would call the conservative choice.</p>
+<p>The lesson for reading somebody else’s numbers: <strong>gross margin is not comparable
+between companies without the policy note.</strong> The lesson for producing your own:
+whichever convention you adopt, keep it, because the year you change it your
+margin moves and everyone will assume the business did.</p>
+<p>And note the direction of the pressure. Policy B looks better on the metric
+investors watch <em>and</em> is more conservative on capitalisation. Those two rarely
+point the same way, which makes this one of the few places where the flattering
+choice is also the prudent one.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Take any listed software company’s accounts and find what it includes in cost
+of revenue. It is in the accounting policies, near the front of the notes.</li>
+<li>Find whether customer success is above or below the line. Compute what moving
+it would do.</li>
+<li>If the company splits revenue by type, compute margin for each. Compare the
+subscription margin to the blended one.</li>
+<li>Then, for something you have built: estimate the inference cost per active
+user per month, and what it does to a margin if usage triples.</li>
+</ol>
+<p>Step 4 is the calculation almost nobody does before launching a feature, and it
+is the subject of the last tutorial.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Which component of software cost of revenue differs most between companies?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-0-0" name="business-finance/08-software-and-ai-economics/39-gross-margin-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-0-0" data-correct><span class="quiz-letter">A</span><span>Customer success, which some place in sales instead</span></label><p class="quiz-why"><b>Right.</b> It can be argued as serving customers or as retention and upsell, and no standard settles which.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-0-1" name="business-finance/08-software-and-ai-economics/39-gross-margin-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-0-1"><span class="quiz-letter">B</span><span>Hosting, which depends on the provider and the architecture</span></label><p class="quiz-why"><b>Not quite.</b> The amount varies with architecture and its classification does not. Production hosting is cost of revenue.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-0-2" name="business-finance/08-software-and-ai-economics/39-gross-margin-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-0-2"><span class="quiz-letter">C</span><span>Sales commission, which is capitalised under IFRS 15</span></label><p class="quiz-why"><b>Not quite.</b> Commission is a cost of obtaining a contract and amortises into sales expense, not cost of revenue.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-0-3" name="business-finance/08-software-and-ai-economics/39-gross-margin-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-0-3"><span class="quiz-letter">D</span><span>Payment processing, which varies with the pricing model</span></label><p class="quiz-why"><b>Not quite.</b> The fee varies and the treatment is settled: a pass-through cost of serving sits in cost of revenue.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Customer success moves from cost of revenue into operating expense. What happens?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-1-0" name="business-finance/08-software-and-ai-economics/39-gross-margin-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-1-0"><span class="quiz-letter">A</span><span>Gross margin falls, since the cost base is now reallocated</span></label><p class="quiz-why"><b>Not quite.</b> The direction is upward: taking a cost out of cost of revenue leaves more gross profit.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-1-1" name="business-finance/08-software-and-ai-economics/39-gross-margin-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-1-1" data-correct><span class="quiz-letter">B</span><span>Gross margin rises about ten points and operating profit holds</span></label><p class="quiz-why"><b>Right.</b> The cost is the same and it sits below a different subtotal, so only the intermediate line changes.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-1-2" name="business-finance/08-software-and-ai-economics/39-gross-margin-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-1-2"><span class="quiz-letter">C</span><span>Gross margin holds, since the total cost has not changed</span></label><p class="quiz-why"><b>Not quite.</b> Gross margin is measured before operating expenses, so moving a cost past that subtotal changes it.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-1-3" name="business-finance/08-software-and-ai-economics/39-gross-margin-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-1-3"><span class="quiz-letter">D</span><span>Gross margin rises and operating profit rises with it</span></label><p class="quiz-why"><b>Not quite.</b> Operating profit is after both lines, so it is untouched. That is what makes the move purely presentational.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What is a high software gross margin taken to prove?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-2-0" name="business-finance/08-software-and-ai-economics/39-gross-margin-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-2-0"><span class="quiz-letter">A</span><span>That pricing power is strong relative to the competition</span></label><p class="quiz-why"><b>Not quite.</b> Price supports the margin and the inference drawn is about the marginal cost of serving one more customer.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-2-1" name="business-finance/08-software-and-ai-economics/39-gross-margin-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-2-1"><span class="quiz-letter">B</span><span>That development costs have been capitalised prudently</span></label><p class="quiz-why"><b>Not quite.</b> Capitalisation policy affects the figure and is not what the number is taken to demonstrate.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-2-2" name="business-finance/08-software-and-ai-economics/39-gross-margin-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-2-2" data-correct><span class="quiz-letter">C</span><span>That serving one more customer costs almost nothing</span></label><p class="quiz-why"><b>Right.</b> That claim is the software investment case: revenue growth converting almost directly into gross profit.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-2-3" name="business-finance/08-software-and-ai-economics/39-gross-margin-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-2-3"><span class="quiz-letter">D</span><span>That the company controls its costs better than its peers</span></label><p class="quiz-why"><b>Not quite.</b> Cost discipline shows up further down. Gross margin is read as a statement about the model rather than management.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>A company&#39;s blended gross margin falls three points. What is a likely benign explanation?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-3-0" name="business-finance/08-software-and-ai-economics/39-gross-margin-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-3-0"><span class="quiz-letter">A</span><span>Its hosting costs rose faster than its subscription revenue</span></label><p class="quiz-why"><b>Not quite.</b> A genuine deterioration rather than a benign one, and it would show in the subscription margin itself.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-3-1" name="business-finance/08-software-and-ai-economics/39-gross-margin-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-3-1"><span class="quiz-letter">B</span><span>It won more customers, so support costs rose in proportion</span></label><p class="quiz-why"><b>Not quite.</b> Proportional growth leaves the margin percentage broadly unchanged, which is the point of a ratio.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-3-2" name="business-finance/08-software-and-ai-economics/39-gross-margin-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-3-2"><span class="quiz-letter">C</span><span>It capitalised less development than in the previous year</span></label><p class="quiz-why"><b>Not quite.</b> Capitalising less raises operating expense and reduces later amortisation, which lifts margin over time.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-3-3" name="business-finance/08-software-and-ai-economics/39-gross-margin-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-3-3" data-correct><span class="quiz-letter">D</span><span>It sold more professional services, which carry a low margin</span></label><p class="quiz-why"><b>Right.</b> Services run at 15% to 30%, so a shift in mix moves the blend without either component changing.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why does adding a model-backed feature change the shape of the cost curve?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-4-0" name="business-finance/08-software-and-ai-economics/39-gross-margin-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-4-0"><span class="quiz-letter">A</span><span>Inference is capitalised, so it appears as amortisation later</span></label><p class="quiz-why"><b>Not quite.</b> Running a model is an operating cost as it is consumed. Nothing about a request creates an asset.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-4-1" name="business-finance/08-software-and-ai-economics/39-gross-margin-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-4-1"><span class="quiz-letter">B</span><span>Inference is a fixed cost, so it dilutes as usage grows</span></label><p class="quiz-why"><b>Not quite.</b> The opposite: every request carries its own token cost with no economy of scale in the call itself.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-4-2" name="business-finance/08-software-and-ai-economics/39-gross-margin-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-4-2"><span class="quiz-letter">C</span><span>Inference is billed monthly, so it lands in a different period</span></label><p class="quiz-why"><b>Not quite.</b> Billing frequency is administrative. What changes the curve is that the cost scales with usage.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/39-gross-margin-4-3" name="business-finance/08-software-and-ai-economics/39-gross-margin-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/39-gross-margin-4-3" data-correct><span class="quiz-letter">D</span><span>Inference is variable, so the millionth call costs the same</span></label><p class="quiz-why"><b>Right.</b> Classic software cost of revenue is nearly flat against usage, which is where the high margins came from.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: IFRS 15 and IAS 38 presentation · SaaS reporting practice; Bessemer and OpenView benchmark reports</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/08-software-and-ai-economics/38-cloud-as-opex" class="text-ash transition-colors hover:text-bone">← Cloud spend as opex: commitments, showback and chargeback</a><a href="/course/business-finance/08-software-and-ai-economics/40-saas-unit-economics" class="text-ash transition-colors hover:text-bone">SaaS unit economics →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Six-step commutation — Machines · Aerens</title><meta name="description" content="Six states, three sensors, two impossible codes, and the fourteen per cent of torque that six-step throws away."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/03-motors-and-power/16-six-step/"><meta property="og:type" content="website"><meta property="og:title" content="Six-step commutation — Machines · Aerens"><meta property="og:description" content="Six states, three sensors, two impossible codes, and the fourteen per cent of torque that six-step throws away."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/03-motors-and-power/16-six-step/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Motors, drivers, and power</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Six-step commutation</h1><p class="mt-3 text-bone/70">Six states, three sensors, two impossible codes, and the fourteen per cent of torque that six-step throws away.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 05 of 08 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Decode three hall sensors into a commutation state, and detect a dead sensor for free</li><li>Say where the torque ripple in six-step comes from, and how large it is</li><li>Explain why sensorless starting is open loop and what that costs</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>The brushes are gone and their job is yours. The windings still have to be
+energised in sequence as the rotor turns, and getting that sequence wrong by one
+state means the motor pushes the rotor away from where it is going instead of
+towards it.</p>
+<p>Six-step is the crude answer, and crude is the right first answer: it is a
+lookup table with six rows, it runs on any microcontroller, and it works. It
+also throws away about a seventh of the available torque and makes a noise. This
+tutorial is both halves of that.</p>
+<h2 id="six-states-and-what-the-gap-costs">Six states, and what the gap costs</h2>
+<p>Six-step energises <strong>two of the three phases</strong> at a time and leaves the third
+open. Six such combinations exist, and cycling through them in order produces a
+rotating field that drags the rotor round.</p>
+<p>The field, though, does not rotate smoothly. It jumps by 60° every commutation
+and then sits still while the rotor keeps turning. So the angle between the
+field and the rotor sweeps across a 60° window instead of holding at the ideal
+90°, and the torque follows the cosine of the error.</p>
+<p>That is the entire cost of six-step, and everything unattractive about it —
+ripple, noise, heat that does no work — comes from that one geometric fact.</p>
+<figure class="fig"><svg viewBox="0 0 320 194" role="img" aria-labelledby="fig-six-step"><title id="fig-six-step">Six-step commutation energises two of three phases at a time and advances on hall transitions, so the applied field is only ever within thirty degrees of the ideal and torque ripples at six times the electrical frequency.</title><text x="8" y="14" class="dim">SIX STATES PER ELECTRICAL REVOLUTION</text><path class="thin" d="M40 34 V110 H288"></path><path class="rule" d="M48 62 H88 V44 H128 V62 H168 V80 H208 V62 H248 V44 H284"></path><circle class="mark" cx="88" cy="44" r="7"></circle><path class="dash" d="M48 92 Q100 40 168 62 Q232 84 284 52"></path><text x="48" y="128" class="tight">STEPPED FIELD</text><text x="176" y="128" class="tight">IDEAL SINE</text><text x="8" y="156" class="dim">THE GAP BETWEEN THEM IS TORQUE RIPPLE AT SIX</text><text x="8" y="170" class="dim">TIMES THE ELECTRICAL FREQUENCY, PLUS AUDIBLE</text><text x="8" y="184" class="dim">NOISE AND HEAT THAT PRODUCES NO USEFUL WORK</text></svg><figcaption class="fig-cap">The stepped field against the sine it is approximating.</figcaption></figure>
+<h2 id="three-sensors-six-codes-two-impossible">Three sensors, six codes, two impossible</h2>
+<p>Knowing which of the six states to apply means knowing where the rotor is to
+within 60°, which is exactly what three hall sensors spaced 60° apart provide.</p>
+<p>Three binary sensors give eight codes. Six of them occur, in a fixed cyclic
+order — 001, 011, 010, 110, 100, 101 — and <strong>000 and 111 never occur</strong>, because
+the sensors are physically arranged so that at least one and at most two are
+active at any angle.</p>
+<p>Those two impossible codes are a free diagnostic. Check for them on every read:
+one comparison, and it catches a disconnected sensor, a broken wire or a failed
+device <strong>before</strong> the commutation logic acts on a rotor angle that is not where
+the rotor is. Without the check, a dead sensor produces violent, expensive
+behaviour that looks like a control problem.</p>
+<p>Read the halls in the interrupt driven by their own edges rather than polling
+them. The transitions are the events; the levels between transitions carry no
+new information.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-hall-states"><title id="fig-hall-states">Three hall sensors spaced sixty degrees apart give six valid codes per electrical revolution, and the two remaining codes are impossible, which makes them a free detector for a disconnected sensor.</title><text x="8" y="14" class="dim">EIGHT CODES, SIX OF THEM REAL</text><rect class="fill" x="8" y="28" width="46" height="34"></rect><text x="18" y="50" class="tight">001</text><rect class="fill" x="58" y="28" width="46" height="34"></rect><text x="68" y="50" class="tight">011</text><rect class="fill" x="108" y="28" width="46" height="34"></rect><text x="118" y="50" class="tight">010</text><rect class="fill" x="158" y="28" width="46" height="34"></rect><text x="168" y="50" class="tight">110</text><rect class="fill" x="208" y="28" width="46" height="34"></rect><text x="218" y="50" class="tight">100</text><rect class="fill" x="258" y="28" width="46" height="34"></rect><text x="268" y="50" class="tight">101</text><rect class="mark" x="8" y="76" width="96" height="34"></rect><text x="18" y="98" class="tight">000    111</text><text x="116" y="98" class="tight">IMPOSSIBLE. A SENSOR IS DEAD</text><text x="8" y="140" class="dim">CHECK FOR THE TWO ILLEGAL CODES ON EVERY READ.</text><text x="8" y="154" class="dim">IT COSTS ONE COMPARISON AND CATCHES A BROKEN</text><text x="8" y="168" class="dim">WIRE BEFORE THE COMMUTATION LOGIC ACTS ON IT AND</text><text x="8" y="182" class="dim">DRIVES THE BRIDGE FROM A ROTOR ANGLE THAT IS NOT</text><text x="8" y="196" class="dim">WHERE THE ROTOR IS</text></svg><figcaption class="fig-cap">Six real codes, two that mean a broken wire.</figcaption></figure>
+<h2 id="two-driven-one-floating">Two driven, one floating</h2>
+<p>In each state, one phase is pulled high, one is pulled low and the third is
+<strong>open</strong> — neither switch on that leg conducts.</p>
+<p>That floating phase is more useful than it looks. With no current flowing in it,
+the voltage on its terminal is the motor’s own <strong>back-EMF</strong> for that winding.
+And the point where that back-EMF crosses the midpoint of the supply falls
+exactly <strong>30° before</strong> the next commutation should happen.</p>
+<p>So a sensorless drive works like this: watch the floating phase, detect the zero
+crossing, wait 30° worth of time based on the current speed, then commutate.
+Three phases take turns floating, so you get six measurements per electrical
+revolution — precisely the six you need.</p>
+<p>That is why six-step and sensorless go together, and why field-oriented control
+in the next tutorial is harder to do without a sensor: FOC drives all three
+phases all of the time, so nothing ever floats and there is nothing to observe.</p>
+<figure class="fig"><svg viewBox="0 0 320 202" role="img" aria-labelledby="fig-commutation-table"><title id="fig-commutation-table">In each of the six states two phases carry current and the third floats, and the back-EMF on that floating phase is what allows a sensorless drive to find the rotor without hall sensors.</title><text x="8" y="14" class="dim">EACH STATE DRIVES TWO AND LEAVES ONE OPEN</text><text x="8" y="42" class="tight">STATE</text><text x="80" y="42" class="tight">HIGH</text><text x="150" y="42" class="tight">LOW</text><text x="220" y="42" class="tight">FLOATING</text><text x="8" y="66" class="tight">1</text><text x="80" y="66" class="tight">A</text><text x="150" y="66" class="tight">B</text><text x="220" y="66" class="tight">C</text><text x="8" y="88" class="tight">2</text><text x="80" y="88" class="tight">A</text><text x="150" y="88" class="tight">C</text><text x="220" y="88" class="tight">B</text><rect class="mark" x="4" y="98" width="308" height="26"></rect><text x="8" y="116" class="tight">3</text><text x="80" y="116" class="tight">B</text><text x="150" y="116" class="tight">C</text><text x="220" y="116" class="tight">A</text><text x="8" y="140" class="tight">. . . AND THREE MORE, MIRRORED</text><text x="8" y="172" class="dim">THE FLOATING PHASE SHOWS ITS BACK-EMF, AND ITS</text><text x="8" y="186" class="dim">ZERO CROSSING FALLS THIRTY DEGREES AHEAD OF THE</text><text x="8" y="200" class="dim">NEXT COMMUTATION. THAT IS SENSORLESS DRIVE</text></svg><figcaption class="fig-cap">The open phase is the measurement.</figcaption></figure>
+<h2 id="what-the-ripple-actually-costs">What the ripple actually costs</h2>
+<p>Put a number on it, because the number decides whether six-step is good enough.</p>
+<p>The angle error sweeps ±30° around ideal, and torque goes as the cosine. At the
+extremes, cos 30° = <strong>0.866</strong>, so torque is 13.4% below ideal. Averaged across
+the sweep it comes out about <strong>4.5% down</strong>, and the peak-to-peak ripple is
+around 14% at <strong>six times the electrical frequency</strong>.</p>
+<p>Where that matters and where it does not:</p>
+<ul>
+<li><strong>A propeller or a fan</strong> — barely at all. The inertia is large relative to
+the ripple period and the load does not care.</li>
+<li><strong>Direct-drive positioning, a gimbal, a robot joint</strong> — it matters a great
+deal. 14% ripple at six times electrical frequency is visible in the
+position and audible in the room.</li>
+<li><strong>Anything battery-powered</strong> — the 4.5% average loss is 4.5% of flight time.</li>
+<li><strong>Low speed</strong> — worst case, because the ripple frequency drops into the range
+where the mechanics resonate and the inertia no longer smooths it.</li>
+</ul>
+<figure class="fig"><svg viewBox="0 0 320 190" role="img" aria-labelledby="fig-torque-ripple"><title id="fig-torque-ripple">Holding the field fixed for sixty degrees means the angle between field and rotor sweeps thirty degrees either side of ideal, so torque falls with the cosine of that error and ripples about fourteen per cent.</title><text x="8" y="14" class="dim">TORQUE ACROSS ONE COMMUTATION STEP</text><path class="thin" d="M40 30 V108 H272"></path><path class="dash" d="M44 44 H268"></path><text x="150" y="40" class="tight">IDEAL, FIELD HELD AT 90 DEG</text><path class="accent" d="M44 62 Q76 44 108 62 Q140 80 172 62 Q204 44 236 62 Q252 70 268 62"></path><circle class="mark" cx="140" cy="72" r="7"></circle><text x="8" y="132" class="tight">-30 DEG</text><text x="120" y="132" class="tight">0</text><text x="216" y="132" class="tight">+30 DEG</text><text x="8" y="160" class="dim">COS 30 IS 0.866, SO THE WORST POINT LOSES 13.4</text><text x="8" y="174" class="dim">PER CENT. THE AVERAGE LOSS IS ABOUT 4.5 PER CENT,</text><text x="8" y="188" class="dim">AND THE RIPPLE IS HEAT, NOISE AND VIBRATION</text></svg><figcaption class="fig-cap">Thirteen per cent at the extremes, four and a half on average.</figcaption></figure>
+<h2 id="starting-without-sensors">Starting without sensors</h2>
+<p>Back-EMF is proportional to speed. At standstill it is zero, so a sensorless
+drive has no idea where the rotor is at the moment it most needs to know.</p>
+<p>The standard start is three phases and none of them is elegant. <strong>Align</strong>: apply
+a fixed state and wait, so the rotor is dragged to a known angle. <strong>Ramp</strong>:
+advance the field open loop on a rising speed profile and hope the rotor
+follows, since nothing is checking. <strong>Hand over</strong>: once back-EMF is detectable,
+usually somewhere between 5 and 10% of rated speed, switch to closed loop.</p>
+<p>Every one of those steps can fail. If the load is too heavy the rotor does not
+follow the ramp and you get a stall with full current flowing. If the alignment
+kick is too weak the rotor starts from the wrong place. If handover happens too
+early the zero crossings are noise.</p>
+<p>This is why hall sensors persist despite costing three wires and a connector:
+they know where the rotor is at zero speed, which is the one thing sensorless
+cannot do. <strong>The test stand uses halls or an encoder</strong>, and it does so to make
+tracks 4 and 17 about control rather than about starting.</p>
+<figure class="fig"><svg viewBox="0 0 320 208" role="img" aria-labelledby="fig-sensorless-start"><title id="fig-sensorless-start">Sensorless commutation depends on back-EMF, which is proportional to speed and therefore absent at standstill, so starting means forcing the rotor open loop until the signal appears.</title><text x="8" y="14" class="dim">THE SIGNAL YOU NEED IS MADE BY MOVING</text><path class="thin" d="M40 34 V112 H288"></path><text x="20" y="40" class="tight">EMF</text><text x="266" y="128" class="tight">RPM</text><path class="rule" d="M44 110 L280 44"></path><circle class="mark" cx="46" cy="109" r="7"></circle><path class="dash" d="M110 34 V116"></path><text x="52" y="132" class="tight">BLIND</text><text x="150" y="132" class="tight">CLOSED LOOP FROM HERE</text><text x="8" y="162" class="dim">SO THE START IS: ALIGN THE ROTOR TO A KNOWN</text><text x="8" y="176" class="dim">STATE, RAMP THE FIELD OPEN LOOP AND HOPE IT</text><text x="8" y="190" class="dim">FOLLOWS, THEN HAND OVER. HALL SENSORS SKIP THE</text><text x="8" y="204" class="dim">WHOLE PROBLEM, WHICH IS WHY THE STAND USES THEM</text></svg><figcaption class="fig-cap">The signal you need is produced by moving.</figcaption></figure>
+<h2 id="worked-example-commutation-timing-at-speed">Worked example: commutation timing at speed</h2>
+<p>The 2205 motor from tutorial 13, which has <strong>14 poles</strong> — 7 pole pairs. Running
+at 6,000 RPM mechanical.</p>
+<p><strong>Electrical frequency and the commutation rate.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mechanical</td>
+<td>6,000 RPM = 100 rev/s</td>
+</tr>
+<tr>
+<td>Pole pairs</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Electrical frequency</td>
+<td>700 Hz</td>
+</tr>
+<tr>
+<td>Commutations per electrical rev</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>Commutation rate</strong></td>
+<td><strong>4,200 per second</strong></td>
+</tr>
+<tr>
+<td><strong>Time per state</strong></td>
+<td><strong>238 µs</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Now the timing budget.</strong> Each hall transition must be detected and acted on
+inside a fraction of 238 µs, because latency there is angle error.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Time</th>
+<th>As angle error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interrupt latency, tutorial 07</td>
+<td>0.45 µs</td>
+<td>0.11°</td>
+</tr>
+<tr>
+<td>Hall debounce, if you add 10 µs</td>
+<td>10 µs</td>
+<td>2.5°</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>10.5 µs</td>
+<td><strong>2.6°</strong></td>
+</tr>
+</tbody>
+</table>
+<p>2.6° of error on top of the ±30° six-step already has. Negligible — and note
+what dominates: the debounce, which is a software choice, is twenty times the
+interrupt latency. That is the wrong instinct arriving from button handling.
+Hall sensors on a spinning motor do not bounce; they are magnetic. Debouncing
+them adds error and buys nothing.</p>
+<p><strong>Where it stops working.</strong> Push to 30,000 RPM: electrical 3,500 Hz,
+commutations at 21,000 per second, <strong>47.6 µs per state</strong>. Now 10 µs of debounce
+is 12.6° of error, which is a fifth of the whole window, and the motor loses
+noticeable torque and gets hot.</p>
+<p>Read it back: at 6,000 RPM every timing sin is forgiven, and at 30,000 the same
+code is a real problem. The transferable habit is to express every latency as an
+<strong>angle</strong> rather than a time, because angle is what the motor experiences and it
+scales with speed while your microseconds do not.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty minutes, and step 3 is the one that shows you the ripple.</p>
+<ol>
+<li>Count the magnets on a brushless motor you own — that is the pole count, and
+pole pairs is half it. Work out the commutation rate at a speed you use.</li>
+<li>Write the hall decode as a six-entry lookup with an explicit illegal-code
+branch. Confirm the branch fires by unplugging one sensor.</li>
+<li>Spin a six-step-driven motor slowly and listen. The rasp is the ripple, at
+six times electrical frequency. Then look at the current waveform on a scope
+and find the six lumps per revolution.</li>
+<li>Then express your commutation latency as an angle at your top speed. If it is
+more than a couple of degrees, find out which part of it is a debounce you
+did not need.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Where does six-step&#39;s torque ripple come from?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-0-0" name="machines/03-motors-and-power/16-six-step-0"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-0-0"><span class="quiz-letter">A</span><span>The three windings have slightly different resistances and inductances</span></label><p class="quiz-why"><b>Not quite.</b> Manufacturing spread does add a small asymmetry worth trimming out in a precision drive. The dominant ripple is geometric and present in a perfect motor.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-0-1" name="machines/03-motors-and-power/16-six-step-0"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-0-1"><span class="quiz-letter">B</span><span>The PWM carrier beats against the motor&#39;s own electrical frequency</span></label><p class="quiz-why"><b>Not quite.</b> Carrier interaction produces audible tones and some current ripple. The torque ripple in six-step appears even with an ideal current source.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-0-2" name="machines/03-motors-and-power/16-six-step-0"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-0-2"><span class="quiz-letter">C</span><span>The switching transistors turn on at slightly different moments</span></label><p class="quiz-why"><b>Not quite.</b> Timing skew between devices is measured in nanoseconds and matters for shoot-through. It is far too small to produce ripple of this size.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-0-3" name="machines/03-motors-and-power/16-six-step-0"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-0-3" data-correct><span class="quiz-letter">D</span><span>The field jumps in sixty degree steps while the rotor turns smoothly</span></label><p class="quiz-why"><b>Right.</b> Between commutations the field is fixed, so the angle to the rotor sweeps a sixty degree window instead of holding at the ideal ninety.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why are the hall codes 000 and 111 worth checking for on every read?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-1-0" name="machines/03-motors-and-power/16-six-step-1"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-1-0" data-correct><span class="quiz-letter">A</span><span>Neither occurs in a working sensor set, so either means a fault</span></label><p class="quiz-why"><b>Right.</b> The sensors are placed so that one or two are always active. Seeing all off or all on catches a broken wire before the logic acts on a false angle.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-1-1" name="machines/03-motors-and-power/16-six-step-1"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-1-1"><span class="quiz-letter">B</span><span>They indicate the rotor is stationary, which requires an open-loop start</span></label><p class="quiz-why"><b>Not quite.</b> A stationary rotor still sits inside one of the six valid codes, which is exactly why halls solve the starting problem sensorless drives have.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-1-2" name="machines/03-motors-and-power/16-six-step-1"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-1-2"><span class="quiz-letter">C</span><span>They appear briefly during commutation, and must therefore be filtered</span></label><p class="quiz-why"><b>Not quite.</b> Transitions move one bit at a time, so the codes in between are also valid ones. An all-off or all-on reading is not a transient.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-1-3" name="machines/03-motors-and-power/16-six-step-1"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-1-3"><span class="quiz-letter">D</span><span>They mark the boundaries of the sequence, so they need special handling</span></label><p class="quiz-why"><b>Not quite.</b> The six valid codes form a closed cycle with no start or end. Neither of the illegal codes appears anywhere in that ordering.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What makes the floating phase useful in a sensorless drive?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-2-0" name="machines/03-motors-and-power/16-six-step-2"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-2-0"><span class="quiz-letter">A</span><span>Its temperature can be sensed, since it is dissipating nothing at the time</span></label><p class="quiz-why"><b>Not quite.</b> Winding temperature is worth monitoring and is usually done with a thermistor. It has nothing to do with why the phase is left open.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-2-1" name="machines/03-motors-and-power/16-six-step-2"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-2-1" data-correct><span class="quiz-letter">B</span><span>Its terminal shows back-EMF, whose zero crossing leads commutation</span></label><p class="quiz-why"><b>Right.</b> With no current in that winding the terminal voltage is the induced EMF. Its midpoint crossing falls thirty degrees before the next state is due.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-2-2" name="machines/03-motors-and-power/16-six-step-2"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-2-2"><span class="quiz-letter">C</span><span>It carries the return current for the other two, which can be measured</span></label><p class="quiz-why"><b>Not quite.</b> An open phase carries no current at all, which is what makes its voltage readable. Return current flows through the driven pair.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-2-3" name="machines/03-motors-and-power/16-six-step-2"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-2-3"><span class="quiz-letter">D</span><span>It can be pulsed briefly to measure winding inductance and find the rotor</span></label><p class="quiz-why"><b>Not quite.</b> Inductance sensing is a real technique for finding a stationary rotor, and it is how some drives start. It is a different method from watching back-EMF.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>In which application does six-step&#39;s ripple matter least?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-3-0" name="machines/03-motors-and-power/16-six-step-3"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-3-0" data-correct><span class="quiz-letter">A</span><span>A propeller, whose inertia smooths the variation across each step</span></label><p class="quiz-why"><b>Right.</b> The load&#39;s inertia is large relative to the ripple period, so the speed barely responds. The average torque loss still costs some efficiency.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-3-1" name="machines/03-motors-and-power/16-six-step-3"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-3-1"><span class="quiz-letter">B</span><span>A battery vehicle, where the average loss is small in absolute terms</span></label><p class="quiz-why"><b>Not quite.</b> The 4.5 per cent average loss is 4.5 per cent of range, which is exactly the quantity such a design is optimising.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-3-2" name="machines/03-motors-and-power/16-six-step-3"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-3-2"><span class="quiz-letter">C</span><span>A robot joint under position control, where the loop rejects the ripple</span></label><p class="quiz-why"><b>Not quite.</b> A position loop does attenuate ripple within its bandwidth. Six times electrical frequency is usually well above it, so much of it passes through.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-3-3" name="machines/03-motors-and-power/16-six-step-3"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-3-3"><span class="quiz-letter">D</span><span>A direct-drive gimbal holding a camera steady at a very low speed</span></label><p class="quiz-why"><b>Not quite.</b> This is the worst case rather than the best: low speed puts the ripple frequency into the mechanical range and there is no gearing to absorb it.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why can a sensorless drive not close the loop at standstill?</legend><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-4-0" name="machines/03-motors-and-power/16-six-step-4"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-4-0"><span class="quiz-letter">A</span><span>The floating phase is shorted at rest, so its voltage reads zero</span></label><p class="quiz-why"><b>Not quite.</b> The phase is open in every state whether or not the motor turns. What is missing is the induced voltage rather than the connection.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-4-1" name="machines/03-motors-and-power/16-six-step-4"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-4-1"><span class="quiz-letter">B</span><span>The ADC lacks the resolution to read the small voltages involved</span></label><p class="quiz-why"><b>Not quite.</b> Resolution does limit how low a speed you can hand over at, so it is worth choosing well. At exactly zero speed there is nothing to resolve.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-4-2" name="machines/03-motors-and-power/16-six-step-4"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-4-2" data-correct><span class="quiz-letter">C</span><span>Back-EMF is proportional to speed, so at rest there is no signal</span></label><p class="quiz-why"><b>Right.</b> The observable the scheme depends on is produced by motion. Starting therefore means forcing the rotor open loop until the signal appears.</p><input class="quiz-radio" type="radio" id="machines/03-motors-and-power/16-six-step-4-3" name="machines/03-motors-and-power/16-six-step-4"><label class="quiz-opt" for="machines/03-motors-and-power/16-six-step-4-3"><span class="quiz-letter">D</span><span>The commutation table has no entry for a rotor that is not moving</span></label><p class="quiz-why"><b>Not quite.</b> The table is indexed by rotor angle rather than by speed, and a stationary rotor has a perfectly good angle. The difficulty is measuring it.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Hughes &amp; Drury, Electric Motors and Drives, ch. 9 · Mohan, Electric Machines and Drives, ch. 10 · SimpleFOC documentation, six-step and FOC modes</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/03-motors-and-power/15-current-sensing" class="text-ash transition-colors hover:text-bone">← Current sensing you can afford</a><a href="/course/machines/03-motors-and-power/17-field-oriented-control" class="text-ash transition-colors hover:text-bone">Field-oriented control, implemented rather than derived →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

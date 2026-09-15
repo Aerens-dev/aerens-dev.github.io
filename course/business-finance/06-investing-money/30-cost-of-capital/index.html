@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>Cost of capital and hurdle rates — Business Finance · Aerens</title><meta name="description" content="Where the discount rate comes from, why the rate projects are judged on sits above it, and what a single rate does to long projects."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/06-investing-money/30-cost-of-capital/"><meta property="og:type" content="website"><meta property="og:title" content="Cost of capital and hurdle rates — Business Finance · Aerens"><meta property="og:description" content="Where the discount rate comes from, why the rate projects are judged on sits above it, and what a single rate does to long projects."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/06-investing-money/30-cost-of-capital/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · Investing money</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">Cost of capital and hurdle rates</h1><p class="mt-3 text-bone/70">Where the discount rate comes from, why the rate projects are judged on sits above it, and what a single rate does to long projects.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 03 of 05 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Compute a WACC from a debt and equity mix</li><li>Say why the hurdle rate exceeds the cost of capital and what that corrects for</li><li>Explain why a uniform hurdle rate systematically rejects long projects</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>The last tutorial discounted everything at 10% without saying where 10% came
+from. It matters more than almost anything else in the calculation: on a
+fifteen-year benefit, moving the rate from 8% to 15% removes more than half the
+present value, and nobody in the meeting will mention it.</p>
+<h2 id="where-the-discount-rate-comes-from">Where the discount rate comes from</h2>
+<p>A company funds itself with <strong>debt</strong> and <strong>equity</strong>, each has a price, and the
+discount rate is the weighted average of the two — the <strong>WACC</strong>.</p>
+<p>With 40% debt at 4% after tax and 60% equity at 11%:</p>
+<p>WACC = (0.4 × 4%) + (0.6 × 11%) = 1.6% + 6.6% = <strong>8.2%</strong></p>
+<p>The logic is that a project has to earn at least what the money costs. Below
+WACC, the project destroys value even if it is profitable in accounting terms —
+it earns less than the capital funding it could have earned elsewhere.</p>
+<p>The debt figure is stated <strong>after tax relief</strong>, because interest is deductible
+and the state therefore pays part of it. That is a real effect and part of why
+debt looks so cheap.</p>
+<figure class="fig"><svg viewBox="0 0 320 184" role="img" aria-labelledby="fig-wacc-mix"><title id="fig-wacc-mix">The weighted average cost of capital blends the cost of debt and the cost of equity in proportion to how much of each the company uses.</title><text x="8" y="14" class="dim">A WEIGHTED AVERAGE OF TWO PRICES</text><rect class="fill" x="8" y="30" width="112" height="34"></rect><text x="20" y="52" class="tight">DEBT 40% AT 4%</text><rect class="box" x="128" y="30" width="184" height="34"></rect><text x="140" y="52" class="tight">EQUITY 60% AT 11%</text><path class="accent" d="M160 64 V78"></path><path class="accent-fill" d="M155 78 L160 88 L165 78 Z"></path><rect class="mark" x="8" y="96" width="304" height="34"></rect><text x="20" y="118" class="tight">WACC = 1.6 + 6.6 = 8.2%</text><text x="8" y="156" class="dim">DEBT IS SHOWN AFTER TAX RELIEF, WHICH</text><text x="8" y="174" class="dim">IS PART OF WHY IT LOOKS SO CHEAP</text></svg><figcaption class="fig-cap">Two kinds of money, two prices, weighted by how much of each.</figcaption></figure>
+<h2 id="debt-is-cheaper-than-equity-and-why">Debt is cheaper than equity, and why</h2>
+<p>4% against 11% is a large gap and it is not arbitrary.</p>
+<p><strong>Lenders are paid first</strong>, a contractual amount, on a contractual date, usually
+with security. If the company fails they rank ahead of shareholders. Low risk,
+so a low required return.</p>
+<p><strong>Shareholders are paid last</strong>, whatever is left, if anything. High risk, so a
+high required return.</p>
+<p>Add the tax deductibility of interest and debt is cheaper twice over — which
+raises the obvious question of why any company uses equity. The answer is that
+debt has to be serviced whether or not the business is doing well, so beyond
+some point the cheapness is bought with fragility. Both prices rise as leverage
+increases, which is why WACC does not fall indefinitely as you borrow more.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-debt-cheaper"><title id="fig-debt-cheaper">Debt costs less than equity because lenders are paid before shareholders and their return is contractual, so they need less compensation for risk.</title><text x="8" y="14" class="dim">WHO GETS PAID, AND IN WHAT ORDER</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">1 · LENDERS, A FIXED AMOUNT, FIRST</text><rect class="mark" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">2 · SHAREHOLDERS, WHATEVER IS LEFT</text><rect class="box" x="8" y="112" width="304" height="30"></rect><text x="20" y="132" class="tight">SO EQUITY DEMANDS A HIGHER RETURN</text><text x="8" y="168" class="dim">AND INTEREST IS TAX DEDUCTIBLE, WHICH</text><text x="8" y="182" class="dim">CHEAPENS IT AGAIN</text></svg><figcaption class="fig-cap">Paid first and contractually, so it costs less. That is the whole reason.</figcaption></figure>
+<h2 id="the-hurdle-rate-sits-above-wacc-deliberately">The hurdle rate sits above WACC, deliberately</h2>
+<p>Most companies do not discount at WACC. They discount at a <strong>hurdle rate</strong> that
+is meaningfully higher — 8.2% becomes 15%.</p>
+<p>The stated reason is risk. The real reason, usually, is a correction for
+optimism: benefit estimates in business cases are systematically overstated, and
+a higher hurdle is a blunt way of deflating them without arguing about each one.</p>
+<p>That is a rational response to the incentive problem from tutorial 28. It is also
+an <em>undisclosed</em> one — the correction is applied silently rather than by
+challenging the estimates — so a project with genuinely conservative numbers is
+penalised for the sins of the ones around it, and the person who wrote it never
+finds out why.</p>
+<figure class="fig"><svg viewBox="0 0 320 180" role="img" aria-labelledby="fig-hurdle-above"><title id="fig-hurdle-above">Companies set the hurdle rate above their cost of capital to allow for optimism in the estimates, which is a rational correction and also a hidden one.</title><text x="8" y="14" class="dim">THE GAP NOBODY WRITES DOWN</text><path class="thin" d="M32 28 V116 H304"></path><path class="dash" d="M40 92 H296"></path><path class="accent" d="M40 52 H296"></path><rect class="mark" x="150" y="52" width="12" height="40"></rect><text x="48" y="46" class="tight">HURDLE 15%</text><text x="48" y="108" class="tight">WACC 8.2%</text><text x="176" y="76" class="tight">THE OPTIMISM MARGIN</text><text x="8" y="150" class="dim">A CORRECTION FOR OVERSTATED BENEFITS</text><text x="8" y="168" class="dim">APPLIED WITHOUT SAYING SO</text></svg><figcaption class="fig-cap">A correction for optimism, applied without saying so.</figcaption></figure>
+<h2 id="one-rate-for-every-project-is-wrong-and-universal">One rate for every project is wrong, and universal</h2>
+<p>The textbook position is unambiguous: the discount rate should reflect <strong>the
+project’s</strong> risk, not the company’s average. A warehouse extension and a
+research programme should not be judged at the same rate.</p>
+<p>Practically every company uses one rate anyway.</p>
+<p>The consequence is systematic. Low-risk projects are over-discounted and get
+rejected; high-risk projects are under-discounted and get approved. Over years,
+a single hurdle tilts the portfolio towards risk while everyone believes the
+process is neutral.</p>
+<p>Knowing this is useful even if you cannot change the rate. It tells you that a
+safe project failing the hurdle by a small margin may be worth arguing for on
+the grounds that the rate is wrong for it — which is a much better argument than
+inflating the benefits until it clears.</p>
+<figure class="fig"><svg viewBox="0 0 320 184" role="img" aria-labelledby="fig-one-rate-wrong"><title id="fig-one-rate-wrong">Applying a single hurdle rate to projects of very different risk over-rewards the risky ones and blocks the safe ones, and almost every company does it.</title><text x="8" y="14" class="dim">ONE RATE FOR EVERY KIND OF PROJECT</text><rect class="box" x="8" y="30" width="140" height="76"></rect><text x="20" y="54" class="tight">A WAREHOUSE</text><text x="20" y="76" class="tight">LOW RISK, BLOCKED</text><rect class="mark" x="172" y="30" width="140" height="76"></rect><text x="184" y="54" class="tight">A RESEARCH BET</text><text x="184" y="76" class="tight">HIGH RISK, WAVED</text><text x="8" y="146" class="dim">RISK-ADJUSTED RATES ARE THE TEXTBOOK</text><text x="8" y="164" class="dim">ANSWER AND ALMOST NOBODY USES THEM</text></svg><figcaption class="fig-cap">One rate blocks the safe ones and waves the risky ones through.</figcaption></figure>
+<h2 id="what-the-rate-does-to-a-long-project">What the rate does to a long project</h2>
+<p>The last point is the one with the largest hidden effect.</p>
+<p>Discounting is exponential, so a change in the rate barely touches near-term
+flows and dominates distant ones. Take the rate from 8% to 15%:</p>
+<ul>
+<li>a benefit in <strong>year 3</strong> loses about 15% of its present value;</li>
+<li>a benefit in <strong>year 15</strong> loses about 55%.</li>
+</ul>
+<p>So a high hurdle is not neutral between projects — it systematically rejects
+long-horizon ones. Infrastructure, platform work, anything whose payoff is a
+decade out gets filtered out by a spreadsheet default that nobody discussed as a
+strategy.</p>
+<p>This is worth naming when it happens, because it usually happens silently. “We
+don’t invest in long-term platforms” is a strategy somebody could argue with.
+“Our hurdle rate is 15%” is the same strategy, implemented without a
+conversation.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-rate-vs-horizon"><title id="fig-rate-vs-horizon">Raising the discount rate a few points barely touches a three-year payback and can halve the present value of a benefit fifteen years out.</title><text x="8" y="14" class="dim">THE SAME RATE CHANGE, TWO HORIZONS</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">A 3-YEAR BENEFIT · 8% TO 15% COSTS 15%</text><rect class="mark" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">A 15-YEAR BENEFIT · THE SAME COSTS 55%</text><text x="8" y="126" class="dim">A HIGH HURDLE IS NOT NEUTRAL BETWEEN</text><text x="8" y="144" class="dim">PROJECTS. IT SYSTEMATICALLY REJECTS</text><text x="8" y="162" class="dim">THE LONG ONES, WHICH IS A STRATEGY</text><text x="8" y="180" class="dim">CHOICE MADE BY A SPREADSHEET DEFAULT</text></svg><figcaption class="fig-cap">Exponential discounting hits the distant years hardest, by design.</figcaption></figure>
+<h2 id="worked-example-the-same-project-at-three-rates">Worked example: the same project at three rates</h2>
+<p>A platform investment: €500,000 now, then €90,000 a year for fifteen years.</p>
+<table>
+<thead>
+<tr>
+<th>Discount rate</th>
+<th>NPV</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.2% (WACC)</td>
+<td>+268,000</td>
+<td>Comfortably worth doing</td>
+</tr>
+<tr>
+<td>12%</td>
+<td>+113,000</td>
+<td>Worth doing</td>
+</tr>
+<tr>
+<td>15%</td>
+<td>+26,000</td>
+<td>Marginal</td>
+</tr>
+<tr>
+<td>18%</td>
+<td>(37,000)</td>
+<td>Rejected</td>
+</tr>
+</tbody>
+</table>
+<p>The project has not changed. Its cash flows are identical in all four rows. The
+verdict flips between “obviously yes” and “no” purely on the rate.</p>
+<p>Now the same total benefit compressed into five years — €270,000 a year for
+five, so €1,350,000 of undiscounted benefit against €1,350,000 in the long
+version:</p>
+<table>
+<thead>
+<tr>
+<th>Discount rate</th>
+<th>Long, 15 years</th>
+<th>Short, 5 years</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.2%</td>
+<td>+268,000</td>
+<td>+570,000</td>
+</tr>
+<tr>
+<td>15%</td>
+<td>+26,000</td>
+<td>+405,000</td>
+</tr>
+<tr>
+<td>Loss from the rate rise</td>
+<td>(242,000)</td>
+<td>(165,000)</td>
+</tr>
+</tbody>
+</table>
+<p>Same money, same total, and the long project loses half again as much from the
+rate rise. If both are on a list and the hurdle is 15%, the short one gets built
+and the long one does not — regardless of which is better for the business.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Find your organisation’s hurdle rate. Then find its actual cost of capital,
+or estimate it from the debt/equity mix in the accounts.</li>
+<li>Compute the gap. That gap is the optimism correction, and nobody will
+describe it that way.</li>
+<li>Take one investment you know and recompute its NPV at both rates.</li>
+<li>Then take a fifteen-year benefit and a three-year one of equal total value,
+and compute what the hurdle does to each.</li>
+</ol>
+<p>Step 4 is the argument to have if your organisation says it wants to invest in
+platforms and keeps not doing so.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>40% debt at 4% after tax and 60% equity at 11%. What is the WACC?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-0-0" name="business-finance/06-investing-money/30-cost-of-capital-0"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-0-0"><span class="quiz-letter">A</span><span>7.5%, being the simple average of the two stated costs</span></label><p class="quiz-why"><b>Not quite.</b> An unweighted average ignores that equity funds three fifths of the business and debt only two.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-0-1" name="business-finance/06-investing-money/30-cost-of-capital-0"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-0-1"><span class="quiz-letter">B</span><span>15%, being the two costs added without any weighting</span></label><p class="quiz-why"><b>Not quite.</b> Adding raw percentages gives a figure with no meaning. Each has to be scaled by its share first.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-0-2" name="business-finance/06-investing-money/30-cost-of-capital-0"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-0-2"><span class="quiz-letter">C</span><span>4%, since debt is the cheaper source and sets the floor</span></label><p class="quiz-why"><b>Not quite.</b> Debt sets a floor for the cost of borrowing rather than for the whole business. Equity funds most of it.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-0-3" name="business-finance/06-investing-money/30-cost-of-capital-0"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-0-3" data-correct><span class="quiz-letter">D</span><span>8.2%, being 1.6% from debt plus 6.6% from equity</span></label><p class="quiz-why"><b>Right.</b> Each cost is weighted by its share of the funding, and the two weighted figures are added together.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why does debt cost a company less than equity?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-1-0" name="business-finance/06-investing-money/30-cost-of-capital-1"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-1-0"><span class="quiz-letter">A</span><span>Lenders accept lower returns because loans are short term</span></label><p class="quiz-why"><b>Not quite.</b> Plenty of debt runs for decades. What lowers the price is priority of payment and contractual certainty.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-1-1" name="business-finance/06-investing-money/30-cost-of-capital-1"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-1-1"><span class="quiz-letter">B</span><span>Shareholders receive dividends, which are a discretionary cost</span></label><p class="quiz-why"><b>Not quite.</b> Discretion is why shareholders demand more, not less. They are paid last and only from what remains.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-1-2" name="business-finance/06-investing-money/30-cost-of-capital-1"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-1-2" data-correct><span class="quiz-letter">C</span><span>Lenders rank first and are paid a contractual amount, on time</span></label><p class="quiz-why"><b>Right.</b> Less risk means a lower required return, and interest is tax deductible on top, which cheapens it again.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-1-3" name="business-finance/06-investing-money/30-cost-of-capital-1"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-1-3"><span class="quiz-letter">D</span><span>Banks are regulated, so the rates they charge are capped</span></label><p class="quiz-why"><b>Not quite.</b> Corporate lending rates are negotiated rather than capped. The reason is the lender&#39;s position in the queue.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>A company&#39;s WACC is 8.2% and its hurdle rate is 15%. What is the gap mostly doing?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-2-0" name="business-finance/06-investing-money/30-cost-of-capital-2"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-2-0"><span class="quiz-letter">A</span><span>Building a reserve for projects that overrun their budgets</span></label><p class="quiz-why"><b>Not quite.</b> Contingency does that, inside the project. The hurdle gap adjusts the appraisal rather than funding overruns.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-2-1" name="business-finance/06-investing-money/30-cost-of-capital-2"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-2-1"><span class="quiz-letter">B</span><span>Covering the interest the company pays on its borrowings</span></label><p class="quiz-why"><b>Not quite.</b> Interest is already inside the WACC through the cost of debt. The gap sits above the whole funding cost.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-2-2" name="business-finance/06-investing-money/30-cost-of-capital-2"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-2-2"><span class="quiz-letter">C</span><span>Reflecting tax, which the WACC calculation leaves out</span></label><p class="quiz-why"><b>Not quite.</b> Tax relief is already reflected in the after-tax cost of debt. The gap is doing something else entirely.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-2-3" name="business-finance/06-investing-money/30-cost-of-capital-2"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-2-3" data-correct><span class="quiz-letter">D</span><span>Deflating benefit estimates that are known to run optimistic</span></label><p class="quiz-why"><b>Right.</b> It is a blunt correction for the incentive problem in business cases, applied without arguing about each one.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>What does applying a single hurdle rate to every project do to the portfolio over time?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-3-0" name="business-finance/06-investing-money/30-cost-of-capital-3"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-3-0"><span class="quiz-letter">A</span><span>It favours short projects, since the rate compounds over years</span></label><p class="quiz-why"><b>Not quite.</b> True and a separate effect. The risk tilt operates even between projects of identical duration.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-3-1" name="business-finance/06-investing-money/30-cost-of-capital-3"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-3-1" data-correct><span class="quiz-letter">B</span><span>It tilts towards risk, blocking safe projects and waving risky ones</span></label><p class="quiz-why"><b>Right.</b> Low-risk projects are over-discounted and rejected while high-risk ones are under-discounted and approved.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-3-2" name="business-finance/06-investing-money/30-cost-of-capital-3"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-3-2"><span class="quiz-letter">C</span><span>It has no systematic effect, since the errors offset over time</span></label><p class="quiz-why"><b>Not quite.</b> The bias runs one way for each risk class, so it accumulates rather than cancelling.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-3-3" name="business-finance/06-investing-money/30-cost-of-capital-3"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-3-3"><span class="quiz-letter">D</span><span>It tilts away from risk, since a high bar deters speculation</span></label><p class="quiz-why"><b>Not quite.</b> A high bar deters everything with modest returns, which is disproportionately the low-risk end.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Moving the hurdle from 8% to 15% costs a 3-year benefit about 15% of its value. What does it cost a 15-year one?</legend><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-4-0" name="business-finance/06-investing-money/30-cost-of-capital-4"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-4-0" data-correct><span class="quiz-letter">A</span><span>Roughly 55%, because discounting compounds over the years</span></label><p class="quiz-why"><b>Right.</b> The effect is exponential, so it barely touches near-term flows and dominates distant ones.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-4-1" name="business-finance/06-investing-money/30-cost-of-capital-4"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-4-1"><span class="quiz-letter">B</span><span>Roughly 30%, since the later years are the ones affected</span></label><p class="quiz-why"><b>Not quite.</b> The later years are hit hardest and they are also most of a fifteen-year benefit stream, so the loss is larger.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-4-2" name="business-finance/06-investing-money/30-cost-of-capital-4"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-4-2"><span class="quiz-letter">C</span><span>Roughly 75%, since fifteen years is five times three years</span></label><p class="quiz-why"><b>Not quite.</b> The relationship is exponential rather than linear, so scaling by the ratio of years overstates it.</p><input class="quiz-radio" type="radio" id="business-finance/06-investing-money/30-cost-of-capital-4-3" name="business-finance/06-investing-money/30-cost-of-capital-4"><label class="quiz-opt" for="business-finance/06-investing-money/30-cost-of-capital-4-3"><span class="quiz-letter">D</span><span>Roughly 15%, since the same rate change applies to both</span></label><p class="quiz-why"><b>Not quite.</b> The rate change is the same and its effect is not, because each extra year multiplies the discount again.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Brealey, Myers &amp; Allen, Principles of Corporate Finance, ch. 9 and 13 · CIMA P2, cost of capital</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/06-investing-money/29-npv-irr-payback" class="text-ash transition-colors hover:text-bone">← NPV, IRR, payback - and IRR&#39;s failure modes</a><a href="/course/business-finance/06-investing-money/31-capitalise-or-expense" class="text-ash transition-colors hover:text-bone">Capitalise or expense, including software (IAS 38) →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

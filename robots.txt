@@ -1,0 +1,10 @@
+# The site is small and everything under it is meant to be found — except the
+# course section, which is Niels working through material rather than anything
+# published. It is unlisted, not protected: this file asks crawlers politely and
+# the compiled site is force-pushed to a public mirror, so anyone holding the
+# URL can still read it. See docs/COURSE.md § 2.
+User-agent: *
+Disallow: /course
+
+# No Sitemap line on purpose: there is no sitemap yet (PROGRESS.md § Next up).
+# When one is added it must exclude /course, or this file is undone by it.

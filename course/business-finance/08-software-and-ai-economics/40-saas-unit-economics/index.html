@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>SaaS unit economics — Business Finance · Aerens</title><meta name="description" content="What a customer costs to win against what they are worth, how long the money is out, the measure that decides whether growth needs new customers, and the average that hides two businesses."><link rel="canonical" href="https://aerens-dev.github.io/course/business-finance/08-software-and-ai-economics/40-saas-unit-economics/"><meta property="og:type" content="website"><meta property="og:title" content="SaaS unit economics — Business Finance · Aerens"><meta property="og:description" content="What a customer costs to win against what they are worth, how long the money is out, the measure that decides whether growth needs new customers, and the average that hides two businesses."><meta property="og:url" content="https://aerens-dev.github.io/course/business-finance/08-software-and-ai-economics/40-saas-unit-economics/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/business-finance" class="transition-colors hover:text-bone">Business Finance</a> · Software and AI economics</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">SaaS unit economics</h1><p class="mt-3 text-bone/70">What a customer costs to win against what they are worth, how long the money is out, the measure that decides whether growth needs new customers, and the average that hides two businesses.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 03 of 04 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Compute CAC, LTV and the ratio, using gross profit rather than revenue</li><li>Say why CAC payback constrains growth more directly than the LTV ratio</li><li>Explain what net revenue retention above 100% means for a business</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>A company reports LTV/CAC of 4.2 and is running out of cash. Both are true, and
+the ratio is not the number that would have warned anybody.</p>
+<h2 id="cac-and-ltv-and-the-mistake-in-the-middle">CAC and LTV, and the mistake in the middle</h2>
+<p><strong>CAC</strong> — customer acquisition cost — is all sales and marketing spend in a
+period divided by the customers won in it. All of it: salaries, commission,
+tooling, events, not just advertising.</p>
+<p><strong>LTV</strong> — lifetime value — is the <strong>gross profit</strong> a customer produces before
+they leave. Monthly gross profit divided by monthly churn rate gives the
+standard approximation.</p>
+<p>The mistake in the middle is using <strong>revenue</strong> instead of gross profit in LTV.
+At 80% gross margin that overstates LTV by 25%; at 60% it overstates it by 67%.
+It is the commonest error in the metric and it always points the same way.</p>
+<p>The usual bar is LTV/CAC above 3. Below 1 the company loses money on every
+customer. Far above 5 usually means underinvestment in growth rather than
+excellence, which is a real finding and rarely reported as one.</p>
+<figure class="fig"><svg viewBox="0 0 320 188" role="img" aria-labelledby="fig-cac-and-ltv"><title id="fig-cac-and-ltv">Customer acquisition cost is all sales and marketing spend divided by customers won; lifetime value is the gross profit a customer produces before they leave.</title><text x="8" y="14" class="dim">TWO NUMBERS, ONE RATIO</text><rect class="box" x="8" y="30" width="304" height="32"></rect><text x="20" y="50" class="tight">CAC · ALL SALES SPEND / CUSTOMERS WON</text><rect class="box" x="8" y="70" width="304" height="32"></rect><text x="20" y="90" class="tight">LTV · GROSS PROFIT BEFORE THEY LEAVE</text><rect class="mark" x="8" y="110" width="304" height="32"></rect><text x="20" y="130" class="tight">LTV / CAC · THREE IS THE USUAL BAR</text><text x="8" y="166" class="dim">GROSS PROFIT, NOT REVENUE. USING REVENUE</text><text x="8" y="184" class="dim">IS THE COMMONEST WAY THIS IS OVERSTATED</text></svg><figcaption class="fig-cap">Gross profit, not revenue. The substitution always flatters.</figcaption></figure>
+<h2 id="cac-payback-how-long-the-money-is-out">CAC payback: how long the money is out</h2>
+<p>The ratio says whether a customer is worth winning. It does not say when you get
+paid, and that is what kills companies.</p>
+<p><strong>CAC payback</strong> is how many months of gross profit it takes to recover the
+acquisition cost. Under twelve months is comfortable. Over twenty-four means
+every new customer has to be funded for two years before any of the money comes
+back — so growth consumes cash in direct proportion to how well it is going.</p>
+<p>This is tutorial 29’s point about payback, in the place where it binds hardest.
+LTV/CAC of 4.2 with a thirty-month payback describes a company that is creating
+value and running out of money, which is precisely the case in the question
+above.</p>
+<p>Note also that LTV depends on a churn estimate over years, while payback depends
+on a few months of observed data. One is a projection; the other is nearly a
+fact.</p>
+<figure class="fig"><svg viewBox="0 0 320 184" role="img" aria-labelledby="fig-payback-months"><title id="fig-payback-months">CAC payback is how many months of gross profit it takes to recover the cost of winning a customer, and it constrains growth more directly than the LTV ratio does.</title><text x="8" y="14" class="dim">MONTHS TO REPAY THE COST OF WINNING</text><path class="thin" d="M32 28 V116 H304"></path><path class="dash" d="M40 56 H296"></path><path class="accent" d="M40 110 L100 96 L160 78 L212 62 L250 56 L296 44"></path><circle class="mark" cx="250" cy="56" r="7"></circle><text x="46" y="50" class="tight">CAC RECOVERED</text><text x="150" y="106" class="tight">14 MONTHS</text><text x="8" y="150" class="dim">UNDER 12 IS COMFORTABLE, OVER 24 MEANS</text><text x="8" y="168" class="dim">GROWTH HAS TO BE FUNDED FOR TWO YEARS</text><text x="8" y="182" class="dim">BEFORE ANY OF IT COMES BACK</text></svg><figcaption class="fig-cap">Thirty months of funding for every customer, however good the ratio is.</figcaption></figure>
+<h2 id="net-revenue-retention">Net revenue retention</h2>
+<p>Take last year’s customers only. Ignore everyone new. What are they worth this
+year?</p>
+<p><strong>Net revenue retention</strong> is that figure — the base, less churn, plus expansion
+from the customers who stayed. Above 100% and the existing base grows on its own
+before a single new customer is added.</p>
+<p>That is a different kind of business. At 114% NRR a company grows 14% with no
+sales at all, so acquisition buys growth on top of growth rather than replacing
+losses. At 90% it must win 10% in new customers just to stand still, and every
+acquisition euro is running to stay in place.</p>
+<p>Of all the metrics in this tutorial, this is the one worth watching most
+closely, because it is the hardest to flatter and it describes whether the
+product is actually working for the people who have it.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-net-retention"><title id="fig-net-retention">Net revenue retention tracks what last year's customers are worth this year, so above one hundred per cent the base grows on its own before a single new customer is added.</title><text x="8" y="14" class="dim">LAST YEAR'S CUSTOMERS, THIS YEAR</text><path class="thin" d="M32 28 V116 H304"></path><path class="dash" d="M40 76 H296"></path><rect class="solid" x="56" y="76" width="44" height="40"></rect><rect class="solid" x="116" y="88" width="44" height="28"></rect><rect class="mark" x="176" y="52" width="44" height="64"></rect><rect class="solid" x="236" y="66" width="44" height="50"></rect><text x="52" y="134" class="tight">BASE</text><text x="112" y="134" class="tight">CHURN</text><text x="172" y="134" class="tight">EXPANSION</text><text x="232" y="134" class="tight">NET 114%</text><text x="8" y="164" class="dim">ABOVE 100 THE BASE GROWS WITH NO NEW</text><text x="8" y="182" class="dim">CUSTOMERS AT ALL, WHICH IS THE WHOLE GAME</text></svg><figcaption class="fig-cap">The base grows on its own, or it does not. Everything else follows.</figcaption></figure>
+<h2 id="the-rule-of-forty">The rule of forty</h2>
+<p>A heuristic rather than a law: <strong>growth rate plus profit margin should be at
+least forty.</strong></p>
+<p>It formalises a trade everyone makes intuitively. Grow 60% and lose 15% — that
+scores 45, and the losses are buying growth. Grow 12% and make 30% — that scores
+42, and the business is mature and profitable. Both are fine.</p>
+<p>Grow 15% and lose 20% and it scores −5, which is the case the rule exists to
+catch: a company that is neither growing fast enough to justify the losses nor
+profitable enough to justify the slow growth.</p>
+<p>Treat it as a screen rather than a target. It is arbitrary at the margin —
+nothing distinguishes 39 from 41 — and it is useful because it refuses to reward
+doing neither thing well.</p>
+<figure class="fig"><svg viewBox="0 0 320 182" role="img" aria-labelledby="fig-rule-of-forty"><title id="fig-rule-of-forty">The rule of forty adds growth rate to profit margin and asks for at least forty, which says a company may buy growth with losses or profit with slower growth, but not neither.</title><text x="8" y="14" class="dim">GROWTH PLUS MARGIN, AGAINST FORTY</text><rect class="box" x="8" y="30" width="304" height="30"></rect><text x="20" y="50" class="tight">GROW 60%, LOSE 15% · SCORES 45</text><rect class="box" x="8" y="68" width="304" height="30"></rect><text x="20" y="88" class="tight">GROW 12%, MAKE 30% · SCORES 42</text><rect class="mark" x="8" y="106" width="304" height="30"></rect><text x="20" y="126" class="tight">GROW 15%, LOSE 20% · SCORES -5</text><text x="8" y="162" class="dim">A HEURISTIC, NOT A LAW. IT IS USEFUL</text><text x="8" y="178" class="dim">BECAUSE IT REFUSES TO REWARD NEITHER</text></svg><figcaption class="fig-cap">A screen, not a target. Its virtue is refusing to reward neither.</figcaption></figure>
+<h2 id="the-blended-average-that-hides-two-businesses">The blended average that hides two businesses</h2>
+<p>The last idea is the one that makes the others usable, and it is tutorial 14’s
+argument again.</p>
+<p>Most companies have at least two acquisition motions: a cheap self-serve one and
+an expensive enterprise one. Blended CAC averages them, and the average
+describes neither.</p>
+<p>Self-serve might be €400 CAC with a four-month payback. Enterprise might be
+€38,000 with a twenty-two-month payback. A blended €6,200 is a number that
+matches no customer the company has ever won, and it hides the only question
+that matters: which motion should be funded harder?</p>
+<p>So compute everything by segment. If you can only do one thing from this
+tutorial, do that — the segmented numbers usually change the answer, and the
+blended ones usually confirm whatever was already believed.</p>
+<figure class="fig"><svg viewBox="0 0 320 186" role="img" aria-labelledby="fig-blended-trap"><title id="fig-blended-trap">A blended acquisition cost averages a cheap self-serve segment with an expensive enterprise one, so the single figure describes neither and hides which is worth funding.</title><text x="8" y="14" class="dim">ONE AVERAGE, TWO BUSINESSES</text><path class="thin" d="M32 28 V112 H304"></path><rect class="solid" x="56" y="94" width="48" height="18"></rect><path class="dash" d="M40 70 H296"></path><rect class="solid" x="200" y="36" width="48" height="76"></rect><text x="48" y="130" class="tight">SELF-SERVE</text><text x="192" y="130" class="tight">ENTERPRISE</text><text x="120" y="64" class="tight">BLENDED</text><rect class="mark" x="126" y="66" width="10" height="46"></rect><text x="8" y="160" class="dim">THE AVERAGE DESCRIBES NEITHER SEGMENT</text><text x="8" y="178" class="dim">AND HIDES WHICH ONE IS WORTH FUNDING</text></svg><figcaption class="fig-cap">A number matching no customer the company has ever won.</figcaption></figure>
+<h2 id="worked-example-the-company-with-42-and-no-cash">Worked example: the company with 4.2 and no cash</h2>
+<p>Blended figures first.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales and marketing spend, year</td>
+<td>4,800,000</td>
+</tr>
+<tr>
+<td>New customers won</td>
+<td>780</td>
+</tr>
+<tr>
+<td><strong>CAC</strong></td>
+<td><strong>6,154</strong></td>
+</tr>
+<tr>
+<td>Average revenue per customer, monthly</td>
+<td>1,050</td>
+</tr>
+<tr>
+<td>Gross margin</td>
+<td>78%</td>
+</tr>
+<tr>
+<td>Monthly gross profit per customer</td>
+<td>819</td>
+</tr>
+<tr>
+<td>Monthly churn</td>
+<td>1.6%</td>
+</tr>
+<tr>
+<td><strong>LTV</strong> (819 / 0.016)</td>
+<td><strong>51,188</strong></td>
+</tr>
+<tr>
+<td><strong>LTV / CAC</strong></td>
+<td><strong>8.3</strong></td>
+</tr>
+<tr>
+<td><strong>CAC payback</strong> (6,154 / 819)</td>
+<td><strong>7.5 months</strong></td>
+</tr>
+</tbody>
+</table>
+<p>That looks excellent. Now split it.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Self-serve</th>
+<th>Enterprise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Customers won</td>
+<td>700</td>
+<td>80</td>
+</tr>
+<tr>
+<td>S&amp;M spend</td>
+<td>900,000</td>
+<td>3,900,000</td>
+</tr>
+<tr>
+<td><strong>CAC</strong></td>
+<td><strong>1,286</strong></td>
+<td><strong>48,750</strong></td>
+</tr>
+<tr>
+<td>Monthly gross profit</td>
+<td>180</td>
+<td>6,410</td>
+</tr>
+<tr>
+<td>Monthly churn</td>
+<td>3.1%</td>
+<td>0.4%</td>
+</tr>
+<tr>
+<td><strong>LTV</strong></td>
+<td><strong>5,806</strong></td>
+<td><strong>1,602,500</strong></td>
+</tr>
+<tr>
+<td><strong>LTV / CAC</strong></td>
+<td><strong>4.5</strong></td>
+<td><strong>32.9</strong></td>
+</tr>
+<tr>
+<td><strong>CAC payback</strong></td>
+<td><strong>7.1 months</strong></td>
+<td><strong>7.6 months</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Both segments are healthy, and the blend was hiding that enterprise is
+extraordinary while self-serve is merely fine. The obvious action — fund
+enterprise harder — is invisible in the blended row.</p>
+<p>Now change one number. Suppose enterprise churn is 0.4% <em>measured over eleven
+months of data</em>. LTV of €1.6m assumes a customer stays over twenty years. Cut
+the assumed life to a defensible five years and enterprise LTV falls to
+€384,600 and the ratio to 7.9 — still good, and a quarter of what was reported.</p>
+<p>That is the standard fragility of LTV: it divides by a small churn number, so
+small errors in churn produce enormous errors in LTV. Payback does not have that
+problem, which is the argument for leading with it.</p>
+<h2 id="do-it">Do it</h2>
+<ol>
+<li>Compute CAC for your business or one you can see. Include every sales and
+marketing cost, not just the advertising.</li>
+<li>Compute LTV using <strong>gross profit</strong>. Then compute it again using revenue, and
+note the difference — that gap is the error you will see in most decks.</li>
+<li>Compute CAC payback. Compare what it says to what the ratio says.</li>
+<li>Then split all three by segment, and see whether the recommendation changes.</li>
+</ol>
+<p>Step 4 changes the answer more often than not, which is why the blended figure
+is the one usually presented.</p>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What is the commonest error in a lifetime value calculation?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-0" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-0"><span class="quiz-letter">A</span><span>Applying a discount rate to the future gross profit stream</span></label><p class="quiz-why"><b>Not quite.</b> Discounting a long stream is arguably more rigorous. Omitting it is defensible; using revenue is not.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-1" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-1"><span class="quiz-letter">B</span><span>Using monthly churn where an annual rate was intended</span></label><p class="quiz-why"><b>Not quite.</b> A unit mismatch that shows up immediately as an implausible figure. The gross profit substitution is subtler.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-2" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-2"><span class="quiz-letter">C</span><span>Counting just advertising rather than the whole sales cost</span></label><p class="quiz-why"><b>Not quite.</b> That understates CAC rather than overstating LTV, and it is an error on the other side of the ratio.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-3" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-0-3" data-correct><span class="quiz-letter">D</span><span>Using revenue where the formula requires gross profit</span></label><p class="quiz-why"><b>Right.</b> At 60% gross margin that overstates LTV by 67%, and the substitution always flatters in the same direction.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>A company reports LTV/CAC of 4.2 and is running out of cash. What explains it?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-0" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-0"><span class="quiz-letter">A</span><span>Churn is rising, so the lifetime value will fall next year</span></label><p class="quiz-why"><b>Not quite.</b> That would lower the ratio in future. The immediate cash problem comes from the delay in recovery.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-1" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-1"><span class="quiz-letter">B</span><span>The ratio must have been calculated using the wrong margin</span></label><p class="quiz-why"><b>Not quite.</b> Possible, and unnecessary as an explanation. A good ratio with a long payback consumes cash by construction.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-2" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-2"><span class="quiz-letter">C</span><span>Gross margin is too low to fund the sales team properly</span></label><p class="quiz-why"><b>Not quite.</b> Margin is already inside both figures. What is missing from the ratio is the timing of the recovery.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-3" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-1-3" data-correct><span class="quiz-letter">D</span><span>Payback is long, so every new customer is funded for years</span></label><p class="quiz-why"><b>Right.</b> The ratio says a customer is worth winning; it says nothing about when the money comes back, which is what binds.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What does net revenue retention of 114% mean?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-0" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-0"><span class="quiz-letter">A</span><span>Total revenue grew 14% including the new customers won</span></label><p class="quiz-why"><b>Not quite.</b> New customers are excluded by construction. The measure looks only at the cohort that existed last year.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-1" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-1"><span class="quiz-letter">B</span><span>Churn was 14% lower than in the preceding comparable year</span></label><p class="quiz-why"><b>Not quite.</b> Churn is one input. The figure nets it against expansion, which is why it can exceed one hundred.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-2" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-2"><span class="quiz-letter">C</span><span>Fourteen per cent of customers renewed above their price</span></label><p class="quiz-why"><b>Not quite.</b> It measures revenue rather than counting customers, and expansion from a few can outweigh many small losses.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-3" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-2-3" data-correct><span class="quiz-letter">D</span><span>Last year&#39;s customers are worth 14% more to you this year</span></label><p class="quiz-why"><b>Right.</b> Expansion from those who stayed exceeds the revenue lost to churn, so the base grows before any new customer.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>A company grows 15% and loses 20%. What does the rule of forty say?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-0" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-0"><span class="quiz-letter">A</span><span>It scores 35, which is close enough to be acceptable</span></label><p class="quiz-why"><b>Not quite.</b> The margin is negative, so it subtracts. Fifteen minus twenty is minus five rather than thirty-five.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-1" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-1"><span class="quiz-letter">B</span><span>It passes, since losses are expected during a growth phase</span></label><p class="quiz-why"><b>Not quite.</b> Losses are fine at high growth. At 15% they are not buying much, which is exactly what the screen surfaces.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-2" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-2" data-correct><span class="quiz-letter">C</span><span>It scores minus five, which is the case the rule catches</span></label><p class="quiz-why"><b>Right.</b> Neither growing fast enough to justify the losses nor profitable enough to justify the slow growth.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-3" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-3-3"><span class="quiz-letter">D</span><span>The rule does not apply below a certain revenue threshold</span></label><p class="quiz-why"><b>Not quite.</b> It is a heuristic with no threshold. Its value is refusing to reward doing neither thing well.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why should CAC be computed by segment rather than blended?</legend><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-0" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-0"><span class="quiz-letter">A</span><span>The blended figure is harder to compute than the segments</span></label><p class="quiz-why"><b>Not quite.</b> It is easier, which is part of why it persists. Ease is what makes the misleading version the default.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-1" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-1"><span class="quiz-letter">B</span><span>Segmented figures are required for external reporting</span></label><p class="quiz-why"><b>Not quite.</b> Nothing requires them; these are internal management metrics. The reason is that the blend misleads.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-2" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-2" data-correct><span class="quiz-letter">C</span><span>The average matches no customer the company has ever won</span></label><p class="quiz-why"><b>Right.</b> Self-serve at €400 and enterprise at €38,000 blend into a figure describing neither, hiding which to fund.</p><input class="quiz-radio" type="radio" id="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-3" name="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4"><label class="quiz-opt" for="business-finance/08-software-and-ai-economics/40-saas-unit-economics-4-3"><span class="quiz-letter">D</span><span>Segmented figures make the numbers look better to investors</span></label><p class="quiz-why"><b>Not quite.</b> They frequently look worse for one segment. The point is that they answer which motion deserves funding.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: SaaS metrics practice; Bessemer, OpenView and ChartMogul benchmark work · Horngren, Cost Accounting, ch. 3</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/business-finance/08-software-and-ai-economics/39-gross-margin" class="text-ash transition-colors hover:text-bone">← Gross margin in a software business, and what belongs in COGS</a><a href="/course/business-finance/08-software-and-ai-economics/41-cost-per-inference" class="text-ash transition-colors hover:text-bone">Cost per inference: a P&amp;L for one AI feature →</a><a href="/course/business-finance" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

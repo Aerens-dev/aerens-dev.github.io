@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>PID as it is tuned, not as it is derived — Machines · Aerens</title><meta name="description" content="Three terms in three tenses, the order that converges, what Ziegler-Nichols was actually aiming at, and why the plant will not hold still."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/04-control-on-hardware/19-pid-as-tuned/"><meta property="og:type" content="website"><meta property="og:title" content="PID as it is tuned, not as it is derived — Machines · Aerens"><meta property="og:description" content="Three terms in three tenses, the order that converges, what Ziegler-Nichols was actually aiming at, and why the plant will not hold still."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/04-control-on-hardware/19-pid-as-tuned/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Control that survives contact with hardware</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">PID as it is tuned, not as it is derived</h1><p class="mt-3 text-bone/70">Three terms in three tenses, the order that converges, what Ziegler-Nichols was actually aiming at, and why the plant will not hold still.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 01 of 06 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Tune a loop in an order that converges rather than by adjusting three things at once</li><li>Read rise, overshoot, ringing and standing error off one step response</li><li>Say why a loop tuned perfectly at one operating point is tuned badly at the others</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>You have a velocity loop on the test stand. It is a bit slow, so you raise P. It
+overshoots, so you add D. It now buzzes, so you lower D and raise I. It settles
+slowly, so you raise I again, and now it oscillates at a frequency it did not
+have before.</p>
+<p>Four changes, each reasonable, and the loop is worse than when you started. The
+problem is not the gains — it is that you changed three things whose effects
+overlap and then tried to attribute the result.</p>
+<p>Course 1 will derive why the loop behaves as it does. This tutorial is about the
+narrower, more urgent skill: getting a working tuning on a machine in front of
+you, in a way that converges.</p>
+<h2 id="three-terms-three-tenses">Three terms, three tenses</h2>
+<p>The one framing that makes PID intuitive rather than arbitrary: each term acts
+on a different tense of the error.</p>
+<p><strong>Proportional</strong> acts on the error <em>now</em>. It is fast and it is the main strength
+of the loop. On its own it leaves a <strong>standing error</strong>, because if the error
+went to zero the output would too, and something has to hold against the load.</p>
+<p><strong>Integral</strong> acts on the accumulated <em>past</em>. It is the term that drives standing
+error to zero, and it is the reason to have a loop rather than a gain. It costs
+phase — every integrator adds 90° of lag — and it introduces windup, which is
+tutorial 22.</p>
+<p><strong>Derivative</strong> acts on a guessed <em>future</em>, extrapolating from the current rate.
+It damps overshoot and it amplifies noise ferociously, because differentiating a
+signal multiplies each frequency component by its own frequency.</p>
+<figure class="fig"><svg viewBox="0 0 320 208" role="img" aria-labelledby="fig-three-terms"><title id="fig-three-terms">Proportional acts on present error, integral on accumulated past error and derivative on the rate of change, and each buys something specific at a specific cost.</title><text x="8" y="14" class="dim">THREE TERMS, THREE TENSES</text><rect class="fill" x="8" y="26" width="304" height="48"></rect><text x="18" y="44" class="tight">P · NOW</text><text x="18" y="62" class="tight">FAST. LEAVES A STANDING ERROR UNDER LOAD</text><rect class="mark" x="8" y="80" width="304" height="48"></rect><text x="18" y="98" class="tight">I · THE PAST</text><text x="18" y="116" class="tight">KILLS THAT ERROR. COSTS PHASE, ADDS WINDUP</text><rect class="fill" x="8" y="134" width="304" height="48"></rect><text x="18" y="152" class="tight">D · THE FUTURE, GUESSED</text><text x="18" y="170" class="tight">DAMPS OVERSHOOT. AMPLIFIES EVERY BIT OF NOISE</text><text x="8" y="200" class="dim">THE MARKED ONE IS WHY YOU HAVE A LOOP AT ALL</text></svg><figcaption class="fig-cap">Now, the past, and a guess at the future.</figcaption></figure>
+<h2 id="one-knob-at-a-time-in-this-order">One knob at a time, in this order</h2>
+<p>The order matters because the terms interact, and a sequence that isolates each
+one converges while any other sequence wanders.</p>
+<ol>
+<li><strong>I and D to zero. Raise P until it just rings, then halve it.</strong> This finds
+the plant’s stability limit empirically, which is more reliable than
+calculating it from a model you do not have.</li>
+<li><strong>Raise I until the standing error closes</strong> in a time you can accept. Stop
+when it starts to overshoot — that is the integral winding past the target.</li>
+<li><strong>Add D only if overshoot is still a problem</strong>, and filter it when you do.
+Many motion loops are better with no D at all, and a surprising number of
+“PID” controllers in the field are running with D at zero.</li>
+<li><strong>Disturb it by hand and watch it recover.</strong></li>
+</ol>
+<p>Step 4 is the only real test. Steps 1 to 3 tune against a step <em>command</em>, which
+is a thing you chose; step 4 tunes against a <em>disturbance</em>, which is what the
+machine will actually meet. A loop can look excellent on a step and respond
+poorly to a push, and the push is the case that matters on the test stand.</p>
+<figure class="fig"><svg viewBox="0 0 320 198" role="img" aria-labelledby="fig-tuning-order"><title id="fig-tuning-order">Tuning converges when you raise proportional gain to the edge of ringing, back it off, then add integral until the standing error closes, and add derivative only if overshoot still needs damping.</title><text x="8" y="14" class="dim">ONE KNOB AT A TIME, IN THIS ORDER</text><rect class="fill" x="8" y="28" width="304" height="36"></rect><text x="18" y="44" class="tight">1 · I AND D TO ZERO. RAISE P UNTIL IT RINGS</text><text x="18" y="58" class="tight">THEN HALVE IT</text><rect class="fill" x="8" y="70" width="304" height="36"></rect><text x="18" y="86" class="tight">2 · RAISE I UNTIL THE STANDING ERROR CLOSES</text><text x="18" y="100" class="tight">IN THE TIME YOU CAN ACCEPT</text><rect class="fill" x="8" y="112" width="304" height="36"></rect><text x="18" y="128" class="tight">3 · ADD D ONLY IF OVERSHOOT IS STILL A PROBLEM</text><text x="18" y="142" class="tight">AND FILTER IT WHEN YOU DO</text><rect class="mark" x="8" y="154" width="304" height="30"></rect><text x="18" y="174" class="tight">4 · DISTURB IT BY HAND AND WATCH IT RECOVER</text><text x="8" y="196" class="dim">STEP FOUR IS THE TEST. THE OTHERS ARE GUESSES</text></svg><figcaption class="fig-cap">Steps one to three are guesses. Step four is the test.</figcaption></figure>
+<h2 id="what-ziegler-nichols-was-aiming-at">What Ziegler-Nichols was aiming at</h2>
+<p>Everyone meets the Ziegler-Nichols rules first, and they are worth understanding
+rather than either trusting or dismissing.</p>
+<p>They were derived in 1942 for <strong>process control</strong> — heat exchangers, flow loops,
+chemical plants — and their design target was <strong>quarter-amplitude damping</strong>:
+each oscillation peak a quarter of the last. That corresponds to roughly <strong>50%
+overshoot</strong>, which is a deliberate choice, and for a slow thermal plant where
+getting there quickly matters more than arriving smoothly, it is a sensible one.</p>
+<p>It is the wrong target for anything with mass. 50% overshoot on a motion axis is
+a machine that visibly lurches past its setpoint, and on a multirotor it is
+unflyable.</p>
+<p>So: use Z-N to find the <strong>order of magnitude</strong>, which it does well, then halve
+the proportional gain and expect to lengthen the integral time. Åström and
+Hägglund’s own later work says much the same thing, and their AMIGO rules are a
+better starting point if you want a formula.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-zn"><title id="fig-zn">Ziegler-Nichols tuning was derived for quarter-amplitude damping on process plants, which is far more oscillatory than a motion system wants, so it is a starting point that needs backing off rather than a result.</title><text x="8" y="14" class="dim">WHAT ZIEGLER-NICHOLS ACTUALLY TARGETS</text><path class="thin" d="M40 34 V116 H272"></path><path class="dash" d="M44 62 H268"></path><path class="accent" d="M44 110 L70 40 Q92 76 114 58 Q136 70 158 62 H268"></path><circle class="mark" cx="70" cy="40" r="7"></circle><text x="88" y="36" class="tight">QUARTER AMPLITUDE DECAY</text><text x="8" y="150" class="dim">EACH PEAK A QUARTER OF THE LAST, WHICH IS ABOUT</text><text x="8" y="164" class="dim">50 PER CENT OVERSHOOT. FINE FOR A HEAT EXCHANGER</text><text x="8" y="178" class="dim">IN 1942, WRONG FOR A MACHINE WITH MASS. USE IT TO</text><text x="8" y="192" class="dim">GET THE ORDER OF MAGNITUDE, THEN HALVE P</text></svg><figcaption class="fig-cap">Quarter-amplitude decay was the design target, not a side effect.</figcaption></figure>
+<h2 id="reading-one-step-response">Reading one step response</h2>
+<p>A single step response, captured on a scope or a log, shows four things, and
+each one points at a different term. Learning to read it replaces most guessing.</p>
+<p><strong>Slow to rise</strong> — P is too low. <strong>Overshoots the target</strong> — P is too high, or
+add D. <strong>Rings for several cycles</strong> — P is too high; lower it before reaching
+for D, because D used to mask excess P gives you a loop that is both slow and
+noisy. <strong>Settles somewhere other than the target</strong> — I is too low or absent.</p>
+<p>The discipline that makes this work is to capture the step <strong>before and after</strong>
+every change, and to change one gain at a time. That sounds obvious and is
+almost never done, which is why the opening scenario is so common.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-reading-step"><title id="fig-reading-step">A single step response shows rise time, overshoot, settling and any standing error, and each of those four features points at a different term to change.</title><text x="8" y="14" class="dim">FOUR FEATURES, FOUR DIFFERENT KNOBS</text><path class="thin" d="M40 30 V112 H272"></path><path class="dash" d="M44 52 H268"></path><path class="accent" d="M44 108 Q70 108 84 64 Q96 38 116 42 Q136 62 156 54 Q180 48 216 52 H268"></path><circle class="mark" cx="104" cy="40" r="7"></circle><text x="8" y="140" class="tight">SLOW TO RISE</text><text x="168" y="140" class="tight">RAISE P</text><text x="8" y="158" class="tight">OVERSHOOTS</text><text x="168" y="158" class="tight">LOWER P, OR ADD D</text><text x="8" y="176" class="tight">RINGS FOR A WHILE</text><text x="168" y="176" class="tight">LOWER P</text><text x="8" y="194" class="tight">SETTLES OFF TARGET</text><text x="168" y="194" class="tight">RAISE I</text></svg><figcaption class="fig-cap">One capture, four features, four different answers.</figcaption></figure>
+<h2 id="the-plant-will-not-hold-still">The plant will not hold still</h2>
+<p>The last idea is the one that separates a loop that works on the bench from a
+loop that works.</p>
+<p>Your plant’s gain moves. A battery goes from full to empty and the available
+voltage drops 15-20%, so the same duty cycle produces less torque. A robot arm
+folds and extends and its inertia changes by 4:1. A cold machine has perhaps
+twice the friction of a warm one. Bearings wear, belts stretch, loads vary.</p>
+<p>A loop tuned to perfection at one operating point is, by construction, tuned
+<strong>too tight</strong> at every point where the plant gain is higher. The margin you left
+is what absorbs that, which means margin is not slack — it is the feature.</p>
+<p>Two practical approaches. <strong>Tune at the worst case</strong> — highest gain, lowest
+inertia, warmest, fullest battery — and accept that it is conservative
+elsewhere; this is what the test stand does and what most systems should. Or
+<strong>schedule the gains</strong> against a measured variable, which is more work and is
+right when the variation is large, known and measurable.</p>
+<figure class="fig"><svg viewBox="0 0 320 202" role="img" aria-labelledby="fig-plant-changes"><title id="fig-plant-changes">A plant's gain moves with load, supply voltage, temperature and wear, so a tuning that is optimal at one operating point must have enough margin to stay stable at all the others.</title><text x="8" y="14" class="dim">THE PLANT YOU TUNED IS NOT THE ONLY ONE</text><rect class="fill" x="8" y="28" width="304" height="30"></rect><text x="18" y="48" class="tight">BATTERY FULL TO EMPTY · GAIN DOWN 20 PER CENT</text><rect class="fill" x="8" y="62" width="304" height="30"></rect><text x="18" y="82" class="tight">ARM EXTENDED OR FOLDED · INERTIA 4 TO 1</text><rect class="fill" x="8" y="96" width="304" height="30"></rect><text x="18" y="116" class="tight">COLD START TO WARM · FRICTION HALVES</text><rect class="mark" x="8" y="130" width="304" height="30"></rect><text x="18" y="150" class="tight">TUNE AT THE WORST CASE, CHECK AT THE OTHERS</text><text x="8" y="178" class="dim">A LOOP TUNED TO PERFECTION AT ONE POINT IS TUNED</text><text x="8" y="192" class="dim">TOO TIGHT ELSEWHERE. LEAVE MARGIN ON PURPOSE</text></svg><figcaption class="fig-cap">Tune at the worst case. Margin is the feature, not the slack.</figcaption></figure>
+<h2 id="worked-example-tuning-the-stands-velocity-loop">Worked example: tuning the stand’s velocity loop</h2>
+<p>The BLDC test stand. FOC current loop already closed from tutorial 17, so the
+plant for the velocity loop is <em>torque in, speed out</em> — which is an integrator
+with friction, and about as friendly as plants get.</p>
+<p><strong>Step 1 — find the P limit.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Kp</th>
+<th>What happened</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.002</td>
+<td>Sluggish, 400 ms to reach speed</td>
+</tr>
+<tr>
+<td>0.010</td>
+<td>Better, 90 ms, no ringing</td>
+</tr>
+<tr>
+<td>0.030</td>
+<td>40 ms, small overshoot</td>
+</tr>
+<tr>
+<td>0.060</td>
+<td>Sustained ringing at 62 Hz</td>
+</tr>
+</tbody>
+</table>
+<p>The ringing at Kp = 0.060 is the useful measurement, and it tells you two
+things. The ultimate gain is 0.060, so take <strong>Kp = 0.030</strong>. And the oscillation
+period is 1/62 = <strong>16 ms</strong>, which is the plant telling you its own timescale —
+every time constant you choose from here should be referenced to it.</p>
+<p><strong>Step 2 — close the standing error.</strong></p>
+<p>At Kp = 0.030 with no integral, commanding 2,000 RPM against a hand load gives a
+steady 1,870 RPM: a <strong>6.5% standing error</strong>, which is P doing exactly what P
+does.</p>
+<table>
+<thead>
+<tr>
+<th>Ki</th>
+<th>Time to close</th>
+<th>Overshoot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.05</td>
+<td>900 ms</td>
+<td>none</td>
+</tr>
+<tr>
+<td>0.20</td>
+<td>240 ms</td>
+<td>none</td>
+</tr>
+<tr>
+<td>0.60</td>
+<td>95 ms</td>
+<td>4%</td>
+</tr>
+<tr>
+<td>1.50</td>
+<td>70 ms</td>
+<td>18%, and ringing</td>
+</tr>
+</tbody>
+</table>
+<p>Take <strong>Ki = 0.20</strong>. Note that 240 ms is fifteen times the 16 ms plant period,
+which is the usual healthy ratio — an integral fast enough to be comparable to
+the plant’s own dynamics is an integral that is fighting the proportional term.</p>
+<p><strong>Step 3 — does it need D?</strong> Overshoot at Kp 0.030 / Ki 0.20 is under 2%. <strong>No
+D.</strong> Adding it would import the encoder’s quantisation noise into the output for
+no benefit, and the stand runs better without it. This is the common case and it
+is worth saying out loud.</p>
+<p><strong>Step 4 — the test that matters.</strong> Command 2,000 RPM and push the shaft by
+hand.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speed dip under a firm push</td>
+<td>240 RPM</td>
+</tr>
+<tr>
+<td>Recovery to within 1%</td>
+<td>180 ms</td>
+</tr>
+<tr>
+<td>Overshoot on release</td>
+<td>3%</td>
+</tr>
+<tr>
+<td>Current during recovery</td>
+<td>peaks at 6.2 A, limit is 10 A</td>
+</tr>
+</tbody>
+</table>
+<p>That is the gate for track 4 met, and the last row is the one to keep watching:
+the loop is asking for 6.2 A of the 10 A available, so a harder push saturates
+the current limit — and what a loop does when its output saturates is exactly
+what tutorial 22 is about.</p>
+<p><strong>Now change the plant and re-check.</strong> Drop the supply from 12 V to 10 V, which
+is the battery going flat.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>12 V</th>
+<th>10 V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rise time</td>
+<td>40 ms</td>
+<td>48 ms</td>
+</tr>
+<tr>
+<td>Overshoot</td>
+<td>2%</td>
+<td>1%</td>
+</tr>
+<tr>
+<td>Standing error after 1 s</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Slower and better damped, because the plant gain fell and the tuning is now
+slightly conservative rather than slightly aggressive. That is the right
+direction to fail, and it is why you tune at the <strong>high</strong>-gain end.</p>
+<h2 id="do-it">Do it</h2>
+<p>Twenty-five minutes on real hardware, and step 4 is the one people skip.</p>
+<ol>
+<li>Zero I and D on any loop you have, and find the gain at which it rings. Note
+the oscillation frequency — that number characterises your plant and you will
+use it repeatedly.</li>
+<li>Capture a step response before and after a single gain change. Look at the
+two together rather than at the second one alone.</li>
+<li>Try removing D entirely from a loop that has it. A good fraction of the time
+nothing gets worse and the output gets quieter.</li>
+<li>Then change something about the plant — supply voltage, added inertia, a
+warm machine versus a cold one — and re-run the same step. If the response
+changes a lot, your margin is too thin.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>Why does a purely proportional loop leave a standing error under load?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-0-0" name="machines/04-control-on-hardware/19-pid-as-tuned-0"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-0-0"><span class="quiz-letter">A</span><span>The plant has a delay, so the correction arrives after it is needed</span></label><p class="quiz-why"><b>Not quite.</b> Delay costs phase margin and can cause ringing, which matters a great deal. It does not explain a steady offset that persists indefinitely.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-0-1" name="machines/04-control-on-hardware/19-pid-as-tuned-0"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-0-1" data-correct><span class="quiz-letter">B</span><span>Zero error would mean zero output, and the load needs some output</span></label><p class="quiz-why"><b>Right.</b> The output is the gain times the error, so holding against a load requires the error to stay non-zero. Something has to supply that holding effort.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-0-2" name="machines/04-control-on-hardware/19-pid-as-tuned-0"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-0-2"><span class="quiz-letter">C</span><span>The gain is finite, so quantisation leaves a residue near the target</span></label><p class="quiz-why"><b>Not quite.</b> Quantisation does set a floor on how finely you can settle, and it is usually far below the standing error. The error exists with perfect resolution.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-0-3" name="machines/04-control-on-hardware/19-pid-as-tuned-0"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-0-3"><span class="quiz-letter">D</span><span>The sensor has an offset, which the proportional term reproduces</span></label><p class="quiz-why"><b>Not quite.</b> A sensor offset shifts where the loop thinks the target is, which is a separate fault. The standing error appears with a perfectly calibrated sensor.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why is disturbing the machine by hand the real test rather than a step command?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-1-0" name="machines/04-control-on-hardware/19-pid-as-tuned-1"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-1-0"><span class="quiz-letter">A</span><span>A step command is filtered by the setpoint ramp before it reaches the loop</span></label><p class="quiz-why"><b>Not quite.</b> Many systems do ramp their setpoints, which is worth knowing about. The step can be applied after the ramp if you want the raw response.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-1-1" name="machines/04-control-on-hardware/19-pid-as-tuned-1"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-1-1" data-correct><span class="quiz-letter">B</span><span>A disturbance enters at the plant, which is what the machine will meet</span></label><p class="quiz-why"><b>Right.</b> A step command tests tracking of something you chose. Load rejection is the job, and a loop can look excellent on one and respond poorly to the other.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-1-2" name="machines/04-control-on-hardware/19-pid-as-tuned-1"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-1-2"><span class="quiz-letter">C</span><span>A hand push is larger than a step, so it exposes the nonlinearities</span></label><p class="quiz-why"><b>Not quite.</b> You can command a step of any size you like, so magnitude is not the distinction. Where the input enters the loop is what differs.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-1-3" name="machines/04-control-on-hardware/19-pid-as-tuned-1"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-1-3"><span class="quiz-letter">D</span><span>The hand push happens at an unpredictable time, testing the scheduler</span></label><p class="quiz-why"><b>Not quite.</b> Timing jitter in the response would show up on a commanded step too. The point is the path the disturbance takes rather than when it arrives.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What was Ziegler-Nichols tuning designed to achieve?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-2-0" name="machines/04-control-on-hardware/19-pid-as-tuned-2"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-2-0"><span class="quiz-letter">A</span><span>The fastest settling time achievable with no overshoot whatever</span></label><p class="quiz-why"><b>Not quite.</b> That is closer to what a motion system wants and is not what the rules produce. They deliberately accept substantial overshoot.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-2-1" name="machines/04-control-on-hardware/19-pid-as-tuned-2"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-2-1"><span class="quiz-letter">B</span><span>The best compromise between tracking error and actuator effort</span></label><p class="quiz-why"><b>Not quite.</b> That describes an optimal-control formulation such as LQR, which came later. Ziegler-Nichols targets a specific decay ratio instead.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-2-2" name="machines/04-control-on-hardware/19-pid-as-tuned-2"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-2-2"><span class="quiz-letter">C</span><span>Maximum disturbance rejection at the plant&#39;s resonant frequency</span></label><p class="quiz-why"><b>Not quite.</b> Rejection does improve with the gains the rules give, as a consequence. The stated design criterion was the shape of the decay.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-2-3" name="machines/04-control-on-hardware/19-pid-as-tuned-2"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-2-3" data-correct><span class="quiz-letter">D</span><span>Quarter-amplitude damping, which is roughly 50 per cent overshoot</span></label><p class="quiz-why"><b>Right.</b> Each peak a quarter of the last was a deliberate target for slow process plants in 1942, where arriving fast beat arriving smoothly.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>A loop rings for several cycles after a step. What should you change first?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-3-0" name="machines/04-control-on-hardware/19-pid-as-tuned-3"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-3-0"><span class="quiz-letter">A</span><span>Add D, since damping oscillation is what that term is for</span></label><p class="quiz-why"><b>Not quite.</b> It will suppress the symptom, and it imports noise while doing so. The better first move is removing the gain that caused the oscillation.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-3-1" name="machines/04-control-on-hardware/19-pid-as-tuned-3"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-3-1"><span class="quiz-letter">B</span><span>Raise the loop rate, so the controller can react within each cycle</span></label><p class="quiz-why"><b>Not quite.</b> A faster loop does buy phase margin and is worth checking. If the ringing is at the plant&#39;s natural frequency the gain is the direct cause.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-3-2" name="machines/04-control-on-hardware/19-pid-as-tuned-3"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-3-2"><span class="quiz-letter">C</span><span>Lower I, since accumulated error is driving the repeated overshoot</span></label><p class="quiz-why"><b>Not quite.</b> Excess integral produces overshoot followed by a slow correction rather than sustained ringing at the plant&#39;s own frequency.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-3-3" name="machines/04-control-on-hardware/19-pid-as-tuned-3"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-3-3" data-correct><span class="quiz-letter">D</span><span>Lower P, rather than reaching for D to mask the excess gain</span></label><p class="quiz-why"><b>Right.</b> Ringing is usually too much proportional gain. Using derivative to damp it leaves a loop that is both slower and noisier than simply backing P off.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>Why should a loop be tuned at the operating point where plant gain is highest?</legend><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-4-0" name="machines/04-control-on-hardware/19-pid-as-tuned-4"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-4-0"><span class="quiz-letter">A</span><span>The integral term winds up fastest there, exposing windup problems</span></label><p class="quiz-why"><b>Not quite.</b> Windup is worst when the output saturates, which tends to happen at low authority rather than high. It is a separate concern with its own tutorial.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-4-1" name="machines/04-control-on-hardware/19-pid-as-tuned-4"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-4-1"><span class="quiz-letter">B</span><span>High gain is where the sensors are most accurate, so tuning is precise</span></label><p class="quiz-why"><b>Not quite.</b> Sensor accuracy is largely independent of plant gain. What matters is which direction the loop moves when conditions change.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-4-2" name="machines/04-control-on-hardware/19-pid-as-tuned-4"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-4-2" data-correct><span class="quiz-letter">C</span><span>Anywhere else the same gains are effectively tighter, so it may ring</span></label><p class="quiz-why"><b>Right.</b> Tuning at a low-gain point and then moving to a high-gain one raises the loop gain you did not choose. Tuning at the worst case fails in the safe direction.</p><input class="quiz-radio" type="radio" id="machines/04-control-on-hardware/19-pid-as-tuned-4-3" name="machines/04-control-on-hardware/19-pid-as-tuned-4"><label class="quiz-opt" for="machines/04-control-on-hardware/19-pid-as-tuned-4-3"><span class="quiz-letter">D</span><span>It is the point where the actuator has most authority over the load</span></label><p class="quiz-why"><b>Not quite.</b> More authority does help the loop respond, and it is why that point feels good to tune at. The reason to choose it is the stability margin elsewhere.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Åström &amp; Hägglund, PID Controllers, ch. 3-4 and 6 · Åström &amp; Murray, Feedback Systems, ch. 10-11</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/03-motors-and-power/18-batteries" class="text-ash transition-colors hover:text-bone">← LiPo C-rating, sag, and the BMS you do not have</a><a href="/course/machines/04-control-on-hardware/20-nonlinearities" class="text-ash transition-colors hover:text-bone">Deadband, backlash and stiction →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>

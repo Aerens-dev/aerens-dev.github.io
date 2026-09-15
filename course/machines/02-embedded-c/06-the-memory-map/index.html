@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v7.2.2"><title>The memory map, and where your bug lives — Machines · Aerens</title><meta name="description" content="Four regions that behave nothing alike, what startup does before main, and why a stack overflow on a part with no MPU is a write rather than an error."><link rel="canonical" href="https://aerens-dev.github.io/course/machines/02-embedded-c/06-the-memory-map/"><meta property="og:type" content="website"><meta property="og:title" content="The memory map, and where your bug lives — Machines · Aerens"><meta property="og:description" content="Four regions that behave nothing alike, what startup does before main, and why a stack overflow on a part with no MPU is a write rather than an error."><meta property="og:url" content="https://aerens-dev.github.io/course/machines/02-embedded-c/06-the-memory-map/"><meta property="og:image" content="https://aerens-dev.github.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="The Aerens wordmark in dithered blackletter"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://aerens-dev.github.io/og.png"><!-- Both baked from the page itself: `npm run shoot -- --og --favicon`. --><link rel="icon" type="image/png" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><meta name="theme-color" content="#0a0a0b"><script>
+      try {
+        const stored = sessionStorage.getItem("aerens:theme");
+        const css = stored ? JSON.parse(stored).css : null;
+        if (css && css.ink && css.bone && css.ash) {
+          const root = document.documentElement;
+          root.style.setProperty("--color-ink", css.ink);
+          root.style.setProperty("--color-bone", css.bone);
+          root.style.setProperty("--color-ash", css.ash);
+          document
+            .querySelector('meta[name="theme-color"]')
+            ?.setAttribute("content", css.ink);
+        }
+      } catch {
+        // No session, no storage, mangled JSON — the stylesheet defaults hold.
+      }
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CZQwtnfJ.js"></script><link rel="stylesheet" href="/_astro/Base.wWWWB7TJ.css"></head><body data-stage="compact"><div data-astro-transition-persist="stage" class="stage"><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(a,s,c)=>s in a?g(a,s,{enumerable:!0,configurable:!0,writable:!0,value:c}):a[s]=c;var l=(a,s,c)=>w(a,typeof s!="symbol"?s+"":s,c);var E=new Set(["__proto__","constructor","prototype"]);{let a={0:t=>y(t),1:t=>c(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(c(t)),5:t=>new Set(c(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in a?a[p](e):void 0},c=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let r=this.querySelectorAll("astro-slot"),n={},d=this.querySelectorAll("template[data-astro-template]");for(let o of d){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of r){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(n[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(i+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),r.disconnect(),this.childrenConnectedCallback()},r=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});r.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let r=new URL(e,document.baseURI);return r.searchParams.set("astro-retry",Date.now().toString()),r.toString()}async importWithRetry(e){try{return await import(e)}catch(r){return await new Promise(n=>setTimeout(n,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let r=this.getAttribute("component-url"),n=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:r}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${r}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),r=this.getAttribute("client");if(Astro[r]===void 0){window.addEventListener(`astro:${r}`,()=>this.start(),{once:!0});return}try{await Astro[r](async()=>{let n=this.getAttribute("renderer-url");try{let[d,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),n?this.importWithRetry(n):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=d;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=d[h]}return this.hydrator=u,this.hydrate}catch(d){return this.handleHydrationError(d),()=>{}}},e,this)}catch(n){this.handleHydrationError(n)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="Z2tVNk2" data-preact-island-id="1" component-url="/_astro/DitherStage.3-AyYWv5.js" component-export="default" renderer-url="/_astro/client.B_Ubrj_I.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;DitherStage&quot;,&quot;value&quot;:true}" await-children><canvas aria-hidden="true" class="dither-canvas"></canvas><!--astro:end--></astro-island><div class="crt" aria-hidden="true"><div class="crt-shutter crt-shutter--top"></div><div class="crt-shutter crt-shutter--bottom"></div><div class="crt-noise"></div><div class="crt-line"></div><div class="crt-flash"></div></div><script>
+  document.documentElement.classList.add("crt-hold");
+  // Last resort. Nothing may leave the page covered.
+  setTimeout(() => document.documentElement.classList.remove("crt-hold"), 6000);
+</script></div><div class="relative z-10 h-[21vh] min-h-[8rem]"></div><div class="mx-auto max-w-3xl px-4 pb-24 sm:px-5"><main class="card"><nav class="flex items-center gap-5 border-b border-bone/12 px-5 py-4 text-[11px] tracking-[0.18em] uppercase sm:gap-6 sm:px-10"><a href="/" class="text-bone/70 transition-colors hover:text-bone">Aerens</a><span aria-hidden="true" class="text-bone/20">/</span><a href="/writing" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Writing</a><a href="/projects" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">Projects</a><a href="/about" class="text-ash transition-colors hover:text-bone aria-[current=page]:text-bone">About</a></nav><div class="px-5 py-10 sm:px-10 sm:py-14"><article><header class="mb-10"><p class="font-mono text-[11px] tracking-[0.22em] text-ash uppercase"><a href="/course/machines" class="transition-colors hover:text-bone">Machines</a> · Embedded C that doesn&#39;t lie to you</p><h1 class="mt-3 font-display text-4xl leading-tight sm:text-5xl">The memory map, and where your bug lives</h1><p class="mt-3 text-bone/70">Four regions that behave nothing alike, what startup does before main, and why a stack overflow on a part with no MPU is a write rather than an error.</p><p class="mt-4 font-mono text-[11px] tracking-wide text-ash">Tutorial 01 of 07 · 30 minutes</p><div class="mt-8 border-l-2 border-bone/25 pl-4"><p class="font-mono text-[10px] tracking-[0.22em] text-ash uppercase">Afterwards you can</p><ul class="mt-2 space-y-1 text-sm"><li>Name the region a given address falls in, and what a fault there implies</li><li>Say what the startup code does to .data and .bss, and what each costs</li><li>Explain why a stack overflow appears minutes after it happens</li></ul></div></header><div class="prose"><h2 id="the-question">The question</h2>
+<p>A global counter is wrong. Not uninitialised, not off by one — it holds
+<code>0x0800A3F4</code>, which is not a number your program ever computes. It is, if you
+look it up, an address in flash.</p>
+<p>Nothing wrote that value on purpose. Something pushed a return address onto a
+stack that had run out of room, and the stack ran into your counter. On a
+desktop this is a segfault at the moment of the mistake. Here it is a write that
+succeeds, and the symptom arrives whenever somebody next reads that variable —
+which might be four minutes and a thousand function calls later.</p>
+<p>Knowing the map is what turns that from a mystery into a lookup.</p>
+<h2 id="one-map-four-behaviours">One map, four behaviours</h2>
+<p>A Cortex-M has one flat 32-bit address space, and it is carved into regions that
+have almost nothing in common except that they are addressable.</p>
+<p><strong>Flash</strong> at <code>0x08000000</code> holds code and constants. Reads are free; writes need
+an unlock sequence and erase a whole sector. <strong>SRAM</strong> at <code>0x20000000</code> holds
+everything that changes, and holds none of it across a reset. <strong>Peripherals</strong> at
+<code>0x40000000</code> are not memory at all — a read can clear a flag, and the region is
+gated off until you enable its clock. <strong>System</strong> space at <code>0xE0000000</code> is the
+core’s own: the interrupt controller, SysTick, the MPU.</p>
+<p>The practical value is diagnostic. When a fault gives you an address, the top
+byte alone narrows the bug to one of four very different stories.</p>
+<figure class="fig"><svg viewBox="0 0 320 214" role="img" aria-labelledby="fig-memory-map"><title id="fig-memory-map">A Cortex-M address space is one flat four gigabyte map divided into regions that behave nothing alike, and knowing which region an address falls in tells you most of what a fault means.</title><text x="8" y="14" class="dim">ONE MAP, FOUR BEHAVIOURS</text><rect class="fill" x="8" y="26" width="304" height="34"></rect><text x="18" y="40" class="tight">0xE000E000  SYSTEM</text><text x="18" y="54" class="tight">NVIC, SYSTICK, MPU. NOT MEMORY AT ALL</text><rect class="fill" x="8" y="64" width="304" height="34"></rect><text x="18" y="78" class="tight">0x40000000  PERIPHERAL</text><text x="18" y="92" class="tight">READS HAVE SIDE EFFECTS. GATED OFF AT RESET</text><rect class="mark" x="8" y="102" width="304" height="34"></rect><text x="18" y="116" class="tight">0x20000000  SRAM</text><text x="18" y="130" class="tight">VARIABLES, STACK, HEAP. LOST ON RESET</text><rect class="fill" x="8" y="140" width="304" height="34"></rect><text x="18" y="154" class="tight">0x08000000  FLASH</text><text x="18" y="168" class="tight">CODE AND CONSTANTS. WRITES NEED AN UNLOCK</text><text x="8" y="196" class="dim">READ A FAULTING ADDRESS AND YOU HAVE ALREADY</text><text x="8" y="210" class="dim">NARROWED THE BUG TO ONE OF THESE FOUR ROWS</text></svg><figcaption class="fig-cap">Four regions, four stories. The address tells you which.</figcaption></figure>
+<h2 id="what-runs-before-main">What runs before main</h2>
+<p>Your <code>main</code> is not the first code to execute. The reset handler runs first, and
+it does two things that explain a lot of otherwise confusing behaviour.</p>
+<p>It <strong>copies <code>.data</code> from flash to RAM</strong> — every global with a non-zero
+initialiser exists twice, once as a template in flash and once as the live copy
+in RAM. And it <strong>zeroes <code>.bss</code></strong>, which is why an uninitialised global is
+reliably zero while an uninitialised local is reliably garbage.</p>
+<p>The cost model falls out of this directly. <code>int table[1000] = {1, 2, ...}</code> costs
+4 kB of flash <em>and</em> 4 kB of RAM. <code>static const int table[1000]</code> costs 4 kB of
+flash and nothing in RAM, and on most parts is read directly from flash. On a
+device with 128 kB of RAM that difference decides whether the feature fits.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-linker-sections"><title id="fig-linker-sections">Startup code copies initialised globals from flash into RAM and zeroes the uninitialised ones, which is why a global is zero before main runs and why a large initialised array costs both flash and RAM.</title><text x="8" y="14" class="dim">WHAT RUNS BEFORE MAIN</text><text x="8" y="38" class="tight">IN FLASH</text><rect class="fill" x="8" y="46" width="120" height="26"></rect><text x="16" y="63" class="tight">.text  CODE</text><rect class="fill" x="8" y="76" width="120" height="26"></rect><text x="16" y="93" class="tight">.rodata  CONST</text><rect class="fill" x="8" y="106" width="120" height="26"></rect><text x="16" y="123" class="tight">.data  INIT</text><path class="accent" d="M134 119 H166"></path><path class="accent-fill" d="M166 115 L174 119 L166 123 Z"></path><text x="136" y="110" class="tight">COPY</text><text x="184" y="38" class="tight">IN RAM</text><rect class="mark" x="184" y="106" width="128" height="26"></rect><text x="192" y="123" class="tight">.data  COPIED</text><rect class="fill" x="184" y="136" width="128" height="26"></rect><text x="192" y="153" class="tight">.bss  ZEROED</text><text x="8" y="180" class="dim">AN INITIALISED ARRAY COSTS BOTH: A COPY IN FLASH</text><text x="8" y="194" class="dim">AND ITS OWN ROOM IN RAM. STATIC CONST COSTS ONE</text></svg><figcaption class="fig-cap">Initialised globals exist twice. Const ones exist once.</figcaption></figure>
+<h2 id="two-pointers-one-room">Two pointers, one room</h2>
+<p>RAM is shared between three things and only one of them is bounded at compile
+time. Static data sits at the bottom, fixed and known. The <strong>heap</strong> grows up
+from the top of static data. The <strong>stack</strong> grows <em>down</em> from the top of RAM.</p>
+<p>Nothing arbitrates. The linker gives you a warning if static data alone exceeds
+RAM, and after that you are on your own: the stack’s depth depends on your call
+graph and your worst-case interrupt nesting, and the heap’s extent depends on
+your allocation pattern.</p>
+<p>This is most of the reason embedded style avoids <code>malloc</code>. Not because
+allocation is slow, but because it makes the collision point depend on runtime
+history, and there is no allocator failure mode that a small device handles
+gracefully.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-stack-heap"><title id="fig-stack-heap">The stack grows down from the top of RAM and the heap grows up from the end of static data, and on a part with no memory protection unit the moment they meet is silent corruption rather than an error.</title><text x="8" y="14" class="dim">TWO POINTERS, ONE ROOM</text><rect class="box" x="76" y="26" width="168" height="130"></rect><text x="86" y="44" class="tight">STACK, GROWING DOWN</text><path class="accent" d="M160 52 V78"></path><path class="accent-fill" d="M156 78 L160 86 L164 78 Z"></path><circle class="mark" cx="160" cy="92" r="7"></circle><text x="176" y="96" class="tight">HERE</text><path class="accent" d="M160 106 V130"></path><path class="accent-fill" d="M156 106 L160 98 L164 106 Z"></path><text x="86" y="146" class="tight">HEAP, GROWING UP</text><text x="8" y="176" class="dim">NO MPU MEANS NO FAULT. THE STACK SIMPLY WRITES</text><text x="8" y="190" class="dim">OVER A VARIABLE, AND THE SYMPTOM APPEARS LATER</text></svg><figcaption class="fig-cap">They grow towards each other, and nothing arbitrates.</figcaption></figure>
+<h2 id="overflow-is-a-write-not-an-error">Overflow is a write, not an error</h2>
+<p>Here is the part that catches people arriving from a hosted platform.</p>
+<p>On a system with an MMU, running off the end of the stack hits a guard page and
+raises a fault at the instruction that did it. On a Cortex-M with no MPU
+configured, there is no guard page and nothing to hit. The push simply
+succeeds — it writes to a perfectly valid RAM address that happens to belong to
+something else.</p>
+<p>So the failure has three parts separated in time: the overflow, the corruption,
+and the eventual read of the corrupted thing. Only the third is visible, and it
+can be arbitrarily far from the first.</p>
+<p>Two defences, and they are worth setting up before you need them. A <strong>guard
+pattern</strong> — fill the bottom of the stack with a known value at startup and check
+it periodically — costs a few lines and tells you the high-water mark. An <strong>MPU
+region</strong> marked no-access at the stack limit turns the overflow itself into a
+fault, at the instruction that caused it, which is the diagnosis you actually
+wanted.</p>
+<figure class="fig"><svg viewBox="0 0 320 200" role="img" aria-labelledby="fig-silent-overflow"><title id="fig-silent-overflow">Without a memory protection unit or a guard region there is nothing to detect a stack overflow, so the return address is written over a variable and the failure appears far from its cause.</title><text x="8" y="14" class="dim">WHAT ACTUALLY HAPPENS ON OVERFLOW</text><rect class="fill" x="8" y="28" width="304" height="30"></rect><text x="18" y="48" class="tight">1 · A DEEP CALL PUSHES PAST THE STACK BOTTOM</text><rect class="fill" x="8" y="62" width="304" height="30"></rect><text x="18" y="82" class="tight">2 · IT WRITES OVER A GLOBAL. NO FAULT IS RAISED</text><rect class="fill" x="8" y="96" width="304" height="30"></rect><text x="18" y="116" class="tight">3 · THE CALL RETURNS. EVERYTHING LOOKS NORMAL</text><rect class="mark" x="8" y="130" width="304" height="30"></rect><text x="18" y="150" class="tight">4 · MINUTES LATER, THE GLOBAL IS WRONG</text><text x="8" y="182" class="dim">A GUARD PATTERN OR AN MPU REGION TURNS THIS INTO</text><text x="8" y="196" class="dim">A FAULT AT STEP 2, WHERE IT CAN STILL BE FOUND</text></svg><figcaption class="fig-cap">Three events, separated in time. Only the last one is visible.</figcaption></figure>
+<h2 id="symptom-and-where-to-look-first">Symptom, and where to look first</h2>
+<p>Enough of these recur that they are worth holding as a table rather than
+re-deriving each time.</p>
+<p>A register that <strong>reads back zero</strong> is a gated peripheral until proven
+otherwise. Code that <strong>works until a particular call</strong> is stack depth. A
+<strong>hard fault at <code>0x00000000</code></strong> is a call through a null function pointer — often
+an uninitialised callback. Something that is <strong>fine in debug and broken in
+release</strong> is a missing <code>volatile</code> or a timing assumption that only held because
+<code>-O0</code> was slow.</p>
+<p>And the worst one: a bug that <strong>changes when you add a print</strong>. Printing moves
+timing and consumes stack, so the diagnostic is also an intervention. When you
+see that, stop adding prints and reach for a pin toggle and a scope, which costs
+two cycles and no stack.</p>
+<figure class="fig"><svg viewBox="0 0 320 196" role="img" aria-labelledby="fig-where-bug"><title id="fig-where-bug">Each characteristic embedded symptom points at a different region of the memory map, which turns a vague failure into a place to look before any code is read.</title><text x="8" y="14" class="dim">SYMPTOM, AND WHERE TO LOOK FIRST</text><text x="8" y="40" class="tight">READS BACK ZERO</text><text x="176" y="40" class="tight">PERIPHERAL, GATED</text><text x="8" y="64" class="tight">WORKS UNTIL A CALL</text><text x="176" y="64" class="tight">STACK DEPTH</text><rect class="mark" x="4" y="74" width="308" height="28"></rect><text x="8" y="94" class="tight">CHANGES WHEN YOU ADD A PRINT</text><text x="176" y="94" class="tight">TIMING OR OVERFLOW</text><text x="8" y="120" class="tight">HARD FAULT AT 0x00000000</text><text x="176" y="120" class="tight">NULL POINTER CALL</text><text x="8" y="144" class="tight">FINE IN DEBUG, NOT IN RELEASE</text><text x="176" y="144" class="tight">MISSING VOLATILE</text><text x="8" y="176" class="dim">THE MARKED ROW IS THE WORST ONE, BECAUSE THE</text><text x="8" y="190" class="dim">DIAGNOSTIC IS ALSO WHAT MOVES THE SYMPTOM</text></svg><figcaption class="fig-cap">The marked row is the one where the diagnostic is the problem.</figcaption></figure>
+<h2 id="worked-example-does-this-firmware-fit">Worked example: does this firmware fit?</h2>
+<p>An STM32F411: 512 kB flash, <strong>128 kB RAM</strong>. The application, counted honestly.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Flash</th>
+<th>RAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.text</code> — code</td>
+<td>84 kB</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>.rodata</code> — const tables, strings</td>
+<td>22 kB</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>.data</code> — initialised globals</td>
+<td>6 kB</td>
+<td>6 kB</td>
+</tr>
+<tr>
+<td><code>.bss</code> — uninitialised globals</td>
+<td>—</td>
+<td>41 kB</td>
+</tr>
+<tr>
+<td><strong>Static total</strong></td>
+<td><strong>112 kB</strong></td>
+<td><strong>47 kB</strong></td>
+</tr>
+</tbody>
+</table>
+<p>47 kB of 128 kB used, so 81 kB free. That looks comfortable, and it is the point
+at which people stop counting. Two things are still missing.</p>
+<p><strong>The stack.</strong> Worst case is the deepest call chain plus the worst interrupt
+nesting on top of it. Measured with a guard pattern under load: 9.2 kB from the
+main path, and the DMA-complete handler at highest priority adds 1.4 kB on top
+of wherever it lands. Call it <strong>11 kB</strong>, and note that this is a measurement
+rather than a calculation — a static analyser can bound it if you have no
+recursion and no indirect calls, and this firmware has both.</p>
+<p><strong>The DMA buffers.</strong> Two audio buffers of 8 kB each, double-buffered, so
+<strong>32 kB</strong>, and they must live in a RAM region the DMA controller can reach —
+which on this part excludes the core-coupled memory that looked like free space.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>RAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static</td>
+<td>47 kB</td>
+</tr>
+<tr>
+<td>Stack, measured worst case</td>
+<td>11 kB</td>
+</tr>
+<tr>
+<td>DMA buffers</td>
+<td>32 kB</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>90 kB</strong></td>
+</tr>
+<tr>
+<td><strong>Free</strong></td>
+<td><strong>38 kB</strong></td>
+</tr>
+</tbody>
+</table>
+<p>38 kB of headroom on 128 kB. Now read it back: the honest figure is 70% used,
+not 37% used, and the difference is entirely the two things that do not appear
+in the linker’s output. The number the map file gives you is the floor, not the
+total.</p>
+<h2 id="do-it">Do it</h2>
+<p>Fifteen minutes, and step 3 is the one worth keeping.</p>
+<ol>
+<li>Build any project you have and open the <code>.map</code> file. Find the four section
+totals. Most people have never looked.</li>
+<li>Add one initialised array of 1,000 integers and rebuild. Watch both flash and
+RAM move. Change it to <code>static const</code> and watch RAM come back.</li>
+<li>Fill your stack region with a known pattern at startup, run the firmware
+under its heaviest load for a while, then halt and find the deepest point the
+pattern was overwritten. That number is your real stack usage, and it is
+usually much larger than expected.</li>
+<li>Then, for the map: take the last hard fault you had and look up which region
+the faulting address was in. If you have never read the fault registers, this
+is the moment.</li>
+</ol>
+<section class="quiz" aria-labelledby="quiz-heading"><h2 id="quiz-heading">Check yourself</h2><p class="quiz-intro">One question per idea on this page, 5 in all. Pick an answer and it tells you why. Nothing is scored and nothing is stored.</p><ol class="quiz-list"><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">1</span>What makes the peripheral region unlike the other three?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-0-0" name="machines/02-embedded-c/06-the-memory-map-0"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-0-0"><span class="quiz-letter">A</span><span>It is the region with the slowest access time on the bus</span></label><p class="quiz-why"><b>Not quite.</b> Peripheral access is slower than SRAM on most parts, and that is worth knowing. It is a performance difference rather than a behavioural one.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-0-1" name="machines/02-embedded-c/06-the-memory-map-0"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-0-1"><span class="quiz-letter">B</span><span>It is the one region whose contents survive a system reset</span></label><p class="quiz-why"><b>Not quite.</b> Backup domains aside, peripheral registers return to their reset values. Flash is the region that survives, and that is a separate distinction.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-0-2" name="machines/02-embedded-c/06-the-memory-map-0"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-0-2"><span class="quiz-letter">C</span><span>It requires an unlock sequence before any write will be accepted</span></label><p class="quiz-why"><b>Not quite.</b> That describes flash. Peripheral registers need their clock enabled, which is different from an unlock and fails silently rather than refusing.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-0-3" name="machines/02-embedded-c/06-the-memory-map-0"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-0-3" data-correct><span class="quiz-letter">D</span><span>Reading an address there can change the state of the device</span></label><p class="quiz-why"><b>Right.</b> Many status registers clear a flag when read. It is not storage at all, so caching a read or reordering two of them changes behaviour.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">2</span>Why is an uninitialised global reliably zero while an uninitialised local is not?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-1-0" name="machines/02-embedded-c/06-the-memory-map-1"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-1-0"><span class="quiz-letter">A</span><span>The compiler emits an explicit zero store for each global it sees</span></label><p class="quiz-why"><b>Not quite.</b> That would cost one instruction per variable. It is done in bulk by the startup code, as one loop over a linker-provided region.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-1-1" name="machines/02-embedded-c/06-the-memory-map-1"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-1-1"><span class="quiz-letter">B</span><span>Globals live in flash, which is erased to zero before programming</span></label><p class="quiz-why"><b>Not quite.</b> Erased flash reads as all ones rather than zeros, and mutable globals live in RAM. Only their initial values are stored in flash.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-1-2" name="machines/02-embedded-c/06-the-memory-map-1"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-1-2"><span class="quiz-letter">C</span><span>RAM powers up as zero, and globals are placed before locals are</span></label><p class="quiz-why"><b>Not quite.</b> RAM contents after power-up are undefined and often not zero, and a warm reset leaves the previous contents. The zeroing is explicit.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-1-3" name="machines/02-embedded-c/06-the-memory-map-1"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-1-3" data-correct><span class="quiz-letter">D</span><span>Startup zeroes the .bss section before main is ever entered</span></label><p class="quiz-why"><b>Right.</b> The reset handler clears that whole region. A local lives on the stack, which nobody clears, so it holds whatever the last frame left there.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">3</span>What is the strongest argument against malloc on a small microcontroller?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-2-0" name="machines/02-embedded-c/06-the-memory-map-2"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-2-0"><span class="quiz-letter">A</span><span>Most embedded toolchains ship without a working heap implementation</span></label><p class="quiz-why"><b>Not quite.</b> Nearly all of them provide one, and it usually works. The objection is about what happens when it runs out rather than whether it exists.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-2-1" name="machines/02-embedded-c/06-the-memory-map-2"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-2-1"><span class="quiz-letter">B</span><span>Freeing memory is pointless on a device that runs for years</span></label><p class="quiz-why"><b>Not quite.</b> Long uptime is a reason to worry more about fragmentation, not less. This argues against freeing rather than against allocating at all.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-2-2" name="machines/02-embedded-c/06-the-memory-map-2"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-2-2" data-correct><span class="quiz-letter">C</span><span>It makes the collision point depend on the run&#39;s own history</span></label><p class="quiz-why"><b>Right.</b> Fragmentation and allocation order decide when the heap meets the stack, so the failure is not reproducible and cannot be bounded at build time.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-2-3" name="machines/02-embedded-c/06-the-memory-map-2"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-2-3"><span class="quiz-letter">D</span><span>Allocation is too slow for the timing budgets these systems have</span></label><p class="quiz-why"><b>Not quite.</b> It is slower and less predictable than a static buffer, which matters inside an interrupt. It is a smaller problem than not being able to bound it.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">4</span>Why does a stack overflow on a part with no MPU appear far from its cause?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-3-0" name="machines/02-embedded-c/06-the-memory-map-3"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-3-0" data-correct><span class="quiz-letter">A</span><span>The push succeeds, so the failure waits for a read of the victim</span></label><p class="quiz-why"><b>Right.</b> There is no guard page to hit, so the write is valid. Three events are separated in time and only the last, the read, is visible.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-3-1" name="machines/02-embedded-c/06-the-memory-map-3"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-3-1"><span class="quiz-letter">B</span><span>Corrupted memory sits in a cache and reaches RAM much later</span></label><p class="quiz-why"><b>Not quite.</b> Small Cortex-M parts have no data cache to hold it, and where one exists it would not delay things by minutes. The delay is in the read.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-3-2" name="machines/02-embedded-c/06-the-memory-map-3"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-3-2"><span class="quiz-letter">C</span><span>The compiler defers stack adjustment until a function returns</span></label><p class="quiz-why"><b>Not quite.</b> Frames are set up on entry, so the space is claimed at the call. Deferring would not change that the write itself goes unnoticed.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-3-3" name="machines/02-embedded-c/06-the-memory-map-3"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-3-3"><span class="quiz-letter">D</span><span>The fault handler runs late, after the interrupt queue has drained</span></label><p class="quiz-why"><b>Not quite.</b> No fault is raised at all, which is the whole difficulty. A fault that ran even late would still name the instruction responsible.</p></fieldset></li><li class="quiz-q"><fieldset><legend class="quiz-ask"><span class="quiz-num">5</span>A bug changes behaviour whenever you add a print. What does that suggest, and what should you do?</legend><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-4-0" name="machines/02-embedded-c/06-the-memory-map-4"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-4-0"><span class="quiz-letter">A</span><span>A race between two threads, so add a mutex around the shared state</span></label><p class="quiz-why"><b>Not quite.</b> A race is one candidate among several, and locking before you know is guesswork. First get a measurement that does not disturb what it measures.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-4-1" name="machines/02-embedded-c/06-the-memory-map-4"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-4-1"><span class="quiz-letter">B</span><span>Flash wait states, so slow the core clock down until it reproduces</span></label><p class="quiz-why"><b>Not quite.</b> Clock changes do shift timing bugs around, which makes this a plausible experiment. It perturbs the system as much as the print did.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-4-2" name="machines/02-embedded-c/06-the-memory-map-4"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-4-2" data-correct><span class="quiz-letter">C</span><span>Timing or stack, so switch to a pin toggle and watch it on a scope</span></label><p class="quiz-why"><b>Right.</b> Printing costs time and stack, so the diagnostic is also an intervention. A pin toggle costs two cycles and no frame, and leaves the timing intact.</p><input class="quiz-radio" type="radio" id="machines/02-embedded-c/06-the-memory-map-4-3" name="machines/02-embedded-c/06-the-memory-map-4"><label class="quiz-opt" for="machines/02-embedded-c/06-the-memory-map-4-3"><span class="quiz-letter">D</span><span>Optimiser interference, so rebuild the project at zero optimisation</span></label><p class="quiz-why"><b>Not quite.</b> That can confirm an optimisation-sensitive bug, and it is worth trying. It also changes timing wholesale, so it moves the symptom for a second reason.</p></fieldset></li></ol></section></div><p class="mt-12 font-mono text-[10px] tracking-wide text-ash">Drawn from: Yiu, The Definitive Guide to Arm Cortex-M, ch. 2 and 7 · White, Making Embedded Systems, ch. 4 and 10</p></article><nav class="mt-16 flex flex-wrap gap-x-8 gap-y-3 border-t border-bone/12 pt-6 text-[11px] tracking-[0.18em] uppercase"><a href="/course/machines/01-the-bench/05-blink-from-a-register" class="text-ash transition-colors hover:text-bone">← Blink, from a register write</a><a href="/course/machines/02-embedded-c/07-interrupts-and-volatile" class="text-ash transition-colors hover:text-bone">Interrupts, and why the variable needs volatile →</a><a href="/course/machines" class="text-ash transition-colors hover:text-bone">All tracks</a></nav></div></main><footer class="px-5 py-8 text-[11px] tracking-wide text-ash">© 2026 Aerens ·<a href="/dither" class="underline decoration-bone/30 underline-offset-2 hover:text-bone">the wordmark is a toy</a></footer></div></body></html>
